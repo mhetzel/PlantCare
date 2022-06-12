@@ -1,0 +1,59 @@
+body {
+  background-image: url('background.jpg');
+  font-family: 'Oswald', sans-serif;
+}
+
+* {box-sizing: border-box;}
+
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.myForm {
+  display: none;
+}
+
+input {
+  border-radius: 5px;
+  font-size: 20px;
+  background: rgba(118, 214, 174, 0.9);
+  border: 1px solid #0d1b19;
+  color: rgb(236, 216, 216);
+}
+button {
+  border-radius: 5px;
+  font-size: 20px;
+  background: rgba(2, 129, 76, 0.9);
+  cursor:pointer;
+  border: 1px solid #0d1b19;
+  color: rgb(236, 216, 216);
+}
+select {
+  border-radius: 5px;
+  font-size: 20px;
+  background: rgba(2, 129, 76, 0.9);
+  border: 1px solid #0d1b19;
+  color: rgb(236, 216, 216);
+}
+
+.content-box {
+  border-radius: 5px;
+  border: 1px solid #0d1b19;
+  background-color: rgba(21, 48, 41, 0.9);
+  box-shadow: 10px 10px 8px #0d1b19;
+  text-align: left;
+  margin-left: auto; 
+  margin-right: auto;
+  padding: 2%;
+  color: rgb(236, 216, 216);
+  font-size: 24px;
+  width: fit-content;
+}
+

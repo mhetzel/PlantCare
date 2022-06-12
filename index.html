@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Plant Care</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <script src="config.js"></script>
+    <script src="index.js"></script>
+    
+
+    <div name="plant-infos" class="content-box" >
+      <select id="location-dropdown" name="location"></select>
+      <select id="plant-dropdown" name="plant"></select>
+          
+
+      <div id="plant-buttons">
+        <button onclick="updatePlant()">Update Plant</button>
+        <button onclick="deletePlant()">Delete Plant</button>
+        <button onclick="waterPlant()">Water Plant</button>
+        <button onclick="checkPlant()">Check Plant</button>
+      </div>
+
+      <span id="plant-data">
+        <div><span>Average Days Between Waterings: </span><span id="averageDaysBetweenWatering"></span></div>
+        <div><span>Current Wetness: </span><span id="currentWetness"></span></div>
+        <div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
+        <div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
+        <div><span>Desired Water Level: </span><span id="water"></span></div>
+        <div><span>Desired Light Level: </span><span id="light"></span></div>
+      </span>
+      <script src="dropdowns.js"></script>  
+    </div>
+
+    <div name="config-div" class="content-box">
+      <div>
+        <label for="userConfig">Load Saved Config:</label>
+        <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
+      </div>
+      <div>
+        <label for="configText">Download Config File: </label>
+        <a id="configText" download="plantData.json" href="">
+          <button onclick="downloadConfig()">Download</button>
+        </a>
+      </div>
+    </div>
+
+    <div name="new-plant" class="content-box">
+      <button id="addButton" onclick="openForm()">Add Plant</button>
+      <div id="myForm" style="display:none">
+        <form action="/action_page.php" class="form-container">
+          <h2>New Plant Details</h2>
+          <div>
+            <label for="newPlantName"><b>Name:</b></label>
+            <input type="text" placeholder="Enter Plant Name" id="newPlantName" required>
+          </div>
+          <div>
+            <label for="newPlantLocation"><b>Location:</b></label>
+            <input type="text" placeholder="Enter Plant Location" id="newPlantLocation" required>
+          </div>
+          <div>
+            <!-- TODO: drop down -->
+            <label for="newPlantWaterNeeds"><b>Water:</b></label>
+            <input type="text" placeholder="Enter Plant Water Needs" id="newPlantWaterNeeds" required>
+          </div>
+          <div>
+            <!-- TODO: drop down -->
+            <label for="newPlantLightNeeds"><b>Light:</b></label>
+            <input type="text" placeholder="Enter Plant Light Needs" id="newPlantLightNeeds" required>
+          </div>
+          <div>
+            <button type="submit" class="btn">Save</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+          </div>  
+
+        </form>
+      </div>
+    </div>
+
+    
+    <script>
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        document.getElementById("addButton").style.display = "none";
+      }
+
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+        document.getElementById("addButton").style.display = "block";
+      }
+    </script>
+
+
+      
+  </body>
+</html>
