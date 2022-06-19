@@ -15,7 +15,6 @@
   </head>
   <body>
 
-    <script src="config.js"></script>
     <script src="index.js"></script>
     
 
@@ -42,7 +41,10 @@
       <script src="dropdowns.js"></script>  
     </div>
 
+    
+
     <div name="config-div" class="content-box">
+      <div id="spinner" class="spinner"></div>
       <div>
         <label for="userConfig">Load Saved Config:</label>
         <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
@@ -53,11 +55,12 @@
           <button onclick="downloadConfig()">Download</button>
         </a>
       </div>
+      <script src="config.js"></script>
     </div>
 
     <div name="new-plant" class="content-box">
       <button id="addButton" onclick="openForm()">Add Plant</button>
-      <div id="myForm" style="display:none">
+      <div id="plantForm" style="display:none">
         <form action="/action_page.php" class="form-container">
           <h2>New Plant Details</h2>
           <div>
@@ -79,8 +82,8 @@
             <input type="text" placeholder="Enter Plant Light Needs" id="newPlantLightNeeds" required>
           </div>
           <div>
-            <button type="submit" class="btn">Save</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+            <button type="submit" onclick="updateConfig()">Save</button>
+            <button type="button" onclick="closeForm()">Cancel</button>
           </div>  
 
         </form>
@@ -90,12 +93,12 @@
     
     <script>
       function openForm() {
-        document.getElementById("myForm").style.display = "block";
+        document.getElementById("plantForm").style.display = "block";
         document.getElementById("addButton").style.display = "none";
       }
 
       function closeForm() {
-        document.getElementById("myForm").style.display = "none";
+        document.getElementById("plantForm").style.display = "none";
         document.getElementById("addButton").style.display = "block";
       }
     </script>

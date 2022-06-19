@@ -18,9 +18,6 @@ resetPlantDropdown();
 
 function setPlantInfo(info) {
   if (Object.keys(info).length) {
-    console.log('here')
-    console.log(info.light)
-    console.log(info)
     plantData.show();
     plantButtons.show();
     resetPlantInfo();

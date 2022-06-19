@@ -1,4 +1,6 @@
 
+var PlantData = {}
+var StorageKey = 'plantCareData'
 
 
 
