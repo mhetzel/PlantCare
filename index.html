@@ -16,10 +16,12 @@
   <body>
 
     <script src="index.js"></script>
-       
+    
+    <div id="spinner" class="spinner"></div>
+
+    <script src="config.js"></script>
 
     <div name="config-div" class="content-box">
-      <div id="spinner" class="spinner"></div>
       <div>
         <label for="userConfig">Load Saved Config:</label>
         <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
@@ -30,7 +32,6 @@
           <button onclick="downloadConfig()">Download</button>
         </a>
       </div>
-      <script src="config.js"></script>
     </div>
 
     <div name="plant-infos" class="content-box" >
@@ -39,10 +40,10 @@
           
 
       <div id="plant-buttons">
+        <button onclick="checkPlant()">Check Plant</button>
+        <button onclick="waterPlant()">Water Plant</button>
         <button onclick="updatePlant()">Update Plant</button>
         <button onclick="deletePlant()">Delete Plant</button>
-        <button onclick="waterPlant()">Water Plant</button>
-        <button onclick="checkPlant()">Check Plant</button>
       </div>
 
       <span id="plant-data">
@@ -78,27 +79,12 @@
             <input type="text" placeholder="Enter Plant Light Needs" id="newPlantLightNeeds" required>
           </div>
           <div>
-            <button type="submit" onclick="updateConfig()">Save</button>
+            <button type="submit" onclick="addNewPlant()">Save</button>
             <button type="button" onclick="closeForm()">Cancel</button>
           </div>  
-          <!-- <script src="newPlant.js"></script> -->
         </form>
       </div>
     </div>
-
-    
-    <script>
-      function openForm() {
-        document.getElementById("plantForm").style.display = "block";
-        document.getElementById("addButton").style.display = "none";
-      }
-
-      function closeForm() {
-        document.getElementById("plantForm").style.display = "none";
-        document.getElementById("addButton").style.display = "block";
-      }
-    </script>
-
 
       
   </body>

@@ -11,7 +11,7 @@ async function loadConfig(event) {
   await saveConfig();
 };
 
-async function updateConfig() {
+async function addNewPlant() {
   let newPlantData = {}
   newPlantData[$("#newPlantLocation").val()] = {}
   newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()] = {}
@@ -20,6 +20,7 @@ async function updateConfig() {
   Object.assign(PlantData, newPlantData);
   console.log(PlantData)
   await saveConfig();
+  closeForm();
   resetLocationDropdown();
   resetPlantDropdown();
   setupDropDowns();
@@ -37,20 +38,16 @@ function downloadConfig() {
   console.log(JSON.stringify(PlantData))
 };
 
-async function loadPlants() {
-  if (typeof(Storage) !== "undefined") {
-    var retrievedObject = localStorage.getItem(StorageKey);
-    if (retrievedObject === null) {
-      await saveConfig();
-      console.log('initializing plant data storage')
-    } else {
-      PlantData = JSON.parse(retrievedObject);
-      console.log('loaded plant config: ', PlantData);
-    }
-  } else {
-    alert('Sorry no way to store your plant info. Try a different browser')
-  }
-};
+
+function openForm() {
+  document.getElementById("plantForm").style.display = "block";
+  document.getElementById("addButton").style.display = "none";
+}
+
+function closeForm() {
+  document.getElementById("plantForm").style.display = "none";
+  document.getElementById("addButton").style.display = "block";
+}
+
 
 $("#spinner").hide();
-loadPlants()
