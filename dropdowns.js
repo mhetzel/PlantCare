@@ -1,20 +1,24 @@
-let locationDropdown = $("#location-dropdown");
-let plantDropdown = $('#plant-dropdown');
-let averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
-let currentWetness = $('#currentWetness');
-let lastChecked = $('#lastChecked');
-let lastWatered = $('#lastWatered');
-let water = $('#water');
-let light = $('#light');
-let plantData = $('#plant-data');
-let plantButtons = $('#plant-buttons');
+var locationDropdown = $("#location-dropdown");
+var plantDropdown = $('#plant-dropdown');
+var averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
+var currentWetness = $('#currentWetness');
+var lastChecked = $('#lastChecked');
+var lastWatered = $('#lastWatered');
+var water = $('#water');
+var light = $('#light');
+var plantData = $('#plant-data');
+var plantButtons = $('#plant-buttons');
 
-locationDropdown.empty();
-locationDropdown.append('<option selected="true" disabled>Choose Location</option>');
-locationDropdown.prop('selectedIndex', 0);
+
+
+resetLocationDropdown();
 resetPlantDropdown();
 
-
+function resetLocationDropdown() {
+  locationDropdown.empty();
+  locationDropdown.append('<option selected="true" disabled>Choose Location</option>');
+  locationDropdown.prop('selectedIndex', 0);
+}
 
 function setPlantInfo(info) {
   if (Object.keys(info).length) {
@@ -63,7 +67,6 @@ function setupDropDowns() {
 
   plantDropdown.change(function() {
     plantInfo = PlantData[locationDropdown.val()][plantDropdown.val()];
-    console.log('here1')
     setPlantInfo(plantInfo);
   });
 };

@@ -16,7 +16,22 @@
   <body>
 
     <script src="index.js"></script>
-    
+       
+
+    <div name="config-div" class="content-box">
+      <div id="spinner" class="spinner"></div>
+      <div>
+        <label for="userConfig">Load Saved Config:</label>
+        <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
+      </div>
+      <div>
+        <label for="configText">Download Config File: </label>
+        <a id="configText" download="plantData.json" href="">
+          <button onclick="downloadConfig()">Download</button>
+        </a>
+      </div>
+      <script src="config.js"></script>
+    </div>
 
     <div name="plant-infos" class="content-box" >
       <select id="location-dropdown" name="location"></select>
@@ -41,27 +56,10 @@
       <script src="dropdowns.js"></script>  
     </div>
 
-    
-
-    <div name="config-div" class="content-box">
-      <div id="spinner" class="spinner"></div>
-      <div>
-        <label for="userConfig">Load Saved Config:</label>
-        <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
-      </div>
-      <div>
-        <label for="configText">Download Config File: </label>
-        <a id="configText" download="plantData.json" href="">
-          <button onclick="downloadConfig()">Download</button>
-        </a>
-      </div>
-      <script src="config.js"></script>
-    </div>
-
     <div name="new-plant" class="content-box">
       <button id="addButton" onclick="openForm()">Add Plant</button>
       <div id="plantForm" style="display:none">
-        <form action="/action_page.php" class="form-container">
+        <form class="form-container" action="javascript:console.log( 'success!' );">
           <h2>New Plant Details</h2>
           <div>
             <label for="newPlantName"><b>Name:</b></label>
@@ -72,12 +70,10 @@
             <input type="text" placeholder="Enter Plant Location" id="newPlantLocation" required>
           </div>
           <div>
-            <!-- TODO: drop down -->
             <label for="newPlantWaterNeeds"><b>Water:</b></label>
             <input type="text" placeholder="Enter Plant Water Needs" id="newPlantWaterNeeds" required>
           </div>
           <div>
-            <!-- TODO: drop down -->
             <label for="newPlantLightNeeds"><b>Light:</b></label>
             <input type="text" placeholder="Enter Plant Light Needs" id="newPlantLightNeeds" required>
           </div>
@@ -85,7 +81,7 @@
             <button type="submit" onclick="updateConfig()">Save</button>
             <button type="button" onclick="closeForm()">Cancel</button>
           </div>  
-
+          <!-- <script src="newPlant.js"></script> -->
         </form>
       </div>
     </div>

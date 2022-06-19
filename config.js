@@ -11,8 +11,18 @@ async function loadConfig(event) {
   await saveConfig();
 };
 
-function updateConfig() {
-
+async function updateConfig() {
+  let newPlantData = {}
+  newPlantData[$("#newPlantLocation").val()] = {}
+  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()] = {}
+  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['water'] = $("#newPlantWaterNeeds").val();
+  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['light'] = $("#newPlantLightNeeds").val();
+  Object.assign(PlantData, newPlantData);
+  console.log(PlantData)
+  await saveConfig();
+  resetLocationDropdown();
+  resetPlantDropdown();
+  setupDropDowns();
 }
 
 async function saveConfig() {
