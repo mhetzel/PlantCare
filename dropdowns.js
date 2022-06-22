@@ -6,13 +6,8 @@ var lastChecked = $('#lastChecked');
 var lastWatered = $('#lastWatered');
 var water = $('#water');
 var light = $('#light');
-var plantData = $('#plant-data');
+var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
-
-
-
-resetLocationDropdown();
-resetPlantDropdown();
 
 function resetLocationDropdown() {
   locationDropdown.empty();
@@ -22,10 +17,10 @@ function resetLocationDropdown() {
 
 function setPlantInfo(info) {
   if (Object.keys(info).length) {
-    plantData.show();
+    plantInfo.show();
     plantButtons.show();
     resetPlantInfo();
-    averageDaysBetweenWatering.text(info.averageDaysBetweenWatering);
+    averageDaysBetweenWatering.text(Math.floor(info.averageDaysBetweenWatering));
     currentWetness.text(info.currentWetness);
     lastChecked.text(info.lastChecked);
     lastWatered.text(info.lastWatered);
@@ -47,28 +42,33 @@ function resetPlantDropdown() {
   plantDropdown.empty();
   plantDropdown.append('<option selected="true" disabled>Choose Plant</option>');
   plantDropdown.prop('selectedIndex', 0);
-  plantData.hide();
+  plantInfo.hide();
   plantButtons.hide();
 };
 
-function setupDropDowns() {
+function setupDropDowns(plantData) {
   
-  Object.keys(PlantData).forEach(function(location) {
+  Object.keys(plantData).forEach(function(location) {
     locationDropdown.append($('<option></option>').attr('value', location).text(location));
   });
 
   locationDropdown.change(function() {
     resetPlantDropdown();
 
-    Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
+    Object.keys(plantData[locationDropdown.val()]).forEach( plant => {
       plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
     });
   });
 
   plantDropdown.change(function() {
-    plantInfo = PlantData[locationDropdown.val()][plantDropdown.val()];
-    setPlantInfo(plantInfo);
+    plant = plantData[locationDropdown.val()][plantDropdown.val()];
+    setPlantInfo(plant);
   });
 };
 
-setupDropDowns();
+function dropdownSetup(plantData) {
+  resetLocationDropdown();
+  resetPlantDropdown();
+  setupDropDowns(plantData);
+}
+

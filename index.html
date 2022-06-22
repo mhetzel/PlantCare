@@ -17,51 +17,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap" rel="stylesheet">
   </head>
   <body>
-
-    <script src="index.js"></script>
-    
-    <div id="spinner" class="spinner"></div>
-
-    <script src="config.js"></script>
-
-    <div name="config-div" class="content-box">
-      <div>
-        <label for="userConfig">Load Saved Config:</label>
-        <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
-      </div>
-      <div>
-        <label for="configText">Download Config File: </label>
-        <a id="configText" download="plantData.json" href="">
-          <button onclick="downloadConfig()">Download</button>
-        </a>
-      </div>
+   
+    <div class="spinner" style="display:none"></div>
+    <div id="menu" class="content-box">
+      <button id="config-button" onclick="openConfigForm()">Configure</button>
+      <button id="add-plant-button" onclick="openNewPlantForm()">Add Plant</button>
+      <button id="list-plant-button" onclick="displayPlants()">Actionable Plants</button>
     </div>
 
-    <div name="plant-infos" class="content-box" >
-      <select id="location-dropdown" name="location"></select>
-      <select id="plant-dropdown" name="plant"></select>
-          
+    <div id="changing-div" class="content-box" style="display:none">
 
-      <div id="plant-buttons">
-        <button onclick="checkPlant()">Check Plant</button>
-        <button onclick="waterPlant()">Water Plant</button>
-        <button onclick="updatePlant()">Update Plant</button>
-        <button onclick="deletePlant()">Delete Plant</button>
-      </div>
-
-      <span id="plant-data">
-        <div><span>Average Days Between Waterings: </span><span id="averageDaysBetweenWatering"></span></div>
-        <div><span>Current Wetness: </span><span id="currentWetness"></span></div>
-        <div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
-        <div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
-        <div><span>Desired Water Level: </span><span id="water"></span></div>
-        <div><span>Desired Light Level: </span><span id="light"></span></div>
-      </span>
-      <script src="dropdowns.js"></script>  
-    </div>
-
-    <div name="new-plant" class="content-box">
-      <button id="addButton" onclick="openForm()">Add Plant</button>
       <div id="plantForm" style="display:none">
         <form class="form-container" action="javascript:console.log( 'success!' );">
           <h2>New Plant Details</h2>
@@ -87,8 +52,48 @@
           </div>  
         </form>
       </div>
+
+      <div id="config-div" class="content-box" style="display:none">
+        <div>
+          <label for="userConfig">Load Saved Config:</label>
+          <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
+        </div>
+        <div>
+          <label for="configText">Download Config File: </label>
+          <a id="configText" download="plantData.json" href="">
+            <button onclick="downloadConfig()">Download</button>
+          </a>
+        </div>
+        <button type="button" onclick="closeForm()">Cancel</button>
+      </div>
+
     </div>
 
-      
+    <div name="plant-infos" class="content-box" >
+      <select id="location-dropdown" name="location"></select>
+      <select id="plant-dropdown" name="plant"></select>
+
+      <span id="plant-info">
+        <div><span>Average Days Between Waterings: </span><span id="averageDaysBetweenWatering"></span></div>
+        <div><span>Current Wetness: </span><span id="currentWetness"></span></div>
+        <div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
+        <div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
+        <div><span>Desired Water Level: </span><span id="water"></span></div>
+        <div><span>Desired Light Level: </span><span id="light"></span></div>
+      </span>
+
+      <div id="plant-buttons">
+        <button onclick="checkPlant()">Check Plant</button>
+        <button onclick="waterPlant()">Water Plant</button>
+        <button onclick="updatePlant()">Update Plant</button>
+        <button onclick="deletePlant()">Delete Plant</button>
+      </div>
+    </div>
+
+    <script src="dropdowns.js"></script>
+    <script src="index.js"></script>
+    <script src="config.js"></script>
+    <script src="plantActions.js"></script>
+    
   </body>
 </html>
