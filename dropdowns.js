@@ -9,17 +9,51 @@ var light = $('#light');
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
+const LightList = [
+  'Low to medium indirect', 
+  'Medium to bright indirect. Tolerates low indirect', 
+  'Medium to bright indirect', 
+  'Bright indirect. Tolerates medium to low indirect',
+  'Bright indirect',
+  'Bright indirect to direct',
+  'Direct']
+
+const WaterList = [
+  'Evenly moist', 
+  '1 inch is dry', 
+  '1-2 inches are dry', 
+  '2-3 inches are dry',
+  'Almost completely dry',
+  'Completely dry']
+
+function waterDropdown(dropdown) {
+  dropdown.empty();
+  dropdown.append('<option selected="true">Evenly moist.</option>');
+  dropdown.append('<option>1 inch is dry.</option>');
+  dropdown.append('<option>1-2 inches are dry.</option>');
+  dropdown.append('<option>2-3 inches are dry.</option>');
+  dropdown.append('<option>Almost completely dry.</option>');
+  dropdown.append('<option>Completely dry.</option>');
+  dropdown.prop('selectedIndex', 0);
+}
+
+function setupWaterAndLightDropdowns() {
+  waterDropdown($('#newPlantWaterNeeds'));
+
+  $('#newPlantLightNeeds').empty();
+  $('#newPlantLightNeeds').append($('<option selected="true"></option>').attr('value', LightList[0]).text(LightList[0]));
+  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[1]).text(LightList[1]));
+  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[2]).text(LightList[2]));
+  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[3]).text(LightList[3]));
+  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[4]).text(LightList[4]));
+  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[5]).text(LightList[5]));
+  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[6]).text(LightList[6]));
+  $('#newPlantLightNeeds').prop('selectedIndex', 0);
+}
 
 
 function setupCurrentWetness() {
-  currentWetness.empty();
-  currentWetness.append('<option selected="true">0</option>');
-  currentWetness.append('<option>1</option>');
-  currentWetness.append('<option>2</option>');
-  currentWetness.append('<option>3</option>');
-  currentWetness.append('<option>4</option>');
-  currentWetness.append('<option>5</option>');
-  currentWetness.prop('selectedIndex', 0);
+  waterDropdown(currentWetness);
 }
 
 function resetLocationDropdown() {
@@ -33,12 +67,12 @@ function setPlantInfo(info) {
     plantInfo.show();
     plantButtons.show();
     resetPlantInfo();
-    averageDaysBetweenWatering.text(Math.floor(info.averageDaysBetweenWatering));
+    averageDaysBetweenWatering.text(isNaN(info.averageDaysBetweenWatering) ? 'n/a' : Math.floor(info.averageDaysBetweenWatering));
     currentWetness.prop('selectedIndex', info.currentWetness);
     lastChecked.text(info.lastChecked);
     lastWatered.text(info.lastWatered);
-    water.text(info.water);
-    light.text(info.light);
+    water.text(WaterList[info.water]);
+    light.text(LightList[info.light]);
   }
 };
 

@@ -24,27 +24,38 @@ async function saveConfig() {
 }
 
 function openConfigForm() {
-  document.getElementById("config-div").style.display = "block";
-  document.getElementById("plantForm").style.display = "none";
-  document.getElementById("changing-div").style.display = "block";
+  if ($("#config-div").css('display') == 'block') {
+    closeForm();
+  } else {
+    $("#plantForm").hide();
+    $("#changing-div").show();
+    $("#config-div").show();
+  }
 }
 
 function openNewPlantForm() {
-  document.getElementById("plantForm").style.display = "block";
-  document.getElementById("config-div").style.display = "none";
-  document.getElementById("changing-div").style.display = "block";
+  if ($("#plantForm").css('display') == 'block') {
+    closeForm();
+  } else {
+    $("#config-div").hide();
+    $("#changing-div").show();
+    $("#plantForm").show();
+    setupWaterAndLightDropdowns();
+  }
 }
 
 function closeForm() {
-  document.getElementById("changing-div").style.display = "none";
+  $("#changing-div").hide();
+  $("#config-div").hide();
+  $("#plantForm").hide();
 }
 
 async function addNewPlant() {
   let newPlantData = {}
   newPlantData[$("#newPlantLocation").val()] = {}
   newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()] = {}
-  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['water'] = $("#newPlantWaterNeeds").val();
-  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['light'] = $("#newPlantLightNeeds").val();
+  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['water'] = $("#newPlantWaterNeeds").prop('selectedIndex');
+  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['light'] = $("#newPlantLightNeeds").prop('selectedIndex');
   newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['daysTotal'] = 0;
   newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['wateringCount'] = 0;
   Object.assign(PlantData, newPlantData);
@@ -52,14 +63,13 @@ async function addNewPlant() {
   closeForm();
 }
 
-
 loadPlants();
 dropdownSetup(PlantData);
+if (Object.keys(PlantData).length === 0) {
+  openNewPlantForm();
+}
 
-
-// implement plant functions
-// use drop downs for water/light levels
+// implement plant update function
 // display all plants in need of checking or watering
-// close config and add plant when button is reclicked
 // update plant inplace don't delete re-add
 // automatically show plant if there is only one in the selected location

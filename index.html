@@ -19,13 +19,13 @@
   <body>
    
     <div class="spinner" style="display:none"></div>
-    <div id="menu" class="content-box">
-      <button id="config-button" onclick="openConfigForm()">Configure</button>
-      <button id="add-plant-button" onclick="openNewPlantForm()">Add Plant</button>
-      <button id="list-plant-button" onclick="displayPlants()">Actionable Plants</button>
+    <div id="menu" class="menu-box">
+      <div><button id="config-button" onclick="openConfigForm()">Configure</button></div>
+      <div><button id="add-plant-button" onclick="openNewPlantForm()">Add Plant</button></div>
+      <div><button id="list-plant-button" onclick="displayPlants()">Actionable Plants</button></div>
     </div>
 
-    <div id="changing-div" class="content-box" style="display:none">
+    <div id="changing-div" class="content-box" style="display:none;">
 
       <div id="plantForm" style="display:none">
         <form class="form-container" action="javascript:console.log( 'success!' );">
@@ -40,11 +40,11 @@
           </div>
           <div>
             <label for="newPlantWaterNeeds"><b>Water:</b></label>
-            <input type="text" placeholder="Enter Plant Water Needs" id="newPlantWaterNeeds" required>
+            <select id="newPlantWaterNeeds" required></select>
           </div>
           <div>
             <label for="newPlantLightNeeds"><b>Light:</b></label>
-            <input type="text" placeholder="Enter Plant Light Needs" id="newPlantLightNeeds" required>
+            <select id="newPlantLightNeeds" required></select>
           </div>
           <div>
             <button type="submit" onclick="addNewPlant()">Save</button>
