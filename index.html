@@ -70,12 +70,12 @@
     </div>
 
     <div name="plant-infos" class="content-box" >
-      <select id="location-dropdown" name="location"></select>
-      <select id="plant-dropdown" name="plant"></select>
+      <select id="location-dropdown"></select>
+      <select id="plant-dropdown"></select>
 
       <span id="plant-info">
         <div><span>Average Days Between Waterings: </span><span id="averageDaysBetweenWatering"></span></div>
-        <div><span>Current Wetness: </span><span id="currentWetness"></span></div>
+        <div><span>Current Wetness: </span><select id="currentWetness" onchange="checkPlant()"></select></div>
         <div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
         <div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
         <div><span>Desired Water Level: </span><span id="water"></span></div>
@@ -83,7 +83,6 @@
       </span>
 
       <div id="plant-buttons">
-        <button onclick="checkPlant()">Check Plant</button>
         <button onclick="waterPlant()">Water Plant</button>
         <button onclick="updatePlant()">Update Plant</button>
         <button onclick="deletePlant()">Delete Plant</button>

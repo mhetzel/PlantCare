@@ -3,8 +3,7 @@ async function checkPlant() {
   delete PlantData[locationDropdown.val()][plantDropdown.val()];
   const today = new Date();
   plant.lastChecked = today.toDateString();
-  // TODO writable wetness input
-  plant.currentWetness = 3
+  plant.currentWetness = currentWetness.prop('selectedIndex');
   PlantData[locationDropdown.val()][plantDropdown.val()] = plant;
 
   await saveConfig();

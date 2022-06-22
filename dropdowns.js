@@ -9,6 +9,19 @@ var light = $('#light');
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
+
+
+function setupCurrentWetness() {
+  currentWetness.empty();
+  currentWetness.append('<option selected="true">0</option>');
+  currentWetness.append('<option>1</option>');
+  currentWetness.append('<option>2</option>');
+  currentWetness.append('<option>3</option>');
+  currentWetness.append('<option>4</option>');
+  currentWetness.append('<option>5</option>');
+  currentWetness.prop('selectedIndex', 0);
+}
+
 function resetLocationDropdown() {
   locationDropdown.empty();
   locationDropdown.append('<option selected="true" disabled>Choose Location</option>');
@@ -21,7 +34,7 @@ function setPlantInfo(info) {
     plantButtons.show();
     resetPlantInfo();
     averageDaysBetweenWatering.text(Math.floor(info.averageDaysBetweenWatering));
-    currentWetness.text(info.currentWetness);
+    currentWetness.prop('selectedIndex', info.currentWetness);
     lastChecked.text(info.lastChecked);
     lastWatered.text(info.lastWatered);
     water.text(info.water);
@@ -30,8 +43,8 @@ function setPlantInfo(info) {
 };
 
 function resetPlantInfo() {
+  setupCurrentWetness();
   averageDaysBetweenWatering.text('n/a')
-  currentWetness.text('n/a')
   lastChecked.text('n/a')
   lastWatered.text('n/a')
   water.text('n/a')

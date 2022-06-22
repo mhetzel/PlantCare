@@ -56,8 +56,10 @@ async function addNewPlant() {
 loadPlants();
 dropdownSetup(PlantData);
 
+
 // implement plant functions
 // use drop downs for water/light levels
 // display all plants in need of checking or watering
 // close config and add plant when button is reclicked
+// update plant inplace don't delete re-add
 // automatically show plant if there is only one in the selected location
