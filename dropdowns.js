@@ -103,8 +103,8 @@ async function plantSelectionChange() {
 async function locationSelectionChange() {
   await loadPlants()
   console.log('location change')
-  console.log(PlantData[locationDropdown.val()])
-    resetPlantDropdown();
+  console.log(PlantData)
+  resetPlantDropdown();
 
     Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
       plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
