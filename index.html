@@ -51,7 +51,7 @@
           </div>
           <div>
             <button type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
-            <button type="button" onclick="closeForm()">Cancel</button>
+            <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark-large"></i></button>
           </div>  
         </form>
       </div>
@@ -61,13 +61,10 @@
           <label for="userConfig">Load Saved Config:</label>
           <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
         </div>
-        <div>
-          <label for="configText">Download Config File: </label>
-          <a id="configText" download="plantData.json" href="">
-            <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
-          </a>
-        </div>
-        <button type="button" onclick="closeForm()">Cancel</button>
+        <a id="configText" download="plantData.json" href="">
+          <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
+        </a>
+        <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark-large"></i></button>
       </div>
 
     </div>
