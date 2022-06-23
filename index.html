@@ -59,16 +59,9 @@
       <div id="config-div" style="display:none">
         
         <form method="post" enctype="multipart/form-data">
-          <div>
-            <label for="userConfig">Load Saved Config:</label>
-            <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json">
-          </div>
-          <div class="preview">
-            <p>No config currently selected for upload</p>
-          </div>
-          <div>
-            <buttonn type="button" onclick="closeForm()" onchange="loadConfig(event)" title="Upload Config"><i class="fa-solid fa-upload"></i></button>
-          </div>
+          <label for="userConfig">Load Saved Config:</label>
+          <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json">
+          <button type="button" onclick="closeForm()" onchange="loadConfig(event)" title="Upload Config"><i class="fa-solid fa-upload"></i></button>
         </form>
         
         <a id="configText" download="plantData.json" href="">
