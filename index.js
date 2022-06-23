@@ -44,6 +44,13 @@ function openNewPlantForm() {
   }
 }
 
+function setDisplayForNoPlants() {
+  if (Object.keys(PlantData).length === 0) {
+    openNewPlantForm();
+     $("#plant-infos").hide();
+  }
+}
+
 function closeForm() {
   $("#changing-div").hide();
   $("#config-div").hide();
@@ -66,7 +73,4 @@ async function addNewPlant() {
 
 loadPlants();
 dropdownSetup(PlantData);
-if (Object.keys(PlantData).length === 0) {
-  openNewPlantForm();
-   $("#plant-infos").hide();
-}
+setDisplayForNoPlants();
