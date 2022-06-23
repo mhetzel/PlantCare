@@ -107,7 +107,7 @@ function locationSelectionChange() {
       plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
     });
     
-    if (Object.keys(PlantData[locationDropdown.val()]).length === 2) {
+    if (Object.keys(PlantData[locationDropdown.val()]).length === 1) {
       plantDropdown.prop('selectedIndex', 1);
     }
 }
