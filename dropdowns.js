@@ -93,29 +93,28 @@ function resetPlantDropdown() {
   plantButtons.hide();
 };
 
-function setupDropDowns(plantData) {
-  
-  Object.keys(plantData).forEach(function(location) {
-    locationDropdown.append($('<option></option>').attr('value', location).text(location));
-  });
+function plantSelectionChange() {
+    plant = PlantData[locationDropdown.val()][plantDropdown.val()];
+    setPlantInfo(plant);
+}
 
-  locationDropdown.change(function() {
+function locationSelectionChange() {
     resetPlantDropdown();
 
-    Object.keys(plantData[locationDropdown.val()]).forEach( plant => {
+    Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
       plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
     });
     
-    if (Object.keys(plantData[locationDropdown.val()]).length === 2) {
+    if (Object.keys(PlantData[locationDropdown.val()]).length === 2) {
       plantDropdown.prop('selectedIndex', 1);
     }
-  });
+}
 
-  plantDropdown.change(function() {
-    plant = plantData[locationDropdown.val()][plantDropdown.val()];
-    setPlantInfo(plant);
+function setupDropDowns(plantData) {
+  Object.keys(plantData).forEach(function(location) {
+    locationDropdown.append($('<option></option>').attr('value', location).text(location));
   });
-};
+}
 
 function dropdownSetup(plantData) {
   resetLocationDropdown();
