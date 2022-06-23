@@ -105,6 +105,10 @@ function setupDropDowns(plantData) {
     Object.keys(plantData[locationDropdown.val()]).forEach( plant => {
       plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
     });
+    
+    if (Object.keys(plantData[locationDropdown.val()]).length === 2) {
+      plantDropdown.prop('selectedIndex', 1);
+    }
   });
 
   plantDropdown.change(function() {
