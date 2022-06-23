@@ -63,9 +63,12 @@ function closeForm() {
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val()
   let newName = $("#newPlantName").val()
-  if (!(newLocation in Object.keys(PlantData))) {
+  console.log(PlantData)
+  if (!PlantData.hasOwnProperty(newLocation)) {
     PlantData[newLocation] = {}
   }
+  
+  console.log(PlantData[newLocation])
   
   if (!(newName in Object.keys(PlantData[newLocation]))) {
     PlantData[newLocation][newName] = {}
