@@ -28,8 +28,6 @@ function openConfigForm() {
   if ($("#config-div").css('display') == 'block') {
     closeForm();
   } else {
-    $("#newPlantName").val = '';
-    $("#newPlantLocation").val = '';
     $("#plantForm").hide();
     $("#changing-div").show();
     $("#config-div").show();
@@ -40,6 +38,8 @@ function openNewPlantForm() {
   if ($("#plantForm").css('display') == 'block') {
     closeForm();
   } else {
+    $("#newPlantName").val = '';
+    $("#newPlantLocation").val = '';
     $("#config-div").hide();
     $("#changing-div").show();
     $("#plantForm").show();
