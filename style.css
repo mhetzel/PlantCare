@@ -13,12 +13,9 @@ body {
 input[type="file" i] {
   opacity : 0;
   font-size: 20px;
-  height: 200px;
+  width : 10px;
 }
 
-label {
-  height : 200px;
-}
 
 input {
   border-radius: 5px;
@@ -36,7 +33,7 @@ button, #configLabel {
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
   width: fit-content;
-  height: 200px;
+  height: 20px;
 }
 
 select {
