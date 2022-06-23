@@ -28,6 +28,8 @@ function openConfigForm() {
   if ($("#config-div").css('display') == 'block') {
     closeForm();
   } else {
+    $("#newPlantName").val = '';
+    $("#newPlantLocation").val = '';
     $("#plantForm").hide();
     $("#changing-div").show();
     $("#config-div").show();
