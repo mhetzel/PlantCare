@@ -20,7 +20,7 @@ async function loadPlants() {
 
 async function saveConfig() {
   localStorage.setItem(StorageKey, JSON.stringify(PlantData));
-  dropdownSetup(PlantData);
+  dropdownSetup();
   setDisplayForNoPlants();
 }
 
@@ -75,5 +75,5 @@ async function addNewPlant() {
 }
 
 loadPlants();
-dropdownSetup(PlantData);
+dropdownSetup();
 setDisplayForNoPlants();
