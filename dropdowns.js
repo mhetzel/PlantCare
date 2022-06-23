@@ -93,14 +93,12 @@ function resetPlantDropdown() {
   plantButtons.hide();
 };
 
-async function plantSelectionChange() {
-  await loadPlants()
+function plantSelectionChange() {
   plant = PlantData[locationDropdown.val()][plantDropdown.val()];
   setPlantInfo(plant);
 }
 
-async function locationSelectionChange() {
-  await loadPlants()
+function locationSelectionChange() {
   resetPlantDropdown();
 
   Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
@@ -109,7 +107,7 @@ async function locationSelectionChange() {
   
   if (Object.keys(PlantData[locationDropdown.val()]).length === 1) {
     plantDropdown.prop('selectedIndex', 1);
-    await plantSelectionChange();
+    plantSelectionChange();
   }
 }
 
