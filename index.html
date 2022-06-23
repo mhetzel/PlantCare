@@ -15,14 +15,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
    
     <div class="spinner" style="display:none"></div>
-    <div id="menu" class="menu-box">
-      <div><button id="config-button" onclick="openConfigForm()">Configure</button></div>
-      <div><button id="add-plant-button" onclick="openNewPlantForm()">Add Plant</button></div>
-      <div><button id="list-plant-button" onclick="displayPlants()">Actionable Plants</button></div>
+    <div class="menu-box">
+      <div id="menu">
+        <button id="config-button" onclick="openConfigForm()"><i class="fa fa-gears"></i></button>
+        <button id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
+        <button id="list-plant-button" onclick="displayPlants()"><i class="fa fa-plant-wilt"></i></i></button>
+      </div>
     </div>
 
     <div id="changing-div" class="content-box" style="display:none;">
