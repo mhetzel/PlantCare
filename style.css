@@ -73,6 +73,8 @@ button, #configLabel {
   cursor:pointer;
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
+  width: fit-content;
+
 }
 
 select {
