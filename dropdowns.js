@@ -94,11 +94,13 @@ function resetPlantDropdown() {
 };
 
 function plantSelectionChange() {
+   console.log('plant change')
     plant = PlantData[locationDropdown.val()][plantDropdown.val()];
     setPlantInfo(plant);
 }
 
 function locationSelectionChange() {
+  console.log('location change')
     resetPlantDropdown();
 
     Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
