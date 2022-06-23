@@ -57,13 +57,10 @@
       </div>
 
       <div id="config-div" style="display:none">
-        
-        <form method="post" enctype="multipart/form-data">
-          <label id='configLabel' for="userConfig">Load Saved Config:</label>
-          <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="loadConfig(event)">
-          <button type="button" onclick="loadConfig(event)" title="Upload Config"><i class="fa-solid fa-upload"></i></button>
-        </form>
-        
+
+        <label id='configLabel' for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i></label>
+        <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="loadConfig(event)">
+
         <a id="configText" download="plantData.json" href="">
           <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
         </a>
