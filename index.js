@@ -21,6 +21,7 @@ async function loadPlants() {
 async function saveConfig() {
   localStorage.setItem(StorageKey, JSON.stringify(PlantData));
   dropdownSetup(PlantData);
+  setDisplayForNoPlants();
 }
 
 function openConfigForm() {
