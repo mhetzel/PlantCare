@@ -54,7 +54,7 @@ body {
   display: none;
 }
 
-#userConfig {
+input[type="file" i] {
   opacity : 0;
 }
 
@@ -65,6 +65,7 @@ input {
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
 }
+
 button, #configLabel {
   border-radius: 5px;
   font-size: 20px;
@@ -73,6 +74,7 @@ button, #configLabel {
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
 }
+
 select {
   border-radius: 5px;
   font-size: 20px;
