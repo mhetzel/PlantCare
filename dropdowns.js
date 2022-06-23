@@ -94,7 +94,6 @@ function resetPlantDropdown() {
 };
 
 async function plantSelectionChange() {
-  console.log('plant change')
   await loadPlants()
   plant = PlantData[locationDropdown.val()][plantDropdown.val()];
   setPlantInfo(plant);
@@ -102,8 +101,6 @@ async function plantSelectionChange() {
 
 async function locationSelectionChange() {
   await loadPlants()
-  console.log('location change')
-  console.log(PlantData)
   resetPlantDropdown();
 
   Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {

@@ -1,36 +1,41 @@
 async function checkPlant() {
-  plant = PlantData[locationDropdown.val()][plantDropdown.val()];
-  delete PlantData[locationDropdown.val()][plantDropdown.val()];
+  let location = locationDropdown.val()
+  let plantName = plantDropdown.val()
+  let locationIndex = locationDropdown.prop('selectedIndex')
+  let plantIndex = plantDropdown.prop('selectedIndex')
   const today = new Date();
-  plant.lastChecked = today.toDateString();
-  plant.currentWetness = currentWetness.prop('selectedIndex');
-  PlantData[locationDropdown.val()][plantDropdown.val()] = plant;
-
+  PlantData[location][plantName].lastChecked = today.toDateString();
+  PlantData[location][plantName].currentWetness = currentWetness.prop('selectedIndex');
   await saveConfig(PlantData);
+  locationDropdown.prop('selectedIndex', locationIndex);
+  locationSelectionChange();
+  plantDropdown.prop('selectedIndex', plantIndex);
+  plantSelectionChange();
 }
 
 async function waterPlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
-
-  let plant = PlantData[location][plantName];
+  let locationIndex = locationDropdown.prop('selectedIndex')
+  let plantIndex = plantDropdown.prop('selectedIndex')
   
   const today = new Date();
-  const last = 'lastWatered' in plant ? new Date(plant.lastWatered) : today;
-  const daysTotal = 'daysTotal' in plant ? plant.daysTotal : 0;
-  const wateringCount = 'wateringCount' in plant ? plant.wateringCount : 0;
+  const last = 'lastWatered' in PlantData[location][plantName] ? new Date(PlantData[location][plantName].lastWatered) : today;
+  const daysTotal = 'daysTotal' in PlantData[location][plantName] ? PlantData[location][plantName].daysTotal : 0;
+  const wateringCount = 'wateringCount' in PlantData[location][plantName] ? PlantData[location][plantName].wateringCount : 0;
 
-  plant.daysTotal = daysTotal + (today - last);
-  plant.wateringCount = wateringCount + 1;
-  plant.averageDaysBetweenWatering = plant.daysTotal/plant.wateringCount;
-  
-  plant.lastWatered = today.toDateString();
-  plant.lastChecked = today.toDateString();
-  plant.currentWetness = 0;
-  delete PlantData[location][plantName];
-  PlantData[location][plantName] = plant;
+  PlantData[location][plantName].daysTotal = daysTotal + (today - last);
+  PlantData[location][plantName].wateringCount = wateringCount + 1;
+  PlantData[location][plantName].averageDaysBetweenWatering = PlantData[location][plantName].daysTotal/PlantData[location][plantName].wateringCount;
+  PlantData[location][plantName].lastWatered = today.toDateString();
+  PlantData[location][plantName].lastChecked = today.toDateString();
+  PlantData[location][plantName].currentWetness = 0;
 
   await saveConfig(PlantData);
+  locationDropdown.prop('selectedIndex', locationIndex);
+  locationSelectionChange();
+  plantDropdown.prop('selectedIndex', plantIndex);
+  plantSelectionChange();
 }
 
 function updatePlant() {
