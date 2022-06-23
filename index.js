@@ -67,4 +67,5 @@ loadPlants();
 dropdownSetup(PlantData);
 if (Object.keys(PlantData).length === 0) {
   openNewPlantForm();
+   $("#plant-infos").hide();
 }
