@@ -101,6 +101,7 @@ function plantSelectionChange() {
 
 function locationSelectionChange() {
   console.log('location change')
+  console.log(PlantData[locationDropdown.val()])
     resetPlantDropdown();
 
     Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
