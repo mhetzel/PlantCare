@@ -1,10 +1,14 @@
 async function checkPlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
+  let locationIndex = locationDropdown.prop('selectedIndex')
+  let plantIndex = plantDropdown.prop('selectedIndex')
   const today = new Date();
   PlantData[location][plantName].lastChecked = today.toDateString();
   PlantData[location][plantName].currentWetness = currentWetness.prop('selectedIndex');
   await saveConfig(PlantData);
+  locationDropdown.prop('selectedIndex', locationIndex);
+  plantDropdown.prop('selectedIndex', plantIndex);
 }
 
 async function waterPlant() {
@@ -24,6 +28,8 @@ async function waterPlant() {
   PlantData[location][plantName].currentWetness = 0;
 
   await saveConfig(PlantData);
+  locationDropdown.prop('selectedIndex', locationIndex);
+  plantDropdown.prop('selectedIndex', plantIndex);
 }
 
 function updatePlant() {
