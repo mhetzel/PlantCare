@@ -38,8 +38,8 @@ function openNewPlantForm() {
   if ($("#plantForm").css('display') == 'block') {
     closeForm();
   } else {
-    $("#newPlantName").val = '';
-    $("#newPlantLocation").val = '';
+    $("#newPlantName").val('');
+    $("#newPlantLocation").val('');
     $("#config-div").hide();
     $("#changing-div").show();
     $("#plantForm").show();
