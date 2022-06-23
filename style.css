@@ -60,6 +60,10 @@ input[type="file" i] {
   height: 200px;
 }
 
+label {
+  height : 200px;
+}
+
 input {
   border-radius: 5px;
   font-size: 20px;
