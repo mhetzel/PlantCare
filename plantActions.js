@@ -8,7 +8,9 @@ async function checkPlant() {
   PlantData[location][plantName].currentWetness = currentWetness.prop('selectedIndex');
   await saveConfig(PlantData);
   locationDropdown.prop('selectedIndex', locationIndex);
+  locationSelectionChange();
   plantDropdown.prop('selectedIndex', plantIndex);
+  plantSelectionChange();
 }
 
 async function waterPlant() {
