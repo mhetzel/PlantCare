@@ -94,10 +94,10 @@ function resetPlantDropdown() {
 };
 
 async function plantSelectionChange() {
-   console.log('plant change')
+  console.log('plant change')
   await loadPlants()
-    plant = PlantData[locationDropdown.val()][plantDropdown.val()];
-    setPlantInfo(plant);
+  plant = PlantData[locationDropdown.val()][plantDropdown.val()];
+  setPlantInfo(plant);
 }
 
 async function locationSelectionChange() {
@@ -106,13 +106,14 @@ async function locationSelectionChange() {
   console.log(PlantData)
   resetPlantDropdown();
 
-    Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
-      plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
-    });
-    
-    if (Object.keys(PlantData[locationDropdown.val()]).length === 1) {
-      plantDropdown.prop('selectedIndex', 1);
-    }
+  Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
+    plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
+  });
+  
+  if (Object.keys(PlantData[locationDropdown.val()]).length === 1) {
+    plantDropdown.prop('selectedIndex', 1);
+    await plantSelectionChange();
+  }
 }
 
 async function setupDropDowns() {
