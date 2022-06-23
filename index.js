@@ -21,6 +21,7 @@ async function loadPlants() {
 async function saveConfig() {
   localStorage.setItem(StorageKey, JSON.stringify(PlantData));
   dropdownSetup(PlantData);
+  setDisplayForNoPlants();
 }
 
 function openConfigForm() {
@@ -37,10 +38,19 @@ function openNewPlantForm() {
   if ($("#plantForm").css('display') == 'block') {
     closeForm();
   } else {
+    $("#newPlantName").val('');
+    $("#newPlantLocation").val('');
     $("#config-div").hide();
     $("#changing-div").show();
     $("#plantForm").show();
     setupWaterAndLightDropdowns();
+  }
+}
+
+function setDisplayForNoPlants() {
+  if (Object.keys(PlantData).length === 0) {
+    openNewPlantForm();
+     $("#plant-infos").hide();
   }
 }
 
@@ -61,10 +71,9 @@ async function addNewPlant() {
   Object.assign(PlantData, newPlantData);
   await saveConfig();
   closeForm();
+   $("#plant-infos").show();
 }
 
 loadPlants();
 dropdownSetup(PlantData);
-if (Object.keys(PlantData).length === 0) {
-  openNewPlantForm();
-}
+setDisplayForNoPlants();
