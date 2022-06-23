@@ -54,6 +54,10 @@ body {
   display: none;
 }
 
+#userConfig {
+  opacity : 0;
+}
+
 input {
   border-radius: 5px;
   font-size: 20px;
