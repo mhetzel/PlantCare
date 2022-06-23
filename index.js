@@ -74,6 +74,5 @@ async function addNewPlant() {
    $("#plant-infos").show();
 }
 
-loadPlants();
-await dropdownSetup();
+dropdownSetup();
 setDisplayForNoPlants();
