@@ -65,7 +65,7 @@ input {
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
 }
-button, configLabel {
+button, #configLabel {
   border-radius: 5px;
   font-size: 20px;
   background: rgba(2, 129, 76, 0.9);
