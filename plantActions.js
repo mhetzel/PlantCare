@@ -39,5 +39,10 @@ function updatePlant() {
 
 async function deletePlant() {
   delete PlantData[locationDropdown.val()][plantDropdown.val()];
+  
+  if (Object.keys(PlantData[locationDropdown.val()]).length === 0) {
+    delete PlantData[locationDropdown.val()]
+  }
+  
   await saveConfig();
 }
