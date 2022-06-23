@@ -68,8 +68,3 @@ dropdownSetup(PlantData);
 if (Object.keys(PlantData).length === 0) {
   openNewPlantForm();
 }
-
-// implement plant update function
-// display all plants in need of checking or watering
-// update plant inplace don't delete re-add
-// automatically show plant if there is only one in the selected location
