@@ -8,7 +8,7 @@ async function loadConfig(event) {
   $("#spinner").hide();
 
   PlantData = JSON.parse(text);
-  await saveConfig();
+  await saveConfig(PlantData);
   console.log('config saved')
 };
 

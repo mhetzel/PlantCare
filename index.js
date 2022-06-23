@@ -7,7 +7,7 @@ async function loadPlants() {
   if (typeof(Storage) !== "undefined") {
     var retrievedObject = localStorage.getItem(StorageKey);
     if (retrievedObject === null) {
-      await saveConfig();
+      await saveConfig(PlantData);
       console.log('initializing plant data storage')
     } else {
       PlantData = JSON.parse(retrievedObject);
@@ -18,9 +18,9 @@ async function loadPlants() {
   }
 };
 
-async function saveConfig() {
-  localStorage.setItem(StorageKey, JSON.stringify(PlantData));
-  dropdownSetup(PlantData);
+async function saveConfig(plantData) {
+  localStorage.setItem(StorageKey, JSON.stringify(plantData));
+  await dropdownSetup();
   setDisplayForNoPlants();
 }
 
@@ -61,19 +61,26 @@ function closeForm() {
 }
 
 async function addNewPlant() {
-  let newPlantData = {}
-  newPlantData[$("#newPlantLocation").val()] = {}
-  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()] = {}
-  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['water'] = $("#newPlantWaterNeeds").prop('selectedIndex');
-  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['light'] = $("#newPlantLightNeeds").prop('selectedIndex');
-  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['daysTotal'] = 0;
-  newPlantData[$("#newPlantLocation").val()][$("#newPlantName").val()]['wateringCount'] = 0;
-  Object.assign(PlantData, newPlantData);
-  await saveConfig();
+  let newLocation = $("#newPlantLocation").val()
+  let newName = $("#newPlantName").val()
+
+  if (!PlantData.hasOwnProperty(newLocation)) {
+    PlantData[newLocation] = {}
+  }
+    
+  if (!PlantData[newLocation].hasOwnProperty(newName)) {
+    PlantData[newLocation][newName] = {}
+  }
+
+  PlantData[newLocation][newName]['water'] = $("#newPlantWaterNeeds").prop('selectedIndex');
+  PlantData[newLocation][newName]['light'] = $("#newPlantLightNeeds").prop('selectedIndex');
+  PlantData[newLocation][newName]['daysTotal'] = 0;
+  PlantData[newLocation][newName]['wateringCount'] = 0;
+
+  await saveConfig(PlantData);
   closeForm();
    $("#plant-infos").show();
 }
 
-loadPlants();
-dropdownSetup(PlantData);
+dropdownSetup();
 setDisplayForNoPlants();

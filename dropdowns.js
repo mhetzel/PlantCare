@@ -93,29 +93,39 @@ function resetPlantDropdown() {
   plantButtons.hide();
 };
 
-function setupDropDowns(plantData) {
+async function plantSelectionChange() {
+  console.log('plant change')
+  await loadPlants()
+  plant = PlantData[locationDropdown.val()][plantDropdown.val()];
+  setPlantInfo(plant);
+}
+
+async function locationSelectionChange() {
+  await loadPlants()
+  console.log('location change')
+  console.log(PlantData)
+  resetPlantDropdown();
+
+  Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
+    plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
+  });
   
-  Object.keys(plantData).forEach(function(location) {
+  if (Object.keys(PlantData[locationDropdown.val()]).length === 1) {
+    plantDropdown.prop('selectedIndex', 1);
+    await plantSelectionChange();
+  }
+}
+
+async function setupDropDowns() {
+  await loadPlants()
+  Object.keys(PlantData).forEach(function(location) {
     locationDropdown.append($('<option></option>').attr('value', location).text(location));
   });
+}
 
-  locationDropdown.change(function() {
-    resetPlantDropdown();
-
-    Object.keys(plantData[locationDropdown.val()]).forEach( plant => {
-      plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
-    });
-  });
-
-  plantDropdown.change(function() {
-    plant = plantData[locationDropdown.val()][plantDropdown.val()];
-    setPlantInfo(plant);
-  });
-};
-
-function dropdownSetup(plantData) {
+async function dropdownSetup() {
   resetLocationDropdown();
   resetPlantDropdown();
-  setupDropDowns(plantData);
+  await setupDropDowns();
 }
 

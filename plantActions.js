@@ -6,7 +6,7 @@ async function checkPlant() {
   plant.currentWetness = currentWetness.prop('selectedIndex');
   PlantData[locationDropdown.val()][plantDropdown.val()] = plant;
 
-  await saveConfig();
+  await saveConfig(PlantData);
 }
 
 async function waterPlant() {
@@ -30,7 +30,7 @@ async function waterPlant() {
   delete PlantData[location][plantName];
   PlantData[location][plantName] = plant;
 
-  await saveConfig();
+  await saveConfig(PlantData);
 }
 
 function updatePlant() {
@@ -44,5 +44,5 @@ async function deletePlant() {
     delete PlantData[locationDropdown.val()]
   }
   
-  await saveConfig();
+  await saveConfig(PlantData);
 }
