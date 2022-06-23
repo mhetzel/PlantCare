@@ -61,6 +61,7 @@ async function addNewPlant() {
   Object.assign(PlantData, newPlantData);
   await saveConfig();
   closeForm();
+   $("#plant-infos").show();
 }
 
 loadPlants();
