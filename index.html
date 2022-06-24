@@ -19,13 +19,10 @@
   </head>
   <body>
    
-    <div class="spinner" style="display:none"></div>
     <div class="menu-box">
-      <div id="menu">
-        <button id="config-button" onclick="openConfigForm()"><i class="fa fa-gears"></i></button>
+        <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
         <button id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
-        <button id="list-plant-button" onclick="displayPlants()"><i class="fa fa-plant-wilt"></i></i></button>
-      </div>
+        <button id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
     </div>
 
     <div id="changing-div" class="content-box" style="display:none;">
@@ -50,24 +47,25 @@
             <select id="newPlantLightNeeds" required></select>
           </div>
           <div>
-            <button type="submit" onclick="addNewPlant()">Save</button>
-            <button type="button" onclick="closeForm()">Cancel</button>
+            <button type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+            <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
           </div>  
         </form>
       </div>
 
-      <div id="config-div" style="display:none">
-        <div>
-          <label id='configLabel' for="userConfig">Load Saved Config:</label>
-          <input type="file" id="userConfig" name="userConfig" onchange="loadConfig(event)">
-        </div>
-        <div>
-          <label for="configText">Download Config File: </label>
-          <a id="configText" download="plantData.json" href="">
-            <button onclick="downloadConfig()">Download</button>
-          </a>
-        </div>
-        <button type="button" onclick="closeForm()">Cancel</button>
+
+      <div id="config-div" style="display:none;">
+        
+        <button>
+          <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i></label>
+        </button>
+        <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="loadConfig(event)">
+
+        <a id="configText" download="plantData.json" href="">
+          <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
+        </a>
+        <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+
       </div>
 
     </div>
@@ -86,9 +84,9 @@
       </span>
 
       <div id="plant-buttons">
-        <button onclick="waterPlant()">Water Plant</button>
-        <button onclick="updatePlant()">Update Plant</button>
-        <button onclick="deletePlant()">Delete Plant</button>
+        <button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>
+        <button onclick="movePlant()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        <button onclick="deletePlant()" title="Delete Plant"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>
 
