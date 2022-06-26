@@ -5,6 +5,11 @@ body {
 
 * {box-sizing: border-box;}
 
+.top-right {
+  right: 10px; 
+  top: 10px; 
+  position: absolute;
+}
 
 .plantForm {
   display: none;
@@ -69,5 +74,6 @@ select {
   color: rgb(236, 216, 216);
   font-size: 20px;
   width: fit-content;
+  position: relative;
 }
 

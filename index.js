@@ -40,10 +40,13 @@ function openNewPlantForm() {
   } else {
     $("#newPlantName").val('');
     $("#newPlantLocation").val('');
+    $("#newPlantLastWatered").val(null);
+    $("#newPlantAverageWateringDays").val(null);
     $("#config-div").hide();
     $("#changing-div").show();
     $("#plantForm").show();
     setupWaterAndLightDropdowns();
+    setupNewPlantDropdowns();
   }
 }
 
@@ -63,24 +66,38 @@ function closeForm() {
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val()
   let newName = $("#newPlantName").val()
-
-  if (!PlantData.hasOwnProperty(newLocation)) {
-    PlantData[newLocation] = {}
-  }
+  if (newName) {
+    if (!PlantData.hasOwnProperty(newLocation)) {
+      PlantData[newLocation] = {}
+    }
+      
+    if (!PlantData[newLocation].hasOwnProperty(newName)) {
+      PlantData[newLocation][newName] = {}
+    }
+  
+    PlantData[newLocation][newName]['water'] = $("#newPlantWaterNeeds").prop('selectedIndex');
+    PlantData[newLocation][newName]['light'] = $("#newPlantLightNeeds").prop('selectedIndex');
+    let lastWatered = $("#newPlantLastWatered").val();
+    if (lastWatered) {
+      PlantData[newLocation][newName]['lastWatered'] = (new Date(lastWatered)).toDateString();
+    }
     
-  if (!PlantData[newLocation].hasOwnProperty(newName)) {
-    PlantData[newLocation][newName] = {}
+    PlantData[newLocation][newName]['daysTotal'] = 0;
+    PlantData[newLocation][newName]['wateringCount'] = 0;
+    let averageDaysBetweenWatering = $("#newPlantAverageWateringDays").val();
+    if (averageDaysBetweenWatering) {
+      PlantData[newLocation][newName]['daysTotal'] = parseInt(averageDaysBetweenWatering);
+      PlantData[newLocation][newName]['wateringCount'] = 1;
+    }
+
+    console.log(PlantData[newLocation][newName])
+  
+    await saveConfig(PlantData);
+    closeForm();
+     $("#plant-infos").show();
   }
-
-  PlantData[newLocation][newName]['water'] = $("#newPlantWaterNeeds").prop('selectedIndex');
-  PlantData[newLocation][newName]['light'] = $("#newPlantLightNeeds").prop('selectedIndex');
-  PlantData[newLocation][newName]['daysTotal'] = 0;
-  PlantData[newLocation][newName]['wateringCount'] = 0;
-
-  await saveConfig(PlantData);
-  closeForm();
-   $("#plant-infos").show();
 }
 
 dropdownSetup();
 setDisplayForNoPlants();
+$('select[multiple]').selectize();
