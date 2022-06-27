@@ -5,6 +5,12 @@ var currentWetness = $('#currentWetness');
 var lastChecked = $('#lastChecked');
 var lastWatered = $('#lastWatered');
 var water = $('#water');
+var waterInstructions = $('#waterInstructions');
+var soil = $('#soil');
+var fertilzerFrequency = $('#fertilzerFrequency');
+var fertilzerDose = $('#fertilzerDose');
+var petSafe = $('#petSafe');
+var humidity = $('#humidity');
 var light = $('#light');
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
@@ -186,6 +192,12 @@ function setPlantInfo(info) {
     lastWatered.text(info.lastWatered);
     water.text(WaterList[info.water]);
     light.text(LightList[info.light]);
+    waterInstructions.text(info.waterInstructions)
+    soil.text(info.soil)
+    fertilzerFrequency.text(info.fertilzerFrequency)
+    fertilzerDose.text(info.fertilzerDose)
+    petSafe.text(info.petSafe)
+    humidity.text(info.humidity)
   }
 };
 
@@ -196,6 +208,13 @@ function resetPlantInfo() {
   lastWatered.text('n/a')
   water.text('n/a')
   light.text('n/a')
+  
+  waterInstructions.text('n/a')
+  soil.text('n/a')
+  fertilzerFrequency.text('n/a')
+  fertilzerDose.text('n/a')
+  petSafe.text('n/a')
+  humidity.text('n/a')
 };
 
 function resetPlantDropdown() {
