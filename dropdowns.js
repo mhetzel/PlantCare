@@ -9,6 +9,25 @@ var light = $('#light');
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
+const WateringInstructions = [
+  'Don\'t allow the plant to sit in water.', 
+  'Not soggy.', 
+  'Water gently from above, soak through to the roots.',
+  'Sensitive to Flouride.',
+  'Do not allow water to contact the leaves. Water from below.',
+]
+
+const SoilList = [
+  'cactus potting mix',
+  'cactus potting mix with 1:1 perlite',
+  'cactus potting mix with added orchard bark and/or perlite',
+  'cactus potting mix with added orchard bark, peat moss or vermiculite.',
+  'cactus potting mix with added perlite',
+  'none',
+  'Peat moss-based mix, such as African violet potting mix',
+  'perlite/pumice, pine bark, finely shredded spaghum moss and horticultural charcoal.',
+]
+
 const LightList = [
   'Low to medium indirect', 
   'Medium to bright indirect. Tolerates low indirect', 
@@ -64,6 +83,25 @@ const HumidityLevels = [
 ]
 
 function setupNewPlantDropdowns() {
+  $('#newPlantWaterInstructions').empty();
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[0]).text(WateringInstructions[0]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[1]).text(WateringInstructions[1]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[2]).text(WateringInstructions[2]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[3]).text(WateringInstructions[3]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[4]).text(WateringInstructions[4]));
+  $('#newPlantWaterInstructions').prop('selectedIndex', 0);
+
+  $('#newPlantSoilPreferences').empty();
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[0]).text(SoilList[0]));
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[1]).text(SoilList[1]));
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[2]).text(SoilList[2]));
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[3]).text(SoilList[3]));
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[4]).text(SoilList[4]));
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[5]).text(SoilList[5]));
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[6]).text(SoilList[6]));
+  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[7]).text(SoilList[7]));
+  $('#newPlantSoilPreferences').prop('selectedIndex', 0);
+
   $('#newPlantHumitidy').empty();
   $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[0]).text(HumidityLevels[0]));
   $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[1]).text(HumidityLevels[1]));
@@ -101,20 +139,6 @@ function setupNewPlantDropdowns() {
   $('#newPlantFertilizerDose').append($('<option></option>').attr('value', FertilizerDoses[2]).text(FertilizerDoses[2]));
   $('#newPlantFertilizerDose').prop('selectedIndex', 0);
 
-}
-
-function waterDropdown(dropdown) {
-  dropdown.empty();
-  dropdown.append($('<option></option>').attr('value', WaterList[0]).text(WaterList[0]));
-  dropdown.append($('<option></option>').attr('value', WaterList[1]).text(WaterList[1]));
-  dropdown.append($('<option></option>').attr('value', WaterList[2]).text(WaterList[2]));
-  dropdown.append($('<option></option>').attr('value', WaterList[3]).text(WaterList[3]));
-  dropdown.append($('<option></option>').attr('value', WaterList[4]).text(WaterList[4]));
-  dropdown.append($('<option></option>').attr('value', WaterList[5]).text(WaterList[5]));
-  dropdown.prop('selectedIndex', 0);
-}
-
-function setupWaterAndLightDropdowns() {
   waterDropdown($('#newPlantWaterNeeds'));
 
   $('#newPlantLightNeeds').empty();
@@ -128,6 +152,16 @@ function setupWaterAndLightDropdowns() {
   $('#newPlantLightNeeds').prop('selectedIndex', 0);
 }
 
+function waterDropdown(dropdown) {
+  dropdown.empty();
+  dropdown.append($('<option></option>').attr('value', WaterList[0]).text(WaterList[0]));
+  dropdown.append($('<option></option>').attr('value', WaterList[1]).text(WaterList[1]));
+  dropdown.append($('<option></option>').attr('value', WaterList[2]).text(WaterList[2]));
+  dropdown.append($('<option></option>').attr('value', WaterList[3]).text(WaterList[3]));
+  dropdown.append($('<option></option>').attr('value', WaterList[4]).text(WaterList[4]));
+  dropdown.append($('<option></option>').attr('value', WaterList[5]).text(WaterList[5]));
+  dropdown.prop('selectedIndex', 0);
+}
 
 function setupCurrentWetness() {
   waterDropdown(currentWetness);

@@ -45,7 +45,6 @@ function openNewPlantForm() {
     $("#config-div").hide();
     $("#changing-div").show();
     $("#plantForm").show();
-    setupWaterAndLightDropdowns();
     setupNewPlantDropdowns();
   }
 }
