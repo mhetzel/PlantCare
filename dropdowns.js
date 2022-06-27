@@ -186,7 +186,8 @@ function setPlantInfo(info) {
     plantInfo.show();
     plantButtons.show();
     resetPlantInfo();
-    averageDaysBetweenWatering.text(isNaN(info.averageDaysBetweenWatering) ? 'n/a' : Math.floor(info.averageDaysBetweenWatering));
+    let average = info.daysTotal/info.wateringCount;
+    averageDaysBetweenWatering.text(isNaN(average) ? 'n/a' : Math.floor(average));
     currentWetness.prop('selectedIndex', info.currentWetness);
     lastChecked.text(info.lastChecked);
     lastWatered.text(info.lastWatered);
