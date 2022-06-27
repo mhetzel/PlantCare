@@ -115,13 +115,6 @@
 .selectize-control {
   position:relative
 }
-.selectize-dropdown,.selectize-input,.selectize-input input {
-  color:#303030;
-  font-family:inherit;
-  font-size:13px;
-  line-height:18px;
-  font-smoothing:inherit
-}
 .selectize-control.single 
 .selectize-input.input-active,.selectize-input {
   background:#fff;
