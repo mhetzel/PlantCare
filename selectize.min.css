@@ -83,21 +83,103 @@
   box-sizing:border-box;
   margin-left:6px
 }
-.selectize-control.plugin-remove_button .item .remove:hover{background:rgba(0,0,0,.05)}
-.selectize-control.plugin-remove_button .item.active .remove{border-left-color:#cacaca}
-.selectize-control.plugin-remove_button .disabled .item .remove:hover{background:0 0}
-.selectize-control.plugin-remove_button .disabled .item .remove{border-left-color:#fff}
-.selectize-control.plugin-remove_button .remove-single{position:absolute;right:0;top:0;font-size:23px}
-.selectize-control{position:relative}
-.selectize-dropdown,.selectize-input,.selectize-input input{color:#303030;font-family:inherit;font-size:13px;line-height:18px;font-smoothing:inherit}
-.selectize-control.single .selectize-input.input-active,.selectize-input{background:#fff;cursor:text;display:inline-block}
-.selectize-input{border:1px solid #d0d0d0;padding:8px 8px;display:inline-block;width:100%;position:relative;z-index:1;box-sizing:border-box;box-shadow:inset 0 1px 1px rgba(0,0,0,.1);border-radius:3px}
-.selectize-control.multi .selectize-input.has-items{padding:calc(8px - 2px - 0px) 8px calc(8px - 2px - 3px - 0px)}.selectize-input.full{background-color:#fff}
-.selectize-input.disabled,.selectize-input.disabled *{cursor:default!important}.selectize-input.focus{box-shadow:inset 0 1px 2px rgba(0,0,0,.15)}
-.selectize-input.dropdown-active{border-radius:3px 3px 0 0}.selectize-input>*{vertical-align:baseline;display:inline-block;zoom:1}
-.selectize-control.multi .selectize-input>div{cursor:pointer;margin:0 3px 3px 0;padding:2px 6px;background:#f2f2f2;color:#303030;border:0 solid #d0d0d0}
-.selectize-control.multi .selectize-input>div.active{background:#e8e8e8;color:#303030;border:0 solid #cacaca}
-.selectize-control.multi .selectize-input.disabled>div,.selectize-control.multi .selectize-input.disabled>div.active{color:#7d7d7d;background:#fff;border:0 solid #fff}
+.selectize-control.plugin-remove_button 
+.item 
+.remove:hover {
+  background:rgba(0,0,0,.05)
+}
+.selectize-control.plugin-remove_button 
+.item.active 
+.remove {
+  border-left-color:#cacaca
+}
+.selectize-control.plugin-remove_button 
+.disabled 
+.item 
+.remove:hover {
+  background:0 0
+}
+.selectize-control.plugin-remove_button 
+.disabled 
+.item 
+.remove {
+  border-left-color:#fff
+}
+.selectize-control.plugin-remove_button 
+.remove-single {
+  position:absolute;
+  right:0;
+  top:0;
+  font-size:23px
+}
+.selectize-control {
+  position:relative
+}
+.selectize-dropdown,.selectize-input,.selectize-input input {
+  color:#303030;
+  font-family:inherit;
+  font-size:13px;
+  line-height:18px;
+  font-smoothing:inherit
+}
+.selectize-control.single 
+.selectize-input.input-active,.selectize-input {
+  background:#fff;
+  cursor:text;
+  display:inline-block
+}
+.selectize-input {
+  border:1px solid #d0d0d0;
+  padding:8px 8px;
+  display:inline-block;
+  width:100%;
+  position:relative;z-index:1;
+  box-sizing:border-box;
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.1);
+  border-radius:3px
+}
+.selectize-control.multi .selectize-input.has-items {
+  padding:calc(8px - 2px - 0px) 8px calc(8px - 2px - 3px - 0px)
+}
+.selectize-input.full {
+  background-color:#fff
+}
+.selectize-input.disabled,.selectize-input.disabled * {
+  cursor:default!important
+}
+.selectize-input.focus {
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.15)
+}
+.selectize-input.dropdown-active {
+  border-radius:3px 3px 0 0
+}
+.selectize-input>* {
+  vertical-align:baseline;
+  display:inline-block;
+  zoom:1
+}
+.selectize-control.multi 
+.selectize-input>div {
+  cursor:pointer;
+  margin:0 3px 3px 0;
+  padding:2px 6px;
+  background:#f2f2f2;
+  color:#303030;
+  border:0 solid #d0d0d0
+}
+.selectize-control.multi 
+.selectize-input>div.active {
+  background:#e8e8e8;
+  color:#303030;
+  border:0 solid #cacaca
+}
+.selectize-control.multi 
+.selectize-input.disabled>div,.selectize-control.multi 
+.selectize-input.disabled>div.active {
+  color:#7d7d7d;
+  background:#fff;
+  border:0 solid #fff
+}
 .selectize-input>input {
   display:inline-block!important;
   padding:0!important;
