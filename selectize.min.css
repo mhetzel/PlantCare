@@ -221,11 +221,9 @@
   width:100%;
   z-index:10;
   border:1px solid #d0d0d0;
-  background:#fff;
+  background: rgba(118, 214, 174, 0.9);
   margin:-1px 0 0 0;
   border-top:0 none;
-  box-sizing:border-box;
-  box-shadow:0 1px 3px rgba(0,0,0,.1);
   border-radius:0 0 3px 3px
 }
 .selectize-dropdown [data-selectable] {
