@@ -26,7 +26,6 @@ async function waterPlant() {
 
   PlantData[location][plantName].daysTotal = daysTotal + (today - last);
   PlantData[location][plantName].wateringCount = wateringCount + 1;
-  PlantData[location][plantName].averageDaysBetweenWatering = PlantData[location][plantName].daysTotal/PlantData[location][plantName].wateringCount;
   PlantData[location][plantName].lastWatered = today.toDateString();
   PlantData[location][plantName].lastChecked = today.toDateString();
   PlantData[location][plantName].currentWetness = 0;
