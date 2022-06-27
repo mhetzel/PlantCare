@@ -83,6 +83,8 @@ const HumidityLevels = [
 ]
 
 function setupNewPlantDropdowns() {
+  $('#newPlantPetSafe').prop('selectedIndex', 0);
+  
   $('#newPlantWaterInstructions').empty();
   $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[0]).text(WateringInstructions[0]));
   $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[1]).text(WateringInstructions[1]));
