@@ -354,6 +354,6 @@
 }
 .selectize-control 
 .selectize-input.disabled {
-  opacity:.5;
+  opacity:1;
   background-color:#fafafa
 }
