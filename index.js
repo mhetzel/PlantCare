@@ -76,6 +76,14 @@ async function addNewPlant() {
   
     PlantData[newLocation][newName]['water'] = $("#newPlantWaterNeeds").prop('selectedIndex');
     PlantData[newLocation][newName]['light'] = $("#newPlantLightNeeds").prop('selectedIndex');
+    
+    PlantData[newLocation][newName]['waterInstructions'] = $("#newPlantWaterInstructions").val();
+    PlantData[newLocation][newName]['soil'] = $("#newPlantSoilPreferences").val();
+    PlantData[newLocation][newName]['fertilzerFrequency'] = $("#newPlantFertilizer").val();
+    PlantData[newLocation][newName]['fertilzerDose'] = $("#newPlantFertilizerDose").val();
+    PlantData[newLocation][newName]['petSafe'] = $("#newPlantPetSafe").val();
+    PlantData[newLocation][newName]['humidity'] = $("#newPlantHumitidy").val();
+    
     let lastWatered = $("#newPlantLastWatered").val();
     if (lastWatered) {
       PlantData[newLocation][newName]['lastWatered'] = (new Date(lastWatered)).toDateString();
