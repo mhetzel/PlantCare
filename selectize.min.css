@@ -117,12 +117,12 @@
 }
 .selectize-control.single 
 .selectize-input.input-active,.selectize-input {
-  background:#fff;
+  background: rgba(2, 129, 76, 0.9);
   cursor:text;
   display:inline-block
 }
 .selectize-input {
-  border:1px solid #d0d0d0;
+  border: 1px solid #0d1b19;
   padding:8px 8px;
   display:inline-block;
   position:relative;
