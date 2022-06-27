@@ -127,9 +127,8 @@
   display:inline-block;
   position:relative;
   z-index:1;
-  box-sizing:border-box;
-  box-shadow: 10px 10px 8px #0d1b19;
-  border-radius:5px
+  border-radius:5px;
+  width: 100%;
 }
 .selectize-control.multi .selectize-input.has-items {
   padding:calc(8px - 2px - 0px) 8px calc(8px - 2px - 3px - 0px)
