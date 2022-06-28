@@ -28,11 +28,9 @@ body {
   background: #0d1b19;
 }
 
-
 .multiselect-dropdown {
   display: inline-block;
   padding: 2px 5px 0px 5px;
-  background-color: white;
   position: relative;
   background: rgba(118, 214, 174, 0.9);
   border: 1px solid #0d1b19;
@@ -45,7 +43,6 @@ body {
   display:inline-block;
 }
 .multiselect-dropdown span.optext{
-  background-color:lightgray;
   padding:1px 0.75em; 
 }
 .multiselect-dropdown span.optext .optdel {
@@ -83,6 +80,7 @@ body {
 .multiselect-dropdown-list::-webkit-scrollbar {
   width: 6px;
 }
+
 .multiselect-dropdown-list::-webkit-scrollbar-thumb {
   background-color: #bec4ca;
 }
@@ -95,13 +93,19 @@ body {
   width: 1.15em;
   margin-right: 0.35em;  
 }
+
 .multiselect-dropdown-list div.checked{
 }
 .multiselect-dropdown-list div:hover{
   background-color: #ced4da;
 }
+
+
 .multiselect-dropdown span.maxselected {width:100%;}
 .multiselect-dropdown-all-selector {border-bottom:solid 1px #999;}
+
+
+
 
 .plantForm {
   display: none;
@@ -112,7 +116,6 @@ input[type="file" i] {
   font-size: 20px;
   width : 2px;
 }
-
 
 input {
   font-size: 20px;
