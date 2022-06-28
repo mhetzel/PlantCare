@@ -11,6 +11,28 @@ body {
   position: absolute;
 }
 
+.multiselect-dropdown {
+  background: rgba(118, 214, 174, 0.9);
+  border: 1px solid #0d1b19;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.multiselect-dropdown span.optext {
+  background-color: rgba(2, 129, 76, 0.9);
+  border-radius: 5px;
+}
+
+.multiselect-dropdown-list {
+  background-color: rgba(2, 129, 76, 0.9);
+}
+
+.multiselect-dropdown-list-wrapper {
+  border-radius: 5px;
+  border: 1px solid #0d1b19;
+  background: #0d1b19;
+}
+
 .plantForm {
   display: none;
 }
