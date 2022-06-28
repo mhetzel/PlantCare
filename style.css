@@ -35,6 +35,7 @@ body {
   background: rgba(118, 214, 174, 0.9);
   border: 1px solid #0d1b19;
   font-size: 20px;
+  width: 100%;
 }
 .multiselect-dropdown span.optext, .multiselect-dropdown span.placeholder{
   margin-right:0.5em; 
