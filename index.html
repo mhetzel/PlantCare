@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Plant Care</title>
     <link rel="icon" type="image/x-icon" href="leaf-32.ico">
     <link rel="shortcut icon" type="image/png" href="leaf-128.png">
@@ -21,7 +18,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div id="g_id_onload"
+         data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
