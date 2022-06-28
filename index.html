@@ -19,11 +19,23 @@
   </head>
   <body>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div id="g_id_onload"
-         data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
-         data-callback="handleCredentialResponse">
-    </div>
-    <div class="g_id_signin" data-type="standard"></div>
+    
+<div id="g_id_onload"
+     data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="signedIn()"
+     data-auto_select="true">
+</div>
+
+<div class="g_id_signin"
+     data-type="icon"
+     data-shape="circle"
+     data-theme="filled_black"
+     data-text="signin_with"
+     data-size="large">
+</div>
+    
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
