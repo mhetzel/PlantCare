@@ -107,4 +107,4 @@ async function addNewPlant() {
 
 dropdownSetup();
 setDisplayForNoPlants();
-$('select[multiple]').selectize();
+
