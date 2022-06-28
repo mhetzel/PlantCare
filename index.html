@@ -40,8 +40,6 @@
     
     <script>
       function onSignIn(googleUser) {
-        import jwt_decode from "jwt-decode";
-
         var token = googleUser.credential
         var decoded = jwt_decode(token);
 
