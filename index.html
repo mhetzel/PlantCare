@@ -10,6 +10,8 @@
     <link rel="apple-touch-icon" href="leaf-128.png">
     <script src="jquery-3.6.0.min.js"></script>
     <script src="multiselect-dropdown.js" ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.20/jsrsasign-all-min.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +26,7 @@
      data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
      data-context="signin"
      data-ux_mode="popup"
-     data-callback="onSignIn()"
+     data-callback="onSignIn"
      data-auto_select="true">
 </div>
 
@@ -39,18 +41,7 @@
     
     <script>
       function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
+        console.log("ID Token: " + googleUser);
       }
     </script>
     
