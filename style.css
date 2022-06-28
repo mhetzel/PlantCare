@@ -3,7 +3,10 @@ body {
   font-family: 'Oswald', sans-serif;
 }
 
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+  border-radius: 5px;
+}
 
 .top-right {
   right: 10px; 
@@ -11,23 +14,34 @@ body {
   position: absolute;
 }
 
+.multiselect-dropdown span.optext {
+  background-color: rgba(2, 129, 76, 0.9);
+}
+
+.multiselect-dropdown-list {
+  background-color: rgba(2, 129, 76, 0.9);
+}
+
+.multiselect-dropdown-list-wrapper {
+  border-radius: 5px;
+  border: 1px solid #0d1b19;
+  background: #0d1b19;
+}
+
+
 .multiselect-dropdown {
   display: inline-block;
   padding: 2px 5px 0px 5px;
-  border-radius: 4px;
-  border: solid 1px #ced4da;
   background-color: white;
   position: relative;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right .75rem center;
-  background-size: 16px 12px;
+  background: rgba(118, 214, 174, 0.9);
+  border: 1px solid #0d1b19;
+  font-size: 20px;
 }
 .multiselect-dropdown span.optext, .multiselect-dropdown span.placeholder{
   margin-right:0.5em; 
   margin-bottom:2px;
   padding:1px 0; 
-  border-radius: 4px; 
   display:inline-block;
 }
 .multiselect-dropdown span.optext{
@@ -48,7 +62,6 @@ body {
 }
 .multiselect-dropdown-list-wrapper{
   z-index: 100;
-  border-radius: 5px;
   border: 1px solid #0d1b19;
   display: none;
   margin: -1px;
@@ -72,7 +85,6 @@ body {
 }
 .multiselect-dropdown-list::-webkit-scrollbar-thumb {
   background-color: #bec4ca;
-  border-radius:3px;
 }
 
 .multiselect-dropdown-list div{
@@ -91,28 +103,6 @@ body {
 .multiselect-dropdown span.maxselected {width:100%;}
 .multiselect-dropdown-all-selector {border-bottom:solid 1px #999;}
 
-.multiselect-dropdown {
-  background: rgba(118, 214, 174, 0.9);
-  border: 1px solid #0d1b19;
-  border-radius: 5px;
-  font-size: 20px;
-}
-
-.multiselect-dropdown span.optext {
-  background-color: rgba(2, 129, 76, 0.9);
-  border-radius: 5px;
-}
-
-.multiselect-dropdown-list {
-  background-color: rgba(2, 129, 76, 0.9);
-}
-
-.multiselect-dropdown-list-wrapper {
-  border-radius: 5px;
-  border: 1px solid #0d1b19;
-  background: #0d1b19;
-}
-
 .plantForm {
   display: none;
 }
@@ -125,7 +115,6 @@ input[type="file" i] {
 
 
 input {
-  border-radius: 5px;
   font-size: 20px;
   background: rgba(118, 214, 174, 0.9);
   border: 1px solid #0d1b19;
@@ -133,7 +122,6 @@ input {
 }
 
 button {
-  border-radius: 5px;
   font-size: 20px;
   background: rgba(2, 129, 76, 0.9);
   cursor:pointer;
@@ -143,7 +131,6 @@ button {
 }
 
 select {
-  border-radius: 5px;
   font-size: 20px;
   background: rgba(2, 129, 76, 0.9);
   border: 1px solid #0d1b19;
@@ -152,7 +139,6 @@ select {
 
 .menu-box {
   position: absolute;
-  border-radius: 5px;
   border: 1px solid #0d1b19;
   background-color: rgba(21, 48, 41, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
@@ -165,7 +151,6 @@ select {
 }
 
 .content-box {
-  border-radius: 5px;
   border: 1px solid #0d1b19;
   background-color: rgba(21, 48, 41, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
