@@ -37,11 +37,9 @@ style.innerHTML = `
   color:#ced4da;
 }
 .multiselect-dropdown-list-wrapper{
-  box-shadow: gray 0 3px 8px;
   z-index: 100;
-  padding:2px;
-  border-radius: 4px;
-  border: solid 1px #ced4da;
+  border-radius: 5px;
+  border: 1px solid #0d1b19;
   display: none;
   margin: -1px;
   position: absolute;
