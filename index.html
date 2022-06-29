@@ -17,10 +17,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+
+    
   </head>
   <body>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     
 <div id="g_id_onload"
      data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
@@ -31,27 +33,8 @@
      data-auto_select="true">
 </div>
     
-    <div class="g_id_signin"
-     data-type="standard"
-     data-shape="pill"
-     data-theme="outline"
-     data-text="signin_with"
-     data-size="large"
-     data-logo_alignment="left">
-</div>
-    
-    <script>
-      function onSignIn(googleUser) {
-        var token = googleUser.credential
-        var decoded = jwt_decode(token);
 
-        console.log(decoded);
-      }
-    </script>
-    
-    
-    
-     <p>Say hello using the People API.</p>
+        <p>Say hello using the People API.</p>
 
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize-button" style="display: none;">Authorize</button>
@@ -62,7 +45,7 @@
     <script type="text/javascript">
       // Enter an API key from the Google API Console:
       //   https://console.developers.google.com/apis/credentials
-      var apiKey = 'YOUR_API_KEY';
+      var apiKey = 'AIzaSyCjsiD7ycx16Zv4WaREqnB5tuD9i447XAo';
 
       // Enter the API Discovery Docs that describes the APIs you want to
       // access. In this example, we are accessing the People API, so we load
@@ -73,7 +56,7 @@
       //   https://console.developers.google.com/apis/credentials?project=_
       // In your API Console project, add a JavaScript origin that corresponds
       //   to the domain where you will be running the script.
-      var clientId = 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com';
+      var clientId = '439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com';
 
       // Enter one or more authorization scopes. Refer to the documentation for
       // the API or https://developers.google.com/people/v1/how-tos/authorizing
@@ -142,6 +125,8 @@
       onload="this.onload=function(){};handleClientLoad()" 
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
+    
+    
     
     
     <div class="menu-box">
