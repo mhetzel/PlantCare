@@ -111,10 +111,14 @@
         });
       }
     </script>
-    <script async defer src="https://apis.google.com/js/api.js" 
-      onload="this.onload=function(){};handleClientLoad()" 
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+
+    
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div id="g_id_onload"
+         data-client_id='439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com'
+         data-callback="this.onload=function(){};handleClientLoad()">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
     
     
     
