@@ -149,10 +149,11 @@ limitations under the License.
               return;
             }
           
-            files.forEach( file =>
+            files.forEach( function(file) {
                if (file.name == name) {
                  console.log(file.id)
                }
+            }
             )
             // Flatten to string to display
             document.getElementById('content').innerText = output;
