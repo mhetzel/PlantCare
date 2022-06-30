@@ -44,7 +44,7 @@ limitations under the License.
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      const SCOPES = 'https://www.googleapis.com/auth/drive';
+      const SCOPES = 'https://www.googleapis.com/auth/drive.appdata';
 
       let tokenClient;
       let gapiInited = false;
@@ -155,6 +155,19 @@ limitations under the License.
         const output = files.reduce(
             (str, file) => `${str}${file.name} (${file.id})\n`,
             'Files:\n');
+          
+        try {
+          response = await gapi.client.drive.files.generateIds({
+            'count': 1,
+            'type' : 'files',
+          });
+        } catch (err) {
+          document.getElementById('content').innerText = err.message;
+          return;
+        }
+          
+        console.log(response.result.ids)
+        
         document.getElementById('content').innerText = output;
       }
     </script>
