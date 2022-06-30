@@ -137,24 +137,6 @@ limitations under the License.
        */
       async function listFiles() {
         let response;
-        try {
-          response = await gapi.client.drive.files.list({
-            'pageSize': 10,
-            'fields': 'files(id, name)',
-          });
-        } catch (err) {
-          document.getElementById('content').innerText = err.message;
-          return;
-        }
-        const files = response.result.files;
-        if (!files || files.length == 0) {
-          document.getElementById('content').innerText = 'No files found.';
-          return;
-        }
-        // Flatten to string to display
-        const output = files.reduce(
-            (str, file) => `${str}${file.name} (${file.id})\n`,
-            'Files:\n');
           
         try {
           response = await gapi.client.drive.files.generateIds({
@@ -166,7 +148,7 @@ limitations under the License.
           return;
         }
           
-        console.log(response.result.ids)
+        console.log(response.result.ids[0])
           
         var fileContent = 'sample text'; // As a sample, upload a text file.
         var file = new Blob([fileContent], {type: 'text/plain'});
@@ -176,21 +158,8 @@ limitations under the License.
             'parents': ['PlantCare'], // Folder ID at Google Drive
         };
 
-        var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
-        var form = new FormData();
-        form.append('metadata', new Blob([JSON.stringify(metadata)], {type: 'application/json'}));
-        form.append('file', file);
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id');
-        xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
-        xhr.responseType = 'json';
-        xhr.onload = () => {
-            console.log(xhr.response.id); // Retrieve uploaded file ID.
-        };
-        xhr.send(form);
         
-        document.getElementById('content').innerText = output;
       }
     </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
