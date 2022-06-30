@@ -135,44 +135,9 @@ limitations under the License.
       /**
        * Print metadata for first 10 files.
        */
-      async function listFiles() {
-        let response;
-          
-        try {
-          response = await gapi.client.drive.files.generateIds({
-            'count': 1,
-            'type' : 'files',
-          });
-        } catch (err) {
-          document.getElementById('content').innerText = err.message;
-          return;
-        }
-          
-        console.log(response.result.ids[0])
-          
+      async function listFiles() {         
+        console.log('syntax')
 
-            const fileToUpload = 'testfile;
-
-            var metadata = {
-                'name': 'sampleName', // Filename at Google Drive
-                'mimeType': 'text/plain', // mimeType at Google Drive
-                'parents': ['PlantCare'], // Folder ID at Google Drive
-            };
-
-            var formData = new FormData();
-            formData.append( "metadata", new Blob( [JSON.stringify( metadata )], {type: "application/json"} ));
-            formData.append( "file", fileToUpload );
-
-            fetch( "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
-              method: "POST",
-              headers: new Headers({ "Authorization": "Bearer " + gapi.auth.getToken().access_token }),
-              body: formData
-            }).then( function( response ){
-              return response.json();
-            }).then( function( value ){
-              console.log( value );
-            });
-        
       }
     </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
