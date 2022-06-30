@@ -136,9 +136,8 @@ limitations under the License.
        * Print metadata for first 10 files.
        */
       async function listFiles() {  
-          var accessToken = gapi.auth.getToken().access_token;
-        console.log('syntax')
-          var fileContent = 'sample text'; // As a sample, upload a text file.
+
+          var fileContent = 'sample text updated'; // As a sample, upload a text file.
           
         var file = new Blob([fileContent], {type: 'text/plain'});
         var metadata = {
