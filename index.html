@@ -163,12 +163,11 @@ limitations under the License.
        * Print metadata for first 10 files.
        */
       async function uploadFile() {  
-          
-          var parentId = '';//some parentId of a folder under which to create the new folder
+
             var fileMetadata = {
               'name' : 'PlantCare',
               'mimeType' : 'application/vnd.google-apps.folder',
-              'parents': [parentId]
+              'parents': ['root']
             };
             gapi.client.drive.files.create({
               resource: fileMetadata,
