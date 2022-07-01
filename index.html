@@ -163,6 +163,26 @@ limitations under the License.
        * Print metadata for first 10 files.
        */
       async function uploadFile() {  
+          
+          var parentId = '';//some parentId of a folder under which to create the new folder
+            var fileMetadata = {
+              'name' : 'PlantCare',
+              'mimeType' : 'application/vnd.google-apps.folder',
+              'parents': [parentId]
+            };
+            gapi.client.drive.files.create({
+              resource: fileMetadata,
+            }).then(function(response) {
+              switch(response.status){
+                case 200:
+                  var file = response.result;
+                  console.log('Created Folder Id: ', file.id);
+                  break;
+                default:
+                  console.log('Error creating the folder, '+response);
+                  break;
+                }
+            });
 
         var fileContent = 'sample text updated'; // As a sample, upload a text file.
           
@@ -170,7 +190,7 @@ limitations under the License.
         var metadata = {
             'name': 'sampleName', // Filename at Google Drive
             'mimeType': 'text/plain', // mimeType at Google Drive
-            'parents': ['root'], // Folder ID at Google Drive
+            'parents': ['PlantCare'], // Folder ID at Google Drive
         };
 
         var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
