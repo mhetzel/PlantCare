@@ -90,6 +90,7 @@ function handleSignoutClick() {
 
 async function getFileID(folderID) {
   let response;
+  let id;
   try {
     response = await gapi.client.drive.files.list({
       'pageSize': 10,
@@ -120,15 +121,16 @@ async function getFileID(folderID) {
       body: form,
     }).then((response) => response.json()
      ).then(function(file) {
+      id = file.id;
       console.log('Created File ID: ', file.id);
-      return file.id;
     }).catch(console.error);
   }
 
   files.forEach( function(file) {
     console.log('Found: ', file.name, ': ', file.id);
-    return file.id;
+    id = file.id;
   });
+  return id;
 }
 
 
