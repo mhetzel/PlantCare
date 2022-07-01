@@ -151,21 +151,20 @@ async function getFolderID() {
       'parents': ['root']
     };
     gapi.client.drive.files.create({
-    resource: fileMetadata,
+      resource: fileMetadata,
     }).then(function(response) {
       if (response.status == 200) {
         var file = response.result;
         console.log('Created Folder Id: ', file.id);
-        return file.id
+        return file.id;
       }
       console.log('Error creating the folder, '+response);
     });
     return null;
   } 
-  files.forEach( function(file) {
-    console.log('Found: ', file.name, ': ', file.id)
-    return "${file.id}"
-  });
+
+  console.log('Found: ', files[0].name, ': ', files[0].id);
+  return files[0].id;
 }
 
 /**
