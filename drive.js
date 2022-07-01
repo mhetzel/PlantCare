@@ -88,29 +88,21 @@ function handleSignoutClick() {
   }
 }
 
-async function writeFile(folderID, fileID) {
-  var fileContent = 'new contents';
-  var file = new Blob([fileContent], {type: 'text/plain'});
-  var metadata = {
-    'fileId': fileID,
-    'name': 'data.json', // Filename at Google Drive
-    'mimeType': 'text/plain', // mimeType at Google Drive
-    'parents': [folderID], // Folder ID at Google Drive
-  };
-
-  var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
-  var form = new FormData();
-  form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-  form.append('file', file);
-
-  fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
-    method: 'PATCH',
-    headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
-    body: form,
-  }).then((response) => response.json()
-   ).then(function(file) {
-    console.log('Updated File ID: ', file.id);
-  }).catch(console.error);
+async function writeFile(fileID) {
+  const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
+  fetch(url, {
+      method: 'PATCH',
+      headers: new Headers({
+          Authorization: 'Bearer ' + gapi.auth.getToken().access_token,
+          'Content-type': mimeType
+      }),
+      body: JSON.stringify({ hello: 'universe' })
+  })
+  .then(result => result.json())
+  .then(value => {
+      console.log('Updated. Result:\n' + JSON.stringify(value, null, 2));
+  })
+  .catch(err => console.error(err))
 }
 
 async function getFileID(folderID) {
@@ -199,7 +191,7 @@ async function uploadFile() {
   getFolderID().then(folderID => { 
     getFileID(folderID).then(fileID => {
       console.log('save id for later: ', fileID)
-      writeFile(folderID, fileID)
+      writeFile(fileID)
     });
   });
 }
