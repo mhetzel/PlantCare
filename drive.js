@@ -88,6 +88,17 @@ function handleSignoutClick() {
   }
 }
 
+async function readFile(fileID) {
+    gapi.client.drive.files.export({
+      fileId: fileID,
+      mimeType: 'text/plain',
+      fields: 'id,name,parents'
+    }).then(function(resp) {
+      console.log('contents')
+      console.log(resp.body)
+    });
+}
+
 async function writeFile(fileID) {
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
@@ -191,7 +202,8 @@ async function uploadFile() {
   getFolderID().then(folderID => { 
     getFileID(folderID).then(fileID => {
       console.log('save id for later: ', fileID)
-      writeFile(fileID)
+      //writeFile(fileID)
+      readFile(fileID)
     });
   });
 }
