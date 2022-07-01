@@ -173,7 +173,7 @@ async function getFolderID() {
 */
 async function uploadFile() {  
 
-  await getFolderID().then(folderID => { 
+  getFolderID().then(folderID => { 
     console.log('going to create file in: ', folderID) 
   })
   
