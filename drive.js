@@ -94,7 +94,7 @@ async function writeFile(fileID) {
       method: 'PATCH',
       headers: new Headers({
           Authorization: 'Bearer ' + gapi.auth.getToken().access_token,
-          'Content-type': mimeType
+          'Content-type': 'text/plain'
       }),
       body: JSON.stringify({ hello: 'universe' })
   })
