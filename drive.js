@@ -107,6 +107,7 @@ async function writeFile(folderID, fileID) {
     method: 'POST',
     headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
     body: form,
+    method:"PATCH",
   }).then((response) => response.json()
    ).then(function(file) {
     console.log('Updated File ID: ', file.id);
