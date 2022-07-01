@@ -164,24 +164,17 @@ limitations under the License.
        */
       async function uploadFile() {  
 
-            var fileMetadata = {
-              'name' : 'PlantCare',
-              'mimeType' : 'application/vnd.google-apps.folder',
-              'parents': ['root']
-            };
-            gapi.client.drive.files.create({
-              resource: fileMetadata,
-            }).then(function(response) {
-              switch(response.status){
-                case 200:
-                  var file = response.result;
-                  console.log('Created Folder Id: ', file.id);
-                  break;
-                default:
-                  console.log('Error creating the folder, '+response);
-                  break;
-                }
-            });
+        var fileMetadata = {
+            'name' : 'MaxBarrass',
+            'mimeType' : 'application/vnd.google-apps.folder'
+        };
+
+        gapi.client.drive.files.create({
+            resource: fileMetadata,
+            fields: 'id'
+        }).execute(function(resp, raw_resp) {
+            console.log('Folder Id: ', resp.id);
+        });
 
         var fileContent = 'sample text updated'; // As a sample, upload a text file.
           
