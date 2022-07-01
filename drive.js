@@ -121,12 +121,13 @@ async function getFileID(folderID) {
     }).then((response) => response.json()
      ).then(function(file) {
       console.log('Created File ID: ', file.id);
+      return file.id;
     }).catch(console.error);
   }
 
   files.forEach( function(file) {
-    console.log('Found: ', file.name, ': ', file.id)
-    return file.id
+    console.log('Found: ', file.name, ': ', file.id);
+    return file.id;
   });
 }
 
