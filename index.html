@@ -27,8 +27,6 @@ limitations under the License.
     <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
     <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
 
-    <pre id="content" style="white-space: pre-wrap;"></pre>
-
     <script type="text/javascript">
       /* exported gapiLoaded */
       /* exported gisLoaded */
@@ -118,99 +116,87 @@ limitations under the License.
         }
       }
 
-      /**
-       *  Sign out the user upon button click.
-       */
-      function handleSignoutClick() {
-        const token = gapi.client.getToken();
-        if (token !== null) {
-          google.accounts.oauth2.revoke(token.access_token);
-          gapi.client.setToken('');
-          document.getElementById('content').innerText = '';
-          document.getElementById('authorize_button').innerText = 'Authorize';
-          document.getElementById('signout_button').style.visibility = 'hidden';
-        }
-      }
+          /**
+           *  Sign out the user upon button click.
+           */
+          function handleSignoutClick() {
+            const token = gapi.client.getToken();
+            if (token !== null) {
+              google.accounts.oauth2.revoke(token.access_token);
+              gapi.client.setToken('');
+              document.getElementById('authorize_button').innerText = 'Authorize';
+              document.getElementById('signout_button').style.visibility = 'hidden';
+            }
+          }
         
-      async function getFile(name) {
+          async function getFile(name) {
+                let response;
+                try {
+                  response = await gapi.client.drive.files.list({
+                    'pageSize': 100,
+                    'fields': 'files(id, name)',
+                  });
+                } catch (err) {
+                  return;
+                }
+                const files = response.result.files;
+                if (!files || files.length == 0) {
+                  return;
+                }
+
+                files.forEach( function(file) {
+                   if (file.name == name) {
+                     console.log(file.id)
+                   }
+                })
+          }
+        
+        
+        async function getFolderID() {
             let response;
             try {
-              response = await gapi.client.drive.files.list({
-                'pageSize': 100,
-                'fields': 'files(id, name)',
-              });
+                response = await gapi.client.drive.files.list({
+                    'pageSize': 100,
+                    'fields': 'files(id, name)',
+                    'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
+                });
             } catch (err) {
-              document.getElementById('content').innerText = err.message;
-              return;
+                return null;
             }
             const files = response.result.files;
             if (!files || files.length == 0) {
-              document.getElementById('content').innerText = 'No files found.';
-              return;
-            }
-          
-            files.forEach( function(file) {
-               if (file.name == name) {
-                 console.log(file.id)
-               }
-            }
-            )
-            // Flatten to string to display
-            document.getElementById('content').innerText = output;
-      }
-        
-        
-      async function createFolder() {
-        
-        let response;
-        try {
-          response = await gapi.client.drive.files.list({
-            'pageSize': 100,
-            'fields': 'files(id, name)',
-            'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
-          });
-        } catch (err) {
-          document.getElementById('content').innerText = err.message;
-          return;
-        }
-        const files = response.result.files;
-        if (!files || files.length == 0) {
-            console.log('No files found.')
-            var fileMetadata = {
-                'name' : 'PlantCare',
-                'mimeType' : 'application/vnd.google-apps.folder',
-                'parents': ['root']
-            };
-            gapi.client.drive.files.create({
+                var fileMetadata = {
+                    'name' : 'PlantCare',
+                    'mimeType' : 'application/vnd.google-apps.folder',
+                    'parents': ['root']
+                };
+                gapi.client.drive.files.create({
                 resource: fileMetadata,
-            }).then(function(response) {
-                switch(response.status){
-                case 200:
-                    var file = response.result;
-                    console.log('Created Folder Id: ', file.id);
-                    break;
-                default:
+                }).then(function(response) {
+                    if (response.status == 200) {
+                        var file = response.result;
+                        console.log('Created Folder Id: ', file.id);
+                        return file.id
+                    }
                     console.log('Error creating the folder, '+response);
-                    break;
-                }
+                });
+                return null;
+            } 
+            files.forEach( function(file) {
+                console.log('Found: ', file.name, ': ', file.id)
+                return file.id
             });
-            return;
-        }           
-        files.forEach( function(file) {
-            console.log('Found')
-            console.log(file.name)
-            console.log(file.id)
-        })
-      }
+        }
 
-      /**
-       * Print metadata for first 10 files.
-       */
-      async function uploadFile() {  
+        /**
+        * Print metadata for first 10 files.
+        */
+        async function uploadFile() {  
 
-        createFolder()
+            const folderID = createFolder();
+            console.log('going to create file in: ', folderID)
 
-      }
+        }
     </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
