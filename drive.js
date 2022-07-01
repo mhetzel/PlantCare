@@ -89,13 +89,13 @@ function handleSignoutClick() {
 }
 
 async function readFile(fileID) {
-    gapi.client.drive.files.export({
+ gapi.client.drive.files.get({
       fileId: fileID,
-      mimeType: 'text/plain',
-      fields: 'id,name,parents'
+      alt: 'media'
     }).then(function(resp) {
-      console.log('contents')
       console.log(resp.body)
+    }, function(reason){
+      console.log('loadFileRaw ERROR: ',reason)
     });
 }
 
