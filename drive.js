@@ -118,7 +118,7 @@ async function getFileID(folderID) {
       method: 'POST',
       headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
       body: form,
-    }).then((response) => response.json())
+    }).then((response) => response.json()
      ).then(function(val) {
       console.log('final val')
       console.log(val);
