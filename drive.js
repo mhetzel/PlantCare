@@ -157,6 +157,7 @@ async function getFolderID() {
 */
 async function uploadFile() {  
 
-  createFolder()
+  const folderID = getFolderID();
+  console.log('going to create file in: ', folderID)
 
 }
