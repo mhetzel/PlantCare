@@ -10,6 +10,7 @@
     <link rel="apple-touch-icon" href="leaf-128.png">
     <script src="jquery-3.6.0.min.js"></script>
     <script src="multiselect-dropdown.js" ></script>
+    <script src="jwt-decode.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +19,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
+    
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+        <div id="g_id_onload"
+             data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
+             data-context="signin"
+             data-ux_mode="popup"
+             data-callback="onSignIn"
+             data-auto_select="true">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="pill"
+             data-theme="filled_black"
+             data-text="signin_with"
+             data-size="small"
+             data-logo_alignment="left">
+        </div>
+    
+    <script>
+      function onSignIn(googleUser) {
+        var token = googleUser.credential
+        var decoded = jwt_decode(token);
+
+        console.log(decoded);
+      }
+    </script>
     
     <div id="login" class="content-box" >
 
