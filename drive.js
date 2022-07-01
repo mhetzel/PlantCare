@@ -120,7 +120,7 @@ async function getFileID(folderID) {
       body: form,
     }).then((response) => response.json()
      ).then(function(file) {
-      console.log('Created File: ', file.id);
+      console.log('Created File ID: ', file.id);
     }).catch(console.error);
   }
 
@@ -154,7 +154,7 @@ async function getFolderID() {
     }).then(function(response) {
       if (response.status == 200) {
         var file = response.result;
-        console.log('Created Folder Id: ', file.id);
+        console.log('Created Folder ID: ', file.id);
         return file.id;
       }
       console.log('Error creating the folder, '+response);
@@ -172,8 +172,9 @@ async function getFolderID() {
 async function uploadFile() {  
 
   getFolderID().then(folderID => { 
-    console.log('going to create file in: ', folderID) 
-    getFileID(folderID)
+    getFileID(folderID).then(fileID => {
+      console.log('save id for later: ', fileID)
+    })
   })
   
 
