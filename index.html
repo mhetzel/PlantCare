@@ -167,7 +167,7 @@ limitations under the License.
           response = await gapi.client.drive.files.list({
             'pageSize': 100,
             'fields': 'files(id, name)',
-            'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare'"
+            'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
           });
         } catch (err) {
           document.getElementById('content').innerText = err.message;
