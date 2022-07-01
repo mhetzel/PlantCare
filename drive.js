@@ -120,12 +120,12 @@ async function getFileID(folderID) {
       body: form,
     }).then((response) => {
       if (response.status == 200) {
-        var file = response.result;
-        console.log('Created File Id: ', file.id);
-        return file.id;
+        console.log('Created File Id: ', response.result);
+        // return file.id;
       }
-      console.log('Error creating the folder, '+response);
+      console.log('Error creating the file, '+response);
     }).then(function(val) {
+      console('final val')
       console.log(val);
     });
   }
