@@ -125,7 +125,7 @@ async function getFileID(folderID) {
       }
       console.log('Error creating the file, '+response);
     }).then(function(val) {
-      console('final val')
+      console.log('final val')
       console.log(val);
     });
   }
