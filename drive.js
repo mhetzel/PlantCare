@@ -149,10 +149,11 @@ async function getFileID(folderID) {
       id = file.id;
       console.log('Created File ID: ', file.id);
     }).catch(console.error);
+  } else {
+    console.log('Found: ', files[0].name, ': ', files[0].id);
+    id = files[0].id;
   }
-
-  console.log('Found: ', files[0].name, ': ', files[0].id);
-  return files[0].id;
+  return id;
 }
 
 
