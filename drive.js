@@ -118,13 +118,8 @@ async function getFileID(folderID) {
       method: 'POST',
       headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
       body: form,
-    }).then((response) => {
-      if (response.status == 200) {
-        console.log('Created Folder Id: ', response.json());
-      } else {
-        console.log('Error creating the file, '+response);
-      }
-    }).then(function(val) {
+    }).then((response) => response.json())
+     ).then(function(val) {
       console.log('final val')
       console.log(val);
     });
