@@ -94,7 +94,7 @@ async function getFileID(folderID) {
     response = await gapi.client.drive.files.list({
       'pageSize': 10,
       'fields': 'files(id, name)',
-      'q': "name = parents in '${folderID}' and name = 'data.json' and trashed != true"
+      'q': "name = parents in '" + folderID + "' and name = 'data.json' and trashed != true"
     });
   } catch (err) {
     return null;
