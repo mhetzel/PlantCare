@@ -164,7 +164,7 @@ async function getFolderID() {
   } 
   files.forEach( function(file) {
     console.log('Found: ', file.name, ': ', file.id)
-    return file.id
+    return "${file.id}"
   });
 }
 
