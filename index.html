@@ -175,8 +175,26 @@ limitations under the License.
         }
         const files = response.result.files;
         if (!files || files.length == 0) {
-          console.log('No files found.')
-          return;
+            console.log('No files found.')
+            var fileMetadata = {
+                'name' : 'PlantCare',
+                'mimeType' : 'application/vnd.google-apps.folder',
+                'parents': ['root']
+            };
+            gapi.client.drive.files.create({
+                resource: fileMetadata,
+            }).then(function(response) {
+                switch(response.status){
+                case 200:
+                    var file = response.result;
+                    console.log('Created Folder Id: ', file.id);
+                    break;
+                default:
+                    console.log('Error creating the folder, '+response);
+                    break;
+                }
+            });
+            return;
         }           
         files.forEach( function(file) {
             console.log('Found')
