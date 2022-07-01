@@ -104,10 +104,9 @@ async function writeFile(folderID, fileID) {
   form.append('file', file);
 
   fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
-    method: 'POST',
+    method: 'PATCH',
     headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
     body: form,
-    method:"PATCH",
   }).then((response) => response.json()
    ).then(function(file) {
     console.log('Updated File ID: ', file.id);
