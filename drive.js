@@ -122,7 +122,7 @@ async function getFileID(folderID) {
      ).then(function(val) {
       console.log('final val')
       console.log(val);
-    });
+    }).catch(console.error);
   }
 
   files.forEach( function(file) {
