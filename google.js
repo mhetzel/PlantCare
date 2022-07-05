@@ -11,26 +11,23 @@ document.getElementById('authorize_button').style.visibility = 'hidden';
 document.getElementById('signout_button').style.visibility = 'hidden';
 
 function parseJwt(token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
 
-            return JSON.parse(jsonPayload);
-        };
-      function onSignIn(googleUser) {
-        var token = googleUser.credential
-        var decoded = parseJwt(token);
+  return JSON.parse(jsonPayload);
+};
 
-        console.log(decoded);
-      }
-      function signOut() {
-            console.log("bye");
+function onSignIn(googleUser) {
+  var token = googleUser.credential
+  var decoded = parseJwt(token);
+  console.log(decoded);
+  console.log('signin action')
+}
 
-            google.accounts.id.disableAutoSelect();
-          
-        }
+
 
 
 /**
@@ -109,7 +106,13 @@ function handleSignoutClick() {
     document.getElementById('authorize_button').innerText = 'Authorize';
     document.getElementById('signout_button').style.visibility = 'hidden';
   }
+  google.accounts.id.disableAutoSelect();
 }
+
+
+/*
+ *  Drive Functions
+ */
 
 async function readFile(fileID) {
  gapi.client.drive.files.get({
@@ -120,7 +123,7 @@ async function readFile(fileID) {
     }, function(reason){
       console.log('loadFileRaw ERROR: ',reason)
     });
-}
+};
 
 async function writeFile(fileID) {
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
@@ -137,7 +140,7 @@ async function writeFile(fileID) {
       console.log('Updated. Result:\n' + JSON.stringify(value, null, 2));
   })
   .catch(err => console.error(err))
-}
+};
 
 async function getFileID(folderID) {
   let response;
@@ -180,8 +183,7 @@ async function getFileID(folderID) {
     id = files[0].id;
   }
   return id;
-}
-
+};
 
 async function getFolderID() {
   let response;
@@ -218,8 +220,7 @@ async function getFolderID() {
 
   console.log('Found: ', files[0].name, ': ', files[0].id);
   return files[0].id;
-}
-
+};
 
 async function uploadFile() {  
   getFolderID().then(folderID => { 
@@ -229,7 +230,7 @@ async function uploadFile() {
       readFile(fileID)
     });
   });
-}
+};
 
 
 
