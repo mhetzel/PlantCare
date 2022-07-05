@@ -63,24 +63,26 @@ function maybeEnableButtons() {
  *  Sign in the user upon button click.
  */
 async function handleToken(googleUser) {
+  let email;
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
+    email = parsedData.email;
     localStorage.setItem('parsedEmail', parsedData.email);
     console.log('signing in: ', parsedData.email)
   }
-
-  console.log('signin action')
 
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw (resp);
     }
-    console.log('call back response token:', resp.access_token)
-    console.log('call back response scopes:', resp.scopes)
+    localStorage.setItem("token_"+email, resp.access_token);
     document.getElementById('signout_button').style.visibility = 'visible';
-    console.log('callback api token: ', gapi.client.getToken().access_token)
   };
 
+  let token = localStorage.getItem("token_"+email);
+  if (token) {
+    gapi.client.setToken({access_token : token})
+  }
 
   if (gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
@@ -89,7 +91,9 @@ async function handleToken(googleUser) {
   } else {
     // Skip display of account chooser and consent dialog for an existing session.
     console.log('already signed in');
+    document.getElementById('signout_button').style.visibility = 'visible';
   }
+
 };
 
 /**
