@@ -7,7 +7,9 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
-
+/*
+ *  Account Functions
+ */
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -20,12 +22,8 @@ function parseJwt(token) {
 
 function gapiLoaded() {
   gapi.load('client', intializeGapiClient);
-}
+};
 
-/**
- * Callback after the API client is loaded. Loads the
- * discovery doc to initialize the API.
- */
 async function intializeGapiClient() {
   await gapi.client.init({
     apiKey: API_KEY,
@@ -33,11 +31,8 @@ async function intializeGapiClient() {
   });
   gapiInited = true;
   maybeEnableButtons();
-}
+};
 
-/**
- * Callback after Google Identity Services are loaded.
- */
 function gisLoaded() {  
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
@@ -46,20 +41,15 @@ function gisLoaded() {
   });
   gisInited = true;
   maybeEnableButtons();
-}
+};
 
-/**
- * Enables user interaction after all libraries are loaded.
- */
+
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
     document.getElementById('signout_button').style.visibility = 'hidden';
   }
-}
+};
 
-/**
- *  Sign in the user upon button click.
- */
 async function handleToken(googleUser) {
   let email;
   if (googleUser) {
@@ -83,31 +73,23 @@ async function handleToken(googleUser) {
   }
 
   if (gapi.client.getToken() === null) {
-    // Prompt the user to select a Google Account and ask for consent to share their data
-    // when establishing a new session.
     tokenClient.requestAccessToken({prompt: 'consent'});
   } else {
-    // Skip display of account chooser and consent dialog for an existing session.
-    console.log('already signed in');
+    console.log(email, ' already signed in');
     document.getElementById('signout_button').style.visibility = 'visible';
   }
-
 };
 
-/**
- *  Sign out the user upon button click.
- */
 function handleSignoutClick() {
-  const token = gapi.client.getToken();
   google.accounts.id.disableAutoSelect();
   let email = localStorage.getItem('parsedEmail');
   console.log('logging out: ', email)
   google.accounts.id.revoke(email, done => {
-    console.log('consent revoked');
+    console.log('consent revoked for ', email);
     localStorage.clear();
   });
   
-  if (token !== null) {
+  if (gapi.client.getToken() !== null) {
     gapi.client.setToken('');
     localStorage.clear();
   };
