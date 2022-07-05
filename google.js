@@ -20,16 +20,6 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 };
 
-function onSignIn(googleUser) {
-  var token = googleUser.credential
-  var decoded = parseJwt(token);
-  console.log(decoded);
-  console.log('signin action')
-}
-
-
-
-
 /**
  * Callback after api.js is loaded.
  */
@@ -75,7 +65,13 @@ function maybeEnableButtons() {
 /**
  *  Sign in the user upon button click.
  */
-function handleAuthClick() {
+function handleAuthClick(googleUser) {
+  var token = googleUser.credential
+  var decoded = parseJwt(token);
+  console.log(decoded);
+  console.log('signin action')
+  console.log(document.getElementById('authorize_button').innerText)
+  
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw (resp);
@@ -100,13 +96,13 @@ function handleAuthClick() {
  */
 function handleSignoutClick() {
   const token = gapi.client.getToken();
+  google.accounts.id.disableAutoSelect();
   if (token !== null) {
     google.accounts.oauth2.revoke(token.access_token);
     gapi.client.setToken('');
     document.getElementById('authorize_button').innerText = 'Authorize';
     document.getElementById('signout_button').style.visibility = 'hidden';
   }
-  google.accounts.id.disableAutoSelect();
 }
 
 
