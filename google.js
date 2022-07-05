@@ -71,14 +71,15 @@ function handleAuthClick(googleUser) {
   }
 
   console.log('signin action')
-  console.log(document.getElementById('authorize_button').innerText)
+
   
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw (resp);
     }
     document.getElementById('signout_button').style.visibility = 'visible';
-    document.getElementById('authorize_button').innerText = 'Refresh';
+    
+    // todo don't call this from here
     await uploadFile();
   };
 
@@ -88,7 +89,7 @@ function handleAuthClick(googleUser) {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } else {
     // Skip display of account chooser and consent dialog for an existing session.
-    tokenClient.requestAccessToken({prompt: ''});
+    console.log('already signed in');
   }
 }
 
