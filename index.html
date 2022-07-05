@@ -48,5 +48,123 @@
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     
+    <div class="menu-box">
+        <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
+        <button id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
+        <button id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
+    </div>
+
+    <div id="changing-div" class="content-box" style="display:none;">
+
+      <div id="plantForm" style="display:none">
+        <form class="form-container" action="javascript:console.log( 'success!' );">
+          <div class="top-right">
+            <button type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+            <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+          </div>  
+          <h2>New Plant Details</h2>
+          <div>
+            <label for="newPlantName"><b>Name:</b></label>
+            <input type="text" placeholder="Enter Plant Name" id="newPlantName" required>
+          </div>
+          <div>
+            <label for="newPlantLocation"><b>Location:</b></label>
+            <input type="text" placeholder="Enter Plant Location" id="newPlantLocation" required>
+          </div>
+          <div>
+            <label for="newPlantAverageWateringDays"><b>Average Watering Days:</b></label>
+            <input type="number" id="newPlantAverageWateringDays">
+          </div>
+          <div>
+            <label for="newPlantLastWatered"><b>Last Watered Date:</b></label>
+            <input type="date" id="newPlantLastWatered">
+          </div>
+          <div>
+            <label for="newPlantWaterNeeds"><b>Water When:</b></label>
+            <select id="newPlantWaterNeeds" required></select>
+          </div>
+          <div>
+            <label for="newPlantWaterInstructions"><b>Watering Instructions:</b></label>
+            <select multiple id="newPlantWaterInstructions"></select>
+          </div>
+          <div>
+            <label for="newPlantSoilPreferences"><b>Soil Preferences:</b></label>
+            <select id="newPlantSoilPreferences"></select>
+          </div>
+          <div>
+            <label for="newPlantFertilizer"><b>Fertilizer Frequency:</b></label>
+            <select id="newPlantFertilizer"></select>
+          </div>
+          <div>
+            <label for="newPlantFertilizerDose"><b>Fertilizer Dose:</b></label>
+            <select id="newPlantFertilizerDose"></select>
+          </div>
+          <div>
+            <label for="newPlantLightNeeds"><b>Light:</b></label>
+            <select id="newPlantLightNeeds" required></select>
+          </div>
+          <div>
+            <label for="newPlantPetSafe"><b>Pet Safe:</b></label>
+            <select id="newPlantPetSafe">
+              <option>false</option>
+              <option>true</option>
+            </select>
+          </div>
+          <div>
+            <label for="newPlantHumitidy"><b>Humidity Needs:</b></label>
+            <select id="newPlantHumitidy"></select>
+          </div>
+
+        </form>
+      </div>
+
+
+      <div id="config-div" style="display:none;">
+        
+        <button>
+          <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i></label>
+        </button>
+        <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="loadConfig(event)">
+
+        <a id="configText" download="plantData.json" href="">
+          <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
+        </a>
+        <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+
+      </div>
+
+    </div>
+
+    <div id="plant-infos" name="plant-infos" class="content-box" >
+      <select id="location-dropdown" onchange="locationSelectionChange()"></select>
+      <select id="plant-dropdown" onchange="plantSelectionChange()"></select>
+
+      <span id="plant-info">
+        <div><span>Average Days Between Waterings: </span><span id="averageDaysBetweenWatering"></span></div>
+        <div><span>Current Wetness: </span><select id="currentWetness" onchange="checkPlant()"></select></div>
+        <div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
+        <div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
+        <div><span>Desired Water Level: </span><span id="water"></span></div>
+        <div><span>Watering Instructions: </span><span id="waterInstructions"></span></div>
+        <div><span>Soil Preferences: </span><span id="soil"></span></div>
+        <div><span>Fertilizer Frequency: </span><span id="fertilzerFrequency"></span></div>
+        <div><span>Fertilizer Dose: </span><span id="fertilzerDose"></span></div>
+        <div><span>Pet Safe: </span><span id="petSafe"></span></div>
+        <div><span>Humidity Needs: </span><span id="humidity"></span></div>
+        <div><span>Desired Light Level: </span><span id="light"></span></div>
+      </span>
+
+      <div id="plant-buttons">
+        <button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>
+        <button onclick="movePlant()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        <button onclick="deletePlant()" title="Delete Plant"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>
+
+    <script src="dropdowns.js"></script>
+    <script src="index.js"></script>
+    <script src="config.js"></script>
+    <script src="plantActions.js"></script>
+    
   </body>
 </html>
