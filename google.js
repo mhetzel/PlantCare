@@ -61,7 +61,7 @@ function maybeEnableButtons() {
 /**
  *  Sign in the user upon button click.
  */
-function handleToken(googleUser) {
+async function handleToken(googleUser) {
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
     localStorage.setItem('parsedCredential', parsedData);
@@ -93,7 +93,7 @@ function handleToken(googleUser) {
     // Skip display of account chooser and consent dialog for an existing session.
     console.log('already signed in');
   }
-    // todo don't call this from here
+
     await uploadFile();
 };
 
