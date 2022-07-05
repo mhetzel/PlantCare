@@ -65,8 +65,8 @@ function maybeEnableButtons() {
 async function handleToken(googleUser) {
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
-    localStorage.setItem('parsedCredential', parsedData);
-    console.log(parsedData.email);
+    localStorage.setItem('parsedEmail', parsedData.email);
+    console.log('signing in: ', parsedData.email)
   }
 
   console.log('signin action')
@@ -75,8 +75,10 @@ async function handleToken(googleUser) {
     if (resp.error !== undefined) {
       throw (resp);
     }
+    console.log('call back response token:', resp.access_token)
+    onsole.log('call back response scopes:', resp.scopes)
     document.getElementById('signout_button').style.visibility = 'visible';
-
+    console.log('callback api token: ', gapi.client.getToken().access_token)
   };
 
 
@@ -96,8 +98,8 @@ async function handleToken(googleUser) {
 function handleSignoutClick() {
   const token = gapi.client.getToken();
   google.accounts.id.disableAutoSelect();
-  let email = localStorage.getItem('parsedCredential').email;
-  console.log('logging out ', email)
+  let email = localStorage.getItem('parsedEmail');
+  console.log('logging out: ', email)
   google.accounts.id.revoke(email, done => {
     console.log('consent revoked');
     localStorage.clear();
