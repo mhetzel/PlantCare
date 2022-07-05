@@ -140,8 +140,6 @@ async function handleToken(googleUser) {
     // Skip display of account chooser and consent dialog for an existing session.
     console.log('already signed in');
   }
-
-    await uploadFile();
 };
 
 /**
