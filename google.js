@@ -23,7 +23,6 @@ function parseJwt(token) {
  */
 function gapiLoaded() {
   gapi.load('client', intializeGapiClient);
-  document.getElementById('signout_button').style.visibility = 'hidden';
 }
 
 /**
@@ -57,7 +56,7 @@ function gisLoaded() {
  */
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
-    document.getElementById('authorize_button').style.visibility = 'visible';
+    document.getElementById('signout_button').style.visibility = 'hidden';
   }
 }
 
