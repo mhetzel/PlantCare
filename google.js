@@ -29,7 +29,7 @@ function gapiLoaded() {
 async function intializeGapiClient() {
   gapi.client.init({
     apiKey: API_KEY,
-    clientId: CLIENT_ID,
+    client_id: CLIENT_ID,
     scope: SCOPES,
     discoveryDocs: [DISCOVERY_DOC],
   }).then(function () {
