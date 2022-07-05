@@ -87,6 +87,7 @@ function handleAuthClick(googleUser) {
     // Prompt the user to select a Google Account and ask for consent to share their data
     // when establishing a new session.
     tokenClient.requestAccessToken({prompt: 'consent'});
+    document.getElementByClass('g_id_signin').data-size = "large";
   } else {
     // Skip display of account chooser and consent dialog for an existing session.
     console.log('already signed in');
