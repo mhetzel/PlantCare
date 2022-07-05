@@ -64,7 +64,7 @@ function maybeEnableButtons() {
 async function handleToken(googleUser) {
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
-    localStorage.setItem('parsedCredential', JSON.stringify(parsedData));
+    localStorage.setItem('parsedCredential', parsedData);
     console.log(parsedData.email);
   }
 
@@ -76,15 +76,8 @@ async function handleToken(googleUser) {
     }
     document.getElementById('signout_button').style.visibility = 'visible';
 
-    localStorage.setItem('token', JSON.stringify(gapi.client.getToken()));
   };
-  
-  let token = localStorage.getItem('token');
-  
-  if (token) {
-    console.log(token);
-    gapi.client.setToken(JSON.parse(token));
-  }
+
 
   if (gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
@@ -104,7 +97,9 @@ async function handleToken(googleUser) {
 function handleSignoutClick() {
   const token = gapi.client.getToken();
   google.accounts.id.disableAutoSelect();
-  google.accounts.id.revoke(JSON.parse(localStorage.getItem('parsedCredential')).email, done => {
+  let email = localStorage.getItem('parsedCredential').email;
+  console.log('logging out ', email)
+  google.accounts.id.revoke(email, done => {
     console.log('consent revoked');
     localStorage.clear();
   });
