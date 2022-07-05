@@ -19,7 +19,7 @@ function parseJwt(token) {
 };
 
 function gapiLoaded() {
-  gapi.load('client', intializeGapiClient);
+  gapi.load('client:auth2', intializeGapiClient);
 }
 
 /**
@@ -29,12 +29,65 @@ function gapiLoaded() {
 async function intializeGapiClient() {
   await gapi.client.init({
     apiKey: API_KEY,
+    clientId: CLIENT_ID,
+    scope: SCOPES,
     discoveryDocs: [DISCOVERY_DOC],
+  }).then(function () {
+    GoogleAuth = gapi.auth2.getAuthInstance();
+
+    // Listen for sign-in state changes.
+    GoogleAuth.isSignedIn.listen(updateSigninStatus);
+
+    // Handle initial sign-in state. (Determine if user is already signed in.)
+    var user = GoogleAuth.currentUser.get();
+    setSigninStatus();
+
+    // Call handleAuthClick function when user clicks on
+    //      "Sign In/Authorize" button.
+    $('#sign-in-or-out-button').click(function() {
+      handleAuthClick();
+    });
+    $('#revoke-access-button').click(function() {
+      revokeAccess();
+    });
   });
   gapiInited = true;
   maybeEnableButtons();
 }
 
+ function handleAuthClick() {
+    if (GoogleAuth.isSignedIn.get()) {
+      // User is authorized and has clicked "Sign out" button.
+      GoogleAuth.signOut();
+    } else {
+      // User is not signed in. Start Google auth flow.
+      GoogleAuth.signIn();
+    }
+  }
+
+  function revokeAccess() {
+    GoogleAuth.disconnect();
+  }
+
+  function setSigninStatus() {
+    var user = GoogleAuth.currentUser.get();
+    var isAuthorized = user.hasGrantedScopes(SCOPE);
+    if (isAuthorized) {
+      $('#sign-in-or-out-button').html('Sign out');
+      $('#revoke-access-button').css('display', 'inline-block');
+      $('#auth-status').html('You are currently signed in and have granted ' +
+          'access to this app.');
+    } else {
+      $('#sign-in-or-out-button').html('Sign In/Authorize');
+      $('#revoke-access-button').css('display', 'none');
+      $('#auth-status').html('You have not authorized this app or you are ' +
+          'signed out.');
+    }
+  }
+
+  function updateSigninStatus() {
+    setSigninStatus();
+  }
 
 /**
  * Callback after Google Identity Services are loaded.
