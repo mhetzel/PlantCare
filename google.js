@@ -59,8 +59,10 @@ function maybeEnableButtons() {
   }
 }
 
-function handlePasswordCredential(cred) {
-  console.log(cred)
+function handlePasswordCredential(id, pwd) {
+  console.log('cred handler')
+  console.log(id)
+  console.log(pwd)
   google.accounts.id.storeCredential(cred);
 }
 
