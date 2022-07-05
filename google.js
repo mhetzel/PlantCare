@@ -66,9 +66,10 @@ function maybeEnableButtons() {
  *  Sign in the user upon button click.
  */
 function handleAuthClick(googleUser) {
-  var token = googleUser.credential
-  var decoded = parseJwt(token);
-  console.log(decoded);
+  if (googleUser) {
+    console.log(parseJwt(googleUser.credential));
+  }
+
   console.log('signin action')
   console.log(document.getElementById('authorize_button').innerText)
   
