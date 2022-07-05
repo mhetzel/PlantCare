@@ -56,10 +56,15 @@ function setDisplayForNoPlants() {
   }
 }
 
+function displayLoginPage() {
+  $("#login").show();
+}
+
 function closeForm() {
   $("#changing-div").hide();
   $("#config-div").hide();
   $("#plantForm").hide();
+  $("#login").hide();
 }
 
 async function addNewPlant() {
