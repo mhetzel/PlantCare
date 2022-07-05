@@ -110,8 +110,8 @@ function handleSignoutClick() {
   if (token !== null) {
     gapi.client.setToken('');
     localStorage.clear();
-    document.getElementById('signout_button').style.visibility = 'hidden';
-  }
+  };
+  document.getElementById('signout_button').style.visibility = 'hidden';
 };
 
 
