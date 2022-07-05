@@ -65,6 +65,7 @@ function closeForm() {
   $("#config-div").hide();
   $("#plantForm").hide();
   $("#login").hide();
+  setDisplayForNoPlants();
 }
 
 async function addNewPlant() {
