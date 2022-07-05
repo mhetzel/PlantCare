@@ -76,8 +76,6 @@ function handleToken(googleUser) {
     }
     document.getElementById('signout_button').style.visibility = 'visible';
     localStorage.setItem('token', gapi.client.getToken());
-    // todo don't call this from here
-    await uploadFile();
   };
   
   let token = localStorage.getItem('token');
@@ -95,8 +93,9 @@ function handleToken(googleUser) {
     // Skip display of account chooser and consent dialog for an existing session.
     console.log('already signed in');
   }
-
-}
+    // todo don't call this from here
+    await uploadFile();
+};
 
 /**
  *  Sign out the user upon button click.
