@@ -6,7 +6,7 @@ const SCOPES = 'https://www.googleapis.com/auth/drive';
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
-
+var GoogleAuth;
 
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
