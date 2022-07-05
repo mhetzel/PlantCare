@@ -19,25 +19,6 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 };
 
-/**
- * Callback after api.js is loaded.
- */
-function gapiLoaded() {
-  gapi.load('client', intializeGapiClient);
-}
-
-/**
- * Callback after the API client is loaded. Loads the
- * discovery doc to initialize the API.
- */
-async function intializeGapiClient() {
-  await gapi.client.init({
-    apiKey: API_KEY,
-    discoveryDocs: [DISCOVERY_DOC],
-  });
-  gapiInited = true;
-  maybeEnableButtons();
-}
 
 /**
  * Callback after Google Identity Services are loaded.
@@ -56,7 +37,7 @@ function gisLoaded() {
  * Enables user interaction after all libraries are loaded.
  */
 function maybeEnableButtons() {
-  if (gapiInited && gisInited) {
+  if (gisInited) {
     document.getElementById('signout_button').style.visibility = 'hidden';
   }
 }
@@ -83,14 +64,9 @@ function handleAuthClick(googleUser) {
     await uploadFile();
   };
 
-  if (gapi.client.getToken() === null) {
-    // Prompt the user to select a Google Account and ask for consent to share their data
-    // when establishing a new session.
-    tokenClient.requestAccessToken({prompt: 'consent'});
-  } else {
-    // Skip display of account chooser and consent dialog for an existing session.
-    console.log('already signed in');
-  }
+
+  tokenClient.requestAccessToken({prompt: 'consent'});
+
 }
 
 /**
