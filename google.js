@@ -64,7 +64,7 @@ function maybeEnableButtons() {
 async function handleToken(googleUser) {
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
-    localStorage.setItem('parsedCredential', parsedData);
+    localStorage.setItem('parsedCredential', JSON.stringify(parsedData));
     console.log(parsedData.email);
   }
 
@@ -75,14 +75,15 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     document.getElementById('signout_button').style.visibility = 'visible';
-    localStorage.setItem('token', gapi.client.getToken());
+
+    localStorage.setItem('token', JSON.stringify(gapi.client.getToken()));
   };
   
   let token = localStorage.getItem('token');
   
   if (token) {
     console.log(token);
-    gapi.client.setToken(token);
+    gapi.client.setToken(JSON.parse(token));
   }
 
   if (gapi.client.getToken() === null) {
@@ -103,7 +104,7 @@ async function handleToken(googleUser) {
 function handleSignoutClick() {
   const token = gapi.client.getToken();
   google.accounts.id.disableAutoSelect();
-  google.accounts.id.revoke(localStorage.getItem('parsedCredential').email, done => {
+  google.accounts.id.revoke(JSON.parse(localStorage.getItem('parsedCredential')).email, done => {
     console.log('consent revoked');
     localStorage.clear();
   });
