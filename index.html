@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
-    <script src="google.js"></script>
-    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+
  
     <div id="login" class="content-box" >
       
@@ -39,12 +38,16 @@
         data-size="large"
         data-logo_alignment="left">
       </div>
+      
+      <script src="google.js"></script>
+      <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+      <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
 
       <!--Add buttons to initiate auth sequence and sign out-->
       <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
       <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
     </div>
 
-    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    
   </body>
 </html>
