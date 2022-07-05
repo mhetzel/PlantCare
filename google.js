@@ -40,7 +40,7 @@ async function intializeGapiClient() {
 /**
  * Callback after Google Identity Services are loaded.
  */
-function gisLoaded() {
+function gisLoaded() {  
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
@@ -59,10 +59,15 @@ function maybeEnableButtons() {
   }
 }
 
+function handlePasswordCredential(cred) {
+  console.log(cred)
+  google.accounts.id.storeCredential(cred);
+}
+
 /**
  *  Sign in the user upon button click.
  */
-function handleAuthClick(googleUser) {
+function handleToken(googleUser) {
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
     console.log(parsedData.email);
