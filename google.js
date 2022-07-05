@@ -7,8 +7,6 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
-document.getElementById('authorize_button').style.visibility = 'hidden';
-document.getElementById('signout_button').style.visibility = 'hidden';
 
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
@@ -25,6 +23,7 @@ function parseJwt(token) {
  */
 function gapiLoaded() {
   gapi.load('client', intializeGapiClient);
+  document.getElementById('signout_button').style.visibility = 'hidden';
 }
 
 /**
