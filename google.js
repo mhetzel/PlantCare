@@ -27,7 +27,7 @@ function gapiLoaded() {
  * discovery doc to initialize the API.
  */
 async function intializeGapiClient() {
-  await gapi.client.init({
+  gapi.client.init({
     apiKey: API_KEY,
     clientId: CLIENT_ID,
     scope: SCOPES,
