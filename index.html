@@ -20,7 +20,7 @@
   <body>
 
  
-    <div id="login" class="content-box" >
+    <div id="login" class="content-box" style="display:none;">
       
       <div id="g_id_onload"
         data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
@@ -42,6 +42,8 @@
       <div class="g_id_signout"><button id="signout_button" style="visibility = hidden" onclick="handleSignoutClick()">Sign Out</button></div>
       <button id="read_button" onclick="uploadFile()">Drive Interaction</button>
             
+      <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+
     </div>
 
     <script src="google.js"></script>
