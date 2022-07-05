@@ -76,7 +76,7 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     console.log('call back response token:', resp.access_token)
-    onsole.log('call back response scopes:', resp.scopes)
+    console.log('call back response scopes:', resp.scopes)
     document.getElementById('signout_button').style.visibility = 'visible';
     console.log('callback api token: ', gapi.client.getToken().access_token)
   };
