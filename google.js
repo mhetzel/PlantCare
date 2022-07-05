@@ -4,6 +4,7 @@ const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/res
 const SCOPES = 'https://www.googleapis.com/auth/drive';
 
 let tokenClient;
+let userEmail;
 let gapiInited = false;
 let gisInited = false;
 
@@ -65,12 +66,13 @@ function maybeEnableButtons() {
  */
 function handleAuthClick(googleUser) {
   if (googleUser) {
-    console.log(parseJwt(googleUser.credential));
+    let parsedData = parseJwt(googleUser.credential);
+    console.log(parsedData.email);
+    userEmail = parsedData.email;
   }
 
   console.log('signin action')
 
-  
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw (resp);
@@ -97,12 +99,16 @@ function handleAuthClick(googleUser) {
 function handleSignoutClick() {
   const token = gapi.client.getToken();
   google.accounts.id.disableAutoSelect();
+  google.accounts.id.revoke(userEmail, done => {
+    console.log('consent revoked');
+  });
+  userEmail = '';
   if (token !== null) {
     google.accounts.oauth2.revoke(token.access_token);
     gapi.client.setToken('');
     document.getElementById('signout_button').style.visibility = 'hidden';
   }
-}
+};
 
 
 /*
