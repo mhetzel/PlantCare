@@ -10,6 +10,8 @@
     <link rel="apple-touch-icon" href="leaf-128.png">
     <script src="jquery-3.6.0.min.js"></script>
     <script src="multiselect-dropdown.js" ></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,36 +20,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
-    
-      <div id="g_id_onload"
-        data-client_id="439504664142-ji2fdlinh9ueqc75mjvssemdouioe5o7.apps.googleusercontent.com"
-        data-context="signin"
-        data-callback="handleToken"
-        data-skip_prompt_cookie="SID"
-        data-auto_select="true">
-      </div>
- 
+     
     <div id="login" class="content-box" style="display:none;">
-      
-      <div class="g_id_signin"
-        data-type="standard"
-        data-shape="pill"
-        data-theme="filled_black"
-        data-text="sign_in_with"
-        data-size="large"
-        data-logo_alignment="left">
-      </div>
-      
-      <div class="g_id_signout"><button id="signout_button" style="visibility = hidden" onclick="handleSignoutClick()">Sign Out</button></div>
+      <div id="signin" ></div>
+      <div class="g_id_signout"><button id="signout_button" style="display: none;" onclick="handleSignoutClick()">Sign Out</button></div>
+      <div><button id="guest_button" onclick="handleGuestMode()">Use in Guest Mode</button></div>
       <button id="read_button" onclick="uploadFile()">Drive Interaction</button>
             
-      <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      <button type="button" onclick="hideLoginPage()" title="Close"><i class="fa-solid fa-xmark"></i></button>
 
     </div>
-
-    <script src="google.js"></script>
-    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     
     <div class="menu-box">
         <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
@@ -56,7 +38,7 @@
         <button id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i></button>
     </div>
 
-    <div id="changing-div" class="content-box" style="display:none;">
+    <div id="changing-div" class="content-box" style="display: none;">
 
       <div id="plantForm" style="display:none">
         <form class="form-container" action="javascript:console.log( 'success!' );">
@@ -167,6 +149,7 @@
     <script src="index.js"></script>
     <script src="config.js"></script>
     <script src="plantActions.js"></script>
+    <script src="google.js"></script>
     
   </body>
 </html>

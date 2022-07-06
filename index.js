@@ -4,6 +4,7 @@ var StorageKey = 'plantCareData'
 
 
 async function loadPlants() {
+  console.log('load plants')
   if (typeof(Storage) !== "undefined") {
     var retrievedObject = localStorage.getItem(StorageKey);
     if (retrievedObject === null) {
@@ -56,15 +57,10 @@ function setDisplayForNoPlants() {
   }
 }
 
-function displayLoginPage() {
-  $("#login").show();
-}
-
 function closeForm() {
   $("#changing-div").hide();
   $("#config-div").hide();
   $("#plantForm").hide();
-  $("#login").hide();
   setDisplayForNoPlants();
 }
 

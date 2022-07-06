@@ -7,9 +7,62 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
+window.onload = function () {
+  console.log('onload')
+
+  google.accounts.id.initialize({
+    client_id: CLIENT_ID,
+    callback: handleToken,
+    context: "signin",
+    auto_select: true
+  });
+
+  google.accounts.id.prompt((notification) => {
+    if (notification.isSkippedMoment()) {
+      console.log(notification.getSkippedReason())
+    }
+    if (notification.isDismissedMoment()) {
+      console.log(notification.getDismissedReason())
+    }
+    if (notification.isNotDisplayed()) {
+      console.log(notification.getNotDisplayedReason())
+    }
+    console.log(notification.getMomentType())
+  });
+
+  gapiLoaded()
+  gisLoaded()
+}
+
 /*
  *  Account Functions
  */
+
+function handleGuestMode() {
+  alert('This will disable google account syncing and plant data will be stored in this browser only.')
+  handleSignoutClick();
+  
+
+}
+
+function displayLoginPage() {
+  $("#login").show();
+
+  google.accounts.id.renderButton(
+    document.getElementById('signin'),
+    { theme: "filled_black", 
+      size: "large", 
+      type: "standard",
+      shape: "pill",
+      text: "signin_with",
+      logo_alignment: "left"}
+  )
+};
+
+function hideLoginPage() {
+  $("#login").hide();
+};
+
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -46,7 +99,7 @@ function gisLoaded() {
 
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
-    document.getElementById('signout_button').style.visibility = 'hidden';
+    $("#signout_button").hide();
   }
 };
 
@@ -56,7 +109,7 @@ async function handleToken(googleUser) {
     let parsedData = parseJwt(googleUser.credential);
     email = parsedData.email;
     localStorage.setItem('parsedEmail', parsedData.email);
-    console.log('signing in: ', parsedData.email)
+    console.log('signing in:', parsedData.email)
   }
 
   tokenClient.callback = async (resp) => {
@@ -64,7 +117,7 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     localStorage.setItem("token_"+email, resp.access_token);
-    document.getElementById('signout_button').style.visibility = 'visible';
+    $("#signout_button").show();
   };
 
   let token = localStorage.getItem("token_"+email);
@@ -75,17 +128,17 @@ async function handleToken(googleUser) {
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } else {
-    console.log(email, ' already signed in');
-    document.getElementById('signout_button').style.visibility = 'visible';
+    console.log(email, 'already signed in');
+    $("#signout_button").show();
   }
 };
 
 function handleSignoutClick() {
   google.accounts.id.disableAutoSelect();
   let email = localStorage.getItem('parsedEmail');
-  console.log('logging out: ', email)
+  console.log('logging out:', email)
   google.accounts.id.revoke(email, done => {
-    console.log('consent revoked for ', email);
+    console.log('consent revoked for:', email);
     localStorage.clear();
   });
   
@@ -93,7 +146,7 @@ function handleSignoutClick() {
     gapi.client.setToken('');
     localStorage.clear();
   };
-  document.getElementById('signout_button').style.visibility = 'hidden';
+  $("#signout_button").hide();
 };
 
 
