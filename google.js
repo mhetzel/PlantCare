@@ -29,7 +29,7 @@ async function initGoogleAPIs() {
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         console.log('skipped reason', notification.getSkippedReason())
-        if (notifiaction.getSkippedReason() == 'user_cancel') {
+        if (notification.getSkippedReason() == 'user_cancel') {
           console.log('we should set guest mode')
         }
       }
