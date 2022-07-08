@@ -19,6 +19,7 @@ async function initGoogleAPIs() {
     auto_select: true
   });
 
+  console.log('guestmode', guestMode)
   if (!guestMode) {
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
