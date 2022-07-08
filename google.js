@@ -118,6 +118,7 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     localStorage.setItem("token_"+email, resp.access_token);
+    $('#user-name').text(email);
     $("#signout_button").show();
   };
 
@@ -130,6 +131,7 @@ async function handleToken(googleUser) {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } else {
     console.log(email, 'already signed in');
+    $('#user-name').text(email);
     $("#signout_button").show();
   }
 };
@@ -148,6 +150,7 @@ function handleSignoutClick() {
     localStorage.clear();
   };
   $("#signout_button").hide();
+  $('#user-name').text('Guest');
 };
 
 
