@@ -9,9 +9,8 @@ let gisInited = false;
 let guestMode = false;
 
 async function initGoogleAPIs() {
-  console.log('onload')
-  guestMode = localStorage.getItem('guestMode');
 
+  guestMode = localStorage.getItem('guestMode') == 'true';
 
   google.accounts.id.initialize({
     client_id: CLIENT_ID,
@@ -20,8 +19,7 @@ async function initGoogleAPIs() {
     auto_select: true
   });
 
-  console.log('guestmode', guestMode)
-  if (guestMode == 'false') {
+  if (!guestMode) {
     let email = localStorage.getItem('parsedEmail');
     if (email) {
       $('#user-name').text(email);
@@ -30,19 +28,16 @@ async function initGoogleAPIs() {
       if (notification.isSkippedMoment()) {
         console.log('skipped reason', notification.getSkippedReason())
         if (notification.getSkippedReason() == 'user_cancel') {
-          console.log('we should set guest mode')
+          handleSignoutClick()
         }
       }
       if (notification.isDismissedMoment()) {
         console.log('dismissed reason', notification.getDismissedReason())
-        if (notification.getDismissedReason() == 'credential_returned') {
-          console.log('we should unset guest mode')
-        }
       }
       if (notification.isNotDisplayed()) {
         console.log('suppressed reason', notification.getNotDisplayedReason())
         if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-          console.log('we should set guest mode')
+          handleSignoutClick()
         }
       }
       console.log(notification.getMomentType())
