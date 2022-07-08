@@ -152,6 +152,7 @@ async function handleToken(googleUser) {
 };
 
 function signedOut() {
+  let email = localStorage.getItem('parsedEmail');
   localStorage.removeItem('parsedEmail');
   localStorage.removeItem("token_"+email);
   $("#signout_button").hide();
