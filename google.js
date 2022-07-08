@@ -12,6 +12,7 @@ async function initGoogleAPIs() {
   console.log('onload')
   guestMode = localStorage.getItem('guestMode');
 
+
   google.accounts.id.initialize({
     client_id: CLIENT_ID,
     callback: handleToken,
@@ -21,6 +22,10 @@ async function initGoogleAPIs() {
 
   console.log('guestmode', guestMode)
   if (guestMode == false) {
+    let email = localStorage.getItem('parsedEmail');
+    if (email) {
+      $('#user-name').text(email);
+    }
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         console.log(notification.getSkippedReason())
