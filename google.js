@@ -28,7 +28,7 @@ async function initGoogleAPIs() {
       if (notification.isSkippedMoment()) {
         console.log('skipped reason', notification.getSkippedReason())
         if (notification.getSkippedReason() == 'user_cancel') {
-          handleSignoutClick()
+          signedOut()
         }
       }
       if (notification.isDismissedMoment()) {
@@ -37,7 +37,7 @@ async function initGoogleAPIs() {
       if (notification.isNotDisplayed()) {
         console.log('suppressed reason', notification.getNotDisplayedReason())
         if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-          handleSignoutClick()
+          signedOut()
         }
       }
       console.log(notification.getMomentType())
@@ -151,6 +151,14 @@ async function handleToken(googleUser) {
   }
 };
 
+function signedOut() {
+  localStorage.removeItem('parsedEmail');
+  localStorage.removeItem("token_"+email);
+  $("#signout_button").hide();
+  $('#user-name').text('Guest');
+  localStorage.setItem('guestMode', true);
+}
+
 function handleSignoutClick() {
   alert('This will disable google account syncing and plant data will be stored in this browser only.')
   google.accounts.id.disableAutoSelect();
@@ -158,16 +166,13 @@ function handleSignoutClick() {
   console.log('logging out:', email)
   google.accounts.id.revoke(email, done => {
     console.log('consent revoked for:', email);
-    localStorage.removeItem('parsedEmail');
   });
   
   if (gapi.client.getToken() !== null) {
     gapi.client.setToken('');
-    localStorage.removeItem("token_"+email);
   };
-  $("#signout_button").hide();
-  $('#user-name').text('Guest');
-  localStorage.setItem('guestMode', true);
+
+  signedOut();
 };
 
 
