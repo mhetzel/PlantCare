@@ -52,12 +52,8 @@ async function initGoogleAPIs() {
  *  Account Functions
  */
 
-function displayLoginPage() {
-  if ($("#login").css('display') == 'block') {
-    hideLoginPage();
-  } else {
-    $("#login").show();
-    google.accounts.id.renderButton(
+function setupSigninButton() {
+      google.accounts.id.renderButton(
       document.getElementById('signin'),
       { theme: "filled_black", 
         size: "large", 
@@ -66,6 +62,14 @@ function displayLoginPage() {
         text: "signin_with",
         logo_alignment: "left"}
     )
+}
+
+function displayLoginPage() {
+  if ($("#login").css('display') == 'block') {
+    hideLoginPage();
+  } else {
+    $("#login").show();
+    setupSigninButton();
   }
 };
 
@@ -130,6 +134,7 @@ async function handleToken(googleUser) {
     localStorage.setItem("token_"+email, resp.access_token);
     $('#user-name').text(email);
     $("#signout_button").show();
+    setupSigninButton();
   };
 
   let token = localStorage.getItem("token_"+email);
