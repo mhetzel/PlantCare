@@ -41,22 +41,23 @@ window.onload = function () {
 function handleGuestMode() {
   alert('This will disable google account syncing and plant data will be stored in this browser only.')
   handleSignoutClick();
-  
-
 }
 
 function displayLoginPage() {
-  $("#login").show();
-
-  google.accounts.id.renderButton(
-    document.getElementById('signin'),
-    { theme: "filled_black", 
-      size: "large", 
-      type: "standard",
-      shape: "pill",
-      text: "signin_with",
-      logo_alignment: "left"}
-  )
+  if ($("#login").css('display') == 'block') {
+    hideLoginPage();
+  } else {
+    $("#login").show();
+    google.accounts.id.renderButton(
+      document.getElementById('signin'),
+      { theme: "filled_black", 
+        size: "large", 
+        type: "standard",
+        shape: "pill",
+        text: "signin_with",
+        logo_alignment: "left"}
+    )
+  }
 };
 
 function hideLoginPage() {
