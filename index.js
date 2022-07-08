@@ -107,6 +107,7 @@ async function addNewPlant() {
   }
 }
 
+initGoogleAPIs();
 dropdownSetup();
 setDisplayForNoPlants();
 
