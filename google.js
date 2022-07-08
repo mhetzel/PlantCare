@@ -6,9 +6,11 @@ const SCOPES = 'https://www.googleapis.com/auth/drive';
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
+let guestMode = false;
 
 async function initGoogleAPIs() {
   console.log('onload')
+  guestMode = localStorage.getItem('guestMode');
 
   google.accounts.id.initialize({
     client_id: CLIENT_ID,
@@ -17,18 +19,20 @@ async function initGoogleAPIs() {
     auto_select: true
   });
 
-  google.accounts.id.prompt((notification) => {
-    if (notification.isSkippedMoment()) {
-      console.log(notification.getSkippedReason())
-    }
-    if (notification.isDismissedMoment()) {
-      console.log(notification.getDismissedReason())
-    }
-    if (notification.isNotDisplayed()) {
-      console.log(notification.getNotDisplayedReason())
-    }
-    console.log(notification.getMomentType())
-  });
+  if (!guestMode) {
+    google.accounts.id.prompt((notification) => {
+      if (notification.isSkippedMoment()) {
+        console.log(notification.getSkippedReason())
+      }
+      if (notification.isDismissedMoment()) {
+        console.log(notification.getDismissedReason())
+      }
+      if (notification.isNotDisplayed()) {
+        console.log(notification.getNotDisplayedReason())
+      }
+      console.log(notification.getMomentType())
+    });
+  }
 
   gapiLoaded()
   gisLoaded()
@@ -41,6 +45,7 @@ async function initGoogleAPIs() {
 function handleGuestMode() {
   alert('This will disable google account syncing and plant data will be stored in this browser only.')
   handleSignoutClick();
+  localStorage.setItem('guestMode', true);
 }
 
 function displayLoginPage() {
@@ -105,6 +110,7 @@ function maybeEnableButtons() {
 };
 
 async function handleToken(googleUser) {
+  localStorage.setItem('guestMode', false);
   let email;
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
