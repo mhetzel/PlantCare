@@ -21,7 +21,7 @@ async function initGoogleAPIs() {
   });
 
   console.log('guestmode', guestMode)
-  if (guestMode == false) {
+  if (guestMode == 'false') {
     let email = localStorage.getItem('parsedEmail');
     if (email) {
       $('#user-name').text(email);
