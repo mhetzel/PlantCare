@@ -148,12 +148,12 @@ function handleSignoutClick() {
   console.log('logging out:', email)
   google.accounts.id.revoke(email, done => {
     console.log('consent revoked for:', email);
-    localStorage.clear();
+    localStorage.removeItem('parsedEmail');
   });
   
   if (gapi.client.getToken() !== null) {
     gapi.client.setToken('');
-    localStorage.clear();
+    localStorage.removeItem("token_"+email);
   };
   $("#signout_button").hide();
   $('#user-name').text('Guest');
