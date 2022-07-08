@@ -54,12 +54,6 @@ async function initGoogleAPIs() {
  *  Account Functions
  */
 
-function handleGuestMode() {
-  alert('This will disable google account syncing and plant data will be stored in this browser only.')
-  handleSignoutClick();
-  localStorage.setItem('guestMode', true);
-}
-
 function displayLoginPage() {
   if ($("#login").css('display') == 'block') {
     hideLoginPage();
@@ -155,6 +149,7 @@ async function handleToken(googleUser) {
 };
 
 function handleSignoutClick() {
+  alert('This will disable google account syncing and plant data will be stored in this browser only.')
   google.accounts.id.disableAutoSelect();
   let email = localStorage.getItem('parsedEmail');
   console.log('logging out:', email)
