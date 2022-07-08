@@ -35,6 +35,9 @@ async function initGoogleAPIs() {
       }
       if (notification.isDismissedMoment()) {
         console.log('dismissed reason', notification.getDismissedReason())
+        if (notification.getDismissedReason() == 'credential_returned') {
+          console.log('we should unset guest mode')
+        }
       }
       if (notification.isNotDisplayed()) {
         console.log(notification.getNotDisplayedReason())
