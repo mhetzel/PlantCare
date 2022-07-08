@@ -40,7 +40,10 @@ async function initGoogleAPIs() {
         }
       }
       if (notification.isNotDisplayed()) {
-        console.log(notification.getNotDisplayedReason())
+        console.log('suppressed reason', notification.getNotDisplayedReason())
+        if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
+          console.log('we should set guest mode')
+        }
       }
       console.log(notification.getMomentType())
     });
