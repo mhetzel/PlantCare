@@ -7,7 +7,7 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
-window.onload = function () {
+function initGoogleAPIs() {
   console.log('onload')
 
   google.accounts.id.initialize({
