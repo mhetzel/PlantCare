@@ -157,6 +157,7 @@ function handleSignoutClick() {
   };
   $("#signout_button").hide();
   $('#user-name').text('Guest');
+  localStorage.setItem('guestMode', true);
 };
 
 
