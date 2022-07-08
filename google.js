@@ -20,7 +20,7 @@ async function initGoogleAPIs() {
   });
 
   console.log('guestmode', guestMode)
-  if (!guestMode) {
+  if (guestMode == false) {
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         console.log(notification.getSkippedReason())
