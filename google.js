@@ -9,7 +9,6 @@ let gisInited = false;
 let guestMode = false;
 
 async function initGoogleAPIs() {
-
   guestMode = localStorage.getItem('guestMode') == 'true';
 
   google.accounts.id.initialize({
@@ -18,6 +17,17 @@ async function initGoogleAPIs() {
     context: "signin",
     auto_select: true
   });
+  
+  
+  gapi.load('client', intializeGapiClient);
+
+  tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: SCOPES,
+    callback: '', // defined later
+  });
+  gisInited = true;
+  maybeEnableButtons();
 
   if (!guestMode) {
     let email = localStorage.getItem('parsedEmail');
@@ -44,8 +54,7 @@ async function initGoogleAPIs() {
     });
   }
 
-  gapiLoaded()
-  gisLoaded()
+
 }
 
 /*
@@ -53,15 +62,15 @@ async function initGoogleAPIs() {
  */
 
 function setupSigninButton() {
-      google.accounts.id.renderButton(
-      document.getElementById('signin'),
-      { theme: "filled_black", 
-        size: "large", 
-        type: "standard",
-        shape: "pill",
-        text: "signin_with",
-        logo_alignment: "left"}
-    )
+  google.accounts.id.renderButton(
+    document.getElementById('signin'),
+    { theme: "filled_black", 
+      size: "large", 
+      type: "standard",
+      shape: "pill",
+      text: "signin_with",
+      logo_alignment: "left"}
+  )
 }
 
 function displayLoginPage() {
@@ -87,9 +96,6 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 };
 
-function gapiLoaded() {
-  gapi.load('client', intializeGapiClient);
-};
 
 async function intializeGapiClient() {
   await gapi.client.init({
@@ -97,16 +103,6 @@ async function intializeGapiClient() {
     discoveryDocs: [DISCOVERY_DOC],
   });
   gapiInited = true;
-  maybeEnableButtons();
-};
-
-function gisLoaded() {  
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    callback: '', // defined later
-  });
-  gisInited = true;
   maybeEnableButtons();
 };
 
