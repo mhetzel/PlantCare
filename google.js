@@ -77,12 +77,14 @@ function displayLoginPage() {
     hideLoginPage();
   } else {
     $("#login").show();
+    $("#plant-infos").hide();
     setupSigninButton();
   }
 };
 
 function hideLoginPage() {
   $("#login").hide();
+  setDisplayForNoPlants();
 };
 
 function parseJwt(token) {

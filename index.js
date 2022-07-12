@@ -31,6 +31,7 @@ function openConfigForm() {
     closeForm();
   } else {
     $("#plantForm").hide();
+    $("#plant-infos").hide();
     $("#changing-div").show();
     $("#config-div").show();
   }
@@ -47,6 +48,7 @@ function openNewPlantForm() {
     $("#config-div").hide();
     $("#changing-div").show();
     $("#plantForm").show();
+    $("#plant-infos").hide();
     setupNewPlantDropdowns();
   }
 }
@@ -54,7 +56,8 @@ function openNewPlantForm() {
 function setDisplayForNoPlants() {
   if (Object.keys(PlantData).length === 0) {
     openNewPlantForm();
-     $("#plant-infos").hide();
+  } else {
+    $("#plant-infos").show();
   }
 }
 
