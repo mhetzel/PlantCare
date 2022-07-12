@@ -92,69 +92,43 @@ function setupNewPlantDropdowns() {
   $('#newPlantPetSafe').prop('selectedIndex', 0);
   
   $('#newPlantWaterInstructions').empty();
-  WateringInstructions.forEach(function(x) {
-    $('#newPlantWaterInstructions').append($('<option></option>').attr('value', x).text(x));
-  });
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[0]).text(WateringInstructions[0]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[1]).text(WateringInstructions[1]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[2]).text(WateringInstructions[2]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[3]).text(WateringInstructions[3]));
+  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[4]).text(WateringInstructions[4]));
   $('#newPlantWaterInstructions').prop('selectedIndex', 0);
 
   $('#newPlantSoilPreferences').empty();
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[0]).text(SoilList[0]));
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[1]).text(SoilList[1]));
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[2]).text(SoilList[2]));
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[3]).text(SoilList[3]));
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[4]).text(SoilList[4]));
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[5]).text(SoilList[5]));
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[6]).text(SoilList[6]));
-  $('#newPlantSoilPreferences').append($('<option></option>').attr('value', SoilList[7]).text(SoilList[7]));
+  SoilList.forEach(function(x) {
+    $('#newPlantSoilPreferences').append($('<option></option>').attr('value', x).text(x));
+  });
   $('#newPlantSoilPreferences').prop('selectedIndex', 0);
 
   $('#newPlantHumitidy').empty();
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[0]).text(HumidityLevels[0]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[1]).text(HumidityLevels[1]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[2]).text(HumidityLevels[2]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[3]).text(HumidityLevels[3]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[4]).text(HumidityLevels[4]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[5]).text(HumidityLevels[5]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[6]).text(HumidityLevels[6]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[7]).text(HumidityLevels[7]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[8]).text(HumidityLevels[8]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[9]).text(HumidityLevels[9]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[10]).text(HumidityLevels[10]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[11]).text(HumidityLevels[11]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[12]).text(HumidityLevels[12]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[13]).text(HumidityLevels[13]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[14]).text(HumidityLevels[14]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[15]).text(HumidityLevels[15]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[16]).text(HumidityLevels[16]));
-  $('#newPlantHumitidy').append($('<option></option>').attr('value', HumidityLevels[17]).text(HumidityLevels[17]));
+  HumidityLevels.forEach(function(x) {
+    $('#newPlantHumitidy').append($('<option></option>').attr('value', x).text(x));
+  });
   $('#newPlantHumitidy').prop('selectedIndex', 0);
 
   $('#newPlantFertilizer').empty();
-  $('#newPlantFertilizer').append($('<option></option>').attr('value', FertilizerSchedule[0]).text(FertilizerSchedule[0]));
-  $('#newPlantFertilizer').append($('<option></option>').attr('value', FertilizerSchedule[1]).text(FertilizerSchedule[1]));
-  $('#newPlantFertilizer').append($('<option></option>').attr('value', FertilizerSchedule[2]).text(FertilizerSchedule[2]));
-  $('#newPlantFertilizer').append($('<option></option>').attr('value', FertilizerSchedule[3]).text(FertilizerSchedule[3]));
-  $('#newPlantFertilizer').append($('<option></option>').attr('value', FertilizerSchedule[4]).text(FertilizerSchedule[4]));
-  $('#newPlantFertilizer').append($('<option></option>').attr('value', FertilizerSchedule[5]).text(FertilizerSchedule[5]));
-  $('#newPlantFertilizer').append($('<option></option>').attr('value', FertilizerSchedule[6]).text(FertilizerSchedule[6]));
+  FertilizerSchedule.forEach(function(x) {
+    $('#newPlantFertilizer').append($('<option></option>').attr('value', x).text(x));
+  });
   $('#newPlantFertilizer').prop('selectedIndex', 0);
 
   $('#newPlantFertilizerDose').empty();
-  $('#newPlantFertilizerDose').append($('<option></option>').attr('value', FertilizerDoses[0]).text(FertilizerDoses[0]));
-  $('#newPlantFertilizerDose').append($('<option></option>').attr('value', FertilizerDoses[1]).text(FertilizerDoses[1]));
-  $('#newPlantFertilizerDose').append($('<option></option>').attr('value', FertilizerDoses[2]).text(FertilizerDoses[2]));
+  FertilizerDoses.forEach(function(x) {
+    $('#newPlantFertilizerDose').append($('<option></option>').attr('value', x).text(x));
+  });
   $('#newPlantFertilizerDose').prop('selectedIndex', 0);
 
   waterDropdown($('#newPlantWaterNeeds'));
 
   $('#newPlantLightNeeds').empty();
-  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[0]).text(LightList[0]));
-  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[1]).text(LightList[1]));
-  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[2]).text(LightList[2]));
-  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[3]).text(LightList[3]));
-  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[4]).text(LightList[4]));
-  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[5]).text(LightList[5]));
-  $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[6]).text(LightList[6]));
+  LightList.forEach(function(x) {
+    $('#newPlantLightNeeds').append($('<option></option>').attr('value', x).text(x));
+  });
   $('#newPlantLightNeeds').prop('selectedIndex', 0);
   
   $( ".multiselect-dropdown").css('width', '100%')
@@ -162,12 +136,9 @@ function setupNewPlantDropdowns() {
 
 function waterDropdown(dropdown) {
   dropdown.empty();
-  dropdown.append($('<option></option>').attr('value', WaterList[0]).text(WaterList[0]));
-  dropdown.append($('<option></option>').attr('value', WaterList[1]).text(WaterList[1]));
-  dropdown.append($('<option></option>').attr('value', WaterList[2]).text(WaterList[2]));
-  dropdown.append($('<option></option>').attr('value', WaterList[3]).text(WaterList[3]));
-  dropdown.append($('<option></option>').attr('value', WaterList[4]).text(WaterList[4]));
-  dropdown.append($('<option></option>').attr('value', WaterList[5]).text(WaterList[5]));
+  WaterList.forEach(function(x) {
+    dropdown.append($('<option></option>').attr('value', x).text(x));
+  });
   dropdown.prop('selectedIndex', 0);
 }
 
