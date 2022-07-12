@@ -299,8 +299,8 @@ async function uploadFile() {
   getFolderID().then(folderID => { 
     getFileID(folderID).then(fileID => {
       console.log('save id for later: ', fileID)
-      //writeFile(fileID)
       readFile(fileID)
+      writeFile(fileID, PlantData)
     });
   });
 };
