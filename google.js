@@ -215,7 +215,7 @@ async function getFileID(folderID) {
       'q': "'" + folderID + "' in parents and name = 'data.json' and trashed != true"
     });
   } catch (err) {
-    return null;
+    console.log(err)
   }
   const files = response.result.files;
   if (!files || files.length == 0) {
