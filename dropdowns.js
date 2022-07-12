@@ -159,7 +159,7 @@ function setupNewPlantDropdowns() {
   $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[6]).text(LightList[6]));
   $('#newPlantLightNeeds').prop('selectedIndex', 0);
   
-  $('#newPlantWaterInstructions').show();
+  MultiselectDropdown(window.MultiselectDropdownOptions);
 }
 
 function waterDropdown(dropdown) {
