@@ -18,7 +18,6 @@ async function initGoogleAPIs() {
     auto_select: true
   });
   
-  
   gapi.load('client', intializeGapiClient);
 
   tokenClient = google.accounts.oauth2.initTokenClient({
@@ -183,6 +182,7 @@ async function readFile(fileID) {
       alt: 'media'
     }).then(function(resp) {
       console.log(resp.body)
+      saveConfig(resp.body)
     }, function(reason){
       console.log('loadFileRaw ERROR: ',reason)
     });
@@ -196,7 +196,7 @@ async function writeFile(fileID) {
           Authorization: 'Bearer ' + gapi.auth.getToken().access_token,
           'Content-type': 'text/plain'
       }),
-      body: JSON.stringify({ hello: 'universe' })
+      body: JSON.stringify(PlantData)
   })
   .then(result => result.json())
   .then(value => {
