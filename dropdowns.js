@@ -92,11 +92,9 @@ function setupNewPlantDropdowns() {
   $('#newPlantPetSafe').prop('selectedIndex', 0);
   
   $('#newPlantWaterInstructions').empty();
-  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[0]).text(WateringInstructions[0]));
-  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[1]).text(WateringInstructions[1]));
-  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[2]).text(WateringInstructions[2]));
-  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[3]).text(WateringInstructions[3]));
-  $('#newPlantWaterInstructions').append($('<option></option>').attr('value', WateringInstructions[4]).text(WateringInstructions[4]));
+  WateringInstructions.forEach(function(x) {
+    $('#newPlantWaterInstructions').append($('<option></option>').attr('value', x).text(x));
+  });
   $('#newPlantWaterInstructions').prop('selectedIndex', 0);
 
   $('#newPlantSoilPreferences').empty();
