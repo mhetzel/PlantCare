@@ -10,6 +10,8 @@
     <link rel="apple-touch-icon" href="leaf-128.png">
     <script src="jquery-3.6.0.min.js"></script>
     <script src="multiselect-dropdown.js" ></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,14 +20,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
-   
+    
+    <div id="user" class="bottom-right font"><span>Signed in as :</span><span id="user-name">Guest</span></div>
+     
+    <div id="login" class="content-box" style="display:none;">
+      <div id="signin" ></div>
+      <div class="g_id_signout"><button id="signout_button" style="display: none;" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
+      <button id="read_button" onclick="uploadFile()">Drive Interaction</button>
+            
+      <button type="button" onclick="hideLoginPage()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+
+    </div>
+    
     <div class="menu-box">
         <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
         <button id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
         <button id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
+        <button id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i></button>
     </div>
 
-    <div id="changing-div" class="content-box" style="display:none;">
+    <div id="changing-div" class="content-box" style="display: none;">
 
       <div id="plantForm" style="display:none">
         <form class="form-container" action="javascript:console.log( 'success!' );">
@@ -132,6 +146,7 @@
       </div>
     </div>
 
+    <script src="google.js"></script>
     <script src="dropdowns.js"></script>
     <script src="index.js"></script>
     <script src="config.js"></script>

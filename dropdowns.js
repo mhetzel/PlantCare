@@ -158,6 +158,8 @@ function setupNewPlantDropdowns() {
   $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[5]).text(LightList[5]));
   $('#newPlantLightNeeds').append($('<option></option>').attr('value', LightList[6]).text(LightList[6]));
   $('#newPlantLightNeeds').prop('selectedIndex', 0);
+  
+  $( ".multiselect-dropdown").css('width', '100%')
 }
 
 function waterDropdown(dropdown) {

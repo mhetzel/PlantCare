@@ -4,6 +4,7 @@ var StorageKey = 'plantCareData'
 
 
 async function loadPlants() {
+  console.log('load plants')
   if (typeof(Storage) !== "undefined") {
     var retrievedObject = localStorage.getItem(StorageKey);
     if (retrievedObject === null) {
@@ -20,6 +21,7 @@ async function loadPlants() {
 
 async function saveConfig(plantData) {
   localStorage.setItem(StorageKey, JSON.stringify(plantData));
+  await storePlantData(plantData)
   await dropdownSetup();
   setDisplayForNoPlants();
 }
@@ -60,6 +62,7 @@ function closeForm() {
   $("#changing-div").hide();
   $("#config-div").hide();
   $("#plantForm").hide();
+  setDisplayForNoPlants();
 }
 
 async function addNewPlant() {
@@ -105,6 +108,7 @@ async function addNewPlant() {
   }
 }
 
+initGoogleAPIs();
 dropdownSetup();
 setDisplayForNoPlants();
 
