@@ -182,13 +182,13 @@ async function readFile(fileID) {
       alt: 'media'
     }).then(function(resp) {
       console.log(resp.body)
-      saveConfig(resp.body)
+      PlantData = resp.body
     }, function(reason){
       console.log('loadFileRaw ERROR: ',reason)
     });
 };
 
-async function writeFile(fileID) {
+async function writeFile(fileID, plantData) {
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
       method: 'PATCH',
@@ -196,7 +196,7 @@ async function writeFile(fileID) {
           Authorization: 'Bearer ' + gapi.auth.getToken().access_token,
           'Content-type': 'text/plain'
       }),
-      body: JSON.stringify(PlantData)
+      body: JSON.stringify(plantData)
   })
   .then(result => result.json())
   .then(value => {
@@ -284,6 +284,14 @@ async function getFolderID() {
   console.log('Found: ', files[0].name, ': ', files[0].id);
   return files[0].id;
 };
+
+async function storePlantData(plantData) {
+    getFolderID().then(folderID => { 
+    getFileID(folderID).then(fileID => {
+      writeFile(fileID, plantData)
+    });
+  });
+}
 
 async function uploadFile() {  
   getFolderID().then(folderID => { 
