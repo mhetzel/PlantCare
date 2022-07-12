@@ -24,12 +24,12 @@ const WateringInstructions = [
 ]
 
 const SoilList = [
+  'none',
   'cactus potting mix',
   'cactus potting mix with 1:1 perlite',
   'cactus potting mix with added orchard bark and/or perlite',
   'cactus potting mix with added orchard bark, peat moss or vermiculite.',
   'cactus potting mix with added perlite',
-  'none',
   'Peat moss-based mix, such as African violet potting mix',
   'perlite/pumice, pine bark, finely shredded spaghum moss and horticultural charcoal.',
 ]
