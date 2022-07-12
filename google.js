@@ -286,11 +286,13 @@ async function getFolderID() {
 };
 
 async function storePlantData(plantData) {
+  if (!guestMode) {
     getFolderID().then(folderID => { 
-    getFileID(folderID).then(fileID => {
-      writeFile(fileID, plantData)
+      getFileID(folderID).then(fileID => {
+        writeFile(fileID, plantData)
+      });
     });
-  });
+  }
 }
 
 async function uploadFile() {  
