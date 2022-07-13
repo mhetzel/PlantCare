@@ -4,14 +4,17 @@
 
 async function readFile(fileID) {
   let data = null;
-  gapi.client.drive.files.get({
-    fileId: fileID,
-    alt: 'media'
-  }).then(function(resp) {
-    data = resp.body
-  }, function(reason){
-    console.log('loadFileRaw ERROR: ',reason)
-  });
+  if (fileID) {
+    gapi.client.drive.files.get({
+      fileId: fileID,
+      alt: 'media'
+    }).then(function(resp) {
+      data = resp.body
+    }, function(reason){
+      console.log('loadFileRaw ERROR: ',reason)
+    });
+  }
+
   return data;
 };
  
@@ -35,7 +38,7 @@ async function writeFile(fileID, data) {
 async function getFileID(folderID) {
   let response;
   let id = null;
-  if (folderID !== null) {
+  if (folderID) {
     try {
       response = await gapi.client.drive.files.list({
         'pageSize': 10,
