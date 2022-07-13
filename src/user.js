@@ -110,6 +110,7 @@ function signedIn(email) {
   userNameText.text(email);
   signinDiv.hide();
   signOutButton.show();
+  loadPlants();
 }
 
 function signedOut() {
