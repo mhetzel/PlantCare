@@ -85,7 +85,7 @@ async function getFolderID() {
       'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
     });
   } catch (err) {
-    console.log(err)
+    console.log('can\'t find folder')
     return null;
   }
 
