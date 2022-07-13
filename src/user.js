@@ -112,6 +112,7 @@ function signedIn(email) {
   signOutButton.show();
 
   // load user config
+  console.log('load after signin')
   loadPlants();
 }
 
@@ -126,6 +127,7 @@ function signedOut() {
   localStorage.setItem('guestMode', true);
   GuestMode = true;
   // load user config
+  console.log('load after signout')
   loadPlants();
 };
 
