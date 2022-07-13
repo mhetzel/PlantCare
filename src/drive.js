@@ -86,6 +86,7 @@ async function getFileID(folderID) {
 };
  
 async function getFolderID() {
+  let id = null;
   gapi.client.drive.files.list({
     'pageSize': 10,
     'fields': 'files(id, name)',
@@ -104,15 +105,17 @@ async function getFolderID() {
         if (response.status == 200) {
           var file = response.result;
           console.log('Created Folder ID: ', file.id);
-          return file.id;
+          id = file.id;
         } else {
           console.log('Error creating the folder, '+response);
         }
       });
     } else {
       console.log('Found Folder', files[0].name, ':', files[0].id);
-      return files[0].id;
+      id = files[0].id;
     }
+    console.log('returning folder id', id)
+    return id;
   }, function(reason) {
     console.log('Find/create folder ERROR:', reason.result.error.message)
     if (reason.result.error.message === 'Invalid Credentials') {
@@ -120,5 +123,6 @@ async function getFolderID() {
       tokenClient.requestAccessToken();
     }
   });
-  return null;
+  console.log('returning folder id3', id)
+  return id;
 };
