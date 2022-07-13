@@ -35,7 +35,7 @@ async function writeFile(fileID, data) {
 async function getFileID(folderID) {
   let response;
   let id = null;
-  if (folderID) {
+  if (folderID !== null) {
     try {
       response = await gapi.client.drive.files.list({
         'pageSize': 10,
