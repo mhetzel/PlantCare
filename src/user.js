@@ -124,7 +124,7 @@ function signedOut() {
   signinDiv.show();
   userNameText.text('Guest');
   localStorage.setItem('guestMode', true);
-
+  GuestMode = true;
   // load user config
   loadPlants();
 };
