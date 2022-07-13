@@ -56,15 +56,14 @@ async function findOrCreateConfig() {
   if (!GuestMode) {
     if (!DriveFileID) {
       DriveFileID = await getFolderID().then(folderID => { 
-        getFileID(folderID).then(fileID => {
-          return fileID;
-        });
+        return await getFileID(folderID);
       });
+      console.log(DriveFileID);
     }
   } else {
     console.log('No drive access as Guest')
   }
-  console.log(DriveFileID);
+  
 };
 
 /*
