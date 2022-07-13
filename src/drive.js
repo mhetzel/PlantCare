@@ -2,16 +2,19 @@
  *  Drive Functions
  */
 
+let FileID = null
+
 async function readFile(fileID) {
+  let data = null;
   gapi.client.drive.files.get({
     fileId: fileID,
     alt: 'media'
   }).then(function(resp) {
-    console.log(resp.body);
-    PlantData = resp.body
+    data = resp.body
   }, function(reason){
     console.log('loadFileRaw ERROR: ',reason)
   });
+  return data;
 };
  
 async function writeFile(fileID, plantData) {
@@ -109,35 +112,39 @@ async function getFolderID() {
     console.log('Found: ', files[0].name, ': ', files[0].id);
     id = files[0].id;
   }
-
   return id;
 };
  
 async function storePlantData(plantData) {
   if (!GuestMode) {
-    getFolderID().then(folderID => { 
-      getFileID(folderID).then(fileID => {
-        writeFile(fileID, plantData)
-      });
-    });
+    await findOrCreateConfig();
+    writeFile(FileID, plantData);
   } else {
     console.log('No drive access as Guest')
   }
 };
- 
-async function uploadFile() {  
-  if (!GuestMode && gapiInited) {
-    getFolderID().then(folderID => { 
-      if (folderID) {
-        getFileID(folderID).then(fileID => {
-          if (fileID) {
-            readFile(fileID)
-          }          
-          // writeFile(fileID, PlantData)
-        });
-      } 
-    });
+
+async function retrievePlantData() {  
+  if (!GuestMode) {
+    await findOrCreateConfig();
+    readFile(FileID)
   } else {
-    console.log('no drive access as Guest')
+    console.log('No drive access as Guest')
+  }
+};
+
+async function findOrCreateConfig() {
+  if (!GuestMode) {
+    if (FileID) {
+      getFolderID().then(folderID => { 
+        if (folderID) {
+          getFileID(folderID).then(fileID => {
+            FileID = fileID;
+          });
+        } 
+      });
+    }
+  } else {
+    console.log('No drive access as Guest')
   }
 };
