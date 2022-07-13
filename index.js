@@ -11,6 +11,8 @@ const pageAccessedByReload = (
 
 if (!pageAccessedByReload) {
   initGoogleAPIs();
+} else {
+  dropdownSetup();
 }
 
 
