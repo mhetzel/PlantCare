@@ -90,11 +90,7 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     localStorage.setItem("token_"+email, resp.access_token);
-    console.log('token callback')
-    userNameText.text(email);
-    signinDiv.hide();
-    signOutButton.show();
-    setupSigninButton();
+    signedIn(email);
   };
 
   let token = localStorage.getItem("token_"+email);
@@ -105,12 +101,18 @@ async function handleToken(googleUser) {
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } else {
-    console.log(email, 'already signed in');
-    userNameText.text(email);
-    signinDiv.hide();
-    signOutButton.show();
+    signedIn(email);
   }
 };
+
+function signedIn(email) {
+  console.log(email, 'signed in');
+  userNameText.text(email);
+  signinDiv.hide();
+  signOutButton.show();
+
+  // load user config
+}
 
 function signedOut() {
   let email = localStorage.getItem('userEmail');
@@ -121,6 +123,8 @@ function signedOut() {
   signinDiv.show();
   userNameText.text('Guest');
   localStorage.setItem('guestMode', true);
+
+  // load local config
 };
 
 function handleSignoutClick() {

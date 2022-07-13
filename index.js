@@ -11,8 +11,6 @@ async function setupUserMode() {
   await initGoogleAPIs();
   determineUserMode();
   displayLoginPage();
-
-  // show login page if no user already set
 }
 
 

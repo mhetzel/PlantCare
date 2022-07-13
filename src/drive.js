@@ -114,12 +114,14 @@ async function getFolderID() {
 };
  
 async function storePlantData(plantData) {
-  if (!guestMode) {
+  if (!GuestMode) {
     getFolderID().then(folderID => { 
       getFileID(folderID).then(fileID => {
         writeFile(fileID, plantData)
       });
     });
+  } else {
+    console.log('No drive access as Guest')
   }
 };
  
@@ -128,14 +130,12 @@ async function uploadFile() {
     getFolderID().then(folderID => { 
       if (folderID) {
         getFileID(folderID).then(fileID => {
-          console.log('save id for later: ', fileID)
-          readFile(fileID)
-          writeFile(fileID, PlantData)
+          if (fileID) {
+            readFile(fileID)
+          }          
+          // writeFile(fileID, PlantData)
         });
-      } else {
-        console.log('couldn\'t find folder')
-      }
-
+      } 
     });
   } else {
     console.log('no drive access as Guest')
