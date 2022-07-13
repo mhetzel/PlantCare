@@ -10,7 +10,10 @@ async function readFile(fileID) {
       alt: 'media'
     }).then(function(resp) {
       console.log('File contents:', resp.body)
-      return resp.body;
+      if (resp.body !== '') {
+        return JSON.parse(resp.body)
+      }
+      return {};
     }, function(reason){
       console.log('Read file ERROR:', reason.result.error.message)
       return null;
