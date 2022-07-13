@@ -112,7 +112,10 @@ async function getFolderID() {
       id = files[0].id;
     }
   }, function(reason) {
-    console.log('can\'t find folder', reason.result.error.message)
+    console.log('Find/create folder ERROR:', reason.result.error.message)
+    if (reason.result.error.message === 'Invalid Credentials') {
+      console.log('TODO need to prompt user for new creds');
+    }
   });
 
   return id;
