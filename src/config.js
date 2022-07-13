@@ -1,10 +1,18 @@
 const STORAGE_KEY = 'plantCareData'
 let DriveFileID = null;
 
+
+function setupDisplay() {
+  dropdownSetup();
+  setDisplayForNoPlants();
+}
+
+
 async function loadPlants() {
   console.log('load plants')
   if (typeof(Storage) !== "undefined") {
     await retrievePlantData();
+    setupDisplay();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser')
   }
@@ -18,6 +26,7 @@ async function saveConfig(plantData) {
   } else {
     localStorage.setItem(StorageKey, JSON.stringify(plantData));
   }
+  setupDisplay();
 };
 
 async function retrievePlantData() {  
