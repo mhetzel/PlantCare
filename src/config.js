@@ -56,7 +56,7 @@ async function findOrCreateConfig() {
   if (!GuestMode) {
     if (!DriveFileID) {
       DriveFileID = await getFolderID().then(folderID => { 
-        return await getFileID(folderID);
+        return getFileID(folderID);
       });
       console.log(DriveFileID);
     }
