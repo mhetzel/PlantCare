@@ -11,9 +11,9 @@ async function refreshDisplays() {
 async function loadPlants() {
   console.log('load plants')
   if (typeof(Storage) !== "undefined") {
-    retrievePlantData().then(
+    retrievePlantData().then({
       refreshDisplays();
-    );
+    });
   } else {
     alert('Sorry no way to store your plant info. Try a different browser')
   }
@@ -37,9 +37,9 @@ async function storePlantData(plantData) {
 
 async function retrievePlantData() {  
   if (!GuestMode) {
-    findOrCreateConfig().then(
-      PlantData = await readFile(DriveFileID)
-    );
+    findOrCreateConfig().then({
+      PlantData = await readFile(DriveFileID);
+    });
     
   } else {
     var retrievedObject = localStorage.getItem(STORAGE_KEY);
