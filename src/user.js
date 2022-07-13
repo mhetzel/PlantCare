@@ -89,13 +89,14 @@ async function handleToken(googleUser) {
     if (resp.error !== undefined) {
       throw (resp);
     }
-    localStorage.setItem("token_"+email, resp.access_token);
+    localStorage.setItem("token_"+email, resp);
+    console.log(Object.keys(resp))
     signedIn(email);
   };
 
   let token = localStorage.getItem("token_"+email);
   if (token) {
-    gapi.client.setToken({access_token : token})
+    gapi.client.setToken(token)
   }
 
   if (gapi.client.getToken() === null) {
