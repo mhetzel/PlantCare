@@ -10,8 +10,9 @@ async function readFile(fileID) {
       alt: 'media'
     }).then(function(resp) {
       data = resp.body
+      console.log('File contents:', data)
     }, function(reason){
-      console.log('loadFileRaw ERROR: ',reason)
+      console.log('Read file ERROR:', reason.result.error.message)
     });
   }
 
