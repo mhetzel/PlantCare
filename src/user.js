@@ -16,8 +16,8 @@ function determineUserMode() {
     User = localStorage.getItem('userEmail');
     if (User) {
       userNameText.text(User);
-      signedIn(User);
-    } else {
+ //     signedIn(User);
+  //  } else {
         google.accounts.id.prompt((notification) => {
         if (notification.isSkippedMoment()) {
           if (notification.getSkippedReason() == 'user_cancel') {
@@ -30,7 +30,7 @@ function determineUserMode() {
           }
         }
       });
-    }
+    // }
   }
 };
 
