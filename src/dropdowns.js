@@ -142,12 +142,14 @@ function locationSelectionChange() {
 }
 
 async function setupDropDowns() {
-  Object.keys(PlantData).forEach(function(location) {
-    locationDropdown.append($('<option></option>').attr('value', location).text(location));
-  });
-  if (Object.keys(PlantData).length === 1) {
-    locationDropdown.prop('selectedIndex', 1);
-    locationSelectionChange();
+  if (PlantData) {
+      Object.keys(PlantData).forEach(function(location) {
+      locationDropdown.append($('<option></option>').attr('value', location).text(location));
+    });
+    if (Object.keys(PlantData).length === 1) {
+      locationDropdown.prop('selectedIndex', 1);
+      locationSelectionChange();
+    }
   }
 }
 
