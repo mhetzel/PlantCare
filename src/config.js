@@ -4,7 +4,7 @@ let DriveFileID = null;
 
 function setupDisplay() {
   dropdownSetup();
-  setDisplayForNoPlants();
+  hideLoginPage();
 }
 
 
