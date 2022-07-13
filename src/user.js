@@ -112,6 +112,7 @@ function signedIn(email) {
   signOutButton.show();
 
   // load user config
+  loadPlants();
 }
 
 function signedOut() {
@@ -124,7 +125,8 @@ function signedOut() {
   userNameText.text('Guest');
   localStorage.setItem('guestMode', true);
 
-  // load local config
+  // load user config
+  loadPlants();
 };
 
 function handleSignoutClick() {
