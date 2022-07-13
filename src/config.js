@@ -27,7 +27,7 @@ async function saveConfig(plantData) {
 async function storePlantData(plantData) {
   if (!GuestMode) {
     await findOrCreateConfig();
-    writeFile(DriveFileID, plantData);
+    await writeFile(DriveFileID, plantData);
   } else {
     localStorage.setItem(StorageKey, JSON.stringify(plantData));
   }
@@ -36,7 +36,7 @@ async function storePlantData(plantData) {
 async function retrievePlantData() {  
   if (!GuestMode) {
     await findOrCreateConfig();
-    PlantData = readFile(DriveFileID)
+    PlantData = await readFile(DriveFileID)
   } else {
     var retrievedObject = localStorage.getItem(STORAGE_KEY);
     if (retrievedObject === null) {
