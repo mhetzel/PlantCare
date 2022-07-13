@@ -16,6 +16,7 @@ function determineUserMode() {
     User = localStorage.getItem('userEmail');
     if (User) {
       userNameText.text(User);
+      signedIn(User);
     } else {
         google.accounts.id.prompt((notification) => {
         if (notification.isSkippedMoment()) {
