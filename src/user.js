@@ -105,7 +105,7 @@ async function handleToken(googleUser) {
   }
 };
 
-await function signedIn(email) {
+async function signedIn(email) {
   console.log(email, 'signed in');
   userNameText.text(email);
   signinDiv.hide();
