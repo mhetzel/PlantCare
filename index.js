@@ -9,8 +9,4 @@ const pageAccessedByReload = (
       .includes('reload')
 );
 
-$("#plantForm").hide();
 initGoogleAPIs();
-
-
-
