@@ -7,7 +7,7 @@ var tokenClient;
 var gapiInited = false;
 var gisInited = false;
 
-function initGoogleAPIs() {
+async function initGoogleAPIs() {
   google.accounts.id.initialize({
     client_id: CLIENT_ID,
     callback: handleToken,
@@ -22,13 +22,14 @@ function initGoogleAPIs() {
   });
   gisInited = true;
   gapi.load('client', intializeGapiClient);
-  return gisInited && gapiInited
 }
 
-function intializeGapiClient() {
-  gapi.client.init({
+async function intializeGapiClient() {
+  await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
   gapiInited = true;
+  determineUserMode();
+  displayLoginPage(); 
 };
