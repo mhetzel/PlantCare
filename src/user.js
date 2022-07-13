@@ -89,7 +89,7 @@ async function handleToken(googleUser) {
     if (resp.error !== undefined) {
       throw (resp);
     }
-    localStorage.setItem("token_"+email, resp);
+    localStorage.setItem("token_"+email, {'access_token': resp.access_token, 'token_type': resp.token_type});
     console.log(Object.keys(resp))
     console.log('token', resp.access_token)
     console.log('type', resp.token_type)
@@ -105,10 +105,6 @@ async function handleToken(googleUser) {
     console.log(Object.keys(token))
     console.log('token', token.access_token)
     console.log('type', token.token_type)
-    console.log('expires', token.expires_in)
-    console.log('scope', token.scope)
-    console.log('user', token.authuser)
-    console.log('promt', token.prompt)
     gapi.client.setToken(token)
   }
 
