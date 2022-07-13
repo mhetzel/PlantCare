@@ -2,8 +2,6 @@
  *  Drive Functions
  */
 
-let FileID = null
-
 async function readFile(fileID) {
   let data = null;
   gapi.client.drive.files.get({
@@ -113,38 +111,4 @@ async function getFolderID() {
     id = files[0].id;
   }
   return id;
-};
- 
-async function storePlantData(plantData) {
-  if (!GuestMode) {
-    await findOrCreateConfig();
-    writeFile(FileID, plantData);
-  } else {
-    console.log('No drive access as Guest')
-  }
-};
-
-async function retrievePlantData() {  
-  if (!GuestMode) {
-    await findOrCreateConfig();
-    readFile(FileID)
-  } else {
-    console.log('No drive access as Guest')
-  }
-};
-
-async function findOrCreateConfig() {
-  if (!GuestMode) {
-    if (FileID) {
-      getFolderID().then(folderID => { 
-        if (folderID) {
-          getFileID(folderID).then(fileID => {
-            FileID = fileID;
-          });
-        } 
-      });
-    }
-  } else {
-    console.log('No drive access as Guest')
-  }
 };
