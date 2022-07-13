@@ -90,7 +90,7 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     localStorage.setItem("token_"+email, JSON.stringify(resp));
-    await signedIn(email);
+    signedIn(email);
   };
 
   let token = JSON.parse(localStorage.getItem("token_"+email));
@@ -101,19 +101,15 @@ async function handleToken(googleUser) {
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken();
   } else {
-    await signedIn(email);
+    signedIn(email);
   }
 };
 
-async function signedIn(email) {
+function signedIn(email) {
   console.log(email, 'signed in');
   userNameText.text(email);
   signinDiv.hide();
   signOutButton.show();
-
-  // load user config
-  console.log('load after signin')
-  await loadPlants();
 }
 
 function signedOut() {
@@ -126,9 +122,6 @@ function signedOut() {
   userNameText.text('Guest');
   localStorage.setItem('guestMode', true);
   GuestMode = true;
-  // load user config
-  console.log('load after signout')
-  loadPlants();
 };
 
 function handleSignoutClick() {
