@@ -54,7 +54,7 @@ function displayLoginPage() {
     } else {
       signOutButton.show();
     }
-    
+    closeForm();
     loginDiv.show();
     $("#plant-infos").hide();
   }
