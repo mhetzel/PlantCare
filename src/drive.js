@@ -74,11 +74,10 @@ async function getFileID(folderID) {
         console.log('Created File ID: ', file.id);
       }).catch(console.error);
     } else {
-      console.log('Found: ', files[0].name, ': ', files[0].id);
+      console.log('Found File', files[0].name, ':', files[0].id);
       id = files[0].id;
     }
   }
-  
   return id;
 };
  
@@ -108,7 +107,7 @@ async function getFolderID() {
         }
       });
     } else {
-      console.log('Found: ', files[0].name, ': ', files[0].id);
+      console.log('Found Folder', files[0].name, ':', files[0].id);
       id = files[0].id;
     }
   }, function(reason) {
