@@ -52,7 +52,7 @@ async function retrievePlantData() {
 
 async function findOrCreateConfig() {
   if (!GuestMode) {
-    if (DriveFileID === null) {
+    if (!DriveFileID) {
       getFolderID().then(folderID => { 
         getFileID(folderID).then(fileID => {
           DriveFileID = fileID;
