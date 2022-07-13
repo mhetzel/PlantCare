@@ -90,21 +90,11 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     localStorage.setItem("token_"+email, JSON.stringify(resp));
-    console.log(Object.keys(resp))
-    console.log('token', resp.access_token)
-    console.log('type', resp.token_type)
-    console.log('expires', resp.expires_in)
-    console.log('scope', resp.scope)
-    console.log('user', resp.authuser)
-    console.log('promt', resp.prompt)
     signedIn(email);
   };
 
   let token = JSON.parse(localStorage.getItem("token_"+email));
   if (token) {
-    console.log(Object.keys(token))
-    console.log('token', token.access_token)
-    console.log('type', token.token_type)
     gapi.client.setToken(token)
   }
 
