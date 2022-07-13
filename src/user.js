@@ -90,7 +90,7 @@ async function handleToken(googleUser) {
       throw (resp);
     }
     localStorage.setItem("token_"+email, JSON.stringify(resp));
-    signedIn(email);
+    await signedIn(email);
   };
 
   let token = JSON.parse(localStorage.getItem("token_"+email));
@@ -101,11 +101,11 @@ async function handleToken(googleUser) {
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken();
   } else {
-    signedIn(email);
+    await signedIn(email);
   }
 };
 
-function signedIn(email) {
+await function signedIn(email) {
   console.log(email, 'signed in');
   userNameText.text(email);
   signinDiv.hide();
@@ -113,7 +113,7 @@ function signedIn(email) {
 
   // load user config
   console.log('load after signin')
-  loadPlants();
+  await loadPlants();
 }
 
 function signedOut() {
