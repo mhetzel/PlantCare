@@ -9,7 +9,7 @@ const pageAccessedByReload = (
       .includes('reload')
 );
 
-$("#plant-infos").hide();
+$("#plantForm").hide();
 initGoogleAPIs();
 
 
