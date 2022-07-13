@@ -120,6 +120,7 @@ async function getFolderID() {
     if (reason.result.error.message === 'Invalid Credentials') {
       console.log('TODO need to prompt user for new creds');
       tokenClient.requestAccessToken();
+      return null;
     }
   });
   return id;
