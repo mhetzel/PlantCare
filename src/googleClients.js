@@ -22,6 +22,7 @@ async function initGoogleAPIs() {
   });
   gisInited = true;
   await gapi.load('client', intializeGapiClient);
+  return gisInited && gapiInited
 }
 
 async function intializeGapiClient() {
