@@ -25,8 +25,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
-    
-    <button id="read_button" onclick="uploadFile()">Drive Interaction</button>
 
     <div id="login-div" class="content-box" style="display:none;">
       <div class="top-right"><button type="button" onclick="hideLoginPage()" title="Close"><i class="fa-solid fa-xmark"></i></button></div>
@@ -36,7 +34,7 @@
       <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
     </div>
     
-    <!-- <div class="menu-box">
+    <div class="menu-box">
         <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
         <button id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
         <button id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
@@ -148,16 +146,15 @@
         <button onclick="movePlant()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         <button onclick="deletePlant()" title="Delete Plant"><i class="fa-solid fa-trash"></i></button>
       </div>
-    </div> -->
+    </div>
 
-    <!-- <script src="editablePlant.js"></script> -->
+
     <script src="src/user.js"></script>
     <script src="src/drive.js"></script>
     <script src="src/config.js"></script>
-    <!-- <script src="dropdowns.js"></script> -->
+    <script src="dropdowns.js"></script>
     <script src="index.js"></script>
-    <!-- <script src="config.js"></script> -->
-    <!-- <script src="plantActions.js"></script> -->
+    <script src="src/plantActions.js"></script>
     
   </body>
 </html>
