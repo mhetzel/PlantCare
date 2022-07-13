@@ -2,9 +2,10 @@
 var PlantData = {}
 
 
-setupUserMode();
 
-async function setupUserMode() {
-  await initGoogleAPIs().then(determineUserMode());
-  displayLoginPage(); 
-}
+initGoogleAPIs().then(function(inited) {
+  if (inited) {
+    determineUserMode();
+    displayLoginPage(); 
+  }
+});
