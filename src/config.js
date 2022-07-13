@@ -1,30 +1,17 @@
 const STORAGE_KEY = 'plantCareData'
 let DriveFileID = null;
 
-// TODO put this somewhere else
-async function refreshDisplays() {
-  await dropdownSetup();
-  setDisplayForNoPlants();
-}
-
 async function loadPlants() {
   console.log('load plants')
   if (typeof(Storage) !== "undefined") {
     await retrievePlantData();
-    await refreshDisplays();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser')
   }
 };
 
-async function saveConfig(plantData) {
-  await storePlantData(plantData)
-  await refreshDisplays();
-}
-
-
 // TODO: check last updated timestamp to avoid losing data
-async function storePlantData(plantData) {
+async function saveConfig(plantData) {
   if (!GuestMode) {
     await findOrCreateConfig();
     await writeFile(DriveFileID, plantData);
