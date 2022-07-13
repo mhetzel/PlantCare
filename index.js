@@ -5,7 +5,6 @@ var PlantData = {}
 setupUserMode();
 
 async function setupUserMode() {
-  await initGoogleAPIs();
-  determineUserMode();
+  await initGoogleAPIs().then(determineUserMode());
   displayLoginPage(); 
 }
