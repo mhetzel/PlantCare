@@ -49,7 +49,6 @@ async function retrievePlantData() {
       console.log('loaded plant config: ', PlantData);
     }
   }
-  
 };
 
 async function findOrCreateConfig() {
@@ -58,12 +57,10 @@ async function findOrCreateConfig() {
       DriveFileID = await getFolderID().then(folderID => { 
         return getFileID(folderID);
       });
-      console.log(DriveFileID);
     }
   } else {
     console.log('No drive access as Guest')
   }
-  
 };
 
 /*
