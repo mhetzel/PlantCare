@@ -11,7 +11,7 @@ async function loadPlants() {
   console.log('load plants')
   if (typeof(Storage) !== "undefined") {
     await retrievePlantData();
-    refreshDisplays();
+    await refreshDisplays();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser')
   }
@@ -19,7 +19,7 @@ async function loadPlants() {
 
 async function saveConfig(plantData) {
   await storePlantData(plantData)
-  refreshDisplays();
+  await refreshDisplays();
 }
 
 
