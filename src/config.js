@@ -11,8 +11,9 @@ async function refreshDisplays() {
 async function loadPlants() {
   console.log('load plants')
   if (typeof(Storage) !== "undefined") {
-    retrievePlantData();
-    refreshDisplays();
+    retrievePlantData().then(
+      refreshDisplays();
+    );
   } else {
     alert('Sorry no way to store your plant info. Try a different browser')
   }
