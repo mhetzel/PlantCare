@@ -123,6 +123,7 @@ function signedOut() {
   userNameText.text('Guest');
   localStorage.setItem('guestMode', true);
   GuestMode = true;
+  loadPlants();
 };
 
 function handleSignoutClick() {
