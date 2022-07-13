@@ -115,6 +115,7 @@ async function getFolderID() {
     console.log('Find/create folder ERROR:', reason.result.error.message)
     if (reason.result.error.message === 'Invalid Credentials') {
       console.log('TODO need to prompt user for new creds');
+      tokenClient.requestAccessToken();
     }
   });
 
