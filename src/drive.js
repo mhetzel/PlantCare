@@ -112,7 +112,7 @@ async function getFolderID() {
       id = files[0].id;
     }
   }, function(reason) {
-    console.log('can\'t find folder', reason.result.error)
+    console.log('can\'t find folder', reason.result.error.message)
   });
 
   return id;
