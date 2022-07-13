@@ -8,6 +8,13 @@ var gapiInited = false;
 var gisInited = false;
 
 async function initGoogleAPIs() {
+  google.accounts.id.initialize({
+    client_id: CLIENT_ID,
+    callback: handleToken,
+    context: "signin",
+    auto_select: true
+  });
+  
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
