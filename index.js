@@ -13,6 +13,7 @@ if (!pageAccessedByReload) {
   initGoogleAPIs();
 } else {
   dropdownSetup();
+  setDisplayForNoPlants();
 }
 
 
