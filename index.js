@@ -3,14 +3,14 @@ var PlantData = {}
 
 
 setupUserMode();
-// loadConfig();
-// setupDisplay();
+loadPlants();
+setupDisplay();
 
 
 async function setupUserMode() {
   await initGoogleAPIs();
   determineUserMode();
-  displayLoginPage();
+  displayLoginPage(); 
 }
 
 
