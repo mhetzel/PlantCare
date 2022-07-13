@@ -86,13 +86,13 @@ async function getFileID(folderID) {
 };
  
 async function getFolderID() {
-  let id = null;
-  gapi.client.drive.files.list({
+  let id = await gapi.client.drive.files.list({
     'pageSize': 10,
     'fields': 'files(id, name)',
     'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
   }).then(function(response) {
     const files = response.result.files;
+    let folderId = null
     if (!files || files.length == 0) {
       var fileMetadata = {
         'name' : 'PlantCare',
@@ -105,17 +105,17 @@ async function getFolderID() {
         if (response.status == 200) {
           var file = response.result;
           console.log('Created Folder ID: ', file.id);
-          id = file.id;
+          folderId = file.id;
         } else {
           console.log('Error creating the folder, '+response);
         }
       });
     } else {
       console.log('Found Folder', files[0].name, ':', files[0].id);
-      id = files[0].id;
+      folderId = files[0].id;
     }
-    console.log('returning folder id', id)
-    return id;
+    console.log('returning folder id', folderId)
+    return folderId;
   }, function(reason) {
     console.log('Find/create folder ERROR:', reason.result.error.message)
     if (reason.result.error.message === 'Invalid Credentials') {
