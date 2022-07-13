@@ -3,9 +3,8 @@ let DriveFileID = null;
 
 // TODO put this somewhere else
 async function refreshDisplays() {
-  //await dropdownSetup();
-  //setDisplayForNoPlants();
-  console.log('refresh Displays')
+  await dropdownSetup();
+  setDisplayForNoPlants();
 }
 
 async function loadPlants() {
