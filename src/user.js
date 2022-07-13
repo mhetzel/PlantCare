@@ -99,7 +99,7 @@ async function handleToken(googleUser) {
   }
 
   if (gapi.client.getToken() === null) {
-    tokenClient.requestAccessToken({prompt: 'consent'});
+    tokenClient.requestAccessToken();
   } else {
     signedIn(email);
   }
