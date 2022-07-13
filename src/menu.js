@@ -27,7 +27,7 @@ function openNewPlantForm() {
 }
 
 function setDisplayForNoPlants() {
-  if (Object.keys(PlantData).length === 0) {
+  if (!PlantData || Object.keys(PlantData).length === 0) {
     openNewPlantForm();
   } else {
     $("#plant-infos").show();
