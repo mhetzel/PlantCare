@@ -57,6 +57,7 @@ function displayLoginPage() {
     closeForm();
     loginDiv.show();
     $("#plant-infos").hide();
+    $("#plantForm").hide();
   }
 };
 
