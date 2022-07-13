@@ -21,9 +21,13 @@ async function initGoogleAPIs() {
     callback: '', // defined later
   });
   gisInited = true;
+  await gapi.load('client', intializeGapiClient);
+}
+
+async function intializeGapiClient() {
   await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
   gapiInited = true;
-}
+};
