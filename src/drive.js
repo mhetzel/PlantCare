@@ -6,17 +6,18 @@ async function readFile(fileID) {
   let data = null;
   console.log('reading file:', fileID)
   if (fileID) {
-    gapi.client.drive.files.get({
+    data = await gapi.client.drive.files.get({
       fileId: fileID,
       alt: 'media'
     }).then(function(resp) {
       data = resp.body
       console.log('File contents:', data)
+      return data;
     }, function(reason){
       console.log('Read file ERROR:', reason.result.error.message)
+      return null;
     });
   }
-
   return data;
 };
  
