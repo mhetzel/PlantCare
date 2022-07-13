@@ -83,40 +83,37 @@ async function getFileID(folderID) {
 };
  
 async function getFolderID() {
-  let response;
   let id = null;
-  try {
-    response = await gapi.client.drive.files.list({
-      'pageSize': 10,
-      'fields': 'files(id, name)',
-      'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
-    });
-  } catch (err) {
-    console.log('can\'t find folder', err)
-    return null;
-  }
+  gapi.client.drive.files.list({
+    'pageSize': 10,
+    'fields': 'files(id, name)',
+    'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
+  }).then(function(response) {
+    const files = response.result.files;
+    if (!files || files.length == 0) {
+      var fileMetadata = {
+        'name' : 'PlantCare',
+        'mimeType' : 'application/vnd.google-apps.folder',
+        'parents': ['root']
+      };
+      gapi.client.drive.files.create({
+        resource: fileMetadata,
+      }).then(function(response) {
+        if (response.status == 200) {
+          var file = response.result;
+          console.log('Created Folder ID: ', file.id);
+          id = file.id;
+        } else {
+          console.log('Error creating the folder, '+response);
+        }
+      });
+    } else {
+      console.log('Found: ', files[0].name, ': ', files[0].id);
+      id = files[0].id;
+    }
+  }, function(reason) {
+    console.log('can\'t find folder', reason)
+  });
 
-  const files = response.result.files;
-  if (!files || files.length == 0) {
-    var fileMetadata = {
-      'name' : 'PlantCare',
-      'mimeType' : 'application/vnd.google-apps.folder',
-      'parents': ['root']
-    };
-    gapi.client.drive.files.create({
-      resource: fileMetadata,
-    }).then(function(response) {
-      if (response.status == 200) {
-        var file = response.result;
-        console.log('Created Folder ID: ', file.id);
-        id = file.id;
-      } else {
-        console.log('Error creating the folder, '+response);
-      }
-    });
-  } else {
-    console.log('Found: ', files[0].name, ': ', files[0].id);
-    id = files[0].id;
-  }
   return id;
 };
