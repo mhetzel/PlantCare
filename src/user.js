@@ -16,21 +16,19 @@ function determineUserMode() {
     User = localStorage.getItem('userEmail');
     if (User) {
       userNameText.text(User);
- //     signedIn(User);
-  //  } else {
-        google.accounts.id.prompt((notification) => {
-        if (notification.isSkippedMoment()) {
-          if (notification.getSkippedReason() == 'user_cancel') {
-            signedOut();
-          }
+    }
+    google.accounts.id.prompt((notification) => {
+      if (notification.isSkippedMoment()) {
+        if (notification.getSkippedReason() == 'user_cancel') {
+          signedOut();
         }
-        if (notification.isNotDisplayed()) {
-          if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-            signedOut();
-          }
+      }
+      if (notification.isNotDisplayed()) {
+        if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
+          signedOut();
         }
-      });
-    // }
+      }
+    });
   }
 };
 
