@@ -9,7 +9,6 @@ async function readFile(fileID) {
       fileId: fileID,
       alt: 'media'
     }).then(function(resp) {
-      console.log('File contents:', resp.body)
       if (resp.body !== '') {
         return JSON.parse(resp.body)
       }
