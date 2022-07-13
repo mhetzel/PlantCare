@@ -89,7 +89,7 @@ async function handleToken(googleUser) {
     if (resp.error !== undefined) {
       throw (resp);
     }
-    localStorage.setItem("token_"+email, {'access_token': resp.access_token, 'token_type': resp.token_type});
+    localStorage.setItem("token_"+email, JSON.stringify(resp));
     console.log(Object.keys(resp))
     console.log('token', resp.access_token)
     console.log('type', resp.token_type)
@@ -100,7 +100,7 @@ async function handleToken(googleUser) {
     signedIn(email);
   };
 
-  let token = localStorage.getItem("token_"+email);
+  let token = JSON.parse(localStorage.getItem("token_"+email));
   if (token) {
     console.log(Object.keys(token))
     console.log('token', token.access_token)
