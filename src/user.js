@@ -54,8 +54,10 @@ function displayLoginPage() {
     } else {
       signOutButton.show();
     }
-    closeForm();
+
     loginDiv.show();
+    $("#changing-div").hide();
+    $("#config-div").hide();
     $("#plant-infos").hide();
     $("#plantForm").hide();
   }
