@@ -107,7 +107,7 @@ function signedIn(email) {
   }
 
   if (gapi.client.getToken() === null) {
-    tokenClient.requestAccessToken();
+    tokenClient.requestAccessToken({prompt: 'consent'});
   } 
   
   userNameText.text(email);
