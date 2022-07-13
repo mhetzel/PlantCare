@@ -1,5 +1,5 @@
 body {
-  background-image: url('background.jpg');
+  background-image: url('img/background.jpg');
   font-family: 'Oswald', sans-serif;
 }
 
@@ -16,6 +16,12 @@ body {
 
 .bottom-right {
   right: 10px; 
+  bottom: 10px; 
+  position: absolute;
+}
+
+.bottom-left {
+  left: 10px; 
   bottom: 10px; 
   position: absolute;
 }

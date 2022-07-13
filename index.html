@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plant Care</title>
-    <link rel="icon" type="image/x-icon" href="leaf-32.ico">
-    <link rel="shortcut icon" type="image/png" href="leaf-128.png">
-    <link rel="apple-touch-icon" href="leaf-128.png">
-    <script src="jquery-3.6.0.min.js"></script>
-    <script src="definitions.js"></script>
-    <script src="multiselect-dropdown.js"></script>
+    <link rel="icon" type="image/x-icon" href="img/leaf-32.ico">
+    <link rel="shortcut icon" type="image/png" href="img/leaf-128.png">
+    <link rel="apple-touch-icon" href="img/leaf-128.png">
+
     <script src="https://accounts.google.com/gsi/client"></script>
     <script src="https://apis.google.com/js/api.js"></script>
+
+    <script src="src/jquery-3.6.0.min.js"></script>
+    <script src="src/definitions.js"></script>
+    <script src="src/multiselect-dropdown.js"></script>
+    <script src="src/googleClients.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,16 +25,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
   <body>
-    
-    <div id="user" class="bottom-right font"><span>Signed in as :</span><span id="user-name">Guest</span></div>
-     
-    <div id="login" class="content-box" style="display:none;">
-      <div id="signin" ></div>
-      <div class="g_id_signout"><button id="signout_button" style="display: none;" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
-      <button id="read_button" onclick="uploadFile()">Drive Interaction</button>
-            
-      <button type="button" onclick="hideLoginPage()" title="Close"><i class="fa-solid fa-xmark"></i></button>
 
+    <div id="login-div" class="content-box" style="display:none;">
+      <div class="top-right"><button type="button" onclick="hideLoginPage()" title="Close"><i class="fa-solid fa-xmark"></i></button></div>
+      <div style="width: 15em;" id="signin-div"></div>
+
+      <div style="width: 15em;" ><span>Currently signed in as: </span><span id="user-name">Guest</span></div>
+      <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
     </div>
     
     <div class="menu-box">
@@ -110,7 +111,7 @@
         <button>
           <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i></label>
         </button>
-        <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="loadConfig(event)">
+        <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
 
         <a id="configText" download="plantData.json" href="">
           <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
@@ -147,12 +148,15 @@
       </div>
     </div>
 
-    <script src="editablePlant.js"></script>
-    <script src="google.js"></script>
-    <script src="dropdowns.js"></script>
+
+    <script src="src/dropdowns.js"></script>
+    <script src="src/menu.js"></script>
+    <script src="src/user.js"></script>
+    <script src="src/drive.js"></script>
+    <script src="src/config.js"></script>
+    
     <script src="index.js"></script>
-    <script src="config.js"></script>
-    <script src="plantActions.js"></script>
+    <script src="src/plantActions.js"></script>
     
   </body>
 </html>
