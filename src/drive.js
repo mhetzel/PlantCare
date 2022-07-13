@@ -4,6 +4,7 @@
 
 async function readFile(fileID) {
   let data = null;
+  console.log('reading file:', fileID)
   if (fileID) {
     gapi.client.drive.files.get({
       fileId: fileID,
@@ -39,6 +40,8 @@ async function writeFile(fileID, data) {
 async function getFileID(folderID) {
   let response;
   let id = null;
+  
+  console.log('finding file in folder:', folderID)
   if (folderID) {
     try {
       response = await gapi.client.drive.files.list({
