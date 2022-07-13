@@ -36,8 +36,10 @@ async function storePlantData(plantData) {
 
 async function retrievePlantData() {  
   if (!GuestMode) {
-    await findOrCreateConfig();
-    PlantData = await readFile(DriveFileID)
+    findOrCreateConfig().then(
+      PlantData = await readFile(DriveFileID)
+    );
+    
   } else {
     var retrievedObject = localStorage.getItem(STORAGE_KEY);
     if (retrievedObject === null) {
