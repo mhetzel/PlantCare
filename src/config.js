@@ -56,6 +56,7 @@ async function findOrCreateConfig() {
   if (!GuestMode) {
     if (!DriveFileID) {
       getFolderID().then(folderID => { 
+        console.log('found folder', folderID)
         getFileID(folderID).then(fileID => {
           DriveFileID = fileID;
         });
