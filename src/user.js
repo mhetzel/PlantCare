@@ -91,6 +91,12 @@ async function handleToken(googleUser) {
     }
     localStorage.setItem("token_"+email, resp);
     console.log(Object.keys(resp))
+    console.log('token', resp.access_token)
+    console.log('type', resp.token_type)
+    console.log('expires', resp.expires_in)
+    console.log('scope', resp.scope)
+    console.log('user', resp.authuser)
+    console.log('promt', resp.prompt)
     signedIn(email);
   };
 
