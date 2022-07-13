@@ -4,7 +4,10 @@ let DriveFileID = null;
 async function loadPlants() {
   console.log('load plants')
   if (typeof(Storage) !== "undefined") {
-    retrievePlantData()
+    retrievePlantData();
+    // refresh displays
+    await dropdownSetup();
+    setDisplayForNoPlants();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser')
   }
