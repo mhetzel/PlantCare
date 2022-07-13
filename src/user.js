@@ -102,6 +102,13 @@ async function handleToken(googleUser) {
 
   let token = localStorage.getItem("token_"+email);
   if (token) {
+    console.log(Object.keys(token))
+    console.log('token', token.access_token)
+    console.log('type', token.token_type)
+    console.log('expires', token.expires_in)
+    console.log('scope', token.scope)
+    console.log('user', token.authuser)
+    console.log('promt', token.prompt)
     gapi.client.setToken(token)
   }
 
