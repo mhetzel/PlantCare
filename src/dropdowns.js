@@ -142,7 +142,6 @@ function locationSelectionChange() {
 }
 
 async function setupDropDowns() {
-  await loadPlants()
   Object.keys(PlantData).forEach(function(location) {
     locationDropdown.append($('<option></option>').attr('value', location).text(location));
   });
