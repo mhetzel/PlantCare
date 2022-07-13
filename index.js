@@ -9,11 +9,8 @@ const pageAccessedByReload = (
       .includes('reload')
 );
 
-if (!pageAccessedByReload) {
-  initGoogleAPIs();
-} else {
-  dropdownSetup();
-  setDisplayForNoPlants();
-}
+
+initGoogleAPIs();
+
 
 
