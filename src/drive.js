@@ -114,7 +114,6 @@ async function getFolderID() {
       console.log('Found Folder', files[0].name, ':', files[0].id);
       folderId = files[0].id;
     }
-    console.log('returning folder id', folderId)
     return folderId;
   }, function(reason) {
     console.log('Find/create folder ERROR:', reason.result.error.message)
@@ -123,6 +122,5 @@ async function getFolderID() {
       tokenClient.requestAccessToken();
     }
   });
-  console.log('returning folder id3', id)
   return id;
 };
