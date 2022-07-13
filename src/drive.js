@@ -17,7 +17,7 @@ async function readFile(fileID) {
   return data;
 };
  
-async function writeFile(fileID, plantData) {
+async function writeFile(fileID, data) {
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
     method: 'PATCH',
@@ -25,7 +25,7 @@ async function writeFile(fileID, plantData) {
         Authorization: 'Bearer ' + gapi.auth.getToken().access_token,
         'Content-type': 'text/plain'
     }),
-    body: JSON.stringify(plantData)
+    body: JSON.stringify(data)
   })
   .then(result => result.json())
   .then(value => {
