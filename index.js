@@ -10,7 +10,6 @@ async function setupUserMode() {
   await initGoogleAPIs();
   determineUserMode();
   displayLoginPage(); 
-  loadPlants();
 }
 
 
