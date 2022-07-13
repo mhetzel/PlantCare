@@ -85,6 +85,7 @@ async function handleToken(googleUser) {
     email = parsedData.email;
     localStorage.setItem('userEmail', parsedData.email);
     console.log('signing in:', parsedData.email)
+    signedIn(email);
   }
 
   tokenClient.callback = async (resp) => {
@@ -95,6 +96,11 @@ async function handleToken(googleUser) {
     signedIn(email);
   };
 
+};
+
+function signedIn(email) {
+  console.log(email, 'signed in');
+  
   let token = JSON.parse(localStorage.getItem("token_"+email));
   if (token) {
     gapi.client.setToken(token)
@@ -102,13 +108,8 @@ async function handleToken(googleUser) {
 
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken();
-  } else {
-    signedIn(email);
-  }
-};
-
-function signedIn(email) {
-  console.log(email, 'signed in');
+  } 
+  
   userNameText.text(email);
   signinDiv.hide();
   signOutButton.show();
