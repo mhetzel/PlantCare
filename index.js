@@ -1,10 +1,6 @@
 
 var PlantData = {}
 
-
-
-initGoogleAPIs();
-
 const pageAccessedByReload = (
   (window.performance.navigation && window.performance.navigation.type === 1) ||
     window.performance
@@ -13,4 +9,8 @@ const pageAccessedByReload = (
       .includes('reload')
 );
 
-console.log(pageAccessedByReload);
+if (!pageAccessedByReload) {
+  initGoogleAPIs();
+}
+
+
