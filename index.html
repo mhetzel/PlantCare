@@ -26,6 +26,17 @@
   </head>
   <body>
 
+    <div>
+      <label for="instructions"><b>Watering Instructions:</b></label>
+      <select multiple id="instructions">
+        <option value="Don't allow the plant to sit in water.">Don't allow the plant to sit in water.</option>
+        <option value="Not soggy.">Not soggy.</option>
+        <option value="Water gently from above, soak through to the roots.">Water gently from above, soak through to the roots.</option>
+        <option value="Sensitive to Flouride.">Sensitive to Flouride.</option>
+        <option value="Do not allow water to contact the leaves. Water from below.">Do not allow water to contact the leaves. Water from below.</option>
+      </select>
+    </div>
+
     <div id="login-div" class="content-box" style="display:none;">
       <h2>Plant Care Account Settings</h2>
       <div class="top-right"><button type="button" onclick="hideLoginPage()" title="Close"><i class="fa-solid fa-xmark"></i></button></div>
@@ -78,6 +89,8 @@
             <label for="newPlantWaterInstructions"><b>Watering Instructions:</b></label>
             <select multiple id="newPlantWaterInstructions"></select>
           </div>
+
+
           <div>
             <label for="newPlantSoilPreferences"><b>Soil Preferences:</b></label>
             <select id="newPlantSoilPreferences"></select>
