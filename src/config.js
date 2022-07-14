@@ -2,6 +2,7 @@ const STORAGE_KEY = 'plantCareData'
 let DriveFileID = null;
 
 
+// TODO move this somewhere else
 function setupDisplay() {
   dropdownSetup();
   hideLoginPage();
