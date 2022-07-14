@@ -27,10 +27,14 @@
   <body>
 
     <div id="login-div" class="content-box" style="display:none;">
+      <h2>Plant Care Account Settings</h2>
       <div class="top-right"><button type="button" onclick="hideLoginPage()" title="Close"><i class="fa-solid fa-xmark"></i></button></div>
       <div style="width: 15em;" id="signin-div"></div>
-
-      <div style="width: 15em;" ><span>Currently signed in as: </span><span id="user-name">Guest</span></div>
+      <div style="width: 15em; height: 3em;" >
+        <img id="profile-pic" style="position: fixed; border-radius: 50%; border: 1px solid #0d1b19; width: 2.5em;" src="">
+        <span id="guest-pic" style="display:none; padding-top: 10px; position: fixed;"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>
+        <span style="position: fixed; padding-left: 3em;"><div>Currently signed in as: </div><div id="user-name">Guest</div></span>
+      </div>
       <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
     </div>
     
