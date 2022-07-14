@@ -102,10 +102,15 @@ async function handleToken(googleUser) {
 function signedIn(email) {
   console.log(email, 'signed in');
   
-  let token = JSON.parse(localStorage.getItem("token_"+email));
-  if (token) {
-    gapi.client.setToken(token)
+  try {
+    let token = JSON.parse(localStorage.getItem("token_"+email));
+    if (token) {
+      gapi.client.setToken(token)
+    }
+  } catch (err) {
+    console.log('can\'t parse stored token')
   }
+
 
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken({prompt: 'consent'});
