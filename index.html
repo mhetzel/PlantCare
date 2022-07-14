@@ -145,6 +145,50 @@
           </form>
         </div>
 
+        <div id="updating-plant-div" class="content-box" style="display: none; position: absolute; padding-top: 2em;">
+          <form class="form-container" action="javascript:console.log( 'success!' );">
+            <div class="top-right">
+              <button type="submit" onclick="updatePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+              <button type="button" onclick="toggleUpdatePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>  
+            <div>
+              <label for="newPlantWaterNeeds"><b>Water When:</b></label>
+              <select id="newPlantWaterNeeds" required></select>
+            </div>
+            <div>
+              <label for="newPlantWaterInstructions"><b>Watering Instructions:</b></label>
+              <select multiple id="newPlantWaterInstructions"></select>
+            </div>
+            <div>
+              <label for="newPlantSoilPreferences"><b>Soil Preferences:</b></label>
+              <select id="newPlantSoilPreferences"></select>
+            </div>
+            <div>
+              <label for="newPlantFertilizer"><b>Fertilizer Frequency:</b></label>
+              <select id="newPlantFertilizer"></select>
+            </div>
+            <div>
+              <label for="newPlantFertilizerDose"><b>Fertilizer Dose:</b></label>
+              <select id="newPlantFertilizerDose"></select>
+            </div>
+            <div>
+              <label for="newPlantLightNeeds"><b>Light:</b></label>
+              <select id="newPlantLightNeeds" required></select>
+            </div>
+            <div>
+              <label for="newPlantPetSafe"><b>Pet Safe:</b></label>
+              <select id="newPlantPetSafe">
+                <option>false</option>
+                <option>true</option>
+              </select>
+            </div>
+            <div>
+              <label for="newPlantHumitidy"><b>Humidity Needs:</b></label>
+              <select id="newPlantHumitidy"></select>
+            </div>
+          </form>
+        </div>
+
 
         <div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
         <div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
@@ -161,6 +205,7 @@
       <div id="plant-buttons">
         <button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>
         <button onclick="toggleMovePlantForm()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        <button onclick="toggleUpdatePlantForm()" title="Edit Plant"><i class="fa-solid fa-pencil"></i></button>
         <button onclick="deletePlant()" title="Delete Plant"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>
