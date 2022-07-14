@@ -37,17 +37,6 @@
       </div>
       <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
     </div>
-
-    <div id="moving-location-div" class="content-box" style="display: none;">
-      <form class="form-container" action="javascript:console.log( 'success!' );">
-        <div class="top-right">
-          <button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
-          <button type="button" onclick="toggleMovePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-        </div>  
-        <label for="movedPlantLocation"><b>New Location:</b></label>
-        <input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>
-      </form>
-    </div>
     
     <div class="menu-box">
         <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
@@ -144,6 +133,19 @@
       <span id="plant-info">
         <div><span>Average Days Between Waterings: </span><span id="averageDaysBetweenWatering"></span></div>
         <div><span>Current Wetness: </span><select id="currentWetness" onchange="checkPlant()"></select></div>
+
+        <div id="moving-location-div" class="content-box" style="display: none; position: absolute; padding-top: 2em;">
+          <form class="form-container" action="javascript:console.log( 'success!' );">
+            <div class="top-right">
+              <button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+              <button type="button" onclick="toggleMovePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>  
+            <label for="movedPlantLocation"><b>New Location:</b></label>
+            <input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>
+          </form>
+        </div>
+
+
         <div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
         <div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
         <div><span>Desired Water Level: </span><span id="water"></span></div>

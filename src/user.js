@@ -36,6 +36,8 @@ function determineUserMode() {
         }
       }
     });
+  } else {
+    signedOut();
   }
 };
 

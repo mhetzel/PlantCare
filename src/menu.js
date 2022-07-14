@@ -19,9 +19,12 @@ function openNewPlantForm() {
     $("#newPlantLastWatered").val(null);
     $("#newPlantAverageWateringDays").val(null);
     $("#config-div").hide();
+    $("#login-div").hide();
+    $("#plant-infos").hide();
+    
     $("#changing-div").show();
     $("#plantForm").show();
-    $("#plant-infos").hide();
+    
     setupNewPlantDropdowns();
   }
 }

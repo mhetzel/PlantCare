@@ -106,8 +106,13 @@ function locationSelectionChange() {
 
 async function setupDropDowns() {
   if (PlantData) {
-      Object.keys(PlantData).forEach(function(location) {
-      locationDropdown.append($('<option></option>').attr('value', location).text(location));
+    Object.keys(PlantData).forEach(function(location) {
+      if (Object.keys(PlantData[location]).length > 0) {
+        locationDropdown.append($('<option></option>').attr('value', location).text(location));
+      } else {
+        delete PlantData[location];
+        saveConfig(PlantData);
+      }
     });
     if (Object.keys(PlantData).length === 1) {
       locationDropdown.prop('selectedIndex', 1);
