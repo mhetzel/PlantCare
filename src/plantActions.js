@@ -37,14 +37,32 @@ async function waterPlant() {
   plantSelectionChange();
 };
 
-async function updatePlant(newPlantInfo) {
+function resetUpdatedPlantInfo() {
+  let plant = PlantData[location][plantName];
+}
+
+function getUpdatedPlantInfo(plant) {
+  let newPlantInfo = {}
+
+  newPlantInfo['water'] = $("#updatedPlantWaterNeeds").prop('selectedIndex');
+  newPlantInfo['light'] = $("#updatedPlantLightNeeds").prop('selectedIndex');
+  newPlantInfo['waterInstructions'] = $("#updatedPlantWaterInstructions").val();
+  newPlantInfo['soil'] = $("#updatedPlantSoilPreferences").val();
+  newPlantInfo['fertilzerFrequency'] = $("#updatedPlantFertilizer").val();
+  newPlantInfo['fertilzerDose'] = $("#updatedPlantFertilizerDose").val();
+  newPlantInfo['petSafe'] = $("#updatedPlantPetSafe").val();
+  newPlantInfo['humidity'] = $("#updatedPlantHumitidy").val();
+  
+  return {...plant, ...newPlantInfo}
+};
+
+async function updatePlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
-  plant = PlantData[location][plantName];
+  let plant = PlantData[location][plantName];
   delete PlantData[location][plantName];
 
-  const mergedPlant = {...plant, ...newPlantInfo}
-  PlantData[location][plantName] = mergedPlant;
+  PlantData[location][plantName] = getUpdatedPlantInfo(plant)
   await saveConfig(PlantData);
 };
 
@@ -55,7 +73,16 @@ function toggleMovePlantForm() {
   } else {
     $("#moving-location-div").show();
   }
-}
+};
+
+function toggleUpdatePlantForm() {
+  resetUpdatedPlantInfo()
+  if ($("#updating-plant-div").css('display') == 'block') {
+    $("#updating-plant-div").hide();
+  } else {
+    $("#updating-plant-div").show();
+  }
+};
 
 async function movePlant() {
   let newLocation = $("#movedPlantLocation").val()
@@ -74,7 +101,7 @@ async function movePlant() {
   PlantData[newLocation][plantName] = plant;
   toggleMovePlantForm();
   await saveConfig(PlantData);
-}
+};
 
 async function deletePlant() {
   delete PlantData[locationDropdown.val()][plantDropdown.val()];
@@ -85,7 +112,6 @@ async function deletePlant() {
   
   await saveConfig(PlantData);
 };
-
 
 function setPlantInfo(info) {
   if (Object.keys(info).length) {

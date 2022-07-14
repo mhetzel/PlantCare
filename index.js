@@ -10,4 +10,5 @@ const pageAccessedByReload = (
 );
 
 setupNewPlantDropdowns();
+setupUpdatedPlantDropdowns();
 initGoogleAPIs();

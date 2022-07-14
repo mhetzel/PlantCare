@@ -16,6 +16,10 @@ var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
 
+function setupUpdatedPlantDropdowns() {
+  
+}
+
 function setupNewPlantDropdowns() {
   $('#newPlantPetSafe').prop('selectedIndex', 0);
   
