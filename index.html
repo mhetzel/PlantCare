@@ -37,6 +37,17 @@
       </div>
       <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
     </div>
+
+    <div id="moving-location-div" class="content-box" style="display: none;">
+      <form class="form-container" action="javascript:console.log( 'success!' );">
+        <div class="top-right">
+          <button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+          <button type="button" onclick="toggleMovePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>  
+        <label for="movedPlantLocation"><b>New Location:</b></label>
+        <input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>
+      </form>
+    </div>
     
     <div class="menu-box">
         <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
@@ -147,7 +158,7 @@
 
       <div id="plant-buttons">
         <button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>
-        <button onclick="movePlant()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        <button onclick="toggleMovePlantForm()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         <button onclick="deletePlant()" title="Delete Plant"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>

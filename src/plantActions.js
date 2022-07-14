@@ -37,14 +37,41 @@ async function waterPlant() {
   plantSelectionChange();
 };
 
-async function updatePlant() {
+async function updatePlant(newPlantInfo) {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
   plant = PlantData[location][plantName];
-
   delete PlantData[location][plantName];
+
+  const mergedPlant = {...plant, ...newPlantInfo}
+  PlantData[location][plantName] = mergedPlant;
   await saveConfig(PlantData);
 };
+
+function toggleMovePlantForm() {
+  $("#movedPlantLocation").val('');
+  if ($("#moving-location-div").css('display') == 'block') {
+    $("#moving-location-div").hide();
+  } else {
+    $("#moving-location-div").show();
+  }
+}
+
+async function movePlant() {
+  let newLocation = $("#movedPlantLocation").val()
+  let location = locationDropdown.val()
+  let plantName = plantDropdown.val()
+  plant = PlantData[location][plantName];
+  delete PlantData[location][plantName];
+
+  if (!PlantData.hasOwnProperty(newLocation)) {
+    PlantData[newLocation] = {}
+  }
+
+  PlantData[newLocation][plantName] = plant;
+  await saveConfig(PlantData);
+  toggleMovePlantForm();
+}
 
 async function deletePlant() {
   delete PlantData[locationDropdown.val()][plantDropdown.val()];
