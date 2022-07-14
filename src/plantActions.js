@@ -38,7 +38,10 @@ async function waterPlant() {
 };
 
 function resetUpdatedPlantInfo() {
+  let location = locationDropdown.val()
+  let plantName = plantDropdown.val()
   let plant = PlantData[location][plantName];
+  setupUpdatedPlantDropdowns();
 }
 
 function getUpdatedPlantInfo(plant) {

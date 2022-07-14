@@ -17,63 +17,42 @@ var plantButtons = $('#plant-buttons');
 
 
 function setupUpdatedPlantDropdowns() {
-  
+  $('#updatedPlantPetSafe').prop('selectedIndex', 0);
+  setDropdown($('#updatedPlantWaterNeeds'), WaterList);
+  setDropdown($('#updatedPlantWaterInstructions'), WateringInstructions);
+  setDropdown($('#updatedPlantSoilPreferences'), SoilList);
+  setDropdown($('#updatedPlantFertilizer'), FertilizerSchedule);
+  setDropdown($('#updatedPlantFertilizerDose'), FertilizerDoses);
+  setDropdown($('#updatedPlantLightNeeds'), LightList);
+  setDropdown($('#updatedPlantHumitidy'), HumidityLevels);
+
+  $( ".multiselect-dropdown").css('width', '100%')
 }
 
 function setupNewPlantDropdowns() {
   $('#newPlantPetSafe').prop('selectedIndex', 0);
-  
-  $('#newPlantWaterInstructions').empty();
-  WateringInstructions.forEach(function(x) {
-    $('#newPlantWaterInstructions').append($('<option></option>').attr('value', x).text(x));
-  });
-  $('#newPlantWaterInstructions').prop('selectedIndex', 0);
-
-  $('#newPlantSoilPreferences').empty();
-  SoilList.forEach(function(x) {
-    $('#newPlantSoilPreferences').append($('<option></option>').attr('value', x).text(x));
-  });
-  $('#newPlantSoilPreferences').prop('selectedIndex', 0);
-
-  $('#newPlantHumitidy').empty();
-  HumidityLevels.forEach(function(x) {
-    $('#newPlantHumitidy').append($('<option></option>').attr('value', x).text(x));
-  });
-  $('#newPlantHumitidy').prop('selectedIndex', 0);
-
-  $('#newPlantFertilizer').empty();
-  FertilizerSchedule.forEach(function(x) {
-    $('#newPlantFertilizer').append($('<option></option>').attr('value', x).text(x));
-  });
-  $('#newPlantFertilizer').prop('selectedIndex', 0);
-
-  $('#newPlantFertilizerDose').empty();
-  FertilizerDoses.forEach(function(x) {
-    $('#newPlantFertilizerDose').append($('<option></option>').attr('value', x).text(x));
-  });
-  $('#newPlantFertilizerDose').prop('selectedIndex', 0);
-
-  waterDropdown($('#newPlantWaterNeeds'));
-
-  $('#newPlantLightNeeds').empty();
-  LightList.forEach(function(x) {
-    $('#newPlantLightNeeds').append($('<option></option>').attr('value', x).text(x));
-  });
-  $('#newPlantLightNeeds').prop('selectedIndex', 0);
+  setDropdown($('#newPlantWaterNeeds'), WaterList);
+  setDropdown($('#newPlantWaterInstructions'), WateringInstructions);
+  setDropdown($('#newPlantSoilPreferences'), SoilList);
+  setDropdown($('#newPlantFertilizer'), FertilizerSchedule);
+  setDropdown($('#newPlantFertilizerDose'), FertilizerDoses);
+  setDropdown($('#newPlantLightNeeds'), LightList);
+  setDropdown($('#newPlantHumitidy'), HumidityLevels);
   
   $( ".multiselect-dropdown").css('width', '100%')
-}
+};
 
-function waterDropdown(dropdown) {
+
+function setDropdown(dropdown, list) {
   dropdown.empty();
-  WaterList.forEach(function(x) {
+  list.forEach(function(x) {
     dropdown.append($('<option></option>').attr('value', x).text(x));
   });
   dropdown.prop('selectedIndex', 0);
-}
+};
 
 function setupCurrentWetness() {
-  waterDropdown(currentWetness);
+  setDropdown(currentWetness, WaterList);
 }
 
 function resetLocationDropdown() {
