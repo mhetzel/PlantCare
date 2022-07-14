@@ -6,6 +6,7 @@ let DriveFileID = null;
 function setupDisplay() {
   dropdownSetup();
   hideLoginPage();
+  $("#plantForm").hide();
   setDisplayForNoPlants();
 }
 

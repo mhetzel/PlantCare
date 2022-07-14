@@ -63,8 +63,8 @@ async function movePlant() {
   let plantName = plantDropdown.val()
   plant = PlantData[location][plantName];
   delete PlantData[location][plantName];
-  if (Object.keys(PlantData[locationDropdown.val()]).length === 0) {
-    delete PlantData[locationDropdown.val()]
+  if (Object.keys(PlantData[location]).length === 0) {
+    delete PlantData[location]
   }
 
   if (!PlantData.hasOwnProperty(newLocation)) {
