@@ -82,7 +82,7 @@ function newOp(list, el, config) {
 function divRefresh(div, el, config, list) {
   div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
   console.log('calling array from', el.selectedOptions, el.id)
-  let sels = createArrayFrom(el.selectedOptions, el, list); 
+  let sels = Array.from(el.selectedOptions); 
   console.log('refresh', sels, el.id)
   if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
     div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
@@ -115,13 +115,6 @@ function setListeners(search, list, div, listWrap) {
   });  
 }
 
-function createArrayFrom(options, el, list) {
-  Array.from(options).map(o=>{
-    console.log('Array from', el.options)
-    otherOp(o, el, list);
-  });
-}
-
 function elementLoadOptions(list, el, config, div, listWrap) {
   console.log('el load options', el.id)
   list.innerHTML='';
@@ -130,7 +123,10 @@ function elementLoadOptions(list, el, config, div, listWrap) {
     newOp(list, el, config);
   }
 
-  createArrayFrom(el.options, el, list); 
+  Array.from(el.options).map(o=>{
+    console.log('load options Array from', el.options)
+    otherOp(o, el, list);
+  });
 
   div.listEl=listWrap;
 
