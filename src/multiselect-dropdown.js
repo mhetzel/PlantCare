@@ -21,9 +21,9 @@ function newEl(tag, attrs) {
 
 function otherOp(o, el, list) {
   console.log('array from o', o)
-  var op=newEl('div',{class:o.selected?'checked':'',optEl:o})
+  let op = newEl('div',{class:o.selected?'checked':'',optEl:o})
   console.log('array from op', op)
-  var ic=newEl('input',{type:'checkbox',checked:o.selected});
+  let ic = newEl('input',{type:'checkbox',checked:o.selected});
   op.appendChild(ic);
   op.appendChild(newEl('label',{text:o.text}));
 
@@ -36,14 +36,14 @@ function otherOp(o, el, list) {
   ic.addEventListener('click',(ev)=>{
     ic.checked=!ic.checked;
   });
-  o.listitemEl=op;
+  o.listitemEl = op;
   console.log('o listitemel', o.listitemEl)
   list.appendChild(op);
 }
 
 function refreshElse(sels, el, config, div) {
   sels.map(x=>{
-    var c=newEl('span',{class:'optext',text:x.text, srcOption: x});
+    let c = newEl('span',{class:'optext',text:x.text, srcOption: x});
     console.log('c.srcOption.listitemEl', c.srcOption.listitemEl)
     if((el.attributes['multiselect-hide-x']?.value !== 'true'))
       c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
@@ -58,8 +58,8 @@ function refreshElse(sels, el, config, div) {
 }
 
 function newOp(list, el, config) {
-  let op=newEl('div',{class:'multiselect-dropdown-all-selector'})
-  let ic=newEl('input',{type:'checkbox'});
+  let op = newEl('div',{class:'multiselect-dropdown-all-selector'})
+  let ic = newEl('input',{type:'checkbox'});
   op.appendChild(ic);
   op.appendChild(newEl('label',{text:config.txtAll}));
 
@@ -67,7 +67,7 @@ function newOp(list, el, config) {
     op.classList.toggle('checked');
     op.querySelector("input").checked=!op.querySelector("input").checked;
 
-    var ch=op.querySelector("input").checked;
+    let ch = op.querySelector("input").checked;
     list.querySelectorAll(":scope > div:not(.multiselect-dropdown-all-selector)")
       .forEach(i=>{if(i.style.display!=='none'){i.querySelector("input").checked=ch; i.optEl.selected=ch}});
 
@@ -82,7 +82,7 @@ function newOp(list, el, config) {
 function divRefresh(div, el, config) {
   div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
   console.log('calling array from', el.selectedOptions)
-  var sels=Array.from(el.selectedOptions);
+  let sels = Array.from(el.selectedOptions);
   console.log('refresh', sels)
   if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
     div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
@@ -96,7 +96,7 @@ function divRefresh(div, el, config) {
 function setListeners(search, list, div, listWrap) {
   search.addEventListener('input',()=>{
     list.querySelectorAll(":scope div:not(.multiselect-dropdown-all-selector)").forEach(d=>{
-      var txt=d.querySelector("label").innerText.toUpperCase();
+      let txt = d.querySelector("label").innerText.toUpperCase();
       d.style.display=txt.includes(search.value.toUpperCase())?'block':'none';
     });
   });
@@ -136,7 +136,7 @@ function elementLoadOptions(list, el, config, div, listWrap) {
 }
 
 function MultiselectDropdown(options){
-  var config = {
+  let config = {
     search:false,
     height:'15rem',
     placeholder:'select',
@@ -149,13 +149,13 @@ function MultiselectDropdown(options){
   
   document.querySelectorAll("select[multiple]").forEach((el, k) => {
     // TODO make sure one doesn't exist in el before making a new one.
-    var div = newEl('div', {id:el.id+'multi', class:'multiselect-dropdown', style:{width:'100%', padding:config.style?.padding??''}});
+    let div = newEl('div', {id:el.id+'multi', class:'multiselect-dropdown', style:{width:'100%', padding:config.style?.padding??''}});
 
     el.style.display='none';
     el.parentNode.insertBefore(div,el.nextSibling);
-    var listWrap=newEl('div',{class:'multiselect-dropdown-list-wrapper'});
-    var list=newEl('div',{class:'multiselect-dropdown-list',style:{height:config.height}});
-    var search=newEl('input',{class:['multiselect-dropdown-search'].concat([config.searchInput?.class??'form-control']),style:{width:'100%',display:el.attributes['multiselect-search']?.value==='true'?'block':'none'},placeholder:config.txtSearch});
+    let listWrap=newEl('div',{class:'multiselect-dropdown-list-wrapper'});
+    let list=newEl('div',{class:'multiselect-dropdown-list',style:{height:config.height}});
+    let search=newEl('input',{class:['multiselect-dropdown-search'].concat([config.searchInput?.class??'form-control']),style:{width:'100%',display:el.attributes['multiselect-search']?.value==='true'?'block':'none'},placeholder:config.txtSearch});
     listWrap.appendChild(search);
     div.appendChild(listWrap);
     listWrap.appendChild(list);
