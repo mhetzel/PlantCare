@@ -93,6 +93,48 @@ function divRefresh(div, el, config) {
   if(0==el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
 }
 
+function setListeners(search, list, div, listWrap) {
+  search.addEventListener('input',()=>{
+    list.querySelectorAll(":scope div:not(.multiselect-dropdown-all-selector)").forEach(d=>{
+      var txt=d.querySelector("label").innerText.toUpperCase();
+      d.style.display=txt.includes(search.value.toUpperCase())?'block':'none';
+    });
+  });
+
+  div.addEventListener('click',()=>{
+    div.listEl.style.display='block';
+    search.focus();
+    search.select();
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!div.contains(event.target)) {
+      listWrap.style.display='none';
+      div.refresh();
+    }
+  });  
+}
+
+function elementLoadOptions(list, el, config, div, listWrap) {
+  console.log('el load options')
+  list.innerHTML='';
+
+  if(el.attributes['multiselect-select-all']?.value=='true'){
+    newOp(list, el, config);
+  }
+
+  Array.from(el.options).map(o=>{
+    otherOp(o, el, list);
+  });
+
+  div.listEl=listWrap;
+
+  div.refresh=()=>{
+    divRefresh(div, el, config)
+  };
+  div.refresh();
+}
+
 function MultiselectDropdown(options){
   var config = {
     search:false,
@@ -119,45 +161,11 @@ function MultiselectDropdown(options){
     listWrap.appendChild(list);
 
     el.loadOptions=()=>{
-      console.log('el load options')
-      list.innerHTML='';
-      
-      if(el.attributes['multiselect-select-all']?.value=='true'){
-        newOp(list, el, config);
-      }
-
-      Array.from(el.options).map(o=>{
-        otherOp(o, el, list);
-      });
-      
-      div.listEl=listWrap;
-
-      div.refresh=()=>{
-        divRefresh(div, el, config)
-      };
-      div.refresh();
+      elementLoadOptions(list, el, config, div, listWrap)
     }
     el.loadOptions();
     
-    search.addEventListener('input',()=>{
-      list.querySelectorAll(":scope div:not(.multiselect-dropdown-all-selector)").forEach(d=>{
-        var txt=d.querySelector("label").innerText.toUpperCase();
-        d.style.display=txt.includes(search.value.toUpperCase())?'block':'none';
-      });
-    });
-
-    div.addEventListener('click',()=>{
-      div.listEl.style.display='block';
-      search.focus();
-      search.select();
-    });
-    
-    document.addEventListener('click', function(event) {
-      if (!div.contains(event.target)) {
-        listWrap.style.display='none';
-        div.refresh();
-      }
-    });   
+    setListeners(search, list, div, listWrap) 
 
     // already
     console.log(el.nextSibling.attributes.class.value === 'multiselect-dropdown')
