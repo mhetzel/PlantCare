@@ -35,6 +35,7 @@ async function retrievePlantData() {
     await findOrCreateConfig();
     PlantData = await readFile(DriveFileID);
     console.log('loaded plant config: ', PlantData);
+    setDisplayForNoPlants()
   } else {
     var retrievedObject = localStorage.getItem(STORAGE_KEY);
     if (retrievedObject === null) {
@@ -43,6 +44,7 @@ async function retrievePlantData() {
     } else {
       PlantData = JSON.parse(retrievedObject);
       console.log('loaded plant config: ', PlantData);
+      setDisplayForNoPlants()
     }
   }
 };
