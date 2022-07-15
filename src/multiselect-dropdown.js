@@ -1,6 +1,4 @@
-$(".multiple").each(function() {
-    console.log($(this).html());
-});
+
 
 
 function MultiselectDropdown(options){
@@ -146,4 +144,9 @@ function MultiselectDropdown(options){
 
 window.addEventListener('load',()=>{
   MultiselectDropdown(window.MultiselectDropdownOptions);
+    
+    
+    $(".multiple").each(function() {
+        console.log($(this).html());
+    });
 });
