@@ -92,13 +92,12 @@ function MultiselectDropdown(options){
           ic.checked=!ic.checked;
         });
         o.listitemEl=op;
+        console.log('o listitemel', o.listitemEl)
         list.appendChild(op);
       });
       div.listEl=listWrap;
 
       div.refresh=()=>{
-        console.log('div refresh', div)
-        console.log('div refresh el', el)
         div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
         var sels=Array.from(el.selectedOptions);
         if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
@@ -106,11 +105,9 @@ function MultiselectDropdown(options){
         }
         else{
           sels.map(x=>{
-            console.log('div refresh sels map', x)
             var c=newEl('span',{class:'optext',text:x.text, srcOption: x});
             if((el.attributes['multiselect-hide-x']?.value !== 'true'))
               c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
-                console.log('div refresh on click c.srcOption', c.srcOption)
                 console.log('div refresh on click c.srcOption.listitemEl', c.srcOption.listitemEl)
                 c.srcOption.listitemEl.dispatchEvent(new Event('click'));
                 div.refresh();
