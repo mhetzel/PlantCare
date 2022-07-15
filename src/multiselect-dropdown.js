@@ -75,6 +75,7 @@ function MultiselectDropdown(options){
       }
 
       Array.from(el.options).map(o=>{
+        console.log('array from', o)
         var op=newEl('div',{class:o.selected?'checked':'',optEl:o})
         var ic=newEl('input',{type:'checkbox',checked:o.selected});
         op.appendChild(ic);
