@@ -108,7 +108,10 @@ function MultiselectDropdown(options){
             var c=newEl('span',{class:'optext',text:x.text, srcOption: x});
             if((el.attributes['multiselect-hide-x']?.value !== 'true'))
               c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
-                console.log('on click', ev, c)
+                console.log('on click', ev)
+                console.log('on click', c)
+                console.log('on click', c.srcOption)
+                console.log('on click', c.srcOption.listitemEl)
                 c.srcOption.listitemEl.dispatchEvent(new Event('click'));
                 div.refresh();
                 ev.stopPropagation();
