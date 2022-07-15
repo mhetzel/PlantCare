@@ -1,3 +1,7 @@
+$(".select[multiple]").each(function() {
+    console.log($(this).html());
+});
+
 
 function MultiselectDropdown(options){
   var config={
