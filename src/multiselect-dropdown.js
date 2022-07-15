@@ -20,9 +20,9 @@ function newEl(tag, attrs) {
 }
 
 function otherOp(o, el, list) {
-  console.log('array from o', o)
+  console.log('array from o', o, el.id)
   let op = newEl('div',{class:o.selected?'checked':'',optEl:o})
-  console.log('array from op', op)
+  console.log('array from op', op, el.id)
   let ic = newEl('input',{type:'checkbox',checked:o.selected});
   op.appendChild(ic);
   op.appendChild(newEl('label',{text:o.text}));
@@ -37,17 +37,17 @@ function otherOp(o, el, list) {
     ic.checked=!ic.checked;
   });
   o.listitemEl = op;
-  console.log('o listitemel', o.listitemEl)
+  console.log('o listitemel', o.listitemEl, el.id)
   list.appendChild(op);
 }
 
 function refreshElse(sels, el, config, div) {
   sels.map(x=>{
     let c = newEl('span',{class:'optext',text:x.text, srcOption: x});
-    console.log('c.srcOption.listitemEl', c.srcOption.listitemEl)
+    console.log('c.srcOption.listitemEl', c.srcOption.listitemEl, el.id)
     if((el.attributes['multiselect-hide-x']?.value !== 'true'))
       c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
-        console.log('div refresh on click c.srcOption.listitemEl', c.srcOption.listitemEl)
+        console.log('div refresh on click c.srcOption.listitemEl', c.srcOption.listitemEl, el.id)
         c.srcOption.listitemEl.dispatchEvent(new Event('click'));
         div.refresh();
         ev.stopPropagation();
@@ -81,9 +81,9 @@ function newOp(list, el, config) {
 
 function divRefresh(div, el, config) {
   div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
-  console.log('calling array from', el.selectedOptions)
+  console.log('calling array from', el.selectedOptions, el.id)
   let sels = Array.from(el.selectedOptions);
-  console.log('refresh', sels)
+  console.log('refresh', sels, el.id)
   if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
     div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
   }
@@ -116,7 +116,7 @@ function setListeners(search, list, div, listWrap) {
 }
 
 function elementLoadOptions(list, el, config, div, listWrap) {
-  console.log('el load options')
+  console.log('el load options', el.id)
   list.innerHTML='';
 
   if(el.attributes['multiselect-select-all']?.value=='true'){
@@ -168,7 +168,7 @@ function MultiselectDropdown(options){
     setListeners(search, list, div, listWrap) 
 
     // already
-    console.log(el.nextSibling.attributes.class.value === 'multiselect-dropdown')
+    console.log(el.nextSibling.attributes.class.value === 'multiselect-dropdown', el.id)
   });
 }
 
