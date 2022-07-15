@@ -140,18 +140,16 @@ function MultiselectDropdown(options){
       search.select();
     });
     
-    document.addEventListener('click', docClickEvent);    
+    document.addEventListener('click', function(event) {
+      if (!div.contains(event.target)) {
+        listWrap.style.display='none';
+        div.refresh();
+      }
+    });   
 
     // already
     console.log(el.nextSibling.attributes.class.value === 'multiselect-dropdown')
   });
-}
-
-function docClickEvent(event) {
-  if (!div.contains(event.target)) {
-    listWrap.style.display='none';
-    div.refresh();
-  }
 }
 
 window.addEventListener('load',()=>{
