@@ -1,4 +1,4 @@
-$(".select[multiple]").each(function() {
+$(".multiple").each(function() {
     console.log($(this).html());
 });
 
