@@ -79,6 +79,20 @@ function newOp(list, el, config) {
   list.appendChild(op);
 }
 
+function divRefresh(div, el, config) {
+  div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
+  console.log('calling array from', el.selectedOptions)
+  var sels=Array.from(el.selectedOptions);
+  console.log('refresh', sels)
+  if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
+    div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
+  }
+  else{
+    refreshElse(sels, el, config, div);
+  }
+  if(0==el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
+}
+
 function MultiselectDropdown(options){
   var config = {
     search:false,
@@ -119,17 +133,7 @@ function MultiselectDropdown(options){
       div.listEl=listWrap;
 
       div.refresh=()=>{
-        div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
-        console.log('calling array from', el.selectedOptions)
-        var sels=Array.from(el.selectedOptions);
-        console.log('refresh', sels)
-        if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
-          div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
-        }
-        else{
-          refreshElse(sels, el, config, div);
-        }
-        if(0==el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
+        divRefresh(div, el, config)
       };
       div.refresh();
     }
