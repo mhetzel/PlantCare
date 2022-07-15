@@ -124,6 +124,7 @@ function elementLoadOptions(list, el, config, div, listWrap) {
   }
 
   Array.from(el.options).map(o=>{
+    console.log('Array from', el.options)
     otherOp(o, el, list);
   });
 
