@@ -1,8 +1,4 @@
 
-var div = null;
-var search = null;
-var listWrap = null;
-var list = null;
 
 function newEl(tag, attrs) {
   var e=document.createElement(tag);
@@ -37,12 +33,14 @@ function MultiselectDropdown(options){
   
   document.querySelectorAll("select[multiple]").forEach((el,k)=>{
     // TODO make sure one doesn't exist in el before making a new one.
-    div=newEl('div',{id:el.id+'multi', class:'multiselect-dropdown',style:{width:'100%',padding:config.style?.padding??''}});
+    var div=newEl('div',{id:el.id+'multi', class:'multiselect-dropdown',style:{width:'100%',padding:config.style?.padding??''}});
+
+
     el.style.display='none';
     el.parentNode.insertBefore(div,el.nextSibling);
-    listWrap=newEl('div',{class:'multiselect-dropdown-list-wrapper'});
-    list=newEl('div',{class:'multiselect-dropdown-list',style:{height:config.height}});
-    search=newEl('input',{class:['multiselect-dropdown-search'].concat([config.searchInput?.class??'form-control']),style:{width:'100%',display:el.attributes['multiselect-search']?.value==='true'?'block':'none'},placeholder:config.txtSearch});
+    var listWrap=newEl('div',{class:'multiselect-dropdown-list-wrapper'});
+    var list=newEl('div',{class:'multiselect-dropdown-list',style:{height:config.height}});
+    var search=newEl('input',{class:['multiselect-dropdown-search'].concat([config.searchInput?.class??'form-control']),style:{width:'100%',display:el.attributes['multiselect-search']?.value==='true'?'block':'none'},placeholder:config.txtSearch});
     listWrap.appendChild(search);
     div.appendChild(listWrap);
     listWrap.appendChild(list);
