@@ -99,6 +99,7 @@ function MultiselectDropdown(options){
 
       div.refresh=()=>{
         div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
+        console.log('calling array from')
         var sels=Array.from(el.selectedOptions);
         console.log('refresh', sels)
         if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
