@@ -41,6 +41,22 @@ function otherOp(o, el, list) {
   list.appendChild(op);
 }
 
+function refreshElse(sels, el, config, div) {
+  sels.map(x=>{
+    var c=newEl('span',{class:'optext',text:x.text, srcOption: x});
+    console.log('c.srcOption.listitemEl', c.srcOption.listitemEl)
+    if((el.attributes['multiselect-hide-x']?.value !== 'true'))
+      c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
+        console.log('div refresh on click c.srcOption.listitemEl', c.srcOption.listitemEl)
+        c.srcOption.listitemEl.dispatchEvent(new Event('click'));
+        div.refresh();
+        ev.stopPropagation();
+      }}));
+
+    div.appendChild(c);
+  });
+}
+
 function newOp(list, el, config) {
   let op=newEl('div',{class:'multiselect-dropdown-all-selector'})
   let ic=newEl('input',{type:'checkbox'});
@@ -111,19 +127,7 @@ function MultiselectDropdown(options){
           div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
         }
         else{
-          sels.map(x=>{
-            var c=newEl('span',{class:'optext',text:x.text, srcOption: x});
-            console.log('c.srcOption.listitemEl', c.srcOption.listitemEl)
-            if((el.attributes['multiselect-hide-x']?.value !== 'true'))
-              c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
-                console.log('div refresh on click c.srcOption.listitemEl', c.srcOption.listitemEl)
-                c.srcOption.listitemEl.dispatchEvent(new Event('click'));
-                div.refresh();
-                ev.stopPropagation();
-              }}));
-
-            div.appendChild(c);
-          });
+          refreshElse(sels, el, config, div);
         }
         if(0==el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
       };
