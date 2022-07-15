@@ -100,6 +100,7 @@ function MultiselectDropdown(options){
       div.refresh=()=>{
         div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
         var sels=Array.from(el.selectedOptions);
+        console.log('refresh', sels)
         if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
           div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
         }
