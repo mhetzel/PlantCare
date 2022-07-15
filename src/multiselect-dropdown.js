@@ -19,6 +19,28 @@ function newEl(tag, attrs) {
   return e;
 }
 
+function otherOp(o, el, list) {
+  console.log('array from o', o)
+  var op=newEl('div',{class:o.selected?'checked':'',optEl:o})
+  console.log('array from op', op)
+  var ic=newEl('input',{type:'checkbox',checked:o.selected});
+  op.appendChild(ic);
+  op.appendChild(newEl('label',{text:o.text}));
+
+  op.addEventListener('click',()=>{
+    op.classList.toggle('checked');
+    op.querySelector("input").checked=!op.querySelector("input").checked;
+    op.optEl.selected=!!!op.optEl.selected;
+    el.dispatchEvent(new Event('change'));
+  });
+  ic.addEventListener('click',(ev)=>{
+    ic.checked=!ic.checked;
+  });
+  o.listitemEl=op;
+  console.log('o listitemel', o.listitemEl)
+  list.appendChild(op);
+}
+
 function newOp(list, el, config) {
   let op=newEl('div',{class:'multiselect-dropdown-all-selector'})
   let ic=newEl('input',{type:'checkbox'});
@@ -75,25 +97,7 @@ function MultiselectDropdown(options){
       }
 
       Array.from(el.options).map(o=>{
-        console.log('array from o', o)
-        var op=newEl('div',{class:o.selected?'checked':'',optEl:o})
-        console.log('array from op', op)
-        var ic=newEl('input',{type:'checkbox',checked:o.selected});
-        op.appendChild(ic);
-        op.appendChild(newEl('label',{text:o.text}));
-
-        op.addEventListener('click',()=>{
-          op.classList.toggle('checked');
-          op.querySelector("input").checked=!op.querySelector("input").checked;
-          op.optEl.selected=!!!op.optEl.selected;
-          el.dispatchEvent(new Event('change'));
-        });
-        ic.addEventListener('click',(ev)=>{
-          ic.checked=!ic.checked;
-        });
-        o.listitemEl=op;
-        console.log('o listitemel', o.listitemEl)
-        list.appendChild(op);
+        otherOp(o, el, list);
       });
       
       div.listEl=listWrap;
