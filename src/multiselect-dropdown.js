@@ -127,28 +127,24 @@ function MultiselectDropdown(options){
     }
     el.loadOptions();
     
-    search.addEventListener('input', searchInputEvent);
+    search.addEventListener('input',()=>{
+      list.querySelectorAll(":scope div:not(.multiselect-dropdown-all-selector)").forEach(d=>{
+        var txt=d.querySelector("label").innerText.toUpperCase();
+        d.style.display=txt.includes(search.value.toUpperCase())?'block':'none';
+      });
+    });
 
-    div.addEventListener('click', divClickEvent);
+    div.addEventListener('click',()=>{
+      div.listEl.style.display='block';
+      search.focus();
+      search.select();
+    });
     
     document.addEventListener('click', docClickEvent);    
 
     // already
     console.log(el.nextSibling.attributes.class.value === 'multiselect-dropdown')
   });
-}
-
-function searchInputEvent() {
-  list.querySelectorAll(":scope div:not(.multiselect-dropdown-all-selector)").forEach(d=>{
-    var txt=d.querySelector("label").innerText.toUpperCase();
-    d.style.display=txt.includes(search.value.toUpperCase())?'block':'none';
-  });
-}
-
-function divClickEvent() {
-  div.listEl.style.display='block';
-  search.focus();
-  search.select();
 }
 
 function docClickEvent(event) {
