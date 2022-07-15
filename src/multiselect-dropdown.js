@@ -115,7 +115,7 @@ function setListeners(search, list, div, listWrap) {
   });  
 }
 
-function createArrayFrom(el.options, el, list) {
+function createArrayFrom(el, list) {
   Array.from(el.options).map(o=>{
     console.log('Array from', el.options)
     otherOp(o, el, list);
