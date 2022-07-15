@@ -1,5 +1,27 @@
 
+var div = null;
+var search = null;
+var listWrap = null;
+var list = null;
 
+function newEl(tag, attrs) {
+  var e=document.createElement(tag);
+  if(attrs!==undefined) Object.keys(attrs).forEach(k=>{
+    if(k==='class') { 
+      Array.isArray(attrs[k]) ? attrs[k].forEach(o=>o!==''?e.classList.add(o):0) : (attrs[k]!==''?e.classList.add(attrs[k]):0)
+    }
+    else if(k==='style'){  
+      Object.keys(attrs[k]).forEach(ks=>{
+        e.style[ks]=attrs[k][ks];
+      });
+     }
+    else if(k==='text'){
+      attrs[k]===''?e.innerHTML='&nbsp;':e.innerText=attrs[k]
+    }
+    else e[k]=attrs[k];
+  });
+  return e;
+}
 
 function MultiselectDropdown(options){
   var config={
@@ -12,37 +34,15 @@ function MultiselectDropdown(options){
     txtSearch:'search',
     ...options
   };
-
-  function newEl(tag,attrs){
-    var e=document.createElement(tag);
-    if(attrs!==undefined) Object.keys(attrs).forEach(k=>{
-      if(k==='class') { 
-        Array.isArray(attrs[k]) ? attrs[k].forEach(o=>o!==''?e.classList.add(o):0) : (attrs[k]!==''?e.classList.add(attrs[k]):0)
-      }
-      else if(k==='style'){  
-        Object.keys(attrs[k]).forEach(ks=>{
-          e.style[ks]=attrs[k][ks];
-        });
-       }
-      else if(k==='text'){
-        attrs[k]===''?e.innerHTML='&nbsp;':e.innerText=attrs[k]
-      }
-      else e[k]=attrs[k];
-    });
-    return e;
-  }
-
   
   document.querySelectorAll("select[multiple]").forEach((el,k)=>{
     // TODO make sure one doesn't exist in el before making a new one.
-    var div=newEl('div',{id:el.id+'multi', class:'multiselect-dropdown',style:{width:'100%',padding:config.style?.padding??''}});
-
-
+    div=newEl('div',{id:el.id+'multi', class:'multiselect-dropdown',style:{width:'100%',padding:config.style?.padding??''}});
     el.style.display='none';
     el.parentNode.insertBefore(div,el.nextSibling);
-    var listWrap=newEl('div',{class:'multiselect-dropdown-list-wrapper'});
-    var list=newEl('div',{class:'multiselect-dropdown-list',style:{height:config.height}});
-    var search=newEl('input',{class:['multiselect-dropdown-search'].concat([config.searchInput?.class??'form-control']),style:{width:'100%',display:el.attributes['multiselect-search']?.value==='true'?'block':'none'},placeholder:config.txtSearch});
+    listWrap=newEl('div',{class:'multiselect-dropdown-list-wrapper'});
+    list=newEl('div',{class:'multiselect-dropdown-list',style:{height:config.height}});
+    search=newEl('input',{class:['multiselect-dropdown-search'].concat([config.searchInput?.class??'form-control']),style:{width:'100%',display:el.attributes['multiselect-search']?.value==='true'?'block':'none'},placeholder:config.txtSearch});
     listWrap.appendChild(search);
     div.appendChild(listWrap);
     listWrap.appendChild(list);
@@ -95,11 +95,12 @@ function MultiselectDropdown(options){
         console.log('o listitemel', o.listitemEl)
         list.appendChild(op);
       });
+      
       div.listEl=listWrap;
 
       div.refresh=()=>{
         div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
-        console.log('calling array from')
+        console.log('calling array from', el.selectedOptions)
         var sels=Array.from(el.selectedOptions);
         console.log('refresh', sels)
         if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
@@ -126,30 +127,35 @@ function MultiselectDropdown(options){
     }
     el.loadOptions();
     
-    search.addEventListener('input',()=>{
-      list.querySelectorAll(":scope div:not(.multiselect-dropdown-all-selector)").forEach(d=>{
-        var txt=d.querySelector("label").innerText.toUpperCase();
-        d.style.display=txt.includes(search.value.toUpperCase())?'block':'none';
-      });
-    });
+    search.addEventListener('input', searchInputEvent);
 
-    div.addEventListener('click',()=>{
-      div.listEl.style.display='block';
-      search.focus();
-      search.select();
-    });
+    div.addEventListener('click', divClickEvent);
     
-    document.addEventListener('click', function(event) {
-      if (!div.contains(event.target)) {
-        listWrap.style.display='none';
-        div.refresh();
-      }
-    });    
+    document.addEventListener('click', docClickEvent);    
 
     // already
     console.log(el.nextSibling.attributes.class.value === 'multiselect-dropdown')
   });
-  
+}
+
+function searchInputEvent() {
+  list.querySelectorAll(":scope div:not(.multiselect-dropdown-all-selector)").forEach(d=>{
+    var txt=d.querySelector("label").innerText.toUpperCase();
+    d.style.display=txt.includes(search.value.toUpperCase())?'block':'none';
+  });
+}
+
+function divClickEvent() {
+  div.listEl.style.display='block';
+  search.focus();
+  search.select();
+}
+
+function docClickEvent(event) {
+  if (!div.contains(event.target)) {
+    listWrap.style.display='none';
+    div.refresh();
+  }
 }
 
 window.addEventListener('load',()=>{
