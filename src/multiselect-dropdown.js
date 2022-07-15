@@ -75,8 +75,9 @@ function MultiselectDropdown(options){
       }
 
       Array.from(el.options).map(o=>{
-        console.log('array from', o)
+        console.log('array from o', o)
         var op=newEl('div',{class:o.selected?'checked':'',optEl:o})
+        console.log('array from op', op)
         var ic=newEl('input',{type:'checkbox',checked:o.selected});
         op.appendChild(ic);
         op.appendChild(newEl('label',{text:o.text}));
@@ -109,10 +110,8 @@ function MultiselectDropdown(options){
             var c=newEl('span',{class:'optext',text:x.text, srcOption: x});
             if((el.attributes['multiselect-hide-x']?.value !== 'true'))
               c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
-                console.log('div refresh on click', ev)
-                console.log('div refresh on click', c)
-                console.log('div refresh on click', c.srcOption)
-                console.log('div refresh on click', c.srcOption.listitemEl)
+                console.log('div refresh on click c.srcOption', c.srcOption)
+                console.log('div refresh on click c.srcOption.listitemEl', c.srcOption.listitemEl)
                 c.srcOption.listitemEl.dispatchEvent(new Event('click'));
                 div.refresh();
                 ev.stopPropagation();
