@@ -146,7 +146,7 @@ window.addEventListener('load',()=>{
   MultiselectDropdown(window.MultiselectDropdownOptions);
     
     
-    $(".multiple").each(function() {
+    $("select[multiple]").each(function() {
         console.log($(this).html());
     });
 });
