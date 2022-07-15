@@ -147,6 +147,6 @@ window.addEventListener('load',()=>{
     
     
     $("select[multiple]").each(function() {
-        console.log($(this).html());
+        console.log($(this).id);
     });
 });
