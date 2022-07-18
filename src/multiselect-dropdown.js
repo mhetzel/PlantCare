@@ -150,7 +150,10 @@ function MultiselectDropdown(options){
   
   document.querySelectorAll("select[multiple]").forEach((el, k) => {
     // TODO make sure one doesn't exist in el before making a new one.
-    el.parentNode.querySelectorAll('multiselect-dropdown').forEach(t=>el.parentNode.removeChild(t));
+    el.parentNode.querySelectorAll('.multiselect-dropdown').forEach(t=>{
+      console.log('found and removing', t)
+      el.parentNode.removeChild(t);
+    });
     let div = newEl('div', {id:el.id+'multi', class:'multiselect-dropdown', style:{width:'100%', padding:config.style?.padding??''}});
 
     el.style.display='none';
