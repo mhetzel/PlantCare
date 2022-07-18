@@ -152,3 +152,53 @@ function resetPlantInfo() {
   petSafe.text('n/a')
   humidity.text('n/a')
 };
+
+function readPlantInputs(idPrefix) {
+  let inputs = {}
+  inputs['water'] = $(idPrefix+"PlantWaterNeeds").prop('selectedIndex');
+  inputs['light'] = $(idPrefix+"PlantLightNeeds").prop('selectedIndex');
+  inputs['waterInstructions'] = $(idPrefix+"PlantWaterInstructions").val();
+  inputs['soil'] = $(idPrefix+"PlantSoilPreferences").val();
+  inputs['fertilzerFrequency'] = $(idPrefix+"PlantFertilizer").val();
+  inputs['fertilzerDose'] = $(idPrefix+"PlantFertilizerDose").val();
+  inputs['petSafe'] = $(idPrefix+"PlantPetSafe").val();
+  inputs['humidity'] = $(idPrefix+"PlantHumitidy").val();
+  return inputs
+}
+
+
+async function addNewPlant() {
+  let newLocation = $("#newPlantLocation").val()
+  let newName = $("#newPlantName").val()
+  if (newName) {
+    if (!PlantData.hasOwnProperty(newLocation)) {
+      PlantData[newLocation] = {}
+    }
+      
+    if (!PlantData[newLocation].hasOwnProperty(newName)) {
+      PlantData[newLocation][newName] = {}
+    }
+    
+    let inputs = readPlantInputs("#new");
+    PlantData[newLocation][newName] = {PlantData[newLocation][newName], ...inputs};
+  
+    let lastWatered = $("#newPlantLastWatered").val();
+    if (lastWatered) {
+      PlantData[newLocation][newName]['lastWatered'] = (new Date(lastWatered)).toDateString();
+    }
+    
+    PlantData[newLocation][newName]['daysTotal'] = 0;
+    PlantData[newLocation][newName]['wateringCount'] = 0;
+    let averageDaysBetweenWatering = $("#newPlantAverageWateringDays").val();
+    if (averageDaysBetweenWatering) {
+      PlantData[newLocation][newName]['daysTotal'] = parseInt(averageDaysBetweenWatering);
+      PlantData[newLocation][newName]['wateringCount'] = 1;
+    }
+
+    console.log(PlantData[newLocation][newName])
+  
+    await saveConfig(PlantData);
+    closeForm();
+     $("#plant-infos").show();
+  }
+}
