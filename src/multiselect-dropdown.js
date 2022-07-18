@@ -43,6 +43,7 @@ function otherOp(o, el, list) {
 
 function refreshElse(sels, el, config, div) {
   sels.map(x=>{
+    console.log('hide value', el.attributes['multiselect-hide-x']?.value)
     let c = newEl('span',{class:'optext',text:x.text, srcOption: x});
     console.log('c.srcOption.listitemEl', c.srcOption.listitemEl, el.id)
     if((el.attributes['multiselect-hide-x']?.value !== 'true'))
