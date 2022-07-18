@@ -47,6 +47,7 @@ function refreshElse(sels, el, config, div) {
     let c = newEl('span',{class:'optext',text:x.text, srcOption: x});
     console.log('c.srcOption.listitemEl', c.srcOption.listitemEl, el.id)
     if((el.attributes['multiselect-hide-x']?.value !== 'true'))
+      console.log('add on click')
       c.appendChild(newEl('span',{class:'optdel',text:'🗙',title:config.txtRemove, onclick:(ev)=>{
         console.log('div refresh on click c.srcOption.listitemEl', c.srcOption.listitemEl, el.id)
         c.srcOption.listitemEl.dispatchEvent(new Event('click'));
