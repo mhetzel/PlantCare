@@ -8,6 +8,7 @@ const pageAccessedByReload = (
       .map((nav) => nav.type)
       .includes('reload')
 );
-$('select[multiple]').multiselect();
+
 setupNewPlantDropdowns();
 initGoogleAPIs();
+$('select[multiple]').multiselect();
