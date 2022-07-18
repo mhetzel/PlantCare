@@ -44,28 +44,14 @@ function resetUpdatedPlantInfo() {
   setupUpdatedPlantDropdowns();
 }
 
-function getUpdatedPlantInfo(plant) {
-  let newPlantInfo = {}
-
-  newPlantInfo['water'] = $("#updatedPlantWaterNeeds").prop('selectedIndex');
-  newPlantInfo['light'] = $("#updatedPlantLightNeeds").prop('selectedIndex');
-  newPlantInfo['waterInstructions'] = $("#updatedPlantWaterInstructions").val();
-  newPlantInfo['soil'] = $("#updatedPlantSoilPreferences").val();
-  newPlantInfo['fertilzerFrequency'] = $("#updatedPlantFertilizer").val();
-  newPlantInfo['fertilzerDose'] = $("#updatedPlantFertilizerDose").val();
-  newPlantInfo['petSafe'] = $("#updatedPlantPetSafe").val();
-  newPlantInfo['humidity'] = $("#updatedPlantHumitidy").val();
-  
-  return {...plant, ...newPlantInfo}
-};
-
 async function updatePlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
   let plant = PlantData[location][plantName];
   delete PlantData[location][plantName];
 
-  PlantData[location][plantName] = getUpdatedPlantInfo(plant)
+  let newPlantInfo = readPlantInputs("#updated");
+  PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo}
   await saveConfig(PlantData);
 };
 
@@ -166,7 +152,6 @@ function readPlantInputs(idPrefix) {
   return inputs
 }
 
-
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val()
   let newName = $("#newPlantName").val()
@@ -180,7 +165,7 @@ async function addNewPlant() {
     }
     
     let inputs = readPlantInputs("#new");
-    PlantData[newLocation][newName] = {PlantData[newLocation][newName], ...inputs};
+    PlantData[newLocation][newName] = {...PlantData[newLocation][newName], ...inputs};
   
     let lastWatered = $("#newPlantLastWatered").val();
     if (lastWatered) {
