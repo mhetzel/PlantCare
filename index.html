@@ -16,7 +16,11 @@
     <script src="src/definitions.js"></script>
     <script src="src/multiselect-dropdown.js"></script>
     <script src="src/googleClients.js"></script>
-
+    
+    
+    <link rel="stylesheet" type="text/css" href="src/jquery.multiselect.css">
+    
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +39,25 @@
         <option value="Sensitive to Flouride.">Sensitive to Flouride.</option>
         <option value="Do not allow water to contact the leaves. Water from below.">Do not allow water to contact the leaves. Water from below.</option>
       </select>
+      
+      <select name="langOpt[]" multiple="" id="langOpt" class="jqmsLoaded" style="display: none;">
+                <option value="C++">C++</option>
+                <option value="C#">C#</option>
+                <option value="Java">Java</option>
+                <option value="Objective-C">Objective-C</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Perl">Perl</option>
+                <option value="PHP">PHP</option>
+                <option value="Ruby on Rails">Ruby on Rails</option>
+                <option value="Android">Android</option>
+                <option value="iOS">iOS</option>
+                <option value="HTML">HTML</option>
+                <option value="XML">XML</option>
+                </select>
+      
     </div>
+    
+    
 
     <div id="login-div" class="content-box" style="display:none;">
       <h2>Plant Care Account Settings</h2>
@@ -174,6 +196,6 @@
     
     <script src="index.js"></script>
     <script src="src/plantActions.js"></script>
-    
+    <script src="src/jquery.multiselect.js"></script>
   </body>
 </html>
