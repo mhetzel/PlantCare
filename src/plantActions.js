@@ -52,6 +52,7 @@ async function updatePlant() {
 
   let newPlantInfo = readPlantInputs("#updated");
   PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo}
+  toggleUpdatePlantForm();
   await saveConfig(PlantData);
 };
 
