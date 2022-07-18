@@ -21,6 +21,7 @@ function openNewPlantForm() {
     $("#config-div").hide();
     $("#changing-div").show();
     $("#plantForm").show();
+    MultiselectDropdown();
     $("#plant-infos").hide();
     setupNewPlantDropdowns();
   }
