@@ -15,7 +15,7 @@ var light = $('#light');
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
-
+// TODO share these two
 function setupUpdatedPlantDropdowns() {
   $('#updatedPlantPetSafe').prop('selectedIndex', 0);
   setDropdown($('#updatedPlantWaterNeeds'), WaterList);
@@ -25,8 +25,6 @@ function setupUpdatedPlantDropdowns() {
   setDropdown($('#updatedPlantFertilizerDose'), FertilizerDoses);
   setDropdown($('#updatedPlantLightNeeds'), LightList);
   setDropdown($('#updatedPlantHumitidy'), HumidityLevels);
-
-  $( ".multiselect-dropdown").css('width', '100%')
 }
 
 function setupNewPlantDropdowns() {
@@ -38,8 +36,6 @@ function setupNewPlantDropdowns() {
   setDropdown($('#newPlantFertilizerDose'), FertilizerDoses);
   setDropdown($('#newPlantLightNeeds'), LightList);
   setDropdown($('#newPlantHumitidy'), HumidityLevels);
-  
-  $( ".multiselect-dropdown").css('width', '100%')
 };
 
 
