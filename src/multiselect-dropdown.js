@@ -83,14 +83,19 @@ function divRefresh(div, el, config, list) {
   div.querySelectorAll('span.optext, span.placeholder').forEach(t=>div.removeChild(t));
   console.log('calling array from', el.selectedOptions, el.id)
   let sels = Array.from(el.selectedOptions); 
-  console.log('refresh', sels, el.id)
+  console.log('refresh', sels, el.id, sels.length)
   if(sels.length>(el.attributes['multiselect-max-items']?.value??5)){
+    console.log('appending child')
     div.appendChild(newEl('span',{class:['optext','maxselected'],text:sels.length+' '+config.txtSelected}));          
   }
   else{
+    console.log('refresh else')
     refreshElse(sels, el, config, div);
   }
-  if(0==el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
+  if(0==el.selectedOptions.length) {
+    console.log('selected options is 0')
+    div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
+  }
 }
 
 function setListeners(search, list, div, listWrap) {
