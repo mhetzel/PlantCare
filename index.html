@@ -14,14 +14,11 @@
 
     <script src="src/jquery-3.6.0.min.js"></script>
     <script src="src/definitions.js"></script>
-
     <script src="src/googleClients.js"></script>
     
-    
     <link rel="stylesheet" type="text/css" href="src/jquery.multiselect.css">
-    
-    
     <link rel="stylesheet" href="style.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -82,8 +79,6 @@
             <label for="newPlantWaterInstructions"><b>Watering Instructions:</b></label>
             <select name="newPlantWaterInstructions[]" multiple  id="newPlantWaterInstructions"></select>
           </div>
-
-
           <div>
             <label for="newPlantSoilPreferences"><b>Soil Preferences:</b></label>
             <select id="newPlantSoilPreferences"></select>
@@ -115,9 +110,7 @@
         </form>
       </div>
 
-
       <div id="config-div" style="display:none;">
-        
         <button>
           <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i></label>
         </button>
@@ -127,9 +120,7 @@
           <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
         </a>
         <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-
       </div>
-
     </div>
 
     <div id="plant-infos" name="plant-infos" class="content-box" style="display:none">
