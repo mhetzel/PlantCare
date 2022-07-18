@@ -82,7 +82,7 @@
 
 .ms-options-wrap > .ms-options > ul li.selected label,
 .ms-options-wrap > .ms-options > ul label:hover {
-    background-color: #efefef;
+    background-color: rgba(118, 214, 174, 0.9);
 }
 
 .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
