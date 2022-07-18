@@ -49,7 +49,6 @@ async function updatePlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
   let plant = PlantData[location][plantName];
-  delete PlantData[location][plantName];
 
   let newPlantInfo = readPlantInputs("#updated");
   PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo}
