@@ -41,6 +41,7 @@ function resetUpdatedPlantInfo() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
   let plant = PlantData[location][plantName];
+  // TODO load plant info into inputs from plant
   setupUpdatedPlantDropdowns();
 }
 
