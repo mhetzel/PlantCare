@@ -144,11 +144,66 @@
 
       <div id="plant-buttons">
         <button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>
-        <button onclick="movePlant()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        <button onclick="toggleMovePlantForm()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        <button onclick="toggleUpdatePlantForm()" title="Edit Plant"><i class="fa-solid fa-pencil"></i></button>
         <button onclick="deletePlant()" title="Delete Plant"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>
 
+    <div id="moving-location-div" class="content-box" style="display: none; position: absolute; padding-top: 2em; top: 20px;">
+      <form class="form-container" action="javascript:console.log( 'success!' );">
+        <div class="top-right">
+          <button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+          <button type="button" onclick="toggleMovePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>  
+        <label for="movedPlantLocation"><b>New Location:</b></label>
+        <input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>
+      </form>
+    </div>
+
+    <div id="updating-plant-div" class="content-box" style="display: none; position: absolute; padding-top: 2em; top: 20px;">
+      <form class="form-container" action="javascript:console.log( 'success!' );">
+        <div class="top-right">
+          <button type="submit" onclick="updatePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+          <button type="button" onclick="toggleUpdatePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>  
+        <div>
+          <label for="updatedPlantWaterNeeds"><b>Water When:</b></label>
+          <select id="updatedPlantWaterNeeds" required></select>
+        </div>
+        <div>
+          <label for="updatedPlantWaterInstructions"><b>Watering Instructions:</b></label>
+          <select multiple id="updatedPlantWaterInstructions"></select>
+        </div>
+        <div>
+          <label for="updatedPlantSoilPreferences"><b>Soil Preferences:</b></label>
+          <select id="updatedPlantSoilPreferences"></select>
+        </div>
+        <div>
+          <label for="updatedPlantFertilizer"><b>Fertilizer Frequency:</b></label>
+          <select id="updatedPlantFertilizer"></select>
+        </div>
+        <div>
+          <label for="updatedPlantFertilizerDose"><b>Fertilizer Dose:</b></label>
+          <select id="updatedPlantFertilizerDose"></select>
+        </div>
+        <div>
+          <label for="updatedPlantLightNeeds"><b>Light:</b></label>
+          <select id="updatedPlantLightNeeds" required></select>
+        </div>
+        <div>
+          <label for="updatedPlantPetSafe"><b>Pet Safe:</b></label>
+          <select id="updatedPlantPetSafe">
+            <option>false</option>
+            <option>true</option>
+          </select>
+        </div>
+        <div>
+          <label for="updatedPlantHumitidy"><b>Humidity Needs:</b></label>
+          <select id="updatedPlantHumitidy"></select>
+        </div>
+      </form>
+    </div>
 
     <script src="src/dropdowns.js"></script>
     <script src="src/menu.js"></script>

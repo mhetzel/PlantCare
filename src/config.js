@@ -2,9 +2,11 @@ const STORAGE_KEY = 'plantCareData'
 let DriveFileID = null;
 
 
+// TODO move this somewhere else
 function setupDisplay() {
   dropdownSetup();
   hideLoginPage();
+  $("#plantForm").hide();
   setDisplayForNoPlants();
 }
 
@@ -26,7 +28,7 @@ async function saveConfig(plantData) {
     await findOrCreateConfig();
     await writeFile(DriveFileID, plantData);
   } else {
-    localStorage.setItem(StorageKey, JSON.stringify(plantData));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(plantData));
   }
   setupDisplay();
 };
