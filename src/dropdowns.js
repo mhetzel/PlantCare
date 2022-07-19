@@ -38,7 +38,6 @@ function setupNewPlantDropdowns() {
   setDropdown($('#newPlantHumitidy'), HumidityLevels);
 };
 
-
 function setDropdown(dropdown, list) {
   dropdown.empty();
   list.forEach(function(x) {

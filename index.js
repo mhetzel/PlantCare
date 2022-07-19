@@ -12,3 +12,4 @@ const pageAccessedByReload = (
 setupNewPlantDropdowns();
 setupUpdatedPlantDropdowns();
 initGoogleAPIs();
+$('select[multiple]').multiselect();

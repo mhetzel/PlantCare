@@ -36,6 +36,7 @@ function setDisplayForNoPlants() {
     $("#plant-infos").show();
     $("#changing-div").hide();
     $("#config-div").hide();
+    $("#plantForm").hide();
   }
 }
 
