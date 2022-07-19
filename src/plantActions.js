@@ -137,7 +137,7 @@ async function movePlant() {
   
   await dropdownSetup();
   locationDropdown.val(newLocation);
-  resetPlantSelection(locationIndex, plantIndex)
+  resetPlantSelection(locationDropdown.prop('selectedIndex'), plantIndex)
 };
 
 async function deletePlant() {
