@@ -1,17 +1,6 @@
 var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
-var averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
-var currentWetness = $('#currentWetness');
-var lastChecked = $('#lastChecked');
-var lastWatered = $('#lastWatered');
-var water = $('#water');
-var waterInstructions = $('#waterInstructions');
-var soil = $('#soil');
-var fertilzerFrequency = $('#fertilzerFrequency');
-var fertilzerDose = $('#fertilzerDose');
-var petSafe = $('#petSafe');
-var humidity = $('#humidity');
-var light = $('#light');
+
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
