@@ -135,8 +135,8 @@ async function movePlant() {
   toggleMovePlantForm();
   await saveConfig(PlantData);
   
-  // TODO find index of new location
-  // TODO update dropdown with new location
+  await dropdownSetup();
+  locationDropdown.val(newLocation);
   resetPlantSelection(locationIndex, plantIndex)
 };
 
