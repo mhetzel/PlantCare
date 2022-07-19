@@ -5,6 +5,7 @@ function openConfigForm() {
   } else {
     $("#plantForm").hide();
     $("#plant-infos").hide();
+    $("#login-div").hide();
     $("#changing-div").show();
     $("#config-div").show();
   }
@@ -37,6 +38,7 @@ function setDisplayForNoPlants() {
     $("#changing-div").hide();
     $("#config-div").hide();
     $("#plantForm").hide();
+    $("#login-div").hide();
   }
 }
 
