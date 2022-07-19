@@ -1,3 +1,17 @@
+var averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
+var currentWetness = $('#currentWetness');
+var lastChecked = $('#lastChecked');
+var lastWatered = $('#lastWatered');
+var lastFertilized = $('#lastFertilized');
+var water = $('#water');
+var waterInstructions = $('#waterInstructions');
+var soil = $('#soil');
+var fertilzerFrequency = $('#fertilzerFrequency');
+var fertilzerDose = $('#fertilzerDose');
+var petSafe = $('#petSafe');
+var humidity = $('#humidity');
+var light = $('#light');
+
 async function fertilizePlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
