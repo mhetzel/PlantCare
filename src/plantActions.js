@@ -59,11 +59,16 @@ async function updatePlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
   let plant = PlantData[location][plantName];
-
+  let locationIndex = locationDropdown.prop('selectedIndex')
+  let plantIndex = plantDropdown.prop('selectedIndex')
+  
   let newPlantInfo = readPlantInputs("#updated");
   PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo}
+  
   toggleUpdatePlantForm();
+  
   await saveConfig(PlantData);
+  resetPlantSelection(locationIndex, plantIndex);
 };
 
 function toggleMovePlantForm() {
