@@ -38,15 +38,18 @@ async function retrievePlantData() {
     retrievedObject = localStorage.getItem(STORAGE_KEY);
   }
   
-  if (retrievedObject === null) {
-    // todo 'now'
-    console.log('initializing plant data storage')
-    await saveConfig({});
-  } else {
+  if (retrievedObject) {
     // todo compare timestamp before setting PlantData
-    PlantData = JSON.parse(retrievedObject)['plants'];
-    Timestamp = JSON.parse(retrievedObject)['timestamp']
+    let fileData = JSON.parse(retrievedObject);
+    if (fileData.hasOwnProperty('timestamp')) {
+      Timestamp = JSON.parse(retrievedObject)['timestamp'];
+    }
+    if (fileData.hasOwnProperty('plants')) {
+      PlantData = JSON.parse(retrievedObject)['plants'];
+    }
   }
+  console.log('initializing plant data storage');
+  saveConfig(PlantData);
 };
 
 async function findOrCreateConfig() {
