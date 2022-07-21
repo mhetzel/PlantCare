@@ -12,7 +12,7 @@ async function loadPlants() {
   } else {
     alert('Sorry no way to store your plant info. Try a different browser')
   }
-};
+}
 
 // TODO: check last updated timestamp to avoid losing data
 async function saveConfig(plantData) {
@@ -26,7 +26,7 @@ async function saveConfig(plantData) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fileData));
   }
   setupDisplay();
-};
+}
 
 async function retrievePlantData() {  
   let retrievedObject = null;
@@ -47,12 +47,12 @@ async function retrievePlantData() {
     if (fileData.hasOwnProperty('plants')) {
       PlantData = fileData['plants'];
     } else {
-      PlantData = fileData
+      PlantData = fileData;
     }
   }
   console.log('initializing plant data storage');
   saveConfig(PlantData);
-};
+}
 
 async function findOrCreateConfig() {
   if (!GuestMode) {
@@ -64,7 +64,7 @@ async function findOrCreateConfig() {
   } else {
     console.log('No drive access as Guest')
   }
-};
+}
 
 /*
  * Local File Functions
@@ -78,10 +78,10 @@ async function uploadConfig(event) {
   PlantData = JSON.parse(text);
   await saveConfig(PlantData);
   console.log('config saved')
-};
+}
 
 function downloadConfig() {
   let saveLink = $('#configText');
   var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(PlantData));
   saveLink.attr("href", dataStr);
-};
+}

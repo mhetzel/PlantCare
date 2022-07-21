@@ -32,4 +32,4 @@ async function intializeGapiClient() {
   gapiInited = true;
   determineUserMode();
   displayLoginPage(); 
-};
+}

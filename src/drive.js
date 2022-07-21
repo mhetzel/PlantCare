@@ -19,7 +19,7 @@ async function readFile(fileID) {
     });
   }
   return data;
-};
+}
  
 async function writeFile(fileID, data) {
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
@@ -36,7 +36,7 @@ async function writeFile(fileID, data) {
     console.log('Updated. Result:\n' + JSON.stringify(value, null, 2));
   })
   .catch(err => console.error(err))
-};
+}
  
 async function getFileID(folderID) {
   let response;
@@ -61,7 +61,7 @@ async function getFileID(folderID) {
           'name': 'data.json', // Filename at Google Drive
           'mimeType': 'text/plain', // mimeType at Google Drive
           'parents': [folderID], // Folder ID at Google Drive
-      };
+      }
 
       var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
       var form = new FormData();
@@ -83,7 +83,7 @@ async function getFileID(folderID) {
     }
   }
   return id;
-};
+}
  
 async function getFolderID() {
   let id = await gapi.client.drive.files.list({
@@ -98,7 +98,7 @@ async function getFolderID() {
         'name' : 'PlantCare',
         'mimeType' : 'application/vnd.google-apps.folder',
         'parents': ['root']
-      };
+      }
       gapi.client.drive.files.create({
         resource: fileMetadata,
       }).then(function(response) {
@@ -123,4 +123,4 @@ async function getFolderID() {
     }
   });
   return id;
-};
+}
