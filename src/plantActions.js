@@ -134,8 +134,6 @@ async function movePlant() {
   PlantData[newLocation][plantName] = plant;
   toggleMovePlantForm();
   await saveConfig(PlantData);
-  
-  await dropdownSetup();
   locationDropdown.val(newLocation);
   resetPlantSelection(locationDropdown.prop('selectedIndex'), plantIndex)
 };
@@ -236,7 +234,6 @@ async function addNewPlant() {
     console.log(PlantData[newLocation][newName])
   
     await saveConfig(PlantData);
-    closeForm();
-    $("#plant-infos").show();
+    setDisplayForNoPlants();
   }
 }

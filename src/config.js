@@ -1,15 +1,7 @@
 const STORAGE_KEY = 'plantCareData'
 let DriveFileID = null;
-
-
-// TODO move this somewhere else
-function setupDisplay() {
-  dropdownSetup();
-  hideLoginPage();
-  $("#plantForm").hide();
-  setDisplayForNoPlants();
-}
-
+var PlantData = {}
+var Timestamp = null
 
 async function loadPlants() {
   console.log('load plants')

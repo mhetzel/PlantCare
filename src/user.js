@@ -8,7 +8,7 @@ var UserPicture = '';
 
 let userNameText = $('#user-name');
 let signOutButton = $("#signout-button");
-let loginDiv = $("#login-div");
+
 let signinDiv = $("#signin-div");
 let userPic = $("#profile-pic");
 let guestPic = $("#guest-pic");
@@ -51,30 +51,6 @@ function setupSigninButton() {
       text: "signin_with",
       logo_alignment: "left"}
   )
-};
-
-function displayLoginPage() {
-  if (loginDiv.css('display') == 'block') {
-    hideLoginPage();
-  } else {
-    if (GuestMode) {
-      setupSigninButton();
-      signOutButton.hide();
-    } else {
-      signOutButton.show();
-    }
-
-    loginDiv.show();
-    $("#changing-div").hide();
-    $("#config-div").hide();
-    $("#plant-infos").hide();
-    $("#plantForm").hide();
-  }
-};
-
-function hideLoginPage() {
-  loginDiv.hide();
-  setDisplayForNoPlants();
 };
 
 function parseJwt(token) {

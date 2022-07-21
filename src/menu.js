@@ -1,51 +1,66 @@
+let loginDiv = $("#login-div");
+let configDiv = $("#config-div")
+let plantForm = $("#plantForm")
+let changingDiv = $("#changing-div")
+let plantInfos = $("#plant-infos")
+
 
 function openConfigForm() {
-  if ($("#config-div").css('display') == 'block') {
-    closeForm();
+  closeForm();
+  if (configDiv.css('display') == 'block') {
+    setDisplayForNoPlants();
   } else {
-    $("#plantForm").hide();
-    $("#plant-infos").hide();
-    $("#login-div").hide();
-    $("#changing-div").show();
-    $("#config-div").show();
+    changingDiv.show();
+    configDiv.show();
   }
 }
 
 function openNewPlantForm() {
-  if ($("#plantForm").css('display') == 'block') {
-    closeForm();
+  closeForm();
+  if (plantForm.css('display') == 'block') {
+    setDisplayForNoPlants();
   } else {
-    $("#newPlantName").val('');
-    $("#newPlantLocation").val('');
-    $("#newPlantLastWatered").val(null);
-    $("#newPlantAverageWateringDays").val(null);
-    $("#config-div").hide();
-    $("#login-div").hide();
-    $("#plant-infos").hide();
-    
-    $("#changing-div").show();
-    $("#plantForm").show();
-    
-    setupNewPlantDropdowns();
+    changingDiv.show();
+    plantForm.show();
+    setupNewPlantInput();
   }
 }
 
+function displayLoginPage() {
+  closeForm();
+  if (loginDiv.css('display') == 'block') {
+    setDisplayForNoPlants();
+  } else {
+    if (GuestMode) {
+      setupSigninButton();
+      signOutButton.hide();
+    } else {
+      signOutButton.show();
+    }
+    
+    loginDiv.show();
+  }
+};
+
+function setupDisplay() {
+  dropdownSetup();
+  setDisplayForNoPlants();
+}
+
 function setDisplayForNoPlants() {
+  closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
     openNewPlantForm();
   } else {
-    $("#plant-infos").show();
-    $("#changing-div").hide();
-    $("#config-div").hide();
-    $("#plantForm").hide();
-    $("#login-div").hide();
+    plantInfos.show();
   }
 }
 
 function closeForm() {
-  $("#changing-div").hide();
-  $("#config-div").hide();
-  $("#plantForm").hide();
-  setDisplayForNoPlants();
+  changingDiv.hide();
+  configDiv.hide();
+  plantForm.hide();
+  loginDiv.hide();
+  plantInfos.hide();
 }
 

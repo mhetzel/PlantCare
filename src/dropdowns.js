@@ -16,7 +16,14 @@ function setupUpdatedPlantDropdowns() {
   setDropdown($('#updatedPlantHumitidy'), HumidityLevels);
 }
 
-function setupNewPlantDropdowns() {
+function setupNewPlantInput() {
+
+  $("#newPlantName").val('');
+  $("#newPlantLocation").val('');
+  $("#newPlantLastWatered").val(null);
+  $("#newPlantAverageWateringDays").val(null);
+
+
   $('#newPlantPetSafe').prop('selectedIndex', 0);
   setDropdown($('#newPlantWaterNeeds'), WaterList);
   setDropdown($('#newPlantWaterInstructions'), WateringInstructions);
