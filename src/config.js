@@ -42,10 +42,12 @@ async function retrievePlantData() {
     // todo compare timestamp before setting PlantData
     let fileData = JSON.parse(retrievedObject);
     if (fileData.hasOwnProperty('timestamp')) {
-      Timestamp = JSON.parse(retrievedObject)['timestamp'];
+      Timestamp = fileData['timestamp'];
     }
     if (fileData.hasOwnProperty('plants')) {
-      PlantData = JSON.parse(retrievedObject)['plants'];
+      PlantData = fileData['plants'];
+    } else {
+      PlantData = fileData
     }
   }
   console.log('initializing plant data storage');
