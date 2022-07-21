@@ -1,16 +1,16 @@
-const STORAGE_KEY = 'plantCareData'
+const STORAGE_KEY = 'plantCareData';
 let DriveFileID = null;
-var PlantData = {}
-var Timestamp = null
+var PlantData = {};
+var Timestamp = null;
 
 async function loadPlants() {
-  console.log('load plants')
+  console.log('load plants');
   if (typeof(Storage) !== "undefined") {
     await retrievePlantData();
     console.log('loaded plant config: ', PlantData);
     setupDisplay();
   } else {
-    alert('Sorry no way to store your plant info. Try a different browser')
+    alert('Sorry no way to store your plant info. Try a different browser');
   }
 }
 
@@ -62,7 +62,7 @@ async function findOrCreateConfig() {
       });
     }
   } else {
-    console.log('No drive access as Guest')
+    console.log('No drive access as Guest');
   }
 }
 
@@ -70,14 +70,14 @@ async function findOrCreateConfig() {
  * Local File Functions
  */
 async function uploadConfig(event) {
-  console.log('uploading config')
+  console.log('uploading config');
   const file = event.target.files.item(0);
   
   const text = await file.text();
 
   PlantData = JSON.parse(text);
   await saveConfig(PlantData);
-  console.log('config saved')
+  console.log('config saved');
 }
 
 function downloadConfig() {
