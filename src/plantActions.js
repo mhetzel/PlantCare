@@ -1,3 +1,29 @@
+var averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
+var currentWetness = $('#currentWetness');
+var lastChecked = $('#lastChecked');
+var lastWatered = $('#lastWatered');
+var lastFertilized = $('#lastFertilized');
+var water = $('#water');
+var waterInstructions = $('#waterInstructions');
+var soil = $('#soil');
+var fertilzerFrequency = $('#fertilzerFrequency');
+var fertilzerDose = $('#fertilzerDose');
+var petSafe = $('#petSafe');
+var humidity = $('#humidity');
+var light = $('#light');
+
+async function fertilizePlant() {
+  let location = locationDropdown.val()
+  let plantName = plantDropdown.val()
+  let locationIndex = locationDropdown.prop('selectedIndex')
+  let plantIndex = plantDropdown.prop('selectedIndex')
+  const today = new Date();
+  PlantData[location][plantName].lastFertilized = today.toDateString();
+
+  await saveConfig(PlantData);
+  resetPlantSelection(locationIndex, plantIndex);
+};
+
 async function checkPlant() {
   let location = locationDropdown.val()
   let plantName = plantDropdown.val()
@@ -109,9 +135,9 @@ async function movePlant() {
   toggleMovePlantForm();
   await saveConfig(PlantData);
   
-  // TODO find index of new location
-  // TODO update dropdown with new location
-  resetPlantSelection(locationIndex, plantIndex)
+  await dropdownSetup();
+  locationDropdown.val(newLocation);
+  resetPlantSelection(locationDropdown.prop('selectedIndex'), plantIndex)
 };
 
 async function deletePlant() {
@@ -136,6 +162,7 @@ function setPlantInfo(info) {
     light.text(LightList[info.light]);
     waterInstructions.text(info.waterInstructions)
     soil.text(info.soil)
+    lastFertilized.text(info.lastFertilized)
     fertilzerFrequency.text(info.fertilzerFrequency)
     fertilzerDose.text(info.fertilzerDose)
     petSafe.text(info.petSafe)
@@ -153,6 +180,7 @@ function resetPlantInfo() {
   
   waterInstructions.text('n/a')
   soil.text('n/a')
+  lastFertilized.text('n/a')
   fertilzerFrequency.text('n/a')
   fertilzerDose.text('n/a')
   petSafe.text('n/a')
@@ -190,6 +218,11 @@ async function addNewPlant() {
     let lastWatered = $("#newPlantLastWatered").val();
     if (lastWatered) {
       PlantData[newLocation][newName]['lastWatered'] = (new Date(lastWatered)).toDateString();
+    }
+    
+    let lastFertilized = $("#newPlantLastFertilized").val();
+    if (lastFertilized) {
+      PlantData[newLocation][newName]['lastFertilized'] = (new Date(lastFertilized)).toDateString();
     }
     
     PlantData[newLocation][newName]['daysTotal'] = 0;
