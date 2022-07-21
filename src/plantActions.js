@@ -237,6 +237,6 @@ async function addNewPlant() {
   
     await saveConfig(PlantData);
     closeForm();
-     $("#plant-infos").show();
+    $("#plant-infos").show();
   }
 }

@@ -24,6 +24,7 @@ async function loadPlants() {
 
 // TODO: check last updated timestamp to avoid losing data
 async function saveConfig(plantData) {
+  // todo compare timestamp before writing to storage
   if (!GuestMode) {
     await findOrCreateConfig();
     await writeFile(DriveFileID, plantData);
@@ -34,17 +35,22 @@ async function saveConfig(plantData) {
 };
 
 async function retrievePlantData() {  
+  let retrievedObject = null;
+
   if (!GuestMode) {
     await findOrCreateConfig();
-    PlantData = await readFile(DriveFileID);
+    retrievedObject = await readFile(DriveFileID);
   } else {
-    var retrievedObject = localStorage.getItem(STORAGE_KEY);
-    if (retrievedObject === null) {
-      console.log('initializing plant data storage')
+    retrievedObject = localStorage.getItem(STORAGE_KEY);
+  }
+  
+  if (retrievedObject === null) {
+    // todo 'now'
+    console.log('initializing plant data storage')
       await saveConfig({});
-    } else {
-      PlantData = JSON.parse(retrievedObject);
-    }
+  } else {
+    // todo compare timestamp before setting PlantData
+    PlantData = JSON.parse(retrievedObject);
   }
 };
 
