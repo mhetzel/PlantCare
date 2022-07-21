@@ -115,15 +115,18 @@
       </div>
 
       <div id="config-div" style="display:none;">
+        <h2>Config File Management</h2>
+        <div class="top-right">
+          <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>  
         <button>
-          <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i></label>
+          <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
         </button>
         <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
 
         <a id="configText" download="plantData.json" href="">
-          <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i></button>
+          <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
         </a>
-        <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
       </div>
     </div>
 
