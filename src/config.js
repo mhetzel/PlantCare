@@ -14,11 +14,9 @@ async function loadPlants() {
   }
 }
 
-// TODO: check last updated timestamp to avoid losing data
 async function saveConfig(plantData) {
-  // todo now
-  let fileData = {'timestamp': 'now', 'plants': plantData}
-  // todo compare timestamp before writing to storage
+  let fileData = {'timestamp': Date.now(), 'plants': plantData}
+  // todo compare timestamp before writing to storage?
   if (!GuestMode) {
     await findOrCreateConfig();
     await writeFile(DriveFileID, fileData);
@@ -39,7 +37,6 @@ async function retrievePlantData() {
   }
   
   if (retrievedObject) {
-    // todo compare timestamp before setting PlantData
     let fileData = JSON.parse(retrievedObject);
     if (fileData.hasOwnProperty('timestamp')) {
       Timestamp = fileData['timestamp'];
