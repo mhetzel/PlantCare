@@ -16,7 +16,7 @@ function setupConfigDiv() {
   let uploadInput = $('<input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">')
   let downloadButton = $('<a id="configText" download="plantData.json" href=""><button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button></a>')
   
-  configDiv.append(title, closeButtonDiv, uploadButton, uploadInput, downloDButton);
+  configDiv.append(title, closeButtonDiv, uploadButton, uploadInput, downloadButton);
 }
 
 
