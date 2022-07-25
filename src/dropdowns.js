@@ -1,8 +1,6 @@
 var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
 
-var plantInfo = $('#plant-info');
-var plantButtons = $('#plant-buttons');
 
 function dropdown(prefix) {
   $(prefix+'PlantPetSafe').prop('selectedIndex', 0);
@@ -50,8 +48,7 @@ function resetPlantDropdown() {
   plantDropdown.empty();
   plantDropdown.append('<option selected="true" disabled>Choose Plant</option>');
   plantDropdown.prop('selectedIndex', 0);
-  plantInfo.hide();
-  plantButtons.hide();
+  hidePlantInfo();
 }
 
 function plantSelectionChange() {
