@@ -129,10 +129,11 @@ async function deletePlant() {
 };
 
 function setPlantInfo(info) {
+  resetPlantInfo();
+  plantInfo.show();
+  plantButtons.show();
+    
   if (Object.keys(info).length) {
-    plantInfo.show();
-    plantButtons.show();
-    resetPlantInfo();
     let average = info.daysTotal/info.wateringCount;
     averageDaysBetweenWatering.text(isNaN(average) ? 'n/a' : Math.floor(average));
     currentWetness.prop('selectedIndex', info.currentWetness);
