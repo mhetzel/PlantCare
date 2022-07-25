@@ -34,9 +34,6 @@ function setDropdown(dropdown, list) {
   dropdown.prop('selectedIndex', 0);
 }
 
-function setupCurrentWetness() {
-  setDropdown(currentWetness, WaterList);
-}
 
 function resetLocationDropdown() {
   locationDropdown.empty();
