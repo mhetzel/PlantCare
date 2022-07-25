@@ -14,6 +14,26 @@ let signOutButton = $("#signout-button");
 let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
+
+function toggleMovePlantForm() {
+  $("#movedPlantLocation").val('');
+  if ($("#move-location-div").css('display') == 'block') {
+    $("#move-location-div").hide();
+  } else {
+    $("#move-location-div").show();
+  }
+};
+
+function toggleUpdatePlantForm() {
+  resetUpdatedPlantInfo()
+  if ($("#update-plant-div").css('display') == 'block') {
+    $("#update-plant-div").hide();
+  } else {
+    $("#update-plant-div").show();
+  }
+};
+
+
 function openConfigForm() {
   if (configDiv.css('display') == 'block') {
     setDisplayForNoPlants();
