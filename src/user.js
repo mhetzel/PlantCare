@@ -94,9 +94,7 @@ function signedIn() {
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } 
-  
-  signOutButton.show();
-  signinDiv.hide();
+
   loadPlants();
 }
 
@@ -111,8 +109,6 @@ function signedOut() {
   GuestMode = true;
   User = 'Guest';
   
-  signOutButton.hide();
-  signinDiv.show();
   loadPlants();
 };
 
