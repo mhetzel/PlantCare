@@ -46,21 +46,6 @@
         <button id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i></button>
     </div>
     
-    <div id="config-div" class="content-box">
-      <h2>Config File Management</h2>
-      <div class="top-right">
-        <button type="button" onclick="closeAndShowPlants()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-      </div>  
-      <button>
-        <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
-      </button>
-      <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
-
-      <a id="configText" download="plantData.json" href="">
-        <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
-      </a>
-    </div>
-
     <div id="add-pant-div" class="content-box">
       <form class="form-container" action="javascript:console.log( 'success!' );">
         <div class="top-right">
@@ -215,6 +200,8 @@
     <script src="src/drive.js"></script>
     <script src="src/config.js"></script>
     <script src="src/libs/jquery.multiselect.js"></script>
+    
+    <script src="mgmt/configHTML.js"></script>
     <script src="src/index.js"></script>
     <script src="src/plantActions.js"></script>
     
