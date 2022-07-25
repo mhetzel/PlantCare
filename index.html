@@ -27,27 +27,26 @@
   </head>
   <body>
  
-    <div id="login-div" class="content-box" style="display:none;">
+    <div id="login-div" class="content-box">
       <h2>Plant Care Account Settings</h2>
       <div class="top-right"><button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button></div>
-      <div style="width: 15em;" id="signin-div"></div>
-      <div style="width: 15em; height: 3em;" >
-        <img id="profile-pic" style="position: fixed; border-radius: 50%; border: 1px solid #0d1b19; width: 2.5em;" src="">
-        <span id="guest-pic" style="display:none; padding-top: 10px; position: fixed;"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>
-        <span style="position: fixed; padding-left: 3em;"><div>Currently signed in as: </div><div id="user-name">Guest</div></span>
+      <div id="signin-div"></div>
+      <div id="user-div">
+        <img id="profile-pic" src="">
+        <span id="guest-pic"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>
+        <span id="current-span"><div>Currently signed in as: </div><div id="user-name">Guest</div></span>
       </div>
       <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
     </div>
     
-    <div class="menu-box">
+    <div id="menu-div" class="menu-box">
         <button id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
         <button id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
         <button id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
         <button id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i></button>
     </div>
     
-
-    <div id="config-div" class="content-box" style="display:none;">
+    <div id="config-div" class="content-box">
       <h2>Config File Management</h2>
       <div class="top-right">
         <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
@@ -62,7 +61,7 @@
       </a>
     </div>
 
-    <div id="plantForm" class="content-box" style="display:none">
+    <div id="add-pant-div" class="content-box">
       <form class="form-container" action="javascript:console.log( 'success!' );">
         <div class="top-right">
           <button type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
@@ -127,7 +126,7 @@
       </form>
     </div>
 
-    <div id="plant-infos" name="plant-infos" class="content-box" style="display:none">
+    <div id="plant-info-div" class="content-box">
       <select id="location-dropdown" onchange="locationSelectionChange()"></select>
       <select id="plant-dropdown" onchange="plantSelectionChange()"></select>
 
@@ -155,7 +154,7 @@
       </div>
     </div>
 
-    <div id="moving-location-div" class="content-box" style="display: none; position: absolute; padding-top: 2em; top: 20px;">
+    <div id="move-location-div" class="content-box floating-box">
       <form class="form-container" action="javascript:console.log( 'success!' );">
         <div class="top-right">
           <button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
@@ -166,7 +165,7 @@
       </form>
     </div>
 
-    <div id="updating-plant-div" class="content-box" style="display: none; position: absolute; padding-top: 2em; top: 20px;">
+    <div id="update-plant-div" class="content-box floating-box">
       <form class="form-container" action="javascript:console.log( 'success!' );">
         <div class="top-right">
           <button type="submit" onclick="updatePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>

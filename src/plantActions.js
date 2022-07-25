@@ -99,19 +99,19 @@ async function updatePlant() {
 
 function toggleMovePlantForm() {
   $("#movedPlantLocation").val('');
-  if ($("#moving-location-div").css('display') == 'block') {
-    $("#moving-location-div").hide();
+  if ($("#move-location-div").css('display') == 'block') {
+    $("#move-location-div").hide();
   } else {
-    $("#moving-location-div").show();
+    $("#move-location-div").show();
   }
 };
 
 function toggleUpdatePlantForm() {
   resetUpdatedPlantInfo()
-  if ($("#updating-plant-div").css('display') == 'block') {
-    $("#updating-plant-div").hide();
+  if ($("#update-plant-div").css('display') == 'block') {
+    $("#update-plant-div").hide();
   } else {
-    $("#updating-plant-div").show();
+    $("#update-plant-div").show();
   }
 };
 
