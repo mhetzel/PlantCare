@@ -27,9 +27,13 @@ function setCurrentUserDisplay(userName, userPicture) {
   if (userName == 'Guest') {
     guestPic.show();
     userPic.hide();
+    signinDiv.show();
+    signOutButton.hide();
   } else {
     userPic.attr("src", userPicture);
     userPic.show();
     guestPic.hide();
+    signOutButton.show();
+    signinDiv.hide();
   }
 }
