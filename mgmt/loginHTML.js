@@ -2,11 +2,11 @@
 //needs menu.js
 
 var loginDiv = $("#login-div");
-let signinDiv = none;
-let userPic = none;
-let guestPic = none;
-let userNameText = none;
-let signOutButton = none;
+let signinDiv = null;
+let userPic = null;
+let guestPic = null;
+let userNameText = null;
+let signOutButton = null;
 
 
 function setupLoginDiv() {
