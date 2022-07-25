@@ -6,12 +6,6 @@ var GuestMode = false;
 var User = 'Guest';
 var UserPicture = '';
 
-let userNameText = $('#user-name');
-let signOutButton = $("#signout-button");
-
-let signinDiv = $("#signin-div");
-let userPic = $("#profile-pic");
-let guestPic = $("#guest-pic");
 
 function determineUserMode() {
   GuestMode = localStorage.getItem('guestMode') == 'true';
