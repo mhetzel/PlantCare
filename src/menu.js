@@ -1,7 +1,7 @@
 let loginDiv = $("#login-div");
 let configDiv = $("#config-div");
 let plantForm = $("#add-pant-div");
-let plantInfos = $("#plant-info-div");
+let plantInfos = $("#display-plant-div");
 
 function openConfigForm() {
   closeForm();
