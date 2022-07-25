@@ -1,4 +1,5 @@
 addCloseButtons();
+setCurrentUserDisplay('Guest', null);
 
 setupNewPlantInput();
 setupUpdatedPlantDropdowns();
