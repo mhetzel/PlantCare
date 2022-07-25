@@ -21,3 +21,15 @@ function addCloseButtons() {
   closeButtonDiv.append(closeButton);
    $("h2").after(closeButtonDiv);
 }
+
+function setCurrentUserDisplay(userName, userPicture) {
+  userNameText.text(userName);
+  if (userName == 'Guest') {
+    guestPic.show();
+    userPic.hide();
+  } else {
+    userPic.attr("src", userPicture);
+    userPic.show();
+    guestPic.hide();
+  }
+}
