@@ -15,7 +15,7 @@ var configDiv = $("#config-div")
 
 function addCloseButtons() {
   let closeButtonDiv = $("<div></div>").addClass("top-right");
-  let closeButton = $('<button title="Close"></button').click(closeAndShowPlants());
+  let closeButton = $('<button title="Close"></button').click(setDisplayForNoPlants());
   let closeIcon = $('<i></i>').addClass("fa-solid fa-xmark");
   closeButton.append(closeIcon);
   closeButtonDiv.append(closeButton);
