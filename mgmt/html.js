@@ -16,7 +16,7 @@ let plantInfos = $("#display-plant-div");
 
 function openConfigForm() {
   if (configDiv.css('display') == 'block') {
-    closeAndShowPlants();
+    setDisplayForNoPlants();
   } else {
     closeForm();
     configDiv.show();
@@ -25,7 +25,7 @@ function openConfigForm() {
 
 function openNewPlantForm() {
   if (plantForm.css('display') == 'block') {
-    closeAndShowPlants();
+    setDisplayForNoPlants();
   } else {
     closeForm();
     plantForm.show();
@@ -35,7 +35,7 @@ function openNewPlantForm() {
 
 function displayLoginPage() {
   if (loginDiv.css('display') == 'block') {
-    closeAndShowPlants();
+    setDisplayForNoPlants();
   } else {
     closeForm();
     if (GuestMode) {
