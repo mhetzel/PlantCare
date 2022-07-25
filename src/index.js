@@ -1,3 +1,4 @@
+setupConfigDiv();
 setupNewPlantInput();
 setupUpdatedPlantDropdowns();
 initGoogleAPIs();
