@@ -2,16 +2,73 @@
 //needs menu.js
 // needs config.js
 
-var loginDiv = $("#login-div");
+let loginDiv = $("#login-div");
+let configDiv = $("#config-div")
+
 let signinDiv = $("#signin-div");
 let userPic = $("#profile-pic");
 let guestPic = $("#guest-pic");
 let userNameText = $("#user-name");
 let signOutButton = $("#signout-button");
 
+let plantForm = $("#add-pant-div");
+let plantInfos = $("#display-plant-div");
 
-var configDiv = $("#config-div")
+function openConfigForm() {
+  if (configDiv.css('display') == 'block') {
+    closeAndShowPlants();
+  } else {
+    closeForm();
+    configDiv.show();
+  }
+}
 
+function openNewPlantForm() {
+  if (plantForm.css('display') == 'block') {
+    closeAndShowPlants();
+  } else {
+    closeForm();
+    plantForm.show();
+    setupNewPlantInput();
+  }
+}
+
+function displayLoginPage() {
+  if (loginDiv.css('display') == 'block') {
+    closeAndShowPlants();
+  } else {
+    closeForm();
+    if (GuestMode) {
+      setupSigninButton();
+      signOutButton.hide();
+    } else {
+      signOutButton.show();
+    }
+    
+    loginDiv.show();
+  }
+};
+
+function setupDisplay() {
+  dropdownSetup();
+  setDisplayForNoPlants();
+}
+
+function setDisplayForNoPlants() {
+  closeForm();
+  if (!PlantData || Object.keys(PlantData).length === 0) {
+    openNewPlantForm();
+  } else {
+    plantInfos.show();
+  }
+}
+
+function closeForm() {
+  configDiv.hide();
+  plantForm.hide();
+  loginDiv.hide();
+  plantInfos.hide();
+}
 
 function addCloseButtons() {
   let closeButtonDiv = $("<div></div>").addClass("top-right");
