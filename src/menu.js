@@ -1,4 +1,3 @@
-let loginDiv = $("#login-div");
 let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
