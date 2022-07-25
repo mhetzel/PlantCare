@@ -2,34 +2,17 @@
 //needs menu.js
 
 var loginDiv = $("#login-div");
-let signinDiv = null;
-let userPic = null;
-let guestPic = null;
-let userNameText = null;
-let signOutButton = null;
+let signinDiv = $("signin-div");
+let userPic = $("profile-pic");
+let guestPic = $("guest-pic");
+let userNameText = $("user-name");
+let signOutButton = $("signout-button");
 
 
 function setupLoginDiv() {
-  let title = $("<h2></h2>").text("Plant Care Account Settings");
-  
+  let title = $(":contains(Plant Care Account Settings)");
   let closeButtonDiv = createCloseButtonDiv();
-  
-  signinDiv = $('<div id="signin-div"></div>');
-  
-  let currentDiv = $('<div id="user-div"></div>');
-  userPic = $('<img id="profile-pic" src="">');
-  guestPic = $('<span id="guest-pic"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>');
-  
-  let contents = $('<span id="current-span"><div>Currently signed in as: </div></span>');
-  userNameText = $('<div id="user-name">Guest</div>')
-  contents.append(userNameText);
-  currentDiv.append(userPic, guestPic, contents);
-  
-  let signOutDiv = $('<div class="g_id_signout"></div>');
-  signOutButton = $('<button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button>');
-  signOutDiv.append(signOutButton);
-  
-  loginDiv.append(title, closeButtonDiv, signinDiv, currentDiv, signOutDiv);
+  closeButtonDiv.after(title);
 }
 
 function createCloseButtonDiv() {
