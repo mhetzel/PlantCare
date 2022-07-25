@@ -3,11 +3,11 @@
 // needs config.js
 
 var loginDiv = $("#login-div");
-let signinDiv = $("signin-div");
-let userPic = $("profile-pic");
-let guestPic = $("guest-pic");
-let userNameText = $("user-name");
-let signOutButton = $("signout-button");
+let signinDiv = $("#signin-div");
+let userPic = $("#profile-pic");
+let guestPic = $("#guest-pic");
+let userNameText = $("#user-name");
+let signOutButton = $("#signout-button");
 
 
 var configDiv = $("#config-div")
