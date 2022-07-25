@@ -1,16 +1,13 @@
 let loginDiv = $("#login-div");
 let configDiv = $("#config-div");
 let plantForm = $("#plantForm");
-let changingDiv = $("#changing-div");
 let plantInfos = $("#plant-infos");
-
 
 function openConfigForm() {
   closeForm();
   if (configDiv.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
-    changingDiv.show();
     configDiv.show();
   }
 }
@@ -20,7 +17,6 @@ function openNewPlantForm() {
   if (plantForm.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
-    changingDiv.show();
     plantForm.show();
     setupNewPlantInput();
   }
@@ -57,7 +53,6 @@ function setDisplayForNoPlants() {
 }
 
 function closeForm() {
-  changingDiv.hide();
   configDiv.hide();
   plantForm.hide();
   loginDiv.hide();
