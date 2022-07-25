@@ -21,6 +21,13 @@ function setDropdown(dropdown, list) {
   dropdown.prop('selectedIndex', 0);
 }
 
+function resetPlantSelection(locationIndex, plantIndex) {
+  locationDropdown.prop('selectedIndex', locationIndex);
+  locationSelectionChange();
+  plantDropdown.prop('selectedIndex', plantIndex);
+  plantSelectionChange();
+}
+
 function resetLocationDropdown() {
   locationDropdown.empty();
   locationDropdown.append('<option selected="true" disabled>Choose Location</option>');
