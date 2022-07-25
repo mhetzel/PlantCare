@@ -24,13 +24,6 @@ async function checkPlant() {
   resetPlantSelection(locationIndex, plantIndex);
 };
 
-function resetPlantSelection(locationIndex, plantIndex) {
-  locationDropdown.prop('selectedIndex', locationIndex);
-  locationSelectionChange();
-  plantDropdown.prop('selectedIndex', plantIndex);
-  plantSelectionChange();
-}
-
 async function waterPlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
