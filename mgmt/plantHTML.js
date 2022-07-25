@@ -1,3 +1,6 @@
+var plantInfo = $('#plant-info');
+var plantButtons = $('#plant-buttons');
+
 
 var averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
 var currentWetness = $('#currentWetness');
@@ -12,6 +15,11 @@ var fertilzerDose = $('#fertilzerDose');
 var petSafe = $('#petSafe');
 var humidity = $('#humidity');
 var light = $('#light');
+
+function hidePlantInfo() {
+  plantInfo.hide();
+  plantButtons.hide();
+}
 
 function resetPlantInfo() {
   setupCurrentWetness();
