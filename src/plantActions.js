@@ -97,24 +97,6 @@ async function updatePlant() {
   resetPlantSelection(locationIndex, plantIndex);
 };
 
-function toggleMovePlantForm() {
-  $("#movedPlantLocation").val('');
-  if ($("#move-location-div").css('display') == 'block') {
-    $("#move-location-div").hide();
-  } else {
-    $("#move-location-div").show();
-  }
-};
-
-function toggleUpdatePlantForm() {
-  resetUpdatedPlantInfo()
-  if ($("#update-plant-div").css('display') == 'block') {
-    $("#update-plant-div").hide();
-  } else {
-    $("#update-plant-div").show();
-  }
-};
-
 async function movePlant() {
   let newLocation = $("#movedPlantLocation").val();
   let location = locationDropdown.val();
