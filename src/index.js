@@ -1,5 +1,5 @@
-setupLoginDiv();
-setupConfigDiv();
+addCloseButtons();
+
 setupNewPlantInput();
 setupUpdatedPlantDropdowns();
 initGoogleAPIs();
