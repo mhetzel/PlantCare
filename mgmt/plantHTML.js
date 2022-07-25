@@ -22,7 +22,7 @@ function hidePlantInfo() {
 }
 
 function resetPlantInfo() {
-  setupCurrentWetness();
+  setDropdown(currentWetness, WaterList);
   averageDaysBetweenWatering.text('n/a');
   lastChecked.text('n/a');
   lastWatered.text('n/a');
