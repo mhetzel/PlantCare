@@ -2,6 +2,8 @@ addCloseButtons();
 setCurrentUserDisplay('Guest', null);
 
 setupNewPlantInput();
-setupUpdatedPlantDropdowns();
+
+dropdown('#updated');
+
 initGoogleAPIs();
 $('select[multiple]').multiselect();
