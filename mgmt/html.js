@@ -13,9 +13,7 @@ let signOutButton = $("signout-button");
 var configDiv = $("#config-div")
 
 function addCloseButtons() {
-  let title = $(":contains(Config File Management)");
-  createCloseButtonDiv(title);
-  title = $(":contains(Plant Care Account Settings)");
+  let title = $("h2");
   createCloseButtonDiv(title);
 }
 
