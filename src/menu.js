@@ -50,11 +50,6 @@ function setDisplayForNoPlants() {
   }
 }
 
-function closeAndShowPlants() {
-  closeForm();
-  setDisplayForNoPlants();
-}
-
 function closeForm() {
   configDiv.hide();
   plantForm.hide();
