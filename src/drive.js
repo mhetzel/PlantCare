@@ -10,7 +10,7 @@ async function readFile(fileID) {
       alt: 'media'
     }).then(function(resp) {
       if (resp.body !== '') {
-        return resp.body
+        return resp.body;
       }
       return null;
     }, function(reason){
@@ -19,7 +19,7 @@ async function readFile(fileID) {
     });
   }
   return data;
-};
+}
  
 async function writeFile(fileID, data) {
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
@@ -35,8 +35,8 @@ async function writeFile(fileID, data) {
   .then(value => {
     console.log('Updated. Result:\n' + JSON.stringify(value, null, 2));
   })
-  .catch(err => console.error(err))
-};
+  .catch(err => console.error(err));
+}
  
 async function getFileID(folderID) {
   let response;
@@ -50,8 +50,8 @@ async function getFileID(folderID) {
         'q': "'" + folderID + "' in parents and name = 'data.json' and trashed != true"
       });
     } catch (err) {
-      console.log(err)
-      console.log('can\'t find file')
+      console.log(err);
+      console.log('can\'t find file');
     }
     const files = response.result.files;
     if (!files || files.length == 0) {
@@ -61,7 +61,7 @@ async function getFileID(folderID) {
           'name': 'data.json', // Filename at Google Drive
           'mimeType': 'text/plain', // mimeType at Google Drive
           'parents': [folderID], // Folder ID at Google Drive
-      };
+      }
 
       var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
       var form = new FormData();
@@ -83,7 +83,7 @@ async function getFileID(folderID) {
     }
   }
   return id;
-};
+}
  
 async function getFolderID() {
   let id = await gapi.client.drive.files.list({
@@ -92,13 +92,13 @@ async function getFolderID() {
     'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
   }).then(function(response) {
     const files = response.result.files;
-    let folderId = null
+    let folderId = null;
     if (!files || files.length == 0) {
       var fileMetadata = {
         'name' : 'PlantCare',
         'mimeType' : 'application/vnd.google-apps.folder',
         'parents': ['root']
-      };
+      }
       gapi.client.drive.files.create({
         resource: fileMetadata,
       }).then(function(response) {
@@ -116,11 +116,11 @@ async function getFolderID() {
     }
     return folderId;
   }, function(reason) {
-    console.log('Find/create folder ERROR:', reason.result.error.message)
+    console.log('Find/create folder ERROR:', reason.result.error.message);
     if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
       tokenClient.requestAccessToken();
       return null;
     }
   });
   return id;
-};
+}

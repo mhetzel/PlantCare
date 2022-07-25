@@ -13,10 +13,10 @@ var humidity = $('#humidity');
 var light = $('#light');
 
 async function fertilizePlant() {
-  let location = locationDropdown.val()
-  let plantName = plantDropdown.val()
-  let locationIndex = locationDropdown.prop('selectedIndex')
-  let plantIndex = plantDropdown.prop('selectedIndex')
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
+  let locationIndex = locationDropdown.prop('selectedIndex');
+  let plantIndex = plantDropdown.prop('selectedIndex');
   const today = new Date();
   PlantData[location][plantName].lastFertilized = today.toDateString();
 
@@ -25,10 +25,10 @@ async function fertilizePlant() {
 };
 
 async function checkPlant() {
-  let location = locationDropdown.val()
-  let plantName = plantDropdown.val()
-  let locationIndex = locationDropdown.prop('selectedIndex')
-  let plantIndex = plantDropdown.prop('selectedIndex')
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
+  let locationIndex = locationDropdown.prop('selectedIndex');
+  let plantIndex = plantDropdown.prop('selectedIndex');
   const today = new Date();
   PlantData[location][plantName].lastChecked = today.toDateString();
   
@@ -45,10 +45,10 @@ function resetPlantSelection(locationIndex, plantIndex) {
 }
 
 async function waterPlant() {
-  let location = locationDropdown.val()
-  let plantName = plantDropdown.val()
-  let locationIndex = locationDropdown.prop('selectedIndex')
-  let plantIndex = plantDropdown.prop('selectedIndex')
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
+  let locationIndex = locationDropdown.prop('selectedIndex');
+  let plantIndex = plantDropdown.prop('selectedIndex');
   const today = new Date();
   PlantData[location][plantName].lastChecked = today.toDateString();
   
@@ -66,30 +66,30 @@ async function waterPlant() {
 };
 
 function resetUpdatedPlantInfo() {
-  let location = locationDropdown.val()
-  let plantName = plantDropdown.val()
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
   let plant = PlantData[location][plantName];
   setupUpdatedPlantDropdowns();
 
-  $("#updatedPlantWaterNeeds").val(plant['water'])
-  $("#updatedPlantWaterInstructions").val(plant['waterInstructions'])
-  $("#updatedPlantSoilPreferences").val(plant['soil'])
-  $("#updatedPlantFertilizer").val(plant['fertilzerFrequency'])
-  $("#updatedPlantFertilizerDose").val(plant['fertilzerDose'])
-  $("#updatedPlantLightNeeds").val(plant['light'])
-  $("#updatedPlantPetSafe").val(plant['petSafe'])
-  $("#updatedPlantHumitidy").val(plant['humidity'])
+  $("#updatedPlantWaterNeeds").val(plant['water']);
+  $("#updatedPlantWaterInstructions").val(plant['waterInstructions']);
+  $("#updatedPlantSoilPreferences").val(plant['soil']);
+  $("#updatedPlantFertilizer").val(plant['fertilzerFrequency']);
+  $("#updatedPlantFertilizerDose").val(plant['fertilzerDose']);
+  $("#updatedPlantLightNeeds").val(plant['light']);
+  $("#updatedPlantPetSafe").val(plant['petSafe']);
+  $("#updatedPlantHumitidy").val(plant['humidity']);
 }
 
 async function updatePlant() {
-  let location = locationDropdown.val()
-  let plantName = plantDropdown.val()
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
   let plant = PlantData[location][plantName];
-  let locationIndex = locationDropdown.prop('selectedIndex')
-  let plantIndex = plantDropdown.prop('selectedIndex')
+  let locationIndex = locationDropdown.prop('selectedIndex');
+  let plantIndex = plantDropdown.prop('selectedIndex');
   
   let newPlantInfo = readPlantInputs("#updated");
-  PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo}
+  PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo};
   
   toggleUpdatePlantForm();
   
@@ -116,32 +116,32 @@ function toggleUpdatePlantForm() {
 };
 
 async function movePlant() {
-  let newLocation = $("#movedPlantLocation").val()
-  let location = locationDropdown.val()
-  let plantName = plantDropdown.val()
-  let locationIndex = locationDropdown.prop('selectedIndex')
-  let plantIndex = plantDropdown.prop('selectedIndex')
+  let newLocation = $("#movedPlantLocation").val();
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
+  let locationIndex = locationDropdown.prop('selectedIndex');
+  let plantIndex = plantDropdown.prop('selectedIndex');
   plant = PlantData[location][plantName];
   delete PlantData[location][plantName];
   if (Object.keys(PlantData[location]).length === 0) {
-    delete PlantData[location]
+    delete PlantData[location];
   }
 
   if (!PlantData.hasOwnProperty(newLocation)) {
-    PlantData[newLocation] = {}
+    PlantData[newLocation] = {};
   }
 
   PlantData[newLocation][plantName] = plant;
   toggleMovePlantForm();
   await saveConfig(PlantData);
   locationDropdown.val(newLocation);
-  resetPlantSelection(locationDropdown.prop('selectedIndex'), plantIndex)
+  resetPlantSelection(locationDropdown.prop('selectedIndex'), plantIndex);
 };
 
 async function deletePlant() {
   delete PlantData[locationDropdown.val()][plantDropdown.val()];
   if (Object.keys(PlantData[locationDropdown.val()]).length === 0) {
-    delete PlantData[locationDropdown.val()]
+    delete PlantData[locationDropdown.val()];
   }
   await saveConfig(PlantData);
 };
@@ -158,35 +158,35 @@ function setPlantInfo(info) {
     lastWatered.text(info.lastWatered);
     water.text(WaterList[info.water]);
     light.text(LightList[info.light]);
-    waterInstructions.text(info.waterInstructions)
-    soil.text(info.soil)
-    lastFertilized.text(info.lastFertilized)
-    fertilzerFrequency.text(info.fertilzerFrequency)
-    fertilzerDose.text(info.fertilzerDose)
-    petSafe.text(info.petSafe)
-    humidity.text(info.humidity)
+    waterInstructions.text(info.waterInstructions);
+    soil.text(info.soil);
+    lastFertilized.text(info.lastFertilized);
+    fertilzerFrequency.text(info.fertilzerFrequency);
+    fertilzerDose.text(info.fertilzerDose);
+    petSafe.text(info.petSafe);
+    humidity.text(info.humidity);
   }
 };
 
 function resetPlantInfo() {
   setupCurrentWetness();
-  averageDaysBetweenWatering.text('n/a')
-  lastChecked.text('n/a')
-  lastWatered.text('n/a')
-  water.text('n/a')
-  light.text('n/a')
+  averageDaysBetweenWatering.text('n/a');
+  lastChecked.text('n/a');
+  lastWatered.text('n/a');
+  water.text('n/a');
+  light.text('n/a');
   
-  waterInstructions.text('n/a')
-  soil.text('n/a')
-  lastFertilized.text('n/a')
-  fertilzerFrequency.text('n/a')
-  fertilzerDose.text('n/a')
-  petSafe.text('n/a')
-  humidity.text('n/a')
+  waterInstructions.text('n/a');
+  soil.text('n/a');
+  lastFertilized.text('n/a');
+  fertilzerFrequency.text('n/a');
+  fertilzerDose.text('n/a');
+  petSafe.text('n/a');
+  humidity.text('n/a');
 };
 
 function readPlantInputs(idPrefix) {
-  let inputs = {}
+  let inputs = {};
   inputs['water'] = $(idPrefix+"PlantWaterNeeds").prop('selectedIndex');
   inputs['light'] = $(idPrefix+"PlantLightNeeds").prop('selectedIndex');
   inputs['waterInstructions'] = $(idPrefix+"PlantWaterInstructions").val();
@@ -195,19 +195,19 @@ function readPlantInputs(idPrefix) {
   inputs['fertilzerDose'] = $(idPrefix+"PlantFertilizerDose").val();
   inputs['petSafe'] = $(idPrefix+"PlantPetSafe").val();
   inputs['humidity'] = $(idPrefix+"PlantHumitidy").val();
-  return inputs
+  return inputs;
 }
 
 async function addNewPlant() {
-  let newLocation = $("#newPlantLocation").val()
-  let newName = $("#newPlantName").val()
+  let newLocation = $("#newPlantLocation").val();
+  let newName = $("#newPlantName").val();
   if (newName) {
     if (!PlantData.hasOwnProperty(newLocation)) {
-      PlantData[newLocation] = {}
+      PlantData[newLocation] = {};
     }
       
     if (!PlantData[newLocation].hasOwnProperty(newName)) {
-      PlantData[newLocation][newName] = {}
+      PlantData[newLocation][newName] = {};
     }
     
     let inputs = readPlantInputs("#new");
@@ -231,7 +231,7 @@ async function addNewPlant() {
       PlantData[newLocation][newName]['wateringCount'] = 1;
     }
 
-    console.log(PlantData[newLocation][newName])
+    console.log(PlantData[newLocation][newName]);
   
     await saveConfig(PlantData);
     setDisplayForNoPlants();

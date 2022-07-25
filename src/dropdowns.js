@@ -4,35 +4,29 @@ var plantDropdown = $('#plant-dropdown');
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
-// TODO share these two
+function dropdown(prefix) {
+  $(prefix+'PlantPetSafe').prop('selectedIndex', 0);
+  setDropdown($(prefix+'PlantWaterNeeds'), WaterList);
+  setDropdown($(prefix+'PlantWaterInstructions'), WateringInstructions);
+  setDropdown($(prefix+'PlantSoilPreferences'), SoilList);
+  setDropdown($(prefix+'PlantFertilizer'), FertilizerSchedule);
+  setDropdown($(prefix+'PlantFertilizerDose'), FertilizerDoses);
+  setDropdown($(prefix+'PlantLightNeeds'), LightList);
+  setDropdown($(prefix+'PlantHumitidy'), HumidityLevels);
+}
+
 function setupUpdatedPlantDropdowns() {
-  $('#updatedPlantPetSafe').prop('selectedIndex', 0);
-  setDropdown($('#updatedPlantWaterNeeds'), WaterList);
-  setDropdown($('#updatedPlantWaterInstructions'), WateringInstructions);
-  setDropdown($('#updatedPlantSoilPreferences'), SoilList);
-  setDropdown($('#updatedPlantFertilizer'), FertilizerSchedule);
-  setDropdown($('#updatedPlantFertilizerDose'), FertilizerDoses);
-  setDropdown($('#updatedPlantLightNeeds'), LightList);
-  setDropdown($('#updatedPlantHumitidy'), HumidityLevels);
+  dropdown('#updated');
 }
 
 function setupNewPlantInput() {
-
   $("#newPlantName").val('');
   $("#newPlantLocation").val('');
   $("#newPlantLastWatered").val(null);
   $("#newPlantAverageWateringDays").val(null);
 
-
-  $('#newPlantPetSafe').prop('selectedIndex', 0);
-  setDropdown($('#newPlantWaterNeeds'), WaterList);
-  setDropdown($('#newPlantWaterInstructions'), WateringInstructions);
-  setDropdown($('#newPlantSoilPreferences'), SoilList);
-  setDropdown($('#newPlantFertilizer'), FertilizerSchedule);
-  setDropdown($('#newPlantFertilizerDose'), FertilizerDoses);
-  setDropdown($('#newPlantLightNeeds'), LightList);
-  setDropdown($('#newPlantHumitidy'), HumidityLevels);
-};
+  dropdown('#new');
+}
 
 function setDropdown(dropdown, list) {
   dropdown.empty();
@@ -40,7 +34,7 @@ function setDropdown(dropdown, list) {
     dropdown.append($('<option></option>').attr('value', x).text(x));
   });
   dropdown.prop('selectedIndex', 0);
-};
+}
 
 function setupCurrentWetness() {
   setDropdown(currentWetness, WaterList);
@@ -58,7 +52,7 @@ function resetPlantDropdown() {
   plantDropdown.prop('selectedIndex', 0);
   plantInfo.hide();
   plantButtons.hide();
-};
+}
 
 function plantSelectionChange() {
   plant = PlantData[locationDropdown.val()][plantDropdown.val()];
