@@ -12,17 +12,12 @@ let signOutButton = $("signout-button");
 
 var configDiv = $("#config-div")
 
-function addCloseButtons() {
-  let title = $("h2");
-  createCloseButtonDiv(title);
-}
 
-function createCloseButtonDiv(title) {
+function addCloseButtons() {
   let closeButtonDiv = $("<div></div>").addClass("top-right");
   let closeButton = $('<button title="Close"></button').click(closeAndShowPlants());
   let closeIcon = $('<i></i>').addClass("fa-solid fa-xmark");
   closeButton.append(closeIcon);
   closeButtonDiv.append(closeButton);
-  
-  closeButtonDiv.after(title);
+   $("h2").after(closeButtonDiv);
 }
