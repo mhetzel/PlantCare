@@ -4,29 +4,29 @@ let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
 function openConfigForm() {
-  closeForm();
   if (configDiv.css('display') == 'block') {
-    setDisplayForNoPlants();
+    closeAndShowPlants();
   } else {
+    closeForm();
     configDiv.show();
   }
 }
 
 function openNewPlantForm() {
-  closeForm();
   if (plantForm.css('display') == 'block') {
-    setDisplayForNoPlants();
+    closeAndShowPlants();
   } else {
+    closeForm();
     plantForm.show();
     setupNewPlantInput();
   }
 }
 
 function displayLoginPage() {
-  closeForm();
   if (loginDiv.css('display') == 'block') {
-    setDisplayForNoPlants();
+    closeAndShowPlants();
   } else {
+    closeForm();
     if (GuestMode) {
       setupSigninButton();
       signOutButton.hide();
