@@ -15,6 +15,15 @@ let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
 
+function setupNewPlantInput() {
+  $("#newPlantName").val('');
+  $("#newPlantLocation").val('');
+  $("#newPlantLastWatered").val(null);
+  $("#newPlantAverageWateringDays").val(null);
+
+  dropdown('#new');
+}
+
 function toggleMovePlantForm() {
   $("#movedPlantLocation").val('');
   if ($("#move-location-div").css('display') == 'block') {
