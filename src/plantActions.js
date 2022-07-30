@@ -49,17 +49,17 @@ function resetUpdatedPlantInfo() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
   let plant = PlantData[location][plantName];
-  console.log('display update plant')
+  console.log('display')
   console.log(plant)
   addPlantInputFeilds("#update-plant-input", 'updated');
   dropdown('#updated');
 
-  $("#updatedPlantWaterNeeds").val(plant['water']);
+  $("#updatedPlantWaterNeeds").prop('selectedIndex', plant['water']);
   $("#updatedPlantWaterInstructions").val(plant['waterInstructions']);
   $("#updatedPlantSoilPreferences").val(plant['soil']);
   $("#updatedPlantFertilizer").val(plant['fertilzerFrequency']);
   $("#updatedPlantFertilizerDose").val(plant['fertilzerDose']);
-  $("#updatedPlantLightNeeds").val(plant['light']);
+  $("#updatedPlantLightNeeds").prop('selectedIndex', plant['light']);
   $("#updatedPlantPetSafe").val(plant['petSafe']);
   $("#updatedPlantHumitidy").val(plant['humidity']);
 }
