@@ -38,12 +38,11 @@ function resetPlantDropdown() {
   plantDropdown.empty();
   plantDropdown.append('<option selected="true" disabled>Choose Plant</option>');
   plantDropdown.prop('selectedIndex', 0);
-  hidePlantInfo();
+  $('#dropdown-plant-info').hide();
 }
 
 function plantSelectionChange() {
-  plant = PlantData[locationDropdown.val()][plantDropdown.val()];
-  setPlantInfo(plant);
+  displayPlant($("#dropdown-plant-info"), locationDropdown.val(), plantDropdown.val());
 }
 
 function locationSelectionChange() {
