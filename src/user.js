@@ -6,24 +6,15 @@ var GuestMode = false;
 var User = 'Guest';
 var UserPicture = '';
 
-let userNameText = $('#user-name');
-let signOutButton = $("#signout-button");
-
-let signinDiv = $("#signin-div");
-let userPic = $("#profile-pic");
-let guestPic = $("#guest-pic");
 
 function determineUserMode() {
   GuestMode = localStorage.getItem('guestMode') == 'true';
   if (!GuestMode) {
     User = localStorage.getItem('userEmail');
     UserPicture = localStorage.getItem('userPic');
-    if (User) {
-      userNameText.text(User);
-    }
-    if (UserPicture) {
-      userPic.attr("src", UserPicture);
-    }
+
+    setCurrentUserDisplay(User, UserPicture);
+    
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         if (notification.getSkippedReason() == 'user_cancel') {
@@ -41,18 +32,6 @@ function determineUserMode() {
   }
 };
 
-function setupSigninButton() {
-  google.accounts.id.renderButton(
-    document.getElementById('signin-div'),
-    { theme: "filled_black", 
-      size: "large", 
-      type: "standard",
-      shape: "pill",
-      text: "signin_with",
-      logo_alignment: "left"}
-  )
-};
-
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -65,37 +44,34 @@ function parseJwt(token) {
 
 async function handleToken(googleUser) {
   
-  let email;
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
     UserPicture = parsedData.picture;
-    email = parsedData.email;
-    userPic.attr("src", parsedData.picture);
-    localStorage.setItem('userEmail', parsedData.email);
-    localStorage.setItem('userPic', parsedData.picture);
-    console.log('signing in:', parsedData.email)
-    signedIn(email);
+    User = parsedData.email;
+    localStorage.setItem('userEmail', User);
+    localStorage.setItem('userPic', UserPicture);
+    console.log('signing in:', User);
+    signedIn();
   }
 
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw (resp);
     }
-    localStorage.setItem("token_"+email, JSON.stringify(resp));
-    signedIn(email);
+    localStorage.setItem("token_"+User, JSON.stringify(resp));
+    signedIn();
   };
 
 };
 
-function signedIn(email) {
+function signedIn() { 
+  setCurrentUserDisplay(User, UserPicture);
+  
   localStorage.setItem('guestMode', false);
   GuestMode = false;
-  userPic.show();
-  guestPic.hide();
-  console.log(email, 'signed in');
-  
+
   try {
-    let token = JSON.parse(localStorage.getItem("token_"+email));
+    let token = JSON.parse(localStorage.getItem("token_"+User));
     if (token) {
       gapi.client.setToken(token)
     }
@@ -106,36 +82,30 @@ function signedIn(email) {
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } 
-  
-  userNameText.text(email);
-  signinDiv.hide();
-  signOutButton.show();
+
   loadPlants();
 }
 
 function signedOut() {
-  let email = localStorage.getItem('userEmail');
+  setCurrentUserDisplay('Guest', null);
+  
   localStorage.removeItem('userEmail');
   localStorage.removeItem('userPic');
-  localStorage.removeItem("token_"+email);
-  localStorage.removeItem("data_"+email);
-  userPic.hide();
-  guestPic.show();
-  signOutButton.hide();
-  signinDiv.show();
-  userNameText.text('Guest');
+  localStorage.removeItem("token_"+User);
+  localStorage.removeItem("data_"+User);
   localStorage.setItem('guestMode', true);
   GuestMode = true;
+  User = 'Guest';
+  
   loadPlants();
 };
 
 function handleSignoutClick() {
   // alert('This will disable google account syncing and plant data will be stored in this browser only.')
   google.accounts.id.disableAutoSelect();
-  let email = localStorage.getItem('userEmail');
-  console.log('logging out:', email)
-  google.accounts.id.revoke(email, done => {
-    console.log('consent revoked for:', email);
+  console.log('logging out:', User)
+  google.accounts.id.revoke(User, done => {
+    console.log('consent revoked for:', User);
   });
   
   if (gapi.client.getToken() !== null) {

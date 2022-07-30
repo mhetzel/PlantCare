@@ -7,6 +7,18 @@ var tokenClient;
 var gapiInited = false;
 var gisInited = false;
 
+function setupSigninButton() {
+  google.accounts.id.renderButton(
+    document.getElementById('signin-div'),
+    { theme: "filled_black", 
+      size: "large", 
+      type: "standard",
+      shape: "pill",
+      text: "signin_with",
+      logo_alignment: "left"}
+  )
+}
+
 async function initGoogleAPIs() {
   google.accounts.id.initialize({
     client_id: CLIENT_ID,
