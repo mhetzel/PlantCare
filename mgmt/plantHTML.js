@@ -1,25 +1,43 @@
 /* <span id="plant-info">
-<div><span>Average Days Between Waterings: </span><span id="averageDaysBetweenWatering"></span></div>
-<div><span>Current Wetness: </span><select id="currentWetness" onchange="checkPlant()"></select></div>
-<div><span>Last Checked Date: </span><span id="lastChecked"></span></div>
-<div><span>Last Watered Date: </span><span id="lastWatered"></span></div>
-<div><span>Desired Water Level: </span><span id="water"></span></div>
-<div><span>Watering Instructions: </span><span id="waterInstructions"></span></div>
-<div><span>Soil Preferences: </span><span id="soil"></span></div>
-<div><span>Last Fertilized Date: </span><span id="lastFertilized"></span></div>
-<div><span>Fertilizer Frequency: </span><span id="fertilzerFrequency"></span></div>
-<div><span>Fertilizer Dose: </span><span id="fertilzerDose"></span></div>
-<div><span>Pet Safe: </span><span id="petSafe"></span></div>
-<div><span>Humidity Needs: </span><span id="humidity"></span></div>
-<div><span>Desired Light Level: </span><span id="light"></span></div>
+
 </span>
 
 */
 
 function displayPlant(element, locationName, plantName) {
+  element.empty();
   let plantInfo = $('<span></span>');
   let plantButtons = $('<div></div>');
   element.append(plantInfo, plantButtons);
+
+  var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
+  var currentWetness = $('<select id="currentWetness" onchange="checkPlant()"></select>');
+  var lastChecked = $('<span id="lastChecked"></span>');
+  var lastWatered = $('<span id="lastWatered"></span>');
+  var lastFertilized = $('<span id="lastFertilized"></span>');
+  var water = $('<span id="water"></span>');
+  var waterInstructions = $('<span id="waterInstructions"></span>');
+  var soil = $('<span id="soil"></span>');
+  var fertilzerFrequency = $('<span id="fertilzerFrequency"></span>');
+  var fertilzerDose = $('<span id="fertilzerDose"></span>');
+  var petSafe = $('<span id="petSafe"></span>');
+  var humidity = $('<span id="humidity"></span>');
+  var light = $('<span id="light"></span>');
+
+  plantInfo.append($('<div><span>Average Days Between Waterings: </span></div>').append(averageDaysBetweenWatering))
+  plantInfo.append($('<div><span>Current Wetness: </span></div>').append(currentWetness))
+  plantInfo.append($('<div><span>Last Checked Date: </span></div>').append(lastChecked))
+  plantInfo.append($('<div><span>Last Watered Date: </span></div>').append(lastWatered))
+  plantInfo.append($('<div><span>Desired Water Level: </span></div>').append(water))
+  plantInfo.append($('<div><span>Watering Instructions: </span></div>').append(waterInstructions))
+  plantInfo.append($('<div><span>Soil Preferences: </span></div>').append(soil))
+  plantInfo.append($('<div><span>Last Fertilized Date: </span></div>').append(lastFertilized))
+  plantInfo.append($('<div><span>Fertilizer Frequency: </span></div>').append(fertilzerFrequency))
+  plantInfo.append($('<div><span>Fertilizer Dose: </span></div>').append(fertilzerDose))
+  plantInfo.append($('<div><span>Pet Safe: </span></div>').append(petSafe))
+  plantInfo.append($('<div><span>Humidity Needs: </span></div>').append(humidity))
+  plantInfo.append($('<div><span>Desired Light Level: </span></div>').append(light))
+
 
   let waterButton = $('<button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
   let moveButton = $('<button onclick="toggleMovePlantForm()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>')
@@ -28,19 +46,7 @@ function displayPlant(element, locationName, plantName) {
 
   plantButtons.append(waterButton, moveButton, updateButton, deleteButton);
   
-  var averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
-  var currentWetness = $('#currentWetness');
-  var lastChecked = $('#lastChecked');
-  var lastWatered = $('#lastWatered');
-  var lastFertilized = $('#lastFertilized');
-  var water = $('#water');
-  var waterInstructions = $('#waterInstructions');
-  var soil = $('#soil');
-  var fertilzerFrequency = $('#fertilzerFrequency');
-  var fertilzerDose = $('#fertilzerDose');
-  var petSafe = $('#petSafe');
-  var humidity = $('#humidity');
-  var light = $('#light');
+
 
   function resetPlantInfo() {
     setDropdown(currentWetness, WaterList);
