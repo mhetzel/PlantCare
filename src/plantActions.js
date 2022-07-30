@@ -54,6 +54,8 @@ function resetUpdatedPlantInfo() {
   addPlantInputFeilds("#update-plant-input", 'updated');
   dropdown('#updated');
 
+  // todo multiselect set isn't working
+
   $("#updatedPlantWaterNeeds").prop('selectedIndex', plant['water']);
   $("#updatedPlantWaterInstructions").val(plant['waterInstructions']);
   $("#updatedPlantSoilPreferences").val(plant['soil']);
