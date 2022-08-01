@@ -4,6 +4,13 @@ var plantDropdown = $('#plant-dropdown');
 var plantInfo = $('#plant-info');
 var plantButtons = $('#plant-buttons');
 
+function knownPlantSelectionChange() {
+  setupNewPlantInput();
+  $.getJSON('src/knownPlants.json', function(data) {
+    console.log(data[$("#known-plant").val()]);
+});
+}
+
 function dropdown(prefix) {
   $(prefix+'PlantPetSafe').prop('selectedIndex', 0);
   setDropdown($(prefix+'PlantWaterNeeds'), WaterList);
