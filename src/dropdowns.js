@@ -7,7 +7,7 @@ var plantButtons = $('#plant-buttons');
 function knownPlantSelectionChange() {
   setupNewPlantInput();
   $.getJSON('src/knownPlants.json', function(data) {
-    console.log(data[$("#known-plant").val()]);
+    console.log(data.knownPlants[$("#known-plant").val()]);
 });
 }
 
