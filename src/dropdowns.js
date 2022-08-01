@@ -8,6 +8,10 @@ function knownPlantSelectionChange() {
   setupNewPlantInput();
   $.getJSON('src/knownPlants.json', function(data) {
     console.log(data.knownPlants[$("#known-plant").val()]);
+    plantContents = data.knownPlants[$("#known-plant").val()]
+    if (plantContents.hasOwnProperty('daysTotal')) {
+      $("#newPlantAverageWateringDays").val(plantContents.daysTotal);
+    }
 });
 }
 
