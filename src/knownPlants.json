@@ -1,0 +1,59 @@
+{
+	"knownPlants": {
+		"cast iron": {
+			"water": 2,
+			"light": 0,
+			"waterInstructions": ["None"],
+			"soil": "cactus potting mix",
+			"fertilzerFrequency": "Once a month during spring and summer.",
+			"fertilzerDose": "Full strength",
+			"petSafe": "true",
+			"humidity": "60%-75%",
+			"daysTotal": 14
+		},
+		"cactus christmas": {
+      "water": 5,
+			"light": 1,
+			"waterInstructions": ["None"],
+			"soil": "cactus potting mix",
+			"fertilzerFrequency": "Once a month during spring and summer.",
+			"fertilzerDose": "Full strength",
+			"petSafe": "true",
+			"humidity": "50%-60%",
+			"daysTotal": 14
+    },
+    "cactus thanksgiving": {
+      "water": 5,
+			"light": 1,
+			"waterInstructions": ["None"],
+			"soil": "cactus potting mix",
+			"fertilzerFrequency": "Once a month during spring and summer.",
+			"fertilzerDose": "Full strength",
+			"petSafe": "true",
+			"humidity": "50%-60%",
+			"daysTotal": 14
+    },
+    "peperomia frost": {
+      "water": 1,
+			"light": 1,
+			"waterInstructions": ["Not soggy"],
+			"soil": "cactus potting mix with added orchard bark, peat moss or vermiculite.",
+			"fertilzerFrequency": "Not needed.",
+			"fertilzerDose": "None",
+			"petSafe": "true",
+			"humidity": "40%-50%",
+			"daysTotal": 14
+    },
+    "peperomia red ripple": {
+      "water": 1,
+			"light": 1,
+			"waterInstructions": ["Not soggy"],
+			"soil": "cactus potting mix with added orchard bark, peat moss or vermiculite.",
+			"fertilzerFrequency": "Not needed.",
+			"fertilzerDose": "None",
+			"petSafe": "true",
+			"humidity": "40%-50%",
+			"daysTotal": 14
+    }
+	}
+}
