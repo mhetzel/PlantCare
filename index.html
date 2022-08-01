@@ -48,9 +48,7 @@
 
     <div id="changing-div" class="content-box" style="display: none;">
       <div id="prePopPropmt">
-        <select id="known-plant"></select>
-        <button onclick="knownPlantSelected()">Use Selected Plant</button>
-        <button onclick="customPlantSelected()">Create Custon Plant</button>
+        <select id="known-plant" onchange="knownPlantSelectionChange()"></select>
       </div>
 
       <div id="plantForm" style="display:none">
