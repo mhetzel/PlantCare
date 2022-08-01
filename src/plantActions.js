@@ -69,7 +69,7 @@ function resetUpdatedPlantInfo() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
   let plant = PlantData[location][plantName];
-  setupUpdatedPlantDropdowns();
+  dropdown('#updated');
 
   $("#updatedPlantWaterNeeds").prop('selectedIndex', plant['water']);
   $("#updatedPlantWaterInstructions").val(plant['waterInstructions']);

@@ -1,4 +1,4 @@
 setupNewPlantInput();
-setupUpdatedPlantDropdowns();
+dropdown('#updated');
 initGoogleAPIs();
 $('select[multiple]').multiselect();
