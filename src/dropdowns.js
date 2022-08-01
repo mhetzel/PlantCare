@@ -7,12 +7,10 @@ var plantButtons = $('#plant-buttons');
 function knownPlantSelectionChange() {
   setupNewPlantInput();
   $.getJSON('src/knownPlants.json', function(data) {
-    console.log(data.knownPlants[$("#known-plant").val()]);
     plant = data.knownPlants[$("#known-plant").val()]
     if (plant.hasOwnProperty('daysTotal')) {
       $("#newPlantAverageWateringDays").val(plant['daysTotal']);
     }
-    
     $("#newPlantWaterNeeds").prop('selectedIndex', plant['water']);
     $("#newPlantWaterInstructions").val(plant['waterInstructions']);
     $("#newPlantSoilPreferences").val(plant['soil']);
@@ -21,8 +19,7 @@ function knownPlantSelectionChange() {
     $("#newPlantLightNeeds").prop('selectedIndex', plant['light']);
     $("#newPlantPetSafe").val(plant['petSafe']);
     $("#newPlantHumitidy").val(plant['humidity']);
-    
-});
+  });
 }
 
 function dropdown(prefix) {
