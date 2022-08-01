@@ -13,9 +13,7 @@ function dropdown(prefix) {
   setDropdown($(prefix+'PlantFertilizerDose'), FertilizerDoses);
   setDropdown($(prefix+'PlantLightNeeds'), LightList);
   setDropdown($(prefix+'PlantHumitidy'), HumidityLevels);
-  $('select[multiple]').multiselect();
 }
-
 
 function setupNewPlantInput() {
   $("#newPlantName").val('');
