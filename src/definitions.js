@@ -1,9 +1,10 @@
 const WateringInstructions = [
-  'Don\'t allow the plant to sit in water.', 
-  'Not soggy.', 
-  'Water gently from above, soak through to the roots.',
-  'Sensitive to Flouride.',
-  'Do not allow water to contact the leaves. Water from below.',
+  'None',
+  'Don\'t allow the plant to sit in water', 
+  'Not soggy', 
+  'Water gently from above, soak through to the roots',
+  'Sensitive to Flouride',
+  'Do not allow water to contact the leaves. Water from below',
 ]
 
 const SoilList = [
