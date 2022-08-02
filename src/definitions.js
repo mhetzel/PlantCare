@@ -35,6 +35,7 @@ const LightList = [
   'Bright indirect. Tolerates medium to low indirect',
   'Bright indirect',
   'Bright indirect to direct',
+  'Direct with some bright indirect',
   'Direct']
 
 const WaterList = [
