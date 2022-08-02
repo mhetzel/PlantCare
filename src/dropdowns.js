@@ -7,7 +7,7 @@ var plantButtons = $('#plant-buttons');
 function knownPlantSelectionChange() {
   setupNewPlantInput();
   $.getJSON('src/knownPlants.json', function(data) {
-    plant = data.knownPlants[$("#known-plant").val()]
+    plant = data[$("#known-plant").val()]
     if (plant.hasOwnProperty('daysTotal')) {
       $("#newPlantAverageWateringDays").val(plant['daysTotal']);
     }
