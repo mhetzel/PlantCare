@@ -47,14 +47,20 @@
     </div>
 
     <div id="changing-div" class="content-box" style="display: none;">
-
       <div id="plantForm" style="display:none">
         <form class="form-container" action="javascript:console.log( 'success!' );">
           <div class="top-right">
             <button type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
             <button type="button" onclick="closeForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
           </div>  
+          
           <h2>New Plant Details</h2>
+          
+          <div style="margin-block-end: 1.67em;">
+            <label for="known-plant" style="font-size: 0.83em; font-weight: bold;">Pre-fill with known plant info for faster plant creation:   </label>
+            <select id="known-plant" onchange="knownPlantSelectionChange()"></select>
+          </div>
+          
           <div>
             <label for="newPlantName"><b>Name:</b></label>
             <input type="text" placeholder="Enter Plant Name" id="newPlantName" required>

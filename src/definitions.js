@@ -1,10 +1,18 @@
 const WateringInstructions = [
   'None',
   'Don\'t allow the plant to sit in water', 
-  'Not soggy', 
+  'Evenly moist but not soggy', 
   'Water gently from above, soak through to the roots',
   'Sensitive to Flouride',
-  'Do not allow water to contact the leaves. Water from below',
+  'Do not allow water to contact the leaves',
+  'Water from below',
+  'Prefers warm water',
+  'Water thoroughly',
+  'Not as much in the winter',
+  'Needs one inch of water per week',
+  'Mist once a week',
+  'Mist 2-3 times a week',
+  'Soak once a month for 15 minutes. Mist between',
 ]
 
 const SoilList = [
@@ -12,10 +20,12 @@ const SoilList = [
   'cactus potting mix',
   'cactus potting mix with 1:1 perlite',
   'cactus potting mix with added orchard bark and/or perlite',
-  'cactus potting mix with added orchard bark, peat moss or vermiculite.',
+  'cactus potting mix with added orchard bark, peat moss or vermiculite',
   'cactus potting mix with added perlite',
-  'Peat moss-based mix, such as African violet potting mix',
-  'perlite/pumice, pine bark, finely shredded spaghum moss and horticultural charcoal.',
+  'peat moss-based mix, such as african violet potting mix',
+  'perlite/pumice, pine bark, finely shredded spaghum moss and horticultural charcoal',
+  'citrus potting mix',
+  'orchid mix'
 ]
 
 const LightList = [
@@ -25,6 +35,7 @@ const LightList = [
   'Bright indirect. Tolerates medium to low indirect',
   'Bright indirect',
   'Bright indirect to direct',
+  'Direct with some bright indirect',
   'Direct']
 
 const WaterList = [
@@ -49,6 +60,7 @@ const FertilizerSchedule = [
   'Once a month during spring.',
   'Once a month during spring and summer.',
   'Every 2 weeks in spring and summer.',
+  'Once a week with watering.'
 ]
 
 const HumidityLevels = [
@@ -58,16 +70,13 @@ const HumidityLevels = [
   '40% at least',
   '40%-40%',
   '40%-50%',
-  '40%-80%',
   '45% at least',
   '45%-65%',
   '50% at least',
-  '50%-55%',
   '50%-60%',
   '50%-75%',
-  '60%-75%',
+  '60%-70%',
   '60%-80%',
   '70%-80%',
   '70%-90%',
-  '75%-85%',
 ]
