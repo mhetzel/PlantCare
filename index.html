@@ -16,9 +16,9 @@
     <script src="src/definitions.js"></script>
     <script src="src/googleClients.js"></script>
     
-    <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" type="text/css" href="src/libs/jquery.multiselect.css">
-        
+    <link rel="stylesheet" href="src/style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -56,9 +56,13 @@
         <button id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
         <button id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i></button>
     </div>
-    
+
     <div id="add-pant-div" class="content-box">
       <h2>New Plant Details</h2>
+      <div style="margin-block-end: 1.67em;">
+        <label for="known-plant" style="font-size: 0.83em; font-weight: bold;">Pre-fill with known plant info for faster plant creation:   </label>
+        <select id="known-plant" onchange="knownPlantSelectionChange()"></select>
+      </div>
       <form class="form-container" action="javascript:console.log( 'success!' );">
         <div class="top-right">
           <button type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
@@ -129,7 +133,7 @@
     <script src="src/libs/jquery.multiselect.js"></script>
 
     <script src="src/index.js"></script>
-    
+
     <script src="src/plantActions.js"></script>
     
   </body>

@@ -2,6 +2,24 @@ var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
 
 
+function knownPlantSelectionChange() {
+  setupNewPlantInput();
+  $.getJSON('src/knownPlants.json', function(data) {
+    plant = data[$("#known-plant").val()]
+    if (plant.hasOwnProperty('daysTotal')) {
+      $("#newPlantAverageWateringDays").val(plant['daysTotal']);
+    }
+    $("#newPlantWaterNeeds").prop('selectedIndex', plant['water']);
+    $("#newPlantWaterInstructions").val(plant['waterInstructions']);
+    $("#newPlantSoilPreferences").val(plant['soil']);
+    $("#newPlantFertilizer").val(plant['fertilzerFrequency']);
+    $("#newPlantFertilizerDose").val(plant['fertilzerDose']);
+    $("#newPlantLightNeeds").prop('selectedIndex', plant['light']);
+    $("#newPlantPetSafe").val(plant['petSafe']);
+    $("#newPlantHumitidy").val(plant['humidity']);
+  });
+}
+
 function dropdown(prefix) {
   $(prefix+'PlantPetSafe').prop('selectedIndex', 0);
   setDropdown($(prefix+'PlantWaterNeeds'), WaterList);
@@ -11,6 +29,15 @@ function dropdown(prefix) {
   setDropdown($(prefix+'PlantFertilizerDose'), FertilizerDoses);
   setDropdown($(prefix+'PlantLightNeeds'), LightList);
   setDropdown($(prefix+'PlantHumitidy'), HumidityLevels);
+}
+
+function setupNewPlantInput() {
+  $("#newPlantName").val('');
+  $("#newPlantLocation").val('');
+  $("#newPlantLastWatered").val(null);
+  $("#newPlantAverageWateringDays").val(null);
+
+  dropdown('#new');
 }
 
 function setDropdown(dropdown, list) {
@@ -80,4 +107,3 @@ async function dropdownSetup() {
   resetPlantDropdown();
   await setupDropDowns();
 }
-

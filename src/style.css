@@ -87,12 +87,14 @@ select {
   color: rgb(236, 216, 216);
 }
 
+
 .floating-box {
   display: none; 
   position: absolute; 
   padding-top: 2em; 
   top: 20px;
 }
+
 
 .menu-box {
   position: absolute;
