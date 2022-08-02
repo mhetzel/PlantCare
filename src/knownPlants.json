@@ -1,56 +1,857 @@
 {
-	"knownPlants": {
-		"custom plant": {},
-		"cast iron": {
-			"water": 2,
-			"light": 0,
-			"waterInstructions": ["None"],
-			"soil": "cactus potting mix",
-			"fertilzerFrequency": "Once a month during spring and summer.",
-			"fertilzerDose": "Full strength",
-			"petSafe": "true",
-			"humidity": "60%-75%",
-			"daysTotal": 14
-		},
-		"cactus christmas": {
-                        "water": 5,
-			"light": 1,
-			"waterInstructions": ["None"],
-			"soil": "cactus potting mix",
-			"fertilzerFrequency": "Once a month during spring and summer.",
-			"fertilzerDose": "Full strength",
-			"petSafe": "true",
-			"humidity": "50%-60%"
-		},
-                "cactus thanksgiving": {
-                        "water": 5,
-			"light": 1,
-			"waterInstructions": ["None"],
-			"soil": "cactus potting mix",
-			"fertilzerFrequency": "Once a month during spring and summer.",
-			"fertilzerDose": "Full strength",
-			"petSafe": "true",
-			"humidity": "50%-60%"
-		},
-                "peperomia frost": {
-                        "water": 1,
-			"light": 1,
-			"waterInstructions": ["Not soggy"],
-			"soil": "cactus potting mix with added orchard bark, peat moss or vermiculite.",
-			"fertilzerFrequency": "Not needed.",
-			"fertilzerDose": "None",
-			"petSafe": "true",
-			"humidity": "40%-50%"
-		},
-                "peperomia red ripple": {
-                        "water": 1,
-			"light": 1,
-			"waterInstructions": ["Not soggy"],
-			"soil": "cactus potting mix with added orchard bark, peat moss or vermiculite.",
-			"fertilzerFrequency": "Not needed.",
-			"fertilzerDose": "None",
-			"petSafe": "true",
-			"humidity": "40%-50%"
-		}
-	}
+    "custom plant": {
+        "light": "0",
+        "water": "0",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "false",
+        "humidity": "25%-35%",
+        "soil": "none"
+    },
+    "succulent haworthia": {
+        "light": "5",
+        "water": "4",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring.",
+        "petSafe": "true",
+        "humidity": "25%-35%",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "cactus fairy castle ": {
+        "light": "7",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "30%-35%",
+        "soil": "cactus potting mix"
+    },
+    "cactus easter lily": {
+        "light": "7",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "30%-35%",
+        "soil": "cactus potting mix"
+    },
+    "propeller plant": {
+        "light": "7",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water."
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "30%-35%",
+        "soil": "cactus potting mix"
+    },
+    "cactus moon": {
+        "light": "4",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "30%-50%",
+        "soil": "cactus potting mix"
+    },
+    "varigated string of pearls": {
+        "light": "4",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "30%-50%",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "fluted jade": {
+        "light": "7",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once every 6 months.",
+        "petSafe": "false",
+        "humidity": "30%-50%",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "jade": {
+        "light": "7",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once every 6 months.",
+        "petSafe": "false",
+        "humidity": "30%-50%",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "rhaphidophora tetrasperma": {
+        "light": "5",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "30%-50%",
+        "soil": "perlite/pumice, pine bark, finely shredded spaghum moss and horticultural charcoal."
+    },
+    "ficus audrey": {
+        "light": "4",
+        "water": "3",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40% at least",
+        "soil": "cactus potting mix"
+    },
+    "english ivy": {
+        "light": "3",
+        "water": "1",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "false",
+        "humidity": "40% at least",
+        "soil": "cactus potting mix"
+    },
+    "hoya kerrii": {
+        "light": "5",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "40% at least",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "spider plants": {
+        "light": "3",
+        "water": "3",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "40% at least",
+        "soil": "cactus potting mix"
+    },
+    "aloe vera": {
+        "light": "5",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a year, in the spring.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix"
+    },
+    "succulent gasteria": {
+        "light": "4",
+        "water": "4",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a year, in the spring.",
+        "petSafe": "true",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "ficus elastica burgundy": {
+        "light": "2",
+        "water": "1",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix"
+    },
+    "ficus elastica tenke": {
+        "light": "2",
+        "water": "1",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix"
+    },
+    "shamrock plant": {
+        "light": "5",
+        "water": "4",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix"
+    },
+    "sanseveria future robusta": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix"
+    },
+    "sansevieria trifasciata": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix"
+    },
+    "cactus pincushion": {
+        "light": "4",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix"
+    },
+    "cactus senecio stapeliaeformis": {
+        "light": "5",
+        "water": "4",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a year, in the spring.",
+        "petSafe": "true",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "peperomia frost": {
+        "light": "1",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix with added orchard bark, peat moss or vermiculite."
+    },
+    "peperomia red ripple": {
+        "light": "1",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix with added orchard bark, peat moss or vermiculite."
+    },
+    "scindapsus pictus argyraeus": {
+        "light": "1",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix with added perlite"
+    },
+    "scindapsus pictus excotica": {
+        "light": "1",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "cactus potting mix with added perlite"
+    },
+    "syngonium albo": {
+        "light": "4",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "peat moss-based mix, such as african violet potting mix"
+    },
+    "syngonium maria": {
+        "light": "4",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "peat moss-based mix, such as african violet potting mix"
+    },
+    "syngonium neon robusta": {
+        "light": "4",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "peat moss-based mix, such as african violet potting mix"
+    },
+    "syngonium white butterfly": {
+        "light": "4",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "40%-50%",
+        "soil": "peat moss-based mix, such as african violet potting mix"
+    },
+    "tradescantia zebrina": {
+        "light": "4",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "45% at least",
+        "soil": "cactus potting mix"
+    },
+    "avocado tree": {
+        "light": "7",
+        "water": "1",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once every 4 months.",
+        "petSafe": "false",
+        "humidity": "45%-65%",
+        "soil": "cactus potting mix"
+    },
+    "cordyline fruticosa": {
+        "light": "3",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Every 2 weeks in spring and summer.",
+        "petSafe": "false",
+        "humidity": "50% at least",
+        "soil": "cactus potting mix"
+    },
+    "sanseveria samurai": {
+        "light": "4",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "50% at least",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "lipstick plant": {
+        "light": "4",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "50% at least",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "hoya linearis": {
+        "light": "4",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "50% at least",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "pothos cebu blue": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "50% at least ",
+        "soil": "cactus potting mix"
+    },
+    "pothos global green": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "50% at least ",
+        "soil": "cactus potting mix"
+    },
+    "pothos golden": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "50% at least ",
+        "soil": "cactus potting mix"
+    },
+    "pothos jade": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "50% at least ",
+        "soil": "cactus potting mix"
+    },
+    "alocasia hilo beauty": {
+        "light": "4",
+        "water": "0",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "50% at least ",
+        "soil": "cactus potting mix"
+    },
+    "stromanthe triostar": {
+        "light": "4",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "50% at least ",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "orchid": {
+        "light": "5",
+        "water": "4",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a week with watering.",
+        "petSafe": "true",
+        "humidity": "50% at least ",
+        "soil": "orchid mix"
+    },
+    "pilea peperomioides": {
+        "light": "4",
+        "water": "4",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "50% at least ",
+        "soil": "cactus potting mix"
+    },
+    "mini rose": {
+        "light": "7",
+        "water": "0",
+        "waterInstructions": [
+            "Needs one inch of water per week"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "50%-60%",
+        "soil": "cactus potting mix"
+    },
+    "cactus christmas": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "50%-60%",
+        "soil": "cactus potting mix"
+    },
+    "cactus thanksgiving ": {
+        "light": "1",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "50%-60%",
+        "soil": "cactus potting mix"
+    },
+    "T. harrisii": {
+        "light": "4",
+        "water": "6",
+        "waterInstructions": [
+            "Every week"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "60%-70%",
+        "soil": "none"
+    },
+    "T. pseudobaileyi": {
+        "light": "4",
+        "water": "6",
+        "waterInstructions": [
+            "Mist 2-3 times per week"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "60%-70%",
+        "soil": "none"
+    },
+    "cast iron plant": {
+        "light": "0",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "60%-70%",
+        "soil": "cactus potting mix"
+    },
+    "bird of paradise": {
+        "light": "5",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "60%-70%",
+        "soil": "cactus potting mix with added perlite"
+    },
+    "T. caput medusae": {
+        "light": "4",
+        "water": "6",
+        "waterInstructions": [
+            "Mist 2-3 times per week"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "60%-70%",
+        "soil": "none"
+    },
+    "T. xerographica": {
+        "light": "5",
+        "water": "6",
+        "waterInstructions": [
+            "Soak once per month for 15 minutes. Mist between"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "60%-70%",
+        "soil": "none"
+    },
+    "alocasia gageana variegata": {
+        "light": "4",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "60%-80%",
+        "soil": "cactus potting mix with added orchard bark and/or perlite"
+    },
+    "philodendron brasil": {
+        "light": "1",
+        "water": "1",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "60%-80%",
+        "soil": "peat moss-based mix, such as african violet potting mix"
+    },
+    "african violet": {
+        "light": "4",
+        "water": "0",
+        "waterInstructions": [
+            "Prefers warm water",
+            "Do not allow water to contact the leaves",
+            "Water from below",
+            "Don't allow the plant to sit in water"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "70%-80%",
+        "soil": "peat moss-based mix, such as african violet potting mix"
+    },
+    "philodendron heart leaf": {
+        "light": "1",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy",
+            "Water gently from above, soak through to the roots"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "70%-90%",
+        "soil": "peat moss-based mix, such as african violet potting mix"
+    },
+    "kalanchoe": {
+        "light": "5",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "70%-90%",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "calathea white fusion": {
+        "light": "4",
+        "water": "2",
+        "waterInstructions": [
+            "Water gently from above, soak through to the roots",
+            "Evenly moist but not soggy",
+            "Sensitive to Flouride",
+            "Don't allow the plant to sit in water"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "70%-90%",
+        "soil": "cactus potting mix with added orchard bark and/or perlite"
+    },
+    "pothos n'joy": {
+        "light": "3",
+        "water": "1",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "",
+        "soil": "cactus potting mix"
+    },
+    "ruby necklace": {
+        "light": "5",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a year, in the spring.",
+        "petSafe": "false",
+        "humidity": "",
+        "soil": "cactus potting mix"
+    },
+    "cactus silken pincushion": {
+        "light": "4",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "true",
+        "humidity": "",
+        "soil": "cactus potting mix"
+    },
+    "succulent pachyphytum": {
+        "light": "6",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water."
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "",
+        "soil": "cactus potting mix"
+    },
+    "succulent echeveria ": {
+        "light": "6",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water."
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "",
+        "soil": "cactus potting mix"
+    },
+    "succulent painted echiveria": {
+        "light": "6",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water."
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "",
+        "soil": "cactus potting mix"
+    },
+    "succulent adromischus maculatus": {
+        "light": "4",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a year, in the spring.",
+        "petSafe": "false",
+        "humidity": "",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "succulent split rock": {
+        "light": "4",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Not as much in the winter"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "Cactus Pickle Plant": {
+        "light": "4",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ],
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "petSafe": "true",
+        "humidity": "",
+        "soil": "cactus potting mix with 1:1 perlite"
+    },
+    "lime tree": {
+        "light": "7",
+        "water": "1",
+        "waterInstructions": [
+            "None"
+        ],
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "petSafe": "false",
+        "humidity": "",
+        "soil": "citrus potting mix"
+    }
 }
