@@ -513,19 +513,6 @@
             "None"
         ]
     },
-    "propeller plant": {
-        "fertilzerDose": "None",
-        "fertilzerFrequency": "Not needed.",
-        "humidity": "30%-35%",
-        "light": "7",
-        "petSafe": "true",
-        "soil": "cactus potting mix",
-        "water": "5",
-        "waterInstructions": [
-            "Water thoroughly",
-            "Don't allow the plant to sit in water."
-        ]
-    },
     "rhaphidophora tetrasperma": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once a month during spring and summer.",
@@ -536,18 +523,6 @@
         "water": "2",
         "waterInstructions": [
             "None"
-        ]
-    },
-    "ruby necklace": {
-        "fertilzerDose": "Full strength",
-        "fertilzerFrequency": "Once a year, in the spring.",
-        "humidity": "",
-        "light": "5",
-        "petSafe": "false",
-        "soil": "cactus potting mix",
-        "water": "5",
-        "waterInstructions": [
-            "Water thoroughly"
         ]
     },
     "sanseveria future robusta": {
@@ -622,7 +597,7 @@
             "Water thoroughly"
         ]
     },
-    "spider plants": {
+    "spider plant": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once a month during spring and summer.",
         "humidity": "40% at least",
@@ -721,6 +696,31 @@
             "Don't allow the plant to sit in water."
         ]
     },
+    "succulent propeller plant": {
+        "fertilzerDose": "None",
+        "fertilzerFrequency": "Not needed.",
+        "humidity": "30%-35%",
+        "light": "7",
+        "petSafe": "true",
+        "soil": "cactus potting mix",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly",
+            "Don't allow the plant to sit in water."
+        ]
+    },
+    "succulent ruby necklace": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a year, in the spring.",
+        "humidity": "",
+        "light": "5",
+        "petSafe": "false",
+        "soil": "cactus potting mix",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
+        ]
+    },
     "succulent split rock": {
         "fertilzerDose": "None",
         "fertilzerFrequency": "Not needed.",
@@ -732,6 +732,18 @@
         "waterInstructions": [
             "Water thoroughly",
             "Not as much in the winter"
+        ]
+    },
+    "succulent string of pearls": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "30%-50%",
+        "light": "4",
+        "petSafe": "false",
+        "soil": "cactus potting mix with 1:1 perlite",
+        "water": "2",
+        "waterInstructions": [
+            "None"
         ]
     },
     "syngonium albo": {
@@ -837,18 +849,6 @@
         "light": "4",
         "petSafe": "false",
         "soil": "cactus potting mix",
-        "water": "2",
-        "waterInstructions": [
-            "None"
-        ]
-    },
-    "varigated string of pearls": {
-        "fertilzerDose": "Full strength",
-        "fertilzerFrequency": "Once a month during spring and summer.",
-        "humidity": "30%-50%",
-        "light": "4",
-        "petSafe": "false",
-        "soil": "cactus potting mix with 1:1 perlite",
         "water": "2",
         "waterInstructions": [
             "None"
