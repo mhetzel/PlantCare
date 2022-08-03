@@ -24,6 +24,7 @@ function dropdown(prefix) {
   $(prefix+'PlantPetSafe').prop('selectedIndex', 0);
   setDropdown($(prefix+'PlantWaterNeeds'), WaterList);
   setDropdown($(prefix+'PlantWaterInstructions'), WateringInstructions);
+  $(prefix+'PlantWaterInstructions').multiselect();
   setDropdown($(prefix+'PlantSoilPreferences'), SoilList);
   setDropdown($(prefix+'PlantFertilizer'), FertilizerSchedule);
   setDropdown($(prefix+'PlantFertilizerDose'), FertilizerDoses);
