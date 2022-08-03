@@ -2,7 +2,7 @@
 addCloseButtons();
 setCurrentUserDisplay('Guest', null);
 
-// setupNewPlantInput();
+setupNewPlantInput();
 // dropdown('#updated');
 
 initGoogleAPIs();
