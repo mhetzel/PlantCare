@@ -31,15 +31,6 @@ function dropdown(prefix) {
   setDropdown($(prefix+'PlantHumitidy'), HumidityLevels);
 }
 
-function setupNewPlantInput() {
-  $("#newPlantName").val('');
-  $("#newPlantLocation").val('');
-  $("#newPlantLastWatered").val(null);
-  $("#newPlantAverageWateringDays").val(null);
-
-  dropdown('#new');
-}
-
 function setDropdown(dropdown, list) {
   dropdown.empty();
   list.forEach(function(x) {
