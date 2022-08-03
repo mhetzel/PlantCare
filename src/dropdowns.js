@@ -11,6 +11,7 @@ function knownPlantSelectionChange() {
     }
     $("#newPlantWaterNeeds").prop('selectedIndex', plant['water']);
     $("#newPlantWaterInstructions").val(plant['waterInstructions']);
+    $('select[multiple]').multiselect('reload')
     $("#newPlantSoilPreferences").val(plant['soil']);
     $("#newPlantFertilizer").val(plant['fertilzerFrequency']);
     $("#newPlantFertilizerDose").val(plant['fertilzerDose']);
