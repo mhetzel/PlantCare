@@ -57,6 +57,7 @@ function resetUpdatedPlantInfo() {
 
   $("#updatedPlantWaterNeeds").prop('selectedIndex', plant['water']);
   $("#updatedPlantWaterInstructions").val(plant['waterInstructions']);
+  $('select[multiple]').multiselect('reload')
   $("#updatedPlantSoilPreferences").val(plant['soil']);
   $("#updatedPlantFertilizer").val(plant['fertilzerFrequency']);
   $("#updatedPlantFertilizerDose").val(plant['fertilzerDose']);
