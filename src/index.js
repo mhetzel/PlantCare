@@ -13,3 +13,4 @@ $.getJSON('src/knownPlants.json', function(data) {
    });
 });
 
+$('select[multiple]').multiselect();
