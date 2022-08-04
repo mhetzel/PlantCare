@@ -52,35 +52,6 @@ function setupNewPlantInput() {
   dropdown('#new');
 }
 
-function toggleMovePlantForm() {
-  let location = locationDropdown.val();
-  $("#movedPlantLocation").val(location);
-  
-  if ($("#move-location-div").css('display') == 'block') {
-    $("#move-location-div").hide();
-  } else {
-    $("#move-location-div").show();
-  }
-};
-
-function toggleUpdatePlantForm() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-  let plant = PlantData[location][plantName];
-
-  addPlantInputFeilds("#update-plant-input", 'updated');
-  dropdown('#updated');
-  
-  setKnowPlantValues("#updated", plant);
-  
-  if ($("#update-plant-div").css('display') == 'block') {
-    $("#update-plant-div").hide();
-  } else {
-    $("#update-plant-div").show();
-  }
-};
-
-
 function openConfigForm() {
   if (configDiv.css('display') == 'block') {
     setDisplayForNoPlants();
