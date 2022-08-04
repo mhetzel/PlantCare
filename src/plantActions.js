@@ -2,33 +2,17 @@
 async function fertilizePlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
-  let locationIndex = locationDropdown.prop('selectedIndex');
-  let plantIndex = plantDropdown.prop('selectedIndex');
   const today = new Date();
   PlantData[location][plantName].lastFertilized = today.toDateString();
 
   await saveConfig(PlantData);
-  resetPlantSelection(locationIndex, plantIndex);
-};
-
-async function checkPlant() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-  let locationIndex = locationDropdown.prop('selectedIndex');
-  let plantIndex = plantDropdown.prop('selectedIndex');
-  const today = new Date();
-  PlantData[location][plantName].lastChecked = today.toDateString();
-  
-  PlantData[location][plantName].currentWetness = currentWetness.prop('selectedIndex');
-  await saveConfig(PlantData);
-  resetPlantSelection(locationIndex, plantIndex);
+  resetPlantSelection(location, plantName);
 };
 
 async function waterPlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
-  let locationIndex = locationDropdown.prop('selectedIndex');
-  let plantIndex = plantDropdown.prop('selectedIndex');
+
   const today = new Date();
   PlantData[location][plantName].lastChecked = today.toDateString();
   
@@ -42,15 +26,13 @@ async function waterPlant() {
   PlantData[location][plantName].currentWetness = 0;
 
   await saveConfig(PlantData);
-  resetPlantSelection(locationIndex, plantIndex);
+  resetPlantSelection(location, plantName);
 };
 
 async function updatePlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
   let plant = PlantData[location][plantName];
-  let locationIndex = locationDropdown.prop('selectedIndex');
-  let plantIndex = plantDropdown.prop('selectedIndex');
   
   let newPlantInfo = readPlantInputs("#updated");
   PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo};
@@ -58,15 +40,14 @@ async function updatePlant() {
   toggleUpdatePlantForm();
   
   await saveConfig(PlantData);
-  resetPlantSelection(locationIndex, plantIndex);
+  resetPlantSelection(location, plantName);
 };
 
 async function movePlant() {
   let newLocation = $("#movedPlantLocation").val();
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
-  let locationIndex = locationDropdown.prop('selectedIndex');
-  let plantIndex = plantDropdown.prop('selectedIndex');
+
   plant = PlantData[location][plantName];
   delete PlantData[location][plantName];
   if (Object.keys(PlantData[location]).length === 0) {
@@ -80,8 +61,7 @@ async function movePlant() {
   PlantData[newLocation][plantName] = plant;
   toggleMovePlantForm();
   await saveConfig(PlantData);
-  locationDropdown.val(newLocation);
-  resetPlantSelection(locationDropdown.prop('selectedIndex'), plantIndex);
+  resetPlantSelection(newLocation, plantName);
 };
 
 async function deletePlant() {
