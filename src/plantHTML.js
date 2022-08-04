@@ -12,25 +12,39 @@ function displayPlant(element, locationName, plantName) {
   
   let plant = PlantData[locationName][plantName];
   
-  var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
+  
   
   var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
     checkPlant();
   });
-    
+  setDropdown(currentWetness, WaterList);
+  
+  var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
+  averageDaysBetweenWatering.text('n/a');
   var lastChecked = $('<span id="lastChecked"></span>');
+  lastChecked.text('n/a');
   var lastWatered = $('<span id="lastWatered"></span>');
+  lastWatered.text('n/a');
   var lastFertilized = $('<span id="lastFertilized"></span>');
+  lastFertilized.text('n/a');
   var water = $('<span id="water"></span>');
+  water.text('n/a');
   var waterInstructions = $('<span id="waterInstructions"></span>');
+  waterInstructions.text('n/a');
   var soil = $('<span id="soil"></span>');
+  soil.text('n/a');
   var fertilzerFrequency = $('<span id="fertilzerFrequency"></span>');
+  fertilzerFrequency.text('n/a');
   var fertilzerDose = $('<span id="fertilzerDose"></span>');
+  fertilzerDose.text('n/a');
   var petSafe = $('<span id="petSafe"></span>');
+  petSafe.text('n/a');
   var humidity = $('<span id="humidity"></span>');
+  humidity.text('n/a');
   var light = $('<span id="light"></span>');  
-
+  light.text('n/a');
+    
   plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
@@ -38,7 +52,6 @@ function displayPlant(element, locationName, plantName) {
   plantInfo.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   plantInfo.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
   plantInfo.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
-  
   
   plantInfo.append($('<div><span><b>Soil Preferences: </b></span></div>').append(soil))
   plantInfo.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
@@ -64,49 +77,22 @@ function displayPlant(element, locationName, plantName) {
 
   plantButtons.append(waterButton, moveButton, updateButton, deleteButton);
   
-
-
-  function resetPlantInfo() {
-    setDropdown(currentWetness, WaterList);
-    averageDaysBetweenWatering.text('n/a');
-    lastChecked.text('n/a');
-    lastWatered.text('n/a');
-    water.text('n/a');
-    light.text('n/a');
-    
-    waterInstructions.text('n/a');
-    soil.text('n/a');
-    lastFertilized.text('n/a');
-    fertilzerFrequency.text('n/a');
-    fertilzerDose.text('n/a');
-    petSafe.text('n/a');
-    humidity.text('n/a');
-  };
-  
-  function setPlantInfo(info) {
-    resetPlantInfo();
-    $('#dropdown-plant-info').show();
-      
-    if (Object.keys(info).length) {
-      let average = info.daysTotal/info.wateringCount;
-      averageDaysBetweenWatering.text(isNaN(average) ? 'n/a' : Math.floor(average));
-      currentWetness.prop('selectedIndex', info.currentWetness);
-      lastChecked.text(info.lastChecked);
-      lastWatered.text(info.lastWatered);
-      water.text(WaterList[info.water]);
-      light.text(LightList[info.light]);
-      waterInstructions.text(info.waterInstructions);
-      soil.text(info.soil);
-      lastFertilized.text(info.lastFertilized);
-      fertilzerFrequency.text(info.fertilzerFrequency);
-      fertilzerDose.text(info.fertilzerDose);
-      petSafe.text(info.petSafe);
-      humidity.text(info.humidity);
-    }
-  };
-
-
-  
+  if (Object.keys(plant).length) {
+    let average = plant.daysTotal/plant.wateringCount;
+    averageDaysBetweenWatering.text(isNaN(average) ? 'n/a' : Math.floor(average));
+    currentWetness.prop('selectedIndex', plant.currentWetness);
+    lastChecked.text(plant.lastChecked);
+    lastWatered.text(plant.lastWatered);
+    water.text(WaterList[plant.water]);
+    light.text(LightList[plant.light]);
+    waterInstructions.text(plant.waterInstructions);
+    soil.text(plant.soil);
+    lastFertilized.text(plant.lastFertilized);
+    fertilzerFrequency.text(plant.fertilzerFrequency);
+    fertilzerDose.text(plant.fertilzerDose);
+    petSafe.text(plant.petSafe);
+    humidity.text(plant.humidity);
+  }
     
   async function checkPlant() {
     const today = new Date();
@@ -147,9 +133,7 @@ function displayPlant(element, locationName, plantName) {
       $("#update-plant-div").show();
     }
   };
-  
-  
-  setPlantInfo(plant);
+
 }
 
 
