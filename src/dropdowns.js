@@ -62,7 +62,12 @@ function resetPlantDropdown() {
 }
 
 function plantSelectionChange() {
-  displayPlant($("#dropdown-plant-info"), locationDropdown.val(), plantDropdown.val());
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
+  let locationIndex = locationDropdown.prop('selectedIndex');
+  let plantIndex = plantDropdown.prop('selectedIndex');
+  
+  displayPlant($("#dropdown-plant-info"), location, plantName);
 }
 
 function locationSelectionChange() {
