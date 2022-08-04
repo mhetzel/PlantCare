@@ -101,5 +101,6 @@ async function addNewPlant() {
   
     await saveConfig(PlantData);
     setDisplayForNoPlants();
+    resetPlantSelection(newLocation, newName);
   }
 }
