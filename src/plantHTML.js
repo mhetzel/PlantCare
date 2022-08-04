@@ -1,8 +1,3 @@
-/* <span id="plant-info">
-
-</span>
-
-*/
 
 function displayPlant(element, locationName, plantName) {
   element.empty();
@@ -11,15 +6,12 @@ function displayPlant(element, locationName, plantName) {
   element.append(plantInfo, plantButtons);
   
   let plant = PlantData[locationName][plantName];
-  
-  
-  
+
   var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
     checkPlant();
   });
   setDropdown(currentWetness, WaterList);
-  
   var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
   averageDaysBetweenWatering.text('n/a');
   var lastChecked = $('<span id="lastChecked"></span>');
@@ -101,6 +93,8 @@ function displayPlant(element, locationName, plantName) {
     humidity.text(plant.humidity);
   }
     
+  
+  
   async function checkPlant() {
     const today = new Date();
     PlantData[locationName][plantName].lastChecked = today.toDateString();
@@ -143,6 +137,9 @@ function displayPlant(element, locationName, plantName) {
     await saveConfig(PlantData);
   };
   
+  
+  
+  // pop up actions
   function toggleMovePlantForm() {
     $("#movedPlantLocation").val(locationName);
 
@@ -197,7 +194,9 @@ function displayPlant(element, locationName, plantName) {
     resetPlantSelection(newLocation, plantName);
   };
 
-}
+  
+  
+} // displayPlant
 
 
 
