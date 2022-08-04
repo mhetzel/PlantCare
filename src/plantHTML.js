@@ -29,19 +29,19 @@ function displayPlant(element, locationName, plantName) {
   var humidity = $('<span id="humidity"></span>');
   var light = $('<span id="light"></span>');  
 
-  plantInfo.append($('<div><span>Average Days Between Waterings: </span></div>').append(averageDaysBetweenWatering))
-  plantInfo.append($('<div><span>Current Wetness: </span></div>').append(currentWetness))
-  plantInfo.append($('<div><span>Last Checked Date: </span></div>').append(lastChecked))
-  plantInfo.append($('<div><span>Last Watered Date: </span></div>').append(lastWatered))
-  plantInfo.append($('<div><span>Desired Water Level: </span></div>').append(water))
-  plantInfo.append($('<div><span>Watering Instructions: </span></div>').append(waterInstructions))
-  plantInfo.append($('<div><span>Soil Preferences: </span></div>').append(soil))
-  plantInfo.append($('<div><span>Last Fertilized Date: </span></div>').append(lastFertilized))
-  plantInfo.append($('<div><span>Fertilizer Frequency: </span></div>').append(fertilzerFrequency))
-  plantInfo.append($('<div><span>Fertilizer Dose: </span></div>').append(fertilzerDose))
-  plantInfo.append($('<div><span>Pet Safe: </span></div>').append(petSafe))
-  plantInfo.append($('<div><span>Humidity Needs: </span></div>').append(humidity))
-  plantInfo.append($('<div><span>Desired Light Level: </span></div>').append(light))
+  plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
+  plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
+  plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+  plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  plantInfo.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
+  plantInfo.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
+  plantInfo.append($('<div><span><b>Soil Preferences: </b></span></div>').append(soil))
+  plantInfo.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
+  plantInfo.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
+  plantInfo.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
+  plantInfo.append($('<div><span><b>Pet Safe: </b></span></div>').append(petSafe))
+  plantInfo.append($('<div><span><b>Humidity Needs: </b></span></div>').append(humidity))
+  plantInfo.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
 
 
   let waterButton = $('<button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
