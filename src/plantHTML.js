@@ -13,7 +13,7 @@ function displayPlant(element, locationName, plantName) {
   var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
   
   var currentWetness = $('<select id="currentWetness"></select>');
-  currentWetness.change(checkPlant());
+  //currentWetness.change(checkPlant());
     
   var lastChecked = $('<span id="lastChecked"></span>');
   var lastWatered = $('<span id="lastWatered"></span>');
