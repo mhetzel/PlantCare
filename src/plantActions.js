@@ -92,20 +92,6 @@ async function deletePlant() {
   await saveConfig(PlantData);
 };
 
-
-function readPlantInputs(idPrefix) {
-  let inputs = {};
-  inputs['water'] = $(idPrefix+"PlantWaterNeeds").prop('selectedIndex');
-  inputs['light'] = $(idPrefix+"PlantLightNeeds").prop('selectedIndex');
-  inputs['waterInstructions'] = $(idPrefix+"PlantWaterInstructions").val();
-  inputs['soil'] = $(idPrefix+"PlantSoilPreferences").val();
-  inputs['fertilzerFrequency'] = $(idPrefix+"PlantFertilizer").val();
-  inputs['fertilzerDose'] = $(idPrefix+"PlantFertilizerDose").val();
-  inputs['petSafe'] = $(idPrefix+"PlantPetSafe").val();
-  inputs['humidity'] = $(idPrefix+"PlantHumitidy").val();
-  return inputs;
-}
-
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val();
   let newName = $("#newPlantName").val();
