@@ -62,6 +62,7 @@ function displayPlant(element, locationName, plantName) {
 
   
   let waterButton = $('<button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
+  let fertilizeButton = $('<button onclick="fertilizePlant()" title="Fertilize Plant"><i class="fa-solid fa-seedling"></i></button>')
   let moveButton = $('<button title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>')
   moveButton.on('click', function() {
      toggleMovePlantForm()
@@ -99,6 +100,14 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
 
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
+    await saveConfig(PlantData);
+    resetPlantSelection(locationName, plantName);
+  };
+  
+  async function fertilizePlant() {
+    const today = new Date();
+    PlantData[locationName][plantName].lastFertilized = today.toDateString();
+
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
   };
