@@ -1,4 +1,39 @@
 
+// TODO use these to draw forms
+function updatePlantForm() {
+  $('#update-plant-div').remove()
+  let updateDiv = $('<div id="update-plant-div" class="floating-box content-box"></div>')
+  let updateForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
+  updateDiv.append(updateForm)
+  let buttonDiv = $('<div class="top-right"></div>')
+  let saveButton = $('<button type="submit" onclick="updatePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+  let closeButton = $('<button type="button" onclick="toggleUpdatePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>')
+  buttonDiv.append(saveButton, closeButton)
+  let updateInput = $('<div id="update-plant-input"></div>')
+  
+  updateForm.append(buttonDiv, updateInput)
+  
+  $("body").append(updateDiv)
+}
+
+function movePlantForm() {
+  $('#move-location-div').remove()
+  let moveDiv = $('<div id="move-location-div" class="floating-box content-box"></div>')
+  let moveForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
+  moveDiv.append(moveForm)
+  let buttonDiv = $('<div class="top-right"></div>')
+  let saveButton = $('<button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+  let closeButton = $('<button type="button" onclick="toggleMovePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>')
+  buttonDiv.append(saveButton, closeButton)
+  let moveLabel = $('<label for="movedPlantLocation"><b>New Location:</b></label>')
+  let moveInput = $('<input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>')
+  
+  moveForm.append(buttonDiv, moveLabel, moveInput)
+  
+  $("body").append(moveDiv)
+}
+
+
 function displayPlant(element, locationName, plantName) {
   element.empty();
   let plantInfo = $('<span></span>');
