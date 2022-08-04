@@ -64,14 +64,6 @@ async function movePlant() {
   resetPlantSelection(newLocation, plantName);
 };
 
-async function deletePlant() {
-  delete PlantData[locationDropdown.val()][plantDropdown.val()];
-  if (Object.keys(PlantData[locationDropdown.val()]).length === 0) {
-    delete PlantData[locationDropdown.val()];
-  }
-  await saveConfig(PlantData);
-};
-
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val();
   let newName = $("#newPlantName").val();
