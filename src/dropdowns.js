@@ -41,10 +41,10 @@ function setDropdown(dropdown, list) {
   dropdown.prop('selectedIndex', 0);
 }
 
-function resetPlantSelection(locationIndex, plantIndex) {
-  locationDropdown.prop('selectedIndex', locationIndex);
+function resetPlantSelection(location, plant) {
+  locationDropdown.val(location);
   locationSelectionChange();
-  plantDropdown.prop('selectedIndex', plantIndex);
+  plantDropdown.val(plant);
   plantSelectionChange();
 }
 
