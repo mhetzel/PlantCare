@@ -1,38 +1,4 @@
 
-async function updatePlant() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-  let plant = PlantData[location][plantName];
-  
-  let newPlantInfo = readPlantInputs("#updated");
-  PlantData[location][plantName] = {...PlantData[location][plantName], ...newPlantInfo};
-  
-  toggleUpdatePlantForm();
-  
-  await saveConfig(PlantData);
-  resetPlantSelection(location, plantName);
-};
-
-async function movePlant() {
-  let newLocation = $("#movedPlantLocation").val();
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-
-  plant = PlantData[location][plantName];
-  delete PlantData[location][plantName];
-  if (Object.keys(PlantData[location]).length === 0) {
-    delete PlantData[location];
-  }
-
-  if (!PlantData.hasOwnProperty(newLocation)) {
-    PlantData[newLocation] = {};
-  }
-
-  PlantData[newLocation][plantName] = plant;
-  toggleMovePlantForm();
-  await saveConfig(PlantData);
-  resetPlantSelection(newLocation, plantName);
-};
 
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val();
