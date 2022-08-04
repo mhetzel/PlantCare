@@ -66,6 +66,7 @@ function plantSelectionChange() {
   let plantName = plantDropdown.val();
   
   displayPlant($("#dropdown-plant-info"), location, plantName);
+  $('#dropdown-plant-info').show();
 }
 
 function locationSelectionChange() {
