@@ -9,17 +9,6 @@ async function fertilizePlant() {
   resetPlantSelection(location, plantName);
 };
 
-async function checkPlant() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-  const today = new Date();
-  PlantData[location][plantName].lastChecked = today.toDateString();
-
-  PlantData[location][plantName].currentWetness = currentWetness.prop('selectedIndex');
-  await saveConfig(PlantData);
-  resetPlantSelection(location, plantName);
-};
-
 async function waterPlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
