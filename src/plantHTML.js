@@ -61,8 +61,14 @@ function displayPlant(element, locationName, plantName) {
   plantInfo.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
 
   
-  let waterButton = $('<button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
-  let fertilizeButton = $('<button onclick="fertilizePlant()" title="Fertilize Plant"><i class="fa-solid fa-seedling"></i></button>')
+  let waterButton = $('<button title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
+  waterButton.on('click', function() {
+    waterPlant()
+  })
+  let fertilizeButton = $('<button title="Fertilize Plant"><i class="fa-solid fa-seedling"></i></button>')
+  fertilizeButton.on('click', function() {
+    fertilizePlant()
+  })
   let moveButton = $('<button title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>')
   moveButton.on('click', function() {
      toggleMovePlantForm()
@@ -107,6 +113,23 @@ function displayPlant(element, locationName, plantName) {
   async function fertilizePlant() {
     const today = new Date();
     PlantData[locationName][plantName].lastFertilized = today.toDateString();
+
+    await saveConfig(PlantData);
+    resetPlantSelection(locationName, plantName);
+  };
+  
+  async function waterPlant() {
+    const today = new Date();
+    PlantData[locationName][plantName].lastChecked = today.toDateString();
+
+    const last = 'lastWatered' in PlantData[locationName][plantName] ? new Date(PlantData[locationName][plantName].lastWatered) : today;
+    const daysTotal = 'daysTotal' in PlantData[locationName][plantName] ? PlantData[locationName][plantName].daysTotal : 0;
+    const wateringCount = 'wateringCount' in PlantData[locationName][plantName] ? PlantData[locationName][plantName].wateringCount : 0;
+
+    PlantData[locationName][plantName].daysTotal = daysTotal + (today - last);
+    PlantData[locationName][plantName].wateringCount = wateringCount + 1;
+    PlantData[locationName][plantName].lastWatered = today.toDateString();
+    PlantData[locationName][plantName].currentWetness = 0;
 
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
