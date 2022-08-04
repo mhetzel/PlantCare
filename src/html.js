@@ -28,16 +28,6 @@ function readPlantInputs(idPrefix) {
   return inputs;
 }
 
-function resetUpdatedPlantInfo() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-  let plant = PlantData[location][plantName];
-
-  addPlantInputFeilds("#update-plant-input", 'updated');
-  dropdown('#updated');
-  
-  setKnowPlantValues("#updated", plant);
-}
 
 function setKnowPlantValues(prefix, plant) {
   $(prefix + "PlantWaterNeeds").prop('selectedIndex', plant['water']);
@@ -63,7 +53,9 @@ function setupNewPlantInput() {
 }
 
 function toggleMovePlantForm() {
-  $("#movedPlantLocation").val('');
+  let location = locationDropdown.val();
+  $("#movedPlantLocation").val(location);
+  
   if ($("#move-location-div").css('display') == 'block') {
     $("#move-location-div").hide();
   } else {
@@ -72,7 +64,15 @@ function toggleMovePlantForm() {
 };
 
 function toggleUpdatePlantForm() {
-  resetUpdatedPlantInfo()
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
+  let plant = PlantData[location][plantName];
+
+  addPlantInputFeilds("#update-plant-input", 'updated');
+  dropdown('#updated');
+  
+  setKnowPlantValues("#updated", plant);
+  
   if ($("#update-plant-div").css('display') == 'block') {
     $("#update-plant-div").hide();
   } else {
