@@ -1,16 +1,3 @@
-var averageDaysBetweenWatering = $('#averageDaysBetweenWatering');
-var currentWetness = $('#currentWetness');
-var lastChecked = $('#lastChecked');
-var lastWatered = $('#lastWatered');
-var lastFertilized = $('#lastFertilized');
-var water = $('#water');
-var waterInstructions = $('#waterInstructions');
-var soil = $('#soil');
-var fertilzerFrequency = $('#fertilzerFrequency');
-var fertilzerDose = $('#fertilzerDose');
-var petSafe = $('#petSafe');
-var humidity = $('#humidity');
-var light = $('#light');
 
 async function fertilizePlant() {
   let location = locationDropdown.val();
@@ -37,13 +24,6 @@ async function checkPlant() {
   resetPlantSelection(locationIndex, plantIndex);
 };
 
-function resetPlantSelection(locationIndex, plantIndex) {
-  locationDropdown.prop('selectedIndex', locationIndex);
-  locationSelectionChange();
-  plantDropdown.prop('selectedIndex', plantIndex);
-  plantSelectionChange();
-}
-
 async function waterPlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
@@ -69,10 +49,15 @@ function resetUpdatedPlantInfo() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
   let plant = PlantData[location][plantName];
+
+  addPlantInputFeilds("#update-plant-input", 'updated');
   dropdown('#updated');
+
+  // todo multiselect set isn't working
 
   $("#updatedPlantWaterNeeds").prop('selectedIndex', plant['water']);
   $("#updatedPlantWaterInstructions").val(plant['waterInstructions']);
+  $('select[multiple]').multiselect('reload')
   $("#updatedPlantSoilPreferences").val(plant['soil']);
   $("#updatedPlantFertilizer").val(plant['fertilzerFrequency']);
   $("#updatedPlantFertilizerDose").val(plant['fertilzerDose']);
@@ -95,24 +80,6 @@ async function updatePlant() {
   
   await saveConfig(PlantData);
   resetPlantSelection(locationIndex, plantIndex);
-};
-
-function toggleMovePlantForm() {
-  $("#movedPlantLocation").val('');
-  if ($("#moving-location-div").css('display') == 'block') {
-    $("#moving-location-div").hide();
-  } else {
-    $("#moving-location-div").show();
-  }
-};
-
-function toggleUpdatePlantForm() {
-  resetUpdatedPlantInfo()
-  if ($("#updating-plant-div").css('display') == 'block') {
-    $("#updating-plant-div").hide();
-  } else {
-    $("#updating-plant-div").show();
-  }
 };
 
 async function movePlant() {
@@ -146,44 +113,6 @@ async function deletePlant() {
   await saveConfig(PlantData);
 };
 
-function setPlantInfo(info) {
-  if (Object.keys(info).length) {
-    plantInfo.show();
-    plantButtons.show();
-    resetPlantInfo();
-    let average = info.daysTotal/info.wateringCount;
-    averageDaysBetweenWatering.text(isNaN(average) ? 'n/a' : Math.floor(average));
-    currentWetness.prop('selectedIndex', info.currentWetness);
-    lastChecked.text(info.lastChecked);
-    lastWatered.text(info.lastWatered);
-    water.text(WaterList[info.water]);
-    light.text(LightList[info.light]);
-    waterInstructions.text(info.waterInstructions);
-    soil.text(info.soil);
-    lastFertilized.text(info.lastFertilized);
-    fertilzerFrequency.text(info.fertilzerFrequency);
-    fertilzerDose.text(info.fertilzerDose);
-    petSafe.text(info.petSafe);
-    humidity.text(info.humidity);
-  }
-};
-
-function resetPlantInfo() {
-  setupCurrentWetness();
-  averageDaysBetweenWatering.text('n/a');
-  lastChecked.text('n/a');
-  lastWatered.text('n/a');
-  water.text('n/a');
-  light.text('n/a');
-  
-  waterInstructions.text('n/a');
-  soil.text('n/a');
-  lastFertilized.text('n/a');
-  fertilzerFrequency.text('n/a');
-  fertilzerDose.text('n/a');
-  petSafe.text('n/a');
-  humidity.text('n/a');
-};
 
 function readPlantInputs(idPrefix) {
   let inputs = {};

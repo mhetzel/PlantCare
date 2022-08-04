@@ -1,8 +1,6 @@
 var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
 
-var plantInfo = $('#plant-info');
-var plantButtons = $('#plant-buttons');
 
 function knownPlantSelectionChange() {
   setupNewPlantInput();
@@ -13,6 +11,7 @@ function knownPlantSelectionChange() {
     }
     $("#newPlantWaterNeeds").prop('selectedIndex', plant['water']);
     $("#newPlantWaterInstructions").val(plant['waterInstructions']);
+    $('select[multiple]').multiselect('reload')
     $("#newPlantSoilPreferences").val(plant['soil']);
     $("#newPlantFertilizer").val(plant['fertilzerFrequency']);
     $("#newPlantFertilizerDose").val(plant['fertilzerDose']);
@@ -31,15 +30,8 @@ function dropdown(prefix) {
   setDropdown($(prefix+'PlantFertilizerDose'), FertilizerDoses);
   setDropdown($(prefix+'PlantLightNeeds'), LightList);
   setDropdown($(prefix+'PlantHumitidy'), HumidityLevels);
-}
-
-function setupNewPlantInput() {
-  $("#newPlantName").val('');
-  $("#newPlantLocation").val('');
-  $("#newPlantLastWatered").val(null);
-  $("#newPlantAverageWateringDays").val(null);
-
-  dropdown('#new');
+  
+  $('select[multiple]').multiselect('reload')
 }
 
 function setDropdown(dropdown, list) {
@@ -50,8 +42,11 @@ function setDropdown(dropdown, list) {
   dropdown.prop('selectedIndex', 0);
 }
 
-function setupCurrentWetness() {
-  setDropdown(currentWetness, WaterList);
+function resetPlantSelection(locationIndex, plantIndex) {
+  locationDropdown.prop('selectedIndex', locationIndex);
+  locationSelectionChange();
+  plantDropdown.prop('selectedIndex', plantIndex);
+  plantSelectionChange();
 }
 
 function resetLocationDropdown() {
@@ -64,13 +59,11 @@ function resetPlantDropdown() {
   plantDropdown.empty();
   plantDropdown.append('<option selected="true" disabled>Choose Plant</option>');
   plantDropdown.prop('selectedIndex', 0);
-  plantInfo.hide();
-  plantButtons.hide();
+  $('#dropdown-plant-info').hide();
 }
 
 function plantSelectionChange() {
-  plant = PlantData[locationDropdown.val()][plantDropdown.val()];
-  setPlantInfo(plant);
+  displayPlant($("#dropdown-plant-info"), locationDropdown.val(), plantDropdown.val());
 }
 
 function locationSelectionChange() {

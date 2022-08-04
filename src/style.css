@@ -8,6 +8,33 @@ body {
   border-radius: 5px;
 }
 
+#current-span {
+  position: fixed; 
+  padding-left: 3em;
+}
+
+#guest-pic {
+  display:none; 
+  padding-top: 10px; 
+  position: fixed;
+}
+
+#profile-pic {
+  position: fixed; 
+  border-radius: 50%; 
+  border: 1px solid #0d1b19; 
+  width: 2.5em;
+}
+
+#signin-div {
+  width: 15em;
+}
+
+#user-div {
+  width: 15em; 
+  height: 3em;
+}
+
 .top-right {
   right: 10px; 
   top: 10px; 
@@ -29,10 +56,6 @@ body {
 .font {
   font-size: 20px;
   color: rgb(236, 216, 216);
-}
-
-.plantForm {
-  display: none;
 }
 
 input[type="file" i] {
@@ -64,6 +87,15 @@ select {
   color: rgb(236, 216, 216);
 }
 
+
+.floating-box {
+  display: none; 
+  position: absolute; 
+  padding-top: 2em; 
+  top: 20px;
+}
+
+
 .menu-box {
   position: absolute;
   border: 1px solid #0d1b19;
@@ -78,6 +110,7 @@ select {
 }
 
 .content-box {
+  display: none;
   border: 1px solid #0d1b19;
   background-color: rgba(21, 48, 41, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
