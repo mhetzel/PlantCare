@@ -45,27 +45,6 @@ async function waterPlant() {
   resetPlantSelection(locationIndex, plantIndex);
 };
 
-function resetUpdatedPlantInfo() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-  let plant = PlantData[location][plantName];
-
-  addPlantInputFeilds("#update-plant-input", 'updated');
-  dropdown('#updated');
-
-  // todo multiselect set isn't working
-
-  $("#updatedPlantWaterNeeds").prop('selectedIndex', plant['water']);
-  $("#updatedPlantWaterInstructions").val(plant['waterInstructions']);
-  $('select[multiple]').multiselect('reload')
-  $("#updatedPlantSoilPreferences").val(plant['soil']);
-  $("#updatedPlantFertilizer").val(plant['fertilzerFrequency']);
-  $("#updatedPlantFertilizerDose").val(plant['fertilzerDose']);
-  $("#updatedPlantLightNeeds").prop('selectedIndex', plant['light']);
-  $("#updatedPlantPetSafe").val(plant['petSafe']);
-  $("#updatedPlantHumitidy").val(plant['humidity']);
-}
-
 async function updatePlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
