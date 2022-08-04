@@ -11,7 +11,10 @@ function displayPlant(element, locationName, plantName) {
   element.append(plantInfo, plantButtons);
 
   var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
-  var currentWetness = $('<select id="currentWetness" onchange="checkPlant()"></select>');
+  
+  var currentWetness = $('<select id="currentWetness"></select>');
+  currentWetness.change(checkPlant());
+    
   var lastChecked = $('<span id="lastChecked"></span>');
   var lastWatered = $('<span id="lastWatered"></span>');
   var lastFertilized = $('<span id="lastFertilized"></span>');
@@ -23,6 +26,15 @@ function displayPlant(element, locationName, plantName) {
   var petSafe = $('<span id="petSafe"></span>');
   var humidity = $('<span id="humidity"></span>');
   var light = $('<span id="light"></span>');
+  
+  async function checkPlant() {
+    const today = new Date();
+    PlantData[locationName][plantName].lastChecked = today.toDateString();
+
+    PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
+    await saveConfig(PlantData);
+    resetPlantSelection(locationName, plantName);
+  };
 
   plantInfo.append($('<div><span>Average Days Between Waterings: </span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span>Current Wetness: </span></div>').append(currentWetness))
