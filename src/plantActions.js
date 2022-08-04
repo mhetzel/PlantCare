@@ -1,14 +1,4 @@
 
-async function fertilizePlant() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-  const today = new Date();
-  PlantData[location][plantName].lastFertilized = today.toDateString();
-
-  await saveConfig(PlantData);
-  resetPlantSelection(location, plantName);
-};
-
 async function waterPlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
