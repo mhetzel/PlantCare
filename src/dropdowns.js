@@ -64,8 +64,6 @@ function resetPlantDropdown() {
 function plantSelectionChange() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
-  let locationIndex = locationDropdown.prop('selectedIndex');
-  let plantIndex = plantDropdown.prop('selectedIndex');
   
   displayPlant($("#dropdown-plant-info"), location, plantName);
 }
