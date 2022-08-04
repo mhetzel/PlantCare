@@ -15,6 +15,30 @@ let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
 
+function resetUpdatedPlantInfo() {
+  let location = locationDropdown.val();
+  let plantName = plantDropdown.val();
+  let plant = PlantData[location][plantName];
+
+  addPlantInputFeilds("#update-plant-input", 'updated');
+  dropdown('#updated');
+  
+  setKnowPlantValues("#updated", plant);
+}
+
+function setKnowPlantValues(prefix, plant) {
+  $(prefix + "PlantWaterNeeds").prop('selectedIndex', plant['water']);
+  $(prefix + "PlantWaterInstructions").val(plant['waterInstructions']);
+  $('select[multiple]').multiselect('reload')
+  $(prefix + "PlantSoilPreferences").val(plant['soil']);
+  $(prefix + "PlantFertilizer").val(plant['fertilzerFrequency']);
+  $(prefix + "PlantFertilizerDose").val(plant['fertilzerDose']);
+  $(prefix + "PlantLightNeeds").prop('selectedIndex', plant['light']);
+  $(prefix + "PlantPetSafe").val(plant['petSafe']);
+  $(prefix + "PlantHumitidy").val(plant['humidity']);
+}
+
+
 function setupNewPlantInput() {
   addPlantInputFeilds('#add-plant-input', 'new')
   $("#newPlantName").val('');
