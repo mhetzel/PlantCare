@@ -165,6 +165,37 @@ function displayPlant(element, locationName, plantName) {
       $("#update-plant-div").show();
     }
   };
+  
+  async function updatePlant() {
+    let plant = PlantData[locationName][plantName];
+
+    let newPlantInfo = readPlantInputs("#updated");
+    PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
+
+    toggleUpdatePlantForm();
+
+    await saveConfig(PlantData);
+    resetPlantSelection(location, plantName);
+  };
+
+  async function movePlant() {
+    let newLocation = $("#movedPlantLocation").val();
+
+    plant = PlantData[locationName][plantName];
+    delete PlantData[locationName][plantName];
+    if (Object.keys(PlantData[locationName]).length === 0) {
+      delete PlantData[locationName];
+    }
+
+    if (!PlantData.hasOwnProperty(newLocation)) {
+      PlantData[newLocation] = {};
+    }
+
+    PlantData[newLocation][plantName] = plant;
+    toggleMovePlantForm();
+    await saveConfig(PlantData);
+    resetPlantSelection(newLocation, plantName);
+  };
 
 }
 
