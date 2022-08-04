@@ -9,3 +9,4 @@ setKnownPlantDropdown();
 
 initGoogleAPIs();
 
+$('select[multiple]').multiselect();
