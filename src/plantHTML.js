@@ -9,7 +9,9 @@ function displayPlant(element, locationName, plantName) {
   let plantInfo = $('<span></span>');
   let plantButtons = $('<div></div>');
   element.append(plantInfo, plantButtons);
-
+  
+  let plant = PlantData[locationName][plantName];
+  
   var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
   
   var currentWetness = $('<select id="currentWetness"></select>');
@@ -33,21 +35,32 @@ function displayPlant(element, locationName, plantName) {
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
   plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  plantInfo.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   plantInfo.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
   plantInfo.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
+  
+  
   plantInfo.append($('<div><span><b>Soil Preferences: </b></span></div>').append(soil))
-  plantInfo.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   plantInfo.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
   plantInfo.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
   plantInfo.append($('<div><span><b>Pet Safe: </b></span></div>').append(petSafe))
   plantInfo.append($('<div><span><b>Humidity Needs: </b></span></div>').append(humidity))
   plantInfo.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
 
-
+  
   let waterButton = $('<button onclick="waterPlant()" title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
-  let moveButton = $('<button onclick="toggleMovePlantForm()" title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>')
-  let updateButton = $('<button onclick="toggleUpdatePlantForm()" title="Edit Plant"><i class="fa-solid fa-pencil"></i></button>')
-  let deleteButton = $('<button onclick="deletePlant()" title="Delete Plant"><i class="fa-solid fa-trash"></i></button>')
+  let moveButton = $('<button title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>')
+  moveButton.on('click', function() {
+     toggleMovePlantForm()
+  });
+  let updateButton = $('<button title="Edit Plant"><i class="fa-solid fa-pencil"></i></button>')
+  updateButton.on('click', function() {
+    toggleUpdatePlantForm()
+  })
+  let deleteButton = $('<button title="Delete Plant"><i class="fa-solid fa-trash"></i></button>')
+  deleteButton.on('click', function() {
+    deletePlant()
+  })
 
   plantButtons.append(waterButton, moveButton, updateButton, deleteButton);
   
@@ -92,8 +105,7 @@ function displayPlant(element, locationName, plantName) {
     }
   };
 
-  plant = PlantData[locationName][plantName];
-  setPlantInfo(plant);
+
   
     
   async function checkPlant() {
@@ -114,8 +126,7 @@ function displayPlant(element, locationName, plantName) {
   };
   
   function toggleMovePlantForm() {
-    let location = locationDropdown.val();
-    $("#movedPlantLocation").val(location);
+    $("#movedPlantLocation").val(locationName);
 
     if ($("#move-location-div").css('display') == 'block') {
       $("#move-location-div").hide();
@@ -125,10 +136,6 @@ function displayPlant(element, locationName, plantName) {
   };
 
   function toggleUpdatePlantForm() {
-    let location = locationDropdown.val();
-    let plantName = plantDropdown.val();
-    let plant = PlantData[location][plantName];
-
     addPlantInputFeilds("#update-plant-input", 'updated');
     dropdown('#updated');
 
@@ -141,6 +148,8 @@ function displayPlant(element, locationName, plantName) {
     }
   };
   
+  
+  setPlantInfo(plant);
 }
 
 
