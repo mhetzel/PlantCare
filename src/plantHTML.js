@@ -29,6 +29,15 @@ function displayPlant(element, locationName, plantName) {
   var humidity = $('<span id="humidity"></span>');
   var light = $('<span id="light"></span>');
   
+  async function checkPlant() {
+    const today = new Date();
+    PlantData[locationName][plantName].lastChecked = today.toDateString();
+
+    PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
+    await saveConfig(PlantData);
+    resetPlantSelection(locationName, plantName);
+  };
+  
 
   plantInfo.append($('<div><span>Average Days Between Waterings: </span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span>Current Wetness: </span></div>').append(currentWetness))
