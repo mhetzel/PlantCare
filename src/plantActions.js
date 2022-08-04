@@ -1,24 +1,4 @@
 
-async function waterPlant() {
-  let location = locationDropdown.val();
-  let plantName = plantDropdown.val();
-
-  const today = new Date();
-  PlantData[location][plantName].lastChecked = today.toDateString();
-  
-  const last = 'lastWatered' in PlantData[location][plantName] ? new Date(PlantData[location][plantName].lastWatered) : today;
-  const daysTotal = 'daysTotal' in PlantData[location][plantName] ? PlantData[location][plantName].daysTotal : 0;
-  const wateringCount = 'wateringCount' in PlantData[location][plantName] ? PlantData[location][plantName].wateringCount : 0;
-
-  PlantData[location][plantName].daysTotal = daysTotal + (today - last);
-  PlantData[location][plantName].wateringCount = wateringCount + 1;
-  PlantData[location][plantName].lastWatered = today.toDateString();
-  PlantData[location][plantName].currentWetness = 0;
-
-  await saveConfig(PlantData);
-  resetPlantSelection(location, plantName);
-};
-
 async function updatePlant() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
