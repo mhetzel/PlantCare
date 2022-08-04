@@ -76,7 +76,7 @@ function displayPlant(element, locationName, plantName) {
     deletePlant()
   })
 
-  plantButtons.append(waterButton, moveButton, updateButton, deleteButton);
+  plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton);
   
   if (Object.keys(plant).length) {
     let average = plant.daysTotal/plant.wateringCount;
