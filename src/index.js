@@ -7,6 +7,9 @@ setupNewPlantInput();
 
 setKnownPlantDropdown();
 
+updatePlantForm();
+movePlantForm();
+
 initGoogleAPIs();
 
 $('select[multiple]').multiselect();
