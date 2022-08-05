@@ -178,7 +178,7 @@ function displayPlant(element, locationName, plantName) {
   };
   
   async function deletePlant() {
-    delete PlantData[locationName][locationName];
+    delete PlantData[locationName][plantName];
     if (Object.keys(PlantData[locationName]).length === 0) {
       delete PlantData[locationName];
     }
