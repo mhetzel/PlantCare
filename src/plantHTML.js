@@ -92,6 +92,8 @@ function displayPlant(element, locationName, plantName) {
     petSafe.text(plant.petSafe);
     humidity.text(plant.humidity);
   }
+  
+  element.show();
     
   function createUpdatePlantForm() {
     $('#update-plant-div').remove()
