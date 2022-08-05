@@ -66,14 +66,14 @@ input[type="file" i] {
 
 input {
   font-size: 20px;
-  background: rgba(118, 214, 174, 0.9);
+  background: rgba(208, 236, 228, 0.9);
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
 }
 
 button {
   font-size: 20px;
-  background: rgba(2, 129, 76, 0.9);
+  background: rgba(45, 181, 119, 0.9);
   cursor:pointer;
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
@@ -82,18 +82,15 @@ button {
 
 select {
   font-size: 20px;
-  background: rgba(2, 129, 76, 0.9);
+  background: rgba(45, 181, 119, 0.9);
   border: 1px solid #0d1b19;
   color: rgb(236, 216, 216);
 }
 
-
-
-
 .menu-box {
   position: absolute;
   border: 1px solid #0d1b19;
-  background-color: rgba(21, 48, 41, 0.9);
+  background-color: rgba(17, 83, 53, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
   text-align: left;
   bottom: 1%;
@@ -106,7 +103,7 @@ select {
 .content-box {
   display: none;
   border: 1px solid #0d1b19;
-  background-color: rgba(21, 48, 41, 0.9);
+  background-color: rgba(17, 83, 53, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
   text-align: left;
   margin-left: auto; 
