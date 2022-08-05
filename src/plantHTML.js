@@ -93,6 +93,9 @@ function displayPlant(element, locationName, plantName) {
     humidity.text(plant.humidity);
   }
   
+  needsWatered();
+  needsFertilized();
+  needsChecked();
   element.show();
     
   function createUpdatePlantForm() {
@@ -146,6 +149,7 @@ function displayPlant(element, locationName, plantName) {
   }
   
   async function checkPlant() {
+    needsWatered();
     const today = new Date();
     PlantData[locationName][plantName].lastChecked = today.toDateString();
 
@@ -235,8 +239,21 @@ function displayPlant(element, locationName, plantName) {
     resetPlantSelection(newLocation, plantName);
   };
 
+  function needsWatered() {
+    console.log(plantName, 'needs watered because its drier than it should be')
+    return true;
+  }
   
+  function needsFertilized() {
+    console.log(plantName, 'needs fertilized because its been the right length of time between doses')
+    return true;
+  }
   
+  function needsChecked() {
+    console.log(plantName, 'needs checked because its been either too long since watering or its halfwayish between last check and next watering')
+    return true;
+  }
+   
 } // displayPlant
 
 
