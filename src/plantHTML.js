@@ -37,9 +37,9 @@ function displayPlant(element, locationName, plantName) {
   var light = $('<span id="light"></span>');  
   light.text('n/a');
   
-  let waterWarning = $('<i style="color: #a378b2" id="' + plantName + 'waterWarning" class="fa-solid fa-triangle-exclamation"></i>')
-  let checkWarning = $('<i style="color: #a378b2" id="' + plantName + 'checkWarning" class="fa-solid fa-triangle-exclamation"></i>')
-  let fertilizeWarning = $('<i style="color: #a378b2" id"' + plantName + 'fertilizeWarning" class="fa-solid fa-triangle-exclamation"></i>')
+  let waterWarning = $('<i style="color: #9C7DA3" id="' + plantName + 'waterWarning" class="fa-solid fa-triangle-exclamation"></i>')
+  let checkWarning = $('<i style="color: #9C7DA3" id="' + plantName + 'checkWarning" class="fa-solid fa-triangle-exclamation"></i>')
+  let fertilizeWarning = $('<i style="color: #9C7DA3" id"' + plantName + 'fertilizeWarning" class="fa-solid fa-triangle-exclamation"></i>')
 
   plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
@@ -244,19 +244,18 @@ function displayPlant(element, locationName, plantName) {
   };
 
   function needsWatered() {
-    console.log(plantName, 'needs watered because its drier than it should be')
-    waterWarning.insertBefore(lastWatered);
-    return true;
+    if (plant.currentWetness > plant.water || plant.currentWetness == 5) {
+      console.log(plantName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
+      waterWarning.insertBefore(lastWatered);
+    }
   }
   
   function needsFertilized() {
     console.log(plantName, 'needs fertilized because its been the right length of time between doses')
-    return true;
   }
   
   function needsChecked() {
     console.log(plantName, 'needs checked because its been either too long since watering or its halfwayish between last check and next watering')
-    return true;
   }
    
 } // displayPlant
