@@ -15,6 +15,33 @@ let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
 
+function readPlantInputs(idPrefix) {
+  let inputs = {};
+  inputs['water'] = $(idPrefix+"PlantWaterNeeds").prop('selectedIndex');
+  inputs['light'] = $(idPrefix+"PlantLightNeeds").prop('selectedIndex');
+  inputs['waterInstructions'] = $(idPrefix+"PlantWaterInstructions").val();
+  inputs['soil'] = $(idPrefix+"PlantSoilPreferences").val();
+  inputs['fertilzerFrequency'] = $(idPrefix+"PlantFertilizer").val();
+  inputs['fertilzerDose'] = $(idPrefix+"PlantFertilizerDose").val();
+  inputs['petSafe'] = $(idPrefix+"PlantPetSafe").val();
+  inputs['humidity'] = $(idPrefix+"PlantHumitidy").val();
+  return inputs;
+}
+
+
+function setKnowPlantValues(prefix, plant) {
+  $(prefix + "PlantWaterNeeds").prop('selectedIndex', plant['water']);
+  $(prefix + "PlantWaterInstructions").val(plant['waterInstructions']);
+  $('select[multiple]').multiselect('reload')
+  $(prefix + "PlantSoilPreferences").val(plant['soil']);
+  $(prefix + "PlantFertilizer").val(plant['fertilzerFrequency']);
+  $(prefix + "PlantFertilizerDose").val(plant['fertilzerDose']);
+  $(prefix + "PlantLightNeeds").prop('selectedIndex', plant['light']);
+  $(prefix + "PlantPetSafe").val(plant['petSafe']);
+  $(prefix + "PlantHumitidy").val(plant['humidity']);
+}
+
+
 function setupNewPlantInput() {
   addPlantInputFeilds('#add-plant-input', 'new')
   $("#newPlantName").val('');
@@ -24,25 +51,6 @@ function setupNewPlantInput() {
 
   dropdown('#new');
 }
-
-function toggleMovePlantForm() {
-  $("#movedPlantLocation").val('');
-  if ($("#move-location-div").css('display') == 'block') {
-    $("#move-location-div").hide();
-  } else {
-    $("#move-location-div").show();
-  }
-};
-
-function toggleUpdatePlantForm() {
-  resetUpdatedPlantInfo()
-  if ($("#update-plant-div").css('display') == 'block') {
-    $("#update-plant-div").hide();
-  } else {
-    $("#update-plant-div").show();
-  }
-};
-
 
 function openConfigForm() {
   if (configDiv.css('display') == 'block') {

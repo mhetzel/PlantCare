@@ -88,12 +88,6 @@ select {
 }
 
 
-.floating-box {
-  display: none; 
-  position: absolute; 
-  padding-top: 2em; 
-  top: 20px;
-}
 
 
 .menu-box {
@@ -122,5 +116,12 @@ select {
   font-size: 20px;
   width: fit-content;
   position: relative;
+}
+
+.floating-box {
+  display: none; 
+  position: absolute; 
+  padding-top: 2em; 
+  top: 20px;
 }
 

@@ -13,8 +13,10 @@
     <script src="https://apis.google.com/js/api.js"></script>
 
     <script src="src/libs/jquery-3.6.0.min.js"></script>
+    <script src="src/libs/jquery.multiselect.js"></script>
     <script src="src/definitions.js"></script>
-    <script src="src/googleClients.js"></script>
+    <script src="src/google/googleClients.js"></script>
+    <script src="src/google/drive.js"></script>
     
     <link rel="stylesheet" type="text/css" href="src/libs/jquery.multiselect.css">
     <link rel="stylesheet" href="src/style.css">
@@ -100,40 +102,13 @@
 
       <div id="dropdown-plant-info"></div>
     </div>
-
-    <div id="move-location-div" class="content-box floating-box">
-      <form class="form-container" action="javascript:console.log( 'success!' );">
-        <div class="top-right">
-          <button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
-          <button type="button" onclick="toggleMovePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-        </div>  
-        <label for="movedPlantLocation"><b>New Location:</b></label>
-        <input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>
-      </form>
-    </div>
-
-    <div id="update-plant-div" class="content-box floating-box">
-      <form class="form-container" action="javascript:console.log( 'success!' );">
-        <div class="top-right">
-          <button type="submit" onclick="updatePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
-          <button type="button" onclick="toggleUpdatePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-        </div>  
-        <div id="update-plant-input"></div>
-      </form>
-    </div>
     
-    <script src="mgmt/html.js"></script>
-    <script src="mgmt/plantHTML.js"></script>
-    
+    <script src="src/html.js"></script>
+    <script src="src/plantHTML.js"></script>
     <script src="src/dropdowns.js"></script>
-
     <script src="src/user.js"></script>
-    <script src="src/drive.js"></script>
     <script src="src/config.js"></script>
-    <script src="src/libs/jquery.multiselect.js"></script>
-
     <script src="src/index.js"></script>
-
     <script src="src/plantActions.js"></script>
     
   </body>
