@@ -37,9 +37,9 @@ function displayPlant(element, locationName, plantName) {
   var light = $('<span id="light"></span>');  
   light.text('n/a');
   
-  let waterWarning = $('<i style="color: #9C7DA3" id="' + plantName + 'waterWarning" class="fa-solid fa-triangle-exclamation"></i>')
-  let checkWarning = $('<i style="color: #9C7DA3" id="' + plantName + 'checkWarning" class="fa-solid fa-triangle-exclamation"></i>')
-  let fertilizeWarning = $('<i style="color: #9C7DA3" id"' + plantName + 'fertilizeWarning" class="fa-solid fa-triangle-exclamation"></i>')
+  let waterWarning = $('<i style="color: #9c6e60" id="' + plantName + 'waterWarning" class="fa-solid fa-triangle-exclamation"></i>')
+  let checkWarning = $('<i style="color: #9c6e60" id="' + plantName + 'checkWarning" class="fa-solid fa-triangle-exclamation"></i>')
+  let fertilizeWarning = $('<i style="color: #9c6e60" id"' + plantName + 'fertilizeWarning" class="fa-solid fa-triangle-exclamation"></i>')
 
   plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
@@ -247,7 +247,9 @@ function displayPlant(element, locationName, plantName) {
     if (plant.currentWetness > plant.water || plant.currentWetness == 5) {
       console.log(plantName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
       waterWarning.insertBefore(lastWatered);
+      waterButton.css('color') = "#9c6e60"
     }
+    waterButton.css('color') = "#D0ECE4"
   }
   
   function needsFertilized() {
