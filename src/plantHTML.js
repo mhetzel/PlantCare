@@ -1,39 +1,4 @@
 
-// TODO use these to draw forms
-function updatePlantForm() {
-  $('#update-plant-div').remove()
-  let updateDiv = $('<div id="update-plant-div" class="floating-box content-box"></div>')
-  let updateForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
-  updateDiv.append(updateForm)
-  let buttonDiv = $('<div class="top-right"></div>')
-  let saveButton = $('<button type="submit" onclick="updatePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
-  let closeButton = $('<button type="button" onclick="toggleUpdatePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>')
-  buttonDiv.append(saveButton, closeButton)
-  let updateInput = $('<div id="update-plant-input"></div>')
-  
-  updateForm.append(buttonDiv, updateInput)
-  
-  $("body").append(updateDiv)
-}
-
-function movePlantForm() {
-  $('#move-location-div').remove()
-  let moveDiv = $('<div id="move-location-div" class="floating-box content-box"></div>')
-  let moveForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
-  moveDiv.append(moveForm)
-  let buttonDiv = $('<div class="top-right"></div>')
-  let saveButton = $('<button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
-  let closeButton = $('<button type="button" onclick="toggleMovePlantForm()" title="Close"><i class="fa-solid fa-xmark"></i></button>')
-  buttonDiv.append(saveButton, closeButton)
-  let moveLabel = $('<label for="movedPlantLocation"><b>New Location:</b></label>')
-  let moveInput = $('<input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>')
-  
-  moveForm.append(buttonDiv, moveLabel, moveInput)
-  
-  $("body").append(moveDiv)
-}
-
-
 function displayPlant(element, locationName, plantName) {
   element.empty();
   let plantInfo = $('<span></span>');
@@ -128,7 +93,55 @@ function displayPlant(element, locationName, plantName) {
     humidity.text(plant.humidity);
   }
     
-  
+  function createUpdatePlantForm() {
+    $('#update-plant-div').remove()
+    let updateDiv = $('<div id="update-plant-div" class="floating-box content-box"></div>')
+    let updateForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
+    updateDiv.append(updateForm)
+    let buttonDiv = $('<div class="top-right"></div>')
+    let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+    saveButton.on('click', function() {
+      updatePlant()
+    })
+    let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
+    closeButton.on('click', function() {
+      toggleUpdatePlantForm()
+    }
+    buttonDiv.append(saveButton, closeButton)
+    let updateInput = $('<div id="update-plant-input"></div>')
+    updateForm.append(buttonDiv, updateInput)
+    $("body").append(updateDiv)
+    
+    addPlantInputFeilds("#update-plant-input", 'updated');
+    dropdown('#updated');
+    setKnowPlantValues("#updated", plant);
+    $("#update-plant-div").show();
+  }
+
+  function createMovePlantForm() {
+    $('#move-location-div').remove()
+    let moveDiv = $('<div id="move-location-div" class="floating-box content-box"></div>')
+    let moveForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
+    moveDiv.append(moveForm)
+    let buttonDiv = $('<div class="top-right"></div>')
+    let saveButton = $('<button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+    saveButton.on('click', function() {
+      movePlant()
+    })
+    let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
+    closeButton.on('click', function() {
+      toggleMovePlantForm()
+    })
+    buttonDiv.append(saveButton, closeButton)
+    let moveLabel = $('<label for="movedPlantLocation"><b>New Location:</b></label>')
+    let moveInput = $('<input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>')
+
+    moveForm.append(buttonDiv, moveLabel, moveInput)
+
+    $("body").append(moveDiv)
+    $("#movedPlantLocation").val(locationName);
+    $("#move-location-div").show();
+  }
   
   async function checkPlant() {
     const today = new Date();
@@ -172,29 +185,20 @@ function displayPlant(element, locationName, plantName) {
     await saveConfig(PlantData);
   };
   
-  
-  
   // pop up actions
   function toggleMovePlantForm() {
-    $("#movedPlantLocation").val(locationName);
-
     if ($("#move-location-div").css('display') == 'block') {
-      $("#move-location-div").hide();
+      $("#move-location-div").remove();
     } else {
-      $("#move-location-div").show();
+      createMovePlantForm();
     }
   };
 
   function toggleUpdatePlantForm() {
-    addPlantInputFeilds("#update-plant-input", 'updated');
-    dropdown('#updated');
-
-    setKnowPlantValues("#updated", plant);
-
     if ($("#update-plant-div").css('display') == 'block') {
-      $("#update-plant-div").hide();
+      $('#update-plant-div').remove()
     } else {
-      $("#update-plant-div").show();
+      createUpdatePlantForm();
     }
   };
   
