@@ -106,7 +106,7 @@ function displayPlant(element, locationName, plantName) {
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     closeButton.on('click', function() {
       toggleUpdatePlantForm()
-    )}
+    })
     buttonDiv.append(saveButton, closeButton)
     let updateInput = $('<div id="update-plant-input"></div>')
     updateForm.append(buttonDiv, updateInput)
