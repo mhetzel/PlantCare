@@ -247,9 +247,9 @@ function displayPlant(element, locationName, plantName) {
     if (plant.currentWetness > plant.water || plant.currentWetness == 5) {
       console.log(plantName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
       waterWarning.insertBefore(lastWatered);
-      waterButton.css('color') = "#9c6e60"
+      waterButton.css('color', "#9c6e60")
     }
-    waterButton.css('color') = "#D0ECE4"
+    waterButton.css('color', "#D0ECE4")
   }
   
   function needsFertilized() {
