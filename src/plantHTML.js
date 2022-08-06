@@ -18,6 +18,8 @@ function displayPlant(element, locationName, plantName) {
   lastChecked.text('n/a');
   var lastWatered = $('<span id="lastWatered"></span>');
   lastWatered.text('n/a');
+  var nextWatering = $('<span id="nextWatering"></span>');
+  nextWatering.text('n/a');
   var lastFertilized = $('<span id="lastFertilized"></span>');
   lastFertilized.text('n/a');
   var water = $('<span id="water"></span>');
@@ -45,6 +47,7 @@ function displayPlant(element, locationName, plantName) {
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
   plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
   plantInfo.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   plantInfo.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
   plantInfo.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
@@ -86,6 +89,7 @@ function displayPlant(element, locationName, plantName) {
     currentWetness.prop('selectedIndex', plant.currentWetness);
     lastChecked.text(plant.lastChecked);
     lastWatered.text(plant.lastWatered);
+    nextWatering.text(plant.lastWatered + average);
     water.text(WaterList[plant.water]);
     light.text(LightList[plant.light]);
     waterInstructions.text(plant.waterInstructions);
