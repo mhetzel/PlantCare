@@ -90,7 +90,7 @@ function displayPlant(element, locationName, plantName) {
     if (!isNaN(average)) {
       averageDaysBetweenWatering.text(Math.floor(average));
       date.setDate(date.getDate() + Math.floor(average));
-      nextWatering.text(date.getDate())
+      nextWatering.text(date.toDateString())
     }
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
