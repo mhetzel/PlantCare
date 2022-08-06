@@ -6,6 +6,8 @@ function displayPlant(element, locationName, plantName) {
   element.append(plantInfo, plantButtons);
   
   let plant = PlantData[locationName][plantName];
+  let nextWateringDate = 'n/a'
+  let average = 'n/a'
 
   var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
@@ -46,7 +48,7 @@ function displayPlant(element, locationName, plantName) {
   plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
-  plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  // plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
   plantInfo.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   plantInfo.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
@@ -85,12 +87,13 @@ function displayPlant(element, locationName, plantName) {
   
   if (Object.keys(plant).length) {
 
-    let date = new Date(plant.lastWatered);
-    let average = plant.daysTotal/plant.wateringCount;
+    nextWateringDate = new Date(plant.lastWatered);
+    average = plant.daysTotal/plant.wateringCount;
     if (!isNaN(average)) {
-      averageDaysBetweenWatering.text(Math.floor(average));
-      date.setDate(date.getDate() + Math.floor(average));
-      nextWatering.text(date.toDateString())
+      average = Math.floor(average);
+      averageDaysBetweenWatering.text(average);
+      nextWateringDate.setDate(nextWateringDate.getDate() + average);
+      nextWatering.text(nextWateringDate.toDateString())
     }
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
@@ -259,7 +262,7 @@ function displayPlant(element, locationName, plantName) {
   function needsWatered() {
     if (plant.currentWetness > plant.water || plant.currentWetness == 5) {
       console.log(plantName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
-      waterWarning.insertBefore(lastWatered);
+      waterWarning.insertBefore(nextWatering);
     }
   }
   
