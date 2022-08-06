@@ -84,12 +84,19 @@ function displayPlant(element, locationName, plantName) {
   plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton);
   
   if (Object.keys(plant).length) {
+
+    let date = new Date(plant.lastWatered);
     let average = plant.daysTotal/plant.wateringCount;
-    averageDaysBetweenWatering.text(isNaN(average) ? 'n/a' : Math.floor(average));
+    if (!isNaN(average)) {
+      averageDaysBetweenWatering.text(Math.floor(average));
+      date.setDate(date.getDate() + Math.floor(average));
+      nextWatering.text(date.getDate())
+    }
+    
     currentWetness.prop('selectedIndex', plant.currentWetness);
     lastChecked.text(plant.lastChecked);
     lastWatered.text(plant.lastWatered);
-    nextWatering.text(plant.lastWatered + average);
+    
     water.text(WaterList[plant.water]);
     light.text(LightList[plant.light]);
     waterInstructions.text(plant.waterInstructions);
