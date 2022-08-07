@@ -103,7 +103,7 @@ function displayPlant(element, locationName, plantName) {
       nextWateringDate.setDate(nextWateringDate.getDate() + average);
       let next = nextWateringDate - nextCheckDate;
       nextWatering.text(nextWateringDate.toDateString());
-      nextCheck(next.toDateString());
+      nextCheck.text(next.toDateString());
     }
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
