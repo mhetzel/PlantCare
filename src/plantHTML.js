@@ -7,6 +7,7 @@ function displayPlant(element, locationName, plantName) {
   
   let plant = PlantData[locationName][plantName];
   let nextWateringDate = 'n/a'
+  let nextCheckDate = 'n/a'
   let average = 'n/a'
 
   var currentWetness = $('<select id="currentWetness"></select>');
@@ -91,6 +92,7 @@ function displayPlant(element, locationName, plantName) {
   if (Object.keys(plant).length) {
 
     nextWateringDate = new Date(plant.lastWatered);
+    nextCheckDate = new Date(plant.lastChecked)
     average = plant.daysTotal/plant.wateringCount;
     if (!isNaN(average)) {
       average = Math.floor(average);
