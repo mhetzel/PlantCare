@@ -101,14 +101,10 @@ function displayPlant(element, locationName, plantName) {
       average = Math.floor(average);
       averageDaysBetweenWatering.text(average);
       nextWateringDate.setDate(nextWateringDate.getDate() + average);
-     // let next = nextWateringDate - nextCheckDate
       nextWatering.text(nextWateringDate.toDateString());
-      // nextCheck.text(next);
 
       var diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10); 
-
-      alert(diffDays )
-      nextCheck.text(diffDays)
+      nextCheck.text(diffDays/2)
     }
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
