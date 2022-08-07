@@ -101,9 +101,9 @@ function displayPlant(element, locationName, plantName) {
       average = Math.floor(average);
       averageDaysBetweenWatering.text(average);
       nextWateringDate.setDate(nextWateringDate.getDate() + average);
-      let next = new Date(nextWateringDate - nextCheckDate);
+      let next = nextWateringDate - nextCheckDate
       nextWatering.text(nextWateringDate.toDateString());
-      nextCheck.text(next.toDateString());
+      nextCheck.text(next);
     }
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
