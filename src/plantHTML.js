@@ -101,7 +101,7 @@ function displayPlant(element, locationName, plantName) {
       average = Math.floor(average);
       averageDaysBetweenWatering.text(average);
       nextWateringDate.setDate(nextWateringDate.getDate() + average);
-      let next = new Dates(nextWateringDate - nextCheckDate);
+      let next = new Date(nextWateringDate - nextCheckDate);
       nextWatering.text(nextWateringDate.toDateString());
       nextCheck.text(next.toDateString());
     }
