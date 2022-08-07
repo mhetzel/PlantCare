@@ -19,7 +19,7 @@ function displayPlant(element, locationName, plantName) {
   averageDaysBetweenWatering.text('n/a');
   var lastChecked = $('<span id="lastChecked"></span>');
   lastChecked.text('n/a');
-  var nectCheck = $('<span id="nextCheck"></span>');
+  var nextCheck = $('<span id="nextCheck"></span>');
   nextCheck.text('n/a');
   var lastWatered = $('<span id="lastWatered"></span>');
   lastWatered.text('n/a');
