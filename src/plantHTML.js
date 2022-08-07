@@ -108,6 +108,7 @@ function displayPlant(element, locationName, plantName) {
       var diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10); 
 
       alert(diffDays )
+      nextCheck.text(diffDays)
     }
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
