@@ -19,6 +19,8 @@ function displayPlant(element, locationName, plantName) {
   averageDaysBetweenWatering.text('n/a');
   var lastChecked = $('<span id="lastChecked"></span>');
   lastChecked.text('n/a');
+  var nectCheck = $('<span id="nextCheck"></span>');
+  nextCheck.text('n/a');
   var lastWatered = $('<span id="lastWatered"></span>');
   lastWatered.text('n/a');
   var nextWatering = $('<span id="nextWatering"></span>');
@@ -51,6 +53,7 @@ function displayPlant(element, locationName, plantName) {
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+  plantInfo.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
   
   let displayExtraInfo = false;
   if (displayExtraInfo) {
@@ -98,7 +101,9 @@ function displayPlant(element, locationName, plantName) {
       average = Math.floor(average);
       averageDaysBetweenWatering.text(average);
       nextWateringDate.setDate(nextWateringDate.getDate() + average);
-      nextWatering.text(nextWateringDate.toDateString())
+      let next = nextWateringDate - nextCheckDate;
+      nextWatering.text(nextWateringDate.toDateString());
+      nextCheck(next.toDateString());
     }
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
