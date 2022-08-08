@@ -8,9 +8,7 @@ function displayPlant(element, locationName, plantName) {
   
   const today = new Date();
   const plant = PlantData[locationName][plantName];
-  
-  var nextWateringDate = 'n/a'
-  var nextCheckDate = 'n/a'
+
   var displayExtraInfo = false;
 
 
@@ -101,20 +99,7 @@ function displayPlant(element, locationName, plantName) {
   plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
   
   if (Object.keys(plant).length) {
-
-    nextWateringDate = new Date(plant.lastWatered);
-    nextCheckDate = new Date(plant.lastChecked);
-    let average = plant.daysTotal/plant.wateringCount;
-    if (!isNaN(average)) {
-      average = Math.floor(average);
-      averageDaysBetweenWatering.text(average);
-      nextWateringDate.setDate(nextWateringDate.getDate() + average);
-      nextWatering.text(nextWateringDate.toDateString());
-
-      let diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10); 
-      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
-      nextCheck.text(nextCheckDate.toDateString())
-    }
+    setNextDates();
     
     currentWetness.prop('selectedIndex', plant.currentWetness);
     lastChecked.text(plant.lastChecked);
@@ -136,6 +121,22 @@ function displayPlant(element, locationName, plantName) {
   needsChecked();
   element.show();
 
+  function setNextDates() {
+    let average = plant.daysTotal/plant.wateringCount;
+    if (!isNaN(average)) {
+      let nextWateringDate = new Date(plant.lastWatered);
+      let nextCheckDate = new Date(plant.lastChecked);
+      average = Math.floor(average);
+      averageDaysBetweenWatering.text(average);
+      nextWateringDate.setDate(nextWateringDate.getDate() + average);
+      nextWatering.text(nextWateringDate.toDateString());
+
+      let diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10);
+      diffDays = diffDays != 0 ? diffDays : average;
+      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
+      nextCheck.text(nextCheckDate.toDateString())
+    }
+  }
     
   function createUpdatePlantForm() {
     $('#update-plant-div').remove()
@@ -188,22 +189,16 @@ function displayPlant(element, locationName, plantName) {
   }
   
   async function checkPlant() {
-    
-    nextCheck.text('test')
-    nextWatering.text('test2');
-    
-    /* PlantData[locationName][plantName].lastChecked = today.toDateString();
+    PlantData[locationName][plantName].lastChecked = today.toDateString();
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
-       
-    nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
-    nextCheck.text(nextCheckDate.toDateString())
-    console.log(nextCheck.text())
+    
+    setNextDates();
+    
     checkWarning.remove();
     needsWatered();
     
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
-    */
   };
   
   async function fertilizePlant() {
