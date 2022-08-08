@@ -1,4 +1,5 @@
 
+
 function displayPlant(element, locationName, plantName) {
   element.empty();
   let plantInfo = $('<span></span>');
@@ -299,7 +300,7 @@ function displayPlant(element, locationName, plantName) {
 
 
   function needsWatered() {
-    if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
+    if (doesPlantNeedWatered(locationName, plantName)) {
       console.log(plantName, 'at', locationName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
       waterWarning.insertBefore(nextWatering);
     }
@@ -310,14 +311,16 @@ function displayPlant(element, locationName, plantName) {
   }
   
   function needsChecked() {
-    if (nextCheckDate < today) {
-      console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
-      checkWarning.insertBefore(nextCheck);
-    }
-    else if (lastCheckedDate < today && nextWateringDate < today) {
-      console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
-      console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
-      checkWarning.insertBefore(nextCheck);
+    if (doesPlantNeedChecked(locationName, plantName)) {
+      if (nextCheckDate < today) {
+        console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+        checkWarning.insertBefore(nextCheck);
+      }
+      else if (lastCheckedDate < today && nextWateringDate < today) {
+        console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+        console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
+        checkWarning.insertBefore(nextCheck);
+      }
     }
   }
   
