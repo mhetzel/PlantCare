@@ -55,7 +55,7 @@ body {
 
 .font {
   font-size: 20px;
-  color: rgb(236, 216, 216);
+  color: #D0ECE4;
 }
 
 input[type="file" i] {
@@ -68,7 +68,7 @@ input {
   font-size: 20px;
   background: rgba(208, 236, 228, 0.9);
   border: 1px solid #0d1b19;
-  color: rgb(236, 216, 216);
+  color: #D0ECE4;
 }
 
 button {
@@ -76,7 +76,7 @@ button {
   background: rgba(45, 181, 119, 0.9);
   cursor:pointer;
   border: 1px solid #0d1b19;
-  color: rgb(236, 216, 216);
+  color: #D0ECE4;
   width: fit-content;
 }
 
@@ -84,7 +84,7 @@ select {
   font-size: 20px;
   background: rgba(45, 181, 119, 0.9);
   border: 1px solid #0d1b19;
-  color: rgb(236, 216, 216);
+  color: #D0ECE4;
 }
 
 .menu-box {
@@ -95,7 +95,7 @@ select {
   text-align: left;
   bottom: 1%;
   padding: 2%;
-  color: rgb(236, 216, 216);
+  color: #D0ECE4;
   font-size: 20px;
   width: fit-content;
 }
@@ -109,7 +109,7 @@ select {
   margin-left: auto; 
   margin-right: auto;
   padding: 2%;
-  color: rgb(236, 216, 216);
+  color: #D0ECE4;
   font-size: 20px;
   width: fit-content;
   position: relative;
