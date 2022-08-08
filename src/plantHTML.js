@@ -50,10 +50,11 @@ function displayPlant(element, locationName, plantName) {
   var light = $('<span id="light"></span>');  
   light.text('n/a');
   
-  let waterWarning = $('<i style="color: #9c6e60" id="' + plantName + 'waterWarning" class="fa-solid fa-triangle-exclamation"></i>')
-  let checkWarning = $('<i style="color: #9c6e60" id="' + plantName + 'checkWarning" class="fa-solid fa-triangle-exclamation"></i>')
-  let fertilizeWarning = $('<i style="color: #9c6e60" id"' + plantName + 'fertilizeWarning" class="fa-solid fa-triangle-exclamation"></i>')
-
+  let waterWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  let checkWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  let fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  let expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
+  let expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
 
   plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
@@ -96,8 +97,13 @@ function displayPlant(element, locationName, plantName) {
   deleteButton.on('click', function() {
     deletePlant()
   })
+  let toggleInfoButton = $('<button title="Expand PlantInfo"></i></button>')
+  toggleInfoButton.append(expandIcon);
+  toggleInfoButton.on('click', function() {
+    togglePlantInfo()
+  })
 
-  plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton);
+  plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
   
   if (Object.keys(plant).length) {
 
@@ -193,7 +199,7 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
 
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
-    $("#"+plantName+"checkWarning").remove();
+    checkWarning.remove();
 
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
@@ -219,7 +225,7 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].wateringCount = wateringCount + 1;
     PlantData[locationName][plantName].lastWatered = today.toDateString();
     PlantData[locationName][plantName].currentWetness = 0;
-    $("#"+plantName+"waterWarning").remove();
+    waterWarning.remove();
 
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
@@ -241,6 +247,11 @@ function displayPlant(element, locationName, plantName) {
       createMovePlantForm();
     }
   };
+  
+  function togglePlantInfo() {
+    expandIcon.remove()
+    toggleInfoButton.append(expandedIcon);
+  }
 
   function toggleUpdatePlantForm() {
     if ($("#update-plant-div").css('display') == 'block') {
