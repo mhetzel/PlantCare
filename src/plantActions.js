@@ -6,7 +6,7 @@ function showAllNeedyPlants() {
     needyDiv.append('<h5>'+locationName+'</h5>')
     Object.keys(PlantData[locationName]).forEach(function(plantName) {
       if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
-        needyDiv.append('<p>'+plantName+'</p>)
+        needyDiv.append('<p>'+plantName+'</p>')
       }
     })
   });
