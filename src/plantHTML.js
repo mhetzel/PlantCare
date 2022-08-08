@@ -6,9 +6,12 @@ function displayPlant(element, locationName, plantName) {
   element.append(plantInfo, plantButtons);
   
   let plant = PlantData[locationName][plantName];
+  let lastCheckedDate = 'n/a'
+  let lastWateredDate = 'n/a'
   let nextWateringDate = 'n/a'
   let nextCheckDate = 'n/a'
   let average = 'n/a'
+  const today = new Date();
 
   var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
@@ -51,11 +54,11 @@ function displayPlant(element, locationName, plantName) {
 
   plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
-  plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   plantInfo.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
   
   let displayExtraInfo = false;
   if (displayExtraInfo) {
+    plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
     plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
     plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
     plantInfo.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
@@ -93,9 +96,10 @@ function displayPlant(element, locationName, plantName) {
   plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton);
   
   if (Object.keys(plant).length) {
-
-    nextWateringDate = new Date(plant.lastWatered);
-    nextCheckDate = new Date(plant.lastChecked)
+    lastWateredDate = new Date(plant.lastWatered);
+    nextWateringDate = lastWateredDate;
+    lastCheckedDate = new Date(plant.lastChecked);
+    nextCheckDate = lastCheckedDate;
     average = plant.daysTotal/plant.wateringCount;
     if (!isNaN(average)) {
       average = Math.floor(average);
@@ -180,7 +184,6 @@ function displayPlant(element, locationName, plantName) {
   
   async function checkPlant() {
     needsWatered();
-    const today = new Date();
     PlantData[locationName][plantName].lastChecked = today.toDateString();
 
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
@@ -189,7 +192,6 @@ function displayPlant(element, locationName, plantName) {
   };
   
   async function fertilizePlant() {
-    const today = new Date();
     PlantData[locationName][plantName].lastFertilized = today.toDateString();
 
     await saveConfig(PlantData);
@@ -197,7 +199,6 @@ function displayPlant(element, locationName, plantName) {
   };
   
   async function waterPlant() {
-    const today = new Date();
     PlantData[locationName][plantName].lastChecked = today.toDateString();
 
     const last = PlantData[locationName][plantName].hasOwnProperty('lastWatered') ? new Date(PlantData[locationName][plantName].lastWatered) : today;
@@ -271,6 +272,12 @@ function displayPlant(element, locationName, plantName) {
     resetPlantSelection(newLocation, plantName);
   };
 
+  
+  // =AND((plant.water - plant.currentWetness) <=0 , lastWateredDate < today - average, plant.currentWetness != 0, lastCheckedDate < today)
+  // =AND(nextWateringDate <= lastCheckedDate, lastCheckedDate < today)
+  // =AND(nextWateringDate < today, lastCheckedDate < today)
+  // =AND(average<>"", lastCheckedDate <= today-(average/2))
+
   function needsWatered() {
     if (plant.currentWetness > plant.water || plant.currentWetness == 5) {
       console.log(plantName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
@@ -283,7 +290,9 @@ function displayPlant(element, locationName, plantName) {
   }
   
   function needsChecked() {
-    console.log(plantName, 'needs checked because its been either too long since watering or its halfwayish between last check and next watering')
+    if (lastCheckedDate < today) {
+      console.log(plantName, 'needs checked because its been either too long since watering or its halfwayish between last check and next watering')
+    }
   }
    
 } // displayPlant
