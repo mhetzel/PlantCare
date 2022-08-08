@@ -7,7 +7,7 @@ function displayPlant(element, locationName, plantName) {
   element.append(plantInfo, plantButtons);
   
   const today = new Date();
-  const plant = PlantData[locationName][plantName];
+  var plant = PlantData[locationName][plantName];
 
   var displayExtraInfo = false;
 
@@ -191,13 +191,12 @@ function displayPlant(element, locationName, plantName) {
   async function checkPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
-        
+
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
-    
+    plant = PlantData[locationName][plantName];
     setNextDates();
-    //checkWarning.remove();
-    //needsWatered();
+    checkWarning.remove();
   };
   
   async function fertilizePlant() {
@@ -205,28 +204,28 @@ function displayPlant(element, locationName, plantName) {
 
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
+    plant = PlantData[locationName][plantName];
   };
   
   async function waterPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
-    
-    setNextDates();
-
+  
     const last = plant.hasOwnProperty('lastWatered') ? new Date(plant.lastWatered) : today;
     const daysTotal = plant.hasOwnProperty('daysTotal') ? plant.daysTotal : 0;
     const wateringCount = plant.hasOwnProperty('wateringCount') ? plant.wateringCount : 0;
-    
     let differenceInDays =  (today - last)/ (1000 * 3600 * 24)
 
     PlantData[locationName][plantName].daysTotal = daysTotal + differenceInDays;
     PlantData[locationName][plantName].wateringCount = wateringCount + 1;
     PlantData[locationName][plantName].lastWatered = today.toDateString();
     PlantData[locationName][plantName].currentWetness = 0;
-    waterWarning.remove();
-    checkWarning.remove();
-
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
+    
+    plant = PlantData[locationName][plantName];
+    setNextDates();
+    waterWarning.remove();
+    checkWarning.remove();
   };
   
   async function deletePlant() {
