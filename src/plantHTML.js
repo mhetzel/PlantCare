@@ -191,14 +191,13 @@ function displayPlant(element, locationName, plantName) {
   async function checkPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
-    
-    setNextDates();
-    
-    checkWarning.remove();
-    needsWatered();
-    
+        
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
+    
+    setNextDates();
+    //checkWarning.remove();
+    //needsWatered();
   };
   
   async function fertilizePlant() {
