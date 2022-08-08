@@ -303,6 +303,8 @@ function displayPlant(element, locationName, plantName) {
     if (doesPlantNeedWatered(locationName, plantName)) {
       console.log(plantName, 'at', locationName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
       waterWarning.insertBefore(nextWatering);
+    } else {
+      waterWarning.remove()
     }
   }
   
@@ -313,6 +315,8 @@ function displayPlant(element, locationName, plantName) {
   function needsChecked() {
     if (doesPlantNeedChecked(locationName, plantName)) {
       checkWarning.insertBefore(nextCheck);
+    } else {
+      checkWarning.remove()
     }
   }
   
