@@ -67,6 +67,11 @@ async function addNewPlant() {
       PlantData[newLocation][newName]['lastWatered'] = (new Date(lastWatered)).toDateString();
     }
     
+    let lastChecked = $("#newPlantLastChecked").val();
+    if (lastChecked) {
+      PlantData[newLocation][newName]['lastChecked'] = (new Date(lastChecked)).toDateString();
+    }
+    
     let lastFertilized = $("#newPlantLastFertilized").val();
     if (lastFertilized) {
       PlantData[newLocation][newName]['lastFertilized'] = (new Date(lastFertilized)).toDateString();
