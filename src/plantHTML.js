@@ -12,6 +12,8 @@ function displayPlant(element, locationName, plantName) {
   let nextCheckDate = 'n/a'
   let average = 'n/a'
   const today = new Date();
+  
+  let displayExtraInfo = false;
 
 
   var currentWetness = $('<select id="currentWetness"></select>');
@@ -60,7 +62,6 @@ function displayPlant(element, locationName, plantName) {
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
   
-  let displayExtraInfo = false;
   if (displayExtraInfo) {
     plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
     plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
@@ -76,7 +77,6 @@ function displayPlant(element, locationName, plantName) {
     plantInfo.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
   }
 
-  
   let waterButton = $('<button title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
   waterButton.on('click', function() {
     waterPlant()
@@ -249,8 +249,15 @@ function displayPlant(element, locationName, plantName) {
   };
   
   function togglePlantInfo() {
-    expandIcon.remove()
-    toggleInfoButton.append(expandedIcon);
+    if (displayExtraInfo) {
+      displayExtraInfo = false;
+      expandedIcon.remove()
+      toggleInfoButton.append(expandIcon);
+    } else {
+      displayExtraInfo = true;
+      expandIcon.remove()
+      toggleInfoButton.append(expandedIcon);
+    }
   }
 
   function toggleUpdatePlantForm() {
