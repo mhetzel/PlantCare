@@ -9,7 +9,6 @@ function displayPlant(element, locationName, plantName) {
   const today = new Date();
   const plant = PlantData[locationName][plantName];
   
-  var lastCheckedDate = 'n/a'
   var nextWateringDate = 'n/a'
   var nextCheckDate = 'n/a'
   var average = 'n/a'
@@ -105,8 +104,7 @@ function displayPlant(element, locationName, plantName) {
   if (Object.keys(plant).length) {
 
     nextWateringDate = new Date(plant.lastWatered);
-    lastCheckedDate = new Date(plant.lastChecked);
-    nextCheckDate = lastCheckedDate;
+    nextCheckDate = new Date(plant.lastChecked);
     average = plant.daysTotal/plant.wateringCount;
     if (!isNaN(average)) {
       average = Math.floor(average);
@@ -198,7 +196,6 @@ function displayPlant(element, locationName, plantName) {
     /* PlantData[locationName][plantName].lastChecked = today.toDateString();
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
        
-    lastCheckedDate = today;
     nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
     nextCheck.text(nextCheckDate.toDateString())
     console.log(nextCheck.text())
@@ -220,7 +217,6 @@ function displayPlant(element, locationName, plantName) {
   async function waterPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
     
-    lastCheckedDate = today;
     nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
     nextWateringDate.setDate(today.getDate() + average);
     nextCheck.text(nextCheckDate.toDateString())
