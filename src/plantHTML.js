@@ -6,13 +6,14 @@ function displayPlant(element, locationName, plantName) {
   const plantButtons = $('<div></div>');
   element.append(plantInfo, plantButtons);
   
-  const plant = PlantData[locationName][plantName];
-  let lastCheckedDate = 'n/a'
-  let nextWateringDate = 'n/a'
-  let nextCheckDate = 'n/a'
-  let average = 'n/a'
   const today = new Date();
-  let displayExtraInfo = false;
+  const plant = PlantData[locationName][plantName];
+  
+  var lastCheckedDate = 'n/a'
+  var nextWateringDate = 'n/a'
+  var nextCheckDate = 'n/a'
+  var average = 'n/a'
+  var displayExtraInfo = false;
 
 
   var currentWetness = $('<select id="currentWetness"></select>');
