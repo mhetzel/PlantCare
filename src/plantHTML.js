@@ -93,7 +93,7 @@ function displayPlant(element, locationName, plantName) {
   deleteButton.on('click', function() {
     deletePlant()
   })
-  let toggleInfoButton = $('<button title="Colapse/Expand PlantInfo"></button>')
+  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"></button>')
   toggleInfoButton.append(expandIcon);
   toggleInfoButton.on('click', function() {
     togglePlantInfo()
