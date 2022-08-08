@@ -8,7 +8,6 @@ function displayPlant(element, locationName, plantName) {
   
   const plant = PlantData[locationName][plantName];
   let lastCheckedDate = 'n/a'
-  let lastWateredDate = 'n/a'
   let nextWateringDate = 'n/a'
   let nextCheckDate = 'n/a'
   let average = 'n/a'
@@ -104,8 +103,7 @@ function displayPlant(element, locationName, plantName) {
   
   if (Object.keys(plant).length) {
 
-    lastWateredDate = new Date(plant.lastWatered);
-    nextWateringDate = lastWateredDate;
+    nextWateringDate = new Date(plant.lastWatered);
     lastCheckedDate = new Date(plant.lastChecked);
     nextCheckDate = lastCheckedDate;
     average = plant.daysTotal/plant.wateringCount;
@@ -222,15 +220,14 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
     
     lastCheckedDate = today;
-    lastWateredDate = today
     nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
     nextWateringDate.setDate(today.getDate() + average);
     nextCheck.text(nextCheckDate.toDateString())
     nextWatering.text(nextWateringDate.toDateString());
 
-    const last = PlantData[locationName][plantName].hasOwnProperty('lastWatered') ? new Date(PlantData[locationName][plantName].lastWatered) : today;
-    const daysTotal = PlantData[locationName][plantName].hasOwnProperty('daysTotal') ? PlantData[locationName][plantName].daysTotal : 0;
-    const wateringCount = PlantData[locationName][plantName].hasOwnProperty('wateringCount') ? PlantData[locationName][plantName].wateringCount : 0;
+    const last = plant.hasOwnProperty('lastWatered') ? new Date(plant.lastWatered) : today;
+    const daysTotal = plant.hasOwnProperty('daysTotal') ? plant.daysTotal : 0;
+    const wateringCount = plant.hasOwnProperty('wateringCount') ? plant.wateringCount : 0;
     
     let differenceInDays =  (today - last)/ (1000 * 3600 * 24)
 
