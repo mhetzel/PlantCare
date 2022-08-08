@@ -122,10 +122,10 @@ function displayPlant(element, locationName, plantName) {
   element.show();
 
   function setNextDates() {
-    let average = plant.daysTotal/plant.wateringCount;
+    let average = PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount;
     if (!isNaN(average)) {
-      let nextWateringDate = new Date(plant.lastWatered);
-      let nextCheckDate = new Date(plant.lastChecked);
+      let nextWateringDate = new Date(PlantData[locationName][plantName].lastWatered);
+      let nextCheckDate = new Date(PlantData[locationName][plantName].lastChecked);
       average = Math.floor(average);
       averageDaysBetweenWatering.text(average);
       nextWateringDate.setDate(nextWateringDate.getDate() + average);
