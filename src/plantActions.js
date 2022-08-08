@@ -32,6 +32,7 @@ function doesPlantNeedChecked(locationName, plantName) {
     average = Math.floor(average);
     nextWateringDate.setDate(nextWateringDate.getDate() + average);
     let diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10); 
+    diffDays = diffDays > 0 ? diffDays : average;
     nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
   }
   
