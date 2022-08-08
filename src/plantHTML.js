@@ -192,7 +192,11 @@ function displayPlant(element, locationName, plantName) {
   }
   
   async function checkPlant() {
-    PlantData[locationName][plantName].lastChecked = today.toDateString();
+    
+    nextCheck.text('test')
+    nextWatering.text('test2');
+    
+    /* PlantData[locationName][plantName].lastChecked = today.toDateString();
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
        
     lastCheckedDate = today;
@@ -204,6 +208,7 @@ function displayPlant(element, locationName, plantName) {
     
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
+    */
   };
   
   async function fertilizePlant() {
