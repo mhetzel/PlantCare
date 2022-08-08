@@ -287,8 +287,9 @@ function displayPlant(element, locationName, plantName) {
   function needsChecked() {
     if (nextCheckDate < today) {
       console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+      checkWarning.insertBefore(nextCheck);
     }
-    if (lastCheckedDate < today && nextWateringDate < today) {
+    else if (lastCheckedDate < today && nextWateringDate < today) {
       console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
       console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
       checkWarning.insertBefore(nextCheck);
