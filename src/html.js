@@ -49,6 +49,7 @@ function displayPlants() {
   } else {
     closeForm();
     actionablePlantDiv.show();
+    showAllNeedyPlants();
   }
 }
 
