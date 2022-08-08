@@ -1,4 +1,13 @@
 
+function showAllNeedyPlants() {
+  let needyDiv = $("#needy-plants-div");
+  console.log('allneedybois')
+  Object.keys(PlantData).forEach(function(locationName) {
+    Object.keys(PlantData[locationName]).forEach(function(plantName) {
+      console.log('needy boi', plantName, 'in/at', locationName)
+    })
+  });
+}
 
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val();
