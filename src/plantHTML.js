@@ -2,11 +2,11 @@
 
 function displayPlant(element, locationName, plantName) {
   element.empty();
-  let plantInfo = $('<span></span>');
-  let plantButtons = $('<div></div>');
+  const plantInfo = $('<span></span>');
+  const plantButtons = $('<div></div>');
   element.append(plantInfo, plantButtons);
   
-  let plant = PlantData[locationName][plantName];
+  const plant = PlantData[locationName][plantName];
   let lastCheckedDate = 'n/a'
   let lastWateredDate = 'n/a'
   let nextWateringDate = 'n/a'
@@ -16,45 +16,45 @@ function displayPlant(element, locationName, plantName) {
   let displayExtraInfo = false;
 
 
-  let currentWetness = $('<select id="currentWetness"></select>');
+  var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
     checkPlant();
   });
   setDropdown(currentWetness, WaterList);
-  let averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
+  var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
   averageDaysBetweenWatering.text('n/a');
-  let lastChecked = $('<span id="lastChecked"></span>');
+  var lastChecked = $('<span id="lastChecked"></span>');
   lastChecked.text('n/a');
-  let nextCheck = $('<span id="nextCheck"></span>');
+  var nextCheck = $('<span id="nextCheck"></span>');
   nextCheck.text('n/a');
-  let lastWatered = $('<span id="lastWatered"></span>');
+  var lastWatered = $('<span id="lastWatered"></span>');
   lastWatered.text('n/a');
-  let nextWatering = $('<span id="nextWatering"></span>');
+  var nextWatering = $('<span id="nextWatering"></span>');
   nextWatering.text('n/a');
-  let lastFertilized = $('<span id="lastFertilized"></span>');
+  var lastFertilized = $('<span id="lastFertilized"></span>');
   lastFertilized.text('n/a');
-  let water = $('<span id="water"></span>');
+  var water = $('<span id="water"></span>');
   water.text('n/a');
-  let waterInstructions = $('<span id="waterInstructions"></span>');
+  var waterInstructions = $('<span id="waterInstructions"></span>');
   waterInstructions.text('n/a');
-  let soil = $('<span id="soil"></span>');
+  var soil = $('<span id="soil"></span>');
   soil.text('n/a');
-  let fertilzerFrequency = $('<span id="fertilzerFrequency"></span>');
+  var fertilzerFrequency = $('<span id="fertilzerFrequency"></span>');
   fertilzerFrequency.text('n/a');
-  let fertilzerDose = $('<span id="fertilzerDose"></span>');
+  var fertilzerDose = $('<span id="fertilzerDose"></span>');
   fertilzerDose.text('n/a');
-  let petSafe = $('<span id="petSafe"></span>');
+  var petSafe = $('<span id="petSafe"></span>');
   petSafe.text('n/a');
-  let humidity = $('<span id="humidity"></span>');
+  var humidity = $('<span id="humidity"></span>');
   humidity.text('n/a');
-  let light = $('<span id="light"></span>');  
+  var light = $('<span id="light"></span>');  
   light.text('n/a');
   
-  let waterWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
-  let checkWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
-  let fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
-  let expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
-  let expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
+  var waterWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var checkWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
+  var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
 
   plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
