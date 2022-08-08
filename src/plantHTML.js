@@ -196,13 +196,11 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
 
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
-    checkWarning.remove();
-    
+       
     lastCheckedDate = today;
-    console.log(nextCheckDate.toDateString())
     nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
-    console.log(nextCheckDate.toDateString())
     nextCheck.text(nextCheckDate.toDateString())
+    checkWarning.remove();
 
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
