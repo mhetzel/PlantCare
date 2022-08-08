@@ -199,7 +199,9 @@ function displayPlant(element, locationName, plantName) {
     checkWarning.remove();
     
     lastCheckedDate = today;
+    console.log(nextCheckDate.toDateString())
     nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
+    console.log(nextCheckDate.toDateString())
     nextCheck.text(nextCheckDate.toDateString())
 
     await saveConfig(PlantData);
