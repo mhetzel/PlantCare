@@ -13,6 +13,7 @@ function displayPlant(element, locationName, plantName) {
   let average = 'n/a'
   const today = new Date();
 
+
   var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
     checkPlant();
@@ -22,12 +23,14 @@ function displayPlant(element, locationName, plantName) {
   averageDaysBetweenWatering.text('n/a');
   var lastChecked = $('<span id="lastChecked"></span>');
   lastChecked.text('n/a');
+
   var nextCheck = $('<span id="nextCheck"></span>');
   nextCheck.text('n/a');
   var lastWatered = $('<span id="lastWatered"></span>');
   lastWatered.text('n/a');
   var nextWatering = $('<span id="nextWatering"></span>');
   nextWatering.text('n/a');
+
   var lastFertilized = $('<span id="lastFertilized"></span>');
   lastFertilized.text('n/a');
   var water = $('<span id="water"></span>');
@@ -71,6 +74,7 @@ function displayPlant(element, locationName, plantName) {
     plantInfo.append($('<div><span><b>Humidity Needs: </b></span></div>').append(humidity))
     plantInfo.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
   }
+
   
   let waterButton = $('<button title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
   waterButton.on('click', function() {
@@ -96,6 +100,7 @@ function displayPlant(element, locationName, plantName) {
   plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton);
   
   if (Object.keys(plant).length) {
+
     lastWateredDate = new Date(plant.lastWatered);
     nextWateringDate = lastWateredDate;
     lastCheckedDate = new Date(plant.lastChecked);
@@ -131,6 +136,7 @@ function displayPlant(element, locationName, plantName) {
   needsFertilized();
   needsChecked();
   element.show();
+
     
   function createUpdatePlantForm() {
     $('#update-plant-div').remove()
@@ -188,6 +194,7 @@ function displayPlant(element, locationName, plantName) {
 
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
     $("#"+plantName+"checkWarning").remove();
+
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
   };
@@ -213,6 +220,7 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].lastWatered = today.toDateString();
     PlantData[locationName][plantName].currentWetness = 0;
     $("#"+plantName+"waterWarning").remove();
+
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
   };
@@ -273,6 +281,7 @@ function displayPlant(element, locationName, plantName) {
     resetPlantSelection(newLocation, plantName);
   };
 
+
   function needsWatered() {
     if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
       console.log(plantName, 'at', locationName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
@@ -295,8 +304,6 @@ function displayPlant(element, locationName, plantName) {
       checkWarning.insertBefore(nextCheck);
     }
   }
-   
+  
 } // displayPlant
-
-
 
