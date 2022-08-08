@@ -210,10 +210,7 @@ function displayPlant(element, locationName, plantName) {
   async function waterPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
     
-    nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
-    nextWateringDate.setDate(today.getDate() + average);
-    nextCheck.text(nextCheckDate.toDateString())
-    nextWatering.text(nextWateringDate.toDateString());
+    setNextDates();
 
     const last = plant.hasOwnProperty('lastWatered') ? new Date(plant.lastWatered) : today;
     const daysTotal = plant.hasOwnProperty('daysTotal') ? plant.daysTotal : 0;
