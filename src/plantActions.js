@@ -1,10 +1,12 @@
 
 function showAllNeedyPlants() {
   let needyDiv = $("#needy-plants-div");
+  needyDiv.empty()
   console.log('allneedybois')
   Object.keys(PlantData).forEach(function(locationName) {
     Object.keys(PlantData[locationName]).forEach(function(plantName) {
       console.log('needy boi', plantName, 'in/at', locationName)
+      needyDiv.append('<p>'+plantName+' in/at '+locationName+'</p>'
     })
   });
 }
