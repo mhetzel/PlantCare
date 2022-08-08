@@ -187,6 +187,7 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
 
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
+    $("#"+plantName+"checkWarning").remove();
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
   };
@@ -272,26 +273,25 @@ function displayPlant(element, locationName, plantName) {
     resetPlantSelection(newLocation, plantName);
   };
 
-  
-  // =AND((plant.water - plant.currentWetness) <=0 , lastWateredDate < today - average, plant.currentWetness != 0, lastCheckedDate < today)
-  // =AND(nextWateringDate <= lastCheckedDate, lastCheckedDate < today)
-  // =AND(nextWateringDate < today, lastCheckedDate < today)
-  // =AND(average<>"", lastCheckedDate <= today-(average/2))
-
   function needsWatered() {
-    if (plant.currentWetness > plant.water || plant.currentWetness == 5) {
-      console.log(plantName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
+    if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
+      console.log(plantName, 'at', locationName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
       waterWarning.insertBefore(nextWatering);
     }
   }
   
   function needsFertilized() {
-    console.log(plantName, 'needs fertilized because its been the right length of time between doses')
+    console.log(plantName, 'at', locationName, 'needs fertilized because its been the right length of time between doses')
   }
   
   function needsChecked() {
-    if (lastCheckedDate < today) {
-      console.log(plantName, 'needs checked because its been either too long since watering or its halfwayish between last check and next watering')
+    if (nextCheckDate < today) {
+      console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    }
+    if (lastCheckedDate < today && nextWateringDate < today) {
+      console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+      console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
+      checkWarning.insertBefore(nextCheck);
     }
   }
    
