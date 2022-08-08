@@ -197,6 +197,10 @@ function displayPlant(element, locationName, plantName) {
 
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
     checkWarning.remove();
+    
+    lastCheckedDate = today;
+    nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
+    nextCheck.text(nextCheckDate.toDateString())
 
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
@@ -211,6 +215,13 @@ function displayPlant(element, locationName, plantName) {
   
   async function waterPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
+    
+    lastCheckedDate = today;
+    lastWateredDate = today
+    nextCheckDate.setDate(today.getDate() + Math.floor(average/2))
+    nextWateringDate.setDate(today.getDate() + average);
+    nextCheck.text(nextCheckDate.toDateString())
+    nextWatering.text(nextWateringDate.toDateString());
 
     const last = PlantData[locationName][plantName].hasOwnProperty('lastWatered') ? new Date(PlantData[locationName][plantName].lastWatered) : today;
     const daysTotal = PlantData[locationName][plantName].hasOwnProperty('daysTotal') ? PlantData[locationName][plantName].daysTotal : 0;
