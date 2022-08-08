@@ -14,6 +14,8 @@ let signOutButton = $("#signout-button");
 let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
+let actionablePlantDiv = $("#actionable-plant-div")
+
 
 function readPlantInputs(idPrefix) {
   let inputs = {};
@@ -41,6 +43,14 @@ function setKnowPlantValues(prefix, plant) {
   $(prefix + "PlantHumitidy").val(plant['humidity']);
 }
 
+function displayPlants() {
+  if (actionablePlantDiv.css('display') == 'block') {
+    setDisplayForNoPlants();
+  } else {
+    closeForm();
+    actionablePlantDiv.show();
+  }
+}
 
 function setupNewPlantInput() {
   addPlantInputFeilds('#add-plant-input', 'new')
@@ -106,6 +116,7 @@ function closeForm() {
   plantForm.hide();
   loginDiv.hide();
   plantInfos.hide();
+  actionablePlantDiv.hide();
 }
 
 function addCloseButtons() {
