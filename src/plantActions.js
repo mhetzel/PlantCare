@@ -2,12 +2,11 @@
 function showAllNeedyPlants() {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
-  console.log('allneedybois')
   Object.keys(PlantData).forEach(function(locationName) {
+    needyDiv.append('<h5>'+locationName+'</h5>')
     Object.keys(PlantData[locationName]).forEach(function(plantName) {
-      console.log('needy boi', plantName, 'in/at', locationName)
       if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
-        needyDiv.append('<p>'+plantName+' in/at '+locationName+'</p>')
+        needyDiv.append('<p>'+plantName+'</p>)
       }
     })
   });
