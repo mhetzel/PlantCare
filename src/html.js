@@ -124,7 +124,10 @@ function closeForm() {
 
 function addCloseButtons() {
   let closeButtonDiv = $("<div></div>").addClass("top-right");
-  let closeButton = $('<button title="Close"></button').click(setDisplayForNoPlants());
+  let closeButton = $('<button title="Close"></button');
+  closeButton.on('click', function() {
+    setDisplayForNoPlants();
+  }
   let closeIcon = $('<i></i>').addClass("fa-solid fa-xmark");
   closeButton.append(closeIcon);
   closeButtonDiv.append(closeButton);
