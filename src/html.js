@@ -58,6 +58,8 @@ function setupNewPlantInput() {
   $("#newPlantName").val('');
   $("#newPlantLocation").val('');
   $("#newPlantLastWatered").val(null);
+  $("#newPlantLastChecked").val(null);
+  $("#newPlantLastFertilized").val(null);
   $("#newPlantAverageWateringDays").val(null);
 
   dropdown('#new');
