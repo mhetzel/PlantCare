@@ -7,7 +7,7 @@ function showAllNeedyPlants() {
     Object.keys(PlantData[locationName]).forEach(function(plantName) {
       console.log('needy boi', plantName, 'in/at', locationName)
       if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
-        needyDiv.append('<p>'+plantName+' in/at '+locationName+'</p>'
+        needyDiv.append('<p>'+plantName+' in/at '+locationName+'</p>')
       }
     })
   });
