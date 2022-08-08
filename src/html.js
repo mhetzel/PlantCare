@@ -127,7 +127,7 @@ function addCloseButtons() {
   let closeButton = $('<button title="Close"></button');
   closeButton.on('click', function() {
     setDisplayForNoPlants();
-  }
+  })
   let closeIcon = $('<i></i>').addClass("fa-solid fa-xmark");
   closeButton.append(closeIcon);
   closeButtonDiv.append(closeButton);
