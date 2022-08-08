@@ -6,9 +6,46 @@ function showAllNeedyPlants() {
   Object.keys(PlantData).forEach(function(locationName) {
     Object.keys(PlantData[locationName]).forEach(function(plantName) {
       console.log('needy boi', plantName, 'in/at', locationName)
-      needyDiv.append('<p>'+plantName+' in/at '+locationName+'</p>'
+      if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
+        needyDiv.append('<p>'+plantName+' in/at '+locationName+'</p>'
+      }
     })
   });
+}
+                                 
+function doesPlantNeedWatered(locationName, plantName) {
+  const plant = PlantData[locationName][plantName]
+  if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
+    return true
+  }
+  return false
+}
+
+function doesPlantNeedChecked(locationName, plantName) {
+  const plant = PlantData[locationName][plantName]
+  const today = new Date();
+  let lastCheckedDate = new Date(plant.lastChecked);
+  let nextCheckDate = lastCheckedDate;
+  let lastWateredDate = new Date(plant.lastWatered);
+  let nextWateringDate = lastWateredDate;
+  let average = plant.daysTotal/plant.wateringCount;
+  if (!isNaN(average)) {
+    average = Math.floor(average);
+    nextWateringDate.setDate(nextWateringDate.getDate() + average);
+    let diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10); 
+    nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
+  }
+  
+  if (nextCheckDate < today) {
+    console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    return true;
+  }
+  else if (lastCheckedDate < today && nextWateringDate < today) {
+    console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+    console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
+    return true;
+  }
+  return false;
 }
 
 async function addNewPlant() {
