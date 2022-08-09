@@ -65,7 +65,12 @@ async function handleToken(googleUser) {
 };
 
 function signedIn() { 
-  let access = await refreshCreds();
+  refreshCreds().then(function(response) {
+    if (response){
+      console.log('trying to call load plants from signout')
+      loadPlants();
+    }
+  });
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
@@ -84,10 +89,6 @@ function signedIn() {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } 
 
-  if (access) {
-    console.log('trying to call load plants from signin')
-    loadPlants();
-  }
 }
 
 function signedOut() {
