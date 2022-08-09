@@ -18,17 +18,17 @@ function determineUserMode() {
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         if (notification.getSkippedReason() == 'user_cancel') {
-          signedOut();
+          handleSignoutClick();
         }
       }
       if (notification.isNotDisplayed()) {
         if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-          signedOut();
+          handleSignoutClick();
         }
       }
     });
   } else {
-    signedOut();
+    handleSignoutClick();
   }
 };
 
