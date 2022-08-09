@@ -69,7 +69,7 @@ async function handleToken(googleUser) {
 function signedIn() { 
   checkAccess().then(function(response) {
     if (response){
-      console.log('trying to call load plants from signout')
+      console.log('trying to call load plants from sign in')
       loadPlants();
     }
   });
