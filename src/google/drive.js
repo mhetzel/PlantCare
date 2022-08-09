@@ -11,7 +11,6 @@ async function refreshCreds() {
     return true;
   }, function(reason) {
     if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
-      tokenClient.requestAccessToken();
       return false;
     }
   });
