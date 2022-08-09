@@ -65,7 +65,7 @@ async function handleToken(googleUser) {
 };
 
 function signedIn() { 
-  refreshCreds().then(function(response) {
+  checkAccess().then(function(response) {
     if (response){
       console.log('trying to call load plants from signout')
       loadPlants();
