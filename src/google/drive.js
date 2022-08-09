@@ -2,6 +2,23 @@
  *  Drive Functions
  */
 
+async function testCreds() {
+  let result = await gapi.client.drive.files.list({
+    'pageSize': 10,
+    'fields': 'files(id, name)',
+    'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
+  }).then(function(response) {
+    return true;
+  }, function(reason) {
+    console.log('Find/create folder ERROR:', reason.result.error.message);
+    if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
+      tokenClient.requestAccessToken();
+      return false;
+    }
+  });
+  return result;
+}
+
 async function readFile(fileID) {
   let data = null;
   if (fileID) {
