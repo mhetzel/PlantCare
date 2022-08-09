@@ -65,7 +65,7 @@ async function handleToken(googleUser) {
 };
 
 function signedIn() { 
-  refreshCreds()
+  await refreshCreds()
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
