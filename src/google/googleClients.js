@@ -20,7 +20,7 @@ function setupSigninButton() {
 }
 
 async function initGoogleAPIs() {
-  google.accounts.id.initialize({
+  await google.accounts.id.initialize({
     client_id: CLIENT_ID,
     callback: handleToken,
     context: "signin",
@@ -33,7 +33,7 @@ async function initGoogleAPIs() {
     callback: '', // defined later
   });
   gisInited = true;
-  gapi.load('client', intializeGapiClient);
+  await gapi.load('client', intializeGapiClient);
 }
 
 async function intializeGapiClient() {
