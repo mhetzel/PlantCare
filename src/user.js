@@ -65,7 +65,7 @@ async function handleToken(googleUser) {
 };
 
 function signedIn() { 
-  testCreds()
+  refreshCreds()
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
@@ -85,7 +85,7 @@ function signedIn() {
   } 
 
   console.log('trying to call load plants from signin')
-  //loadPlants();
+  loadPlants();
 }
 
 function signedOut() {
@@ -100,7 +100,7 @@ function signedOut() {
   User = 'Guest';
   
   console.log('trying to call load plants from signout')
-  //loadPlants();
+  loadPlants();
 };
 
 function handleSignoutClick() {
