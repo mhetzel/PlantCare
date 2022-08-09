@@ -18,7 +18,6 @@ async function saveConfig(plantData) {
   let fileData = {'timestamp': Date.now(), 'plants': plantData}
   // todo compare timestamp before writing to storage?
   if (!GuestMode) {
-    await findOrCreateConfig();
     await writeFile(DriveFileID, fileData);
   } else {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fileData));
@@ -30,6 +29,7 @@ async function retrievePlantData() {
   let retrievedObject = null;
 
   if (!GuestMode) {
+    console.log('from retrievePlantData')
     await findOrCreateConfig();
     console.log('read file from retrievePlantData')
     retrievedObject = await readFile(DriveFileID);
