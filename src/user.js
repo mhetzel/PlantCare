@@ -65,6 +65,7 @@ async function handleToken(googleUser) {
 };
 
 function signedIn() { 
+  testCreds()
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
@@ -83,7 +84,8 @@ function signedIn() {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } 
 
-  loadPlants();
+  console.log('trying to call load plants from signin')
+  //loadPlants();
 }
 
 function signedOut() {
@@ -97,7 +99,8 @@ function signedOut() {
   GuestMode = true;
   User = 'Guest';
   
-  loadPlants();
+  console.log('trying to call load plants from signout')
+  //loadPlants();
 };
 
 function handleSignoutClick() {
