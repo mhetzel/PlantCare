@@ -31,6 +31,7 @@ async function retrievePlantData() {
 
   if (!GuestMode) {
     await findOrCreateConfig();
+    console.log('read file from retrievePlantData')
     retrievedObject = await readFile(DriveFileID);
   } else {
     retrievedObject = localStorage.getItem(STORAGE_KEY);
@@ -55,6 +56,7 @@ async function findOrCreateConfig() {
   if (!GuestMode) {
     if (!DriveFileID) {
       DriveFileID = await getFolderID().then(folderID => { 
+        console.log('getFileID from findOrCreateConfig')
         return getFileID(folderID);
       });
     }
