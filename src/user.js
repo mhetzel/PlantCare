@@ -2,7 +2,7 @@
  *  Account Functions
  */
 
-var GuestMode = false;
+var GuestMode = true;
 var User = 'Guest';
 var UserPicture = '';
 
@@ -18,11 +18,13 @@ function determineUserMode() {
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         if (notification.getSkippedReason() == 'user_cancel') {
+          console.log('canceled')
           handleSignoutClick();
         }
       }
       if (notification.isNotDisplayed()) {
         if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
+          console.log('suppressed')
           handleSignoutClick();
         }
       }
