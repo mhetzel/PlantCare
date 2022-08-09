@@ -48,6 +48,28 @@ function doesPlantNeedChecked(locationName, plantName) {
   return false;
 }
 
+/*
+plantKeys = [
+'lastWatered',
+'lastChecked',
+'lastFertilized',
+'daysTotal',
+'wateringCount',
+'average',
+'nextWatering',
+'nextCheck',
+'nextFertilizing',
+'water',
+'light',
+'waterInstructions',
+'soil',
+'fertilzerFrequency',
+'fertilzerDose',
+'petSafe',
+'humidity',
+]
+*/
+
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val();
   let newName = $("#newPlantName").val();
@@ -60,17 +82,41 @@ async function addNewPlant() {
       PlantData[newLocation][newName] = {};
     }
     
+    // defaults
+    PlantData[newLocation][newName]['lastWatered'] = 'n/a'
+    PlantData[newLocation][newName]['lastChecked'] = 'n/a'
+    PlantData[newLocation][newName]['lastFertilized'] = 'n/a'
+    PlantData[newLocation][newName]['nextWatering'] = 'n/a'
+    PlantData[newLocation][newName]['nextCheck'] = 'n/a'
+    PlantData[newLocation][newName]['nextFertilizing'] = 'n/a'
+    PlantData[newLocation][newName]['daysTotal'] = 1;
+    PlantData[newLocation][newName]['wateringCount'] = 1;
+    PlantData[newLocation][newName]['average'] = 1;
+        
     let inputs = readPlantInputs("#new");
     PlantData[newLocation][newName] = {...PlantData[newLocation][newName], ...inputs};
-  
+    
+    let averageDaysBetweenWatering = $("#newPlantAverageWateringDays").val();
+    if (averageDaysBetweenWatering) {
+      PlantData[newLocation][newName]['daysTotal'] = parseInt(averageDaysBetweenWatering);
+      PlantData[newLocation][newName]['average'] = parseInt(averageDaysBetweenWatering);
+    }
+    
     let lastWatered = $("#newPlantLastWatered").val();
+    console.log('reading last watered date', lastWatered, (new Date(lastWatered)).toDateString())
     if (lastWatered) {
-      PlantData[newLocation][newName]['lastWatered'] = (new Date(lastWatered)).toDateString();
+      let lastDate = new Date(lastWatered);
+      let nextDate = lastDate.setDate(lastDate.getDate() + PlantData[newLocation][newName]['average'])
+      PlantData[newLocation][newName]['lastWatered'] = lastDate.toDateString();
+      PlantData[newLocation][newName]['nextWatering'] = nextDate.toDateString();
     }
     
     let lastChecked = $("#newPlantLastChecked").val();
     if (lastChecked) {
-      PlantData[newLocation][newName]['lastChecked'] = (new Date(lastChecked)).toDateString();
+      let lastDate = new Date(lastChecked);
+      let nextDate = lastDate.setDate(lastDate.getDate() + Math.floor(PlantData[newLocation][newName]['average']/2))
+      PlantData[newLocation][newName]['lastChecked'] = lastDate.toDateString();
+      PlantData[newLocation][newName]['nextCheck'] = nextDate.toDateString();
     }
     
     let lastFertilized = $("#newPlantLastFertilized").val();
@@ -78,14 +124,10 @@ async function addNewPlant() {
       PlantData[newLocation][newName]['lastFertilized'] = (new Date(lastFertilized)).toDateString();
     }
     
-    PlantData[newLocation][newName]['daysTotal'] = 0;
-    PlantData[newLocation][newName]['wateringCount'] = 0;
-    let averageDaysBetweenWatering = $("#newPlantAverageWateringDays").val();
-    if (averageDaysBetweenWatering) {
-      PlantData[newLocation][newName]['daysTotal'] = parseInt(averageDaysBetweenWatering);
-      PlantData[newLocation][newName]['wateringCount'] = 1;
-    }
 
+    
+    
+        
     console.log(PlantData[newLocation][newName]);
   
     await saveConfig(PlantData);
