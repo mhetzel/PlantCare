@@ -2,7 +2,7 @@
  *  Drive Functions
  */
 
-async function refreshCreds() {
+async function checkAccess() {
   let result = await gapi.client.drive.files.list({
     'pageSize': 10,
     'fields': 'files(id, name)',
