@@ -2,7 +2,7 @@
  *  Drive Functions
  */
 
-async function testCreds() {
+async function refreshCreds() {
   let result = await gapi.client.drive.files.list({
     'pageSize': 10,
     'fields': 'files(id, name)',
@@ -10,7 +10,6 @@ async function testCreds() {
   }).then(function(response) {
     return true;
   }, function(reason) {
-    console.log('Find/create folder ERROR:', reason.result.error.message);
     if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
       tokenClient.requestAccessToken();
       return false;
