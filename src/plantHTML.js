@@ -9,7 +9,6 @@ function displayPlant(element, locationName, plantName) {
   const today = new Date();
   var displayExtraInfo = false;
 
-
   var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
     checkPlant();
@@ -152,7 +151,7 @@ function displayPlant(element, locationName, plantName) {
     
     addPlantInputFeilds("#update-plant-input", 'updated');
     dropdown('#updated');
-    setKnowPlantValues("#updated", plant);
+    setKnowPlantValues("#updated", PlantData[locationName][plantName]);
     $("#update-plant-div").show();
   }
 
@@ -184,12 +183,12 @@ function displayPlant(element, locationName, plantName) {
   async function checkPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
-
-    await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
-    plant = PlantData[locationName][plantName];
+    
     setNextDates();
     checkWarning.remove();
+    
+    await saveConfig(PlantData);
+    resetPlantSelection(locationName, plantName);
   };
   
   async function fertilizePlant() {
@@ -197,7 +196,6 @@ function displayPlant(element, locationName, plantName) {
 
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
-    plant = PlantData[locationName][plantName];
   };
   
   async function waterPlant() {
@@ -212,13 +210,13 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].wateringCount = wateringCount + 1;
     PlantData[locationName][plantName].lastWatered = today.toDateString();
     PlantData[locationName][plantName].currentWetness = 0;
-    await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
     
-    plant = PlantData[locationName][plantName];
     setNextDates();
     waterWarning.remove();
     checkWarning.remove();
+    
+    await saveConfig(PlantData);
+    resetPlantSelection(locationName, plantName);
   };
   
   async function deletePlant() {
@@ -261,8 +259,6 @@ function displayPlant(element, locationName, plantName) {
   };
   
   async function updatePlant() {
-    let plant = PlantData[locationName][plantName];
-
     let newPlantInfo = readPlantInputs("#updated");
     PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
 
@@ -275,7 +271,7 @@ function displayPlant(element, locationName, plantName) {
   async function movePlant() {
     let newLocation = $("#movedPlantLocation").val();
 
-    plant = PlantData[locationName][plantName];
+    let plant = PlantData[locationName][plantName];
     delete PlantData[locationName][plantName];
     if (Object.keys(PlantData[locationName]).length === 0) {
       delete PlantData[locationName];
@@ -294,7 +290,6 @@ function displayPlant(element, locationName, plantName) {
 
   function needsWatered() {
     if (doesPlantNeedWatered(locationName, plantName)) {
-      console.log(plantName, 'at', locationName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
       waterWarning.insertBefore(nextWatering);
     } else {
       waterWarning.remove()
