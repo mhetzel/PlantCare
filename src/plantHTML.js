@@ -7,8 +7,6 @@ function displayPlant(element, locationName, plantName) {
   element.append(plantInfo, plantButtons);
   
   const today = new Date();
-  var plant = PlantData[locationName][plantName];
-
   var displayExtraInfo = false;
 
 
@@ -98,22 +96,22 @@ function displayPlant(element, locationName, plantName) {
 
   plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
   
-  if (Object.keys(plant).length) {
+  if (Object.keys(PlantData[locationName][plantName]).length) {
     setNextDates();
     
-    currentWetness.prop('selectedIndex', plant.currentWetness);
-    lastChecked.text(plant.lastChecked);
-    lastWatered.text(plant.lastWatered);
+    currentWetness.prop('selectedIndex', PlantData[locationName][plantName].currentWetness);
+    lastChecked.text(PlantData[locationName][plantName].lastChecked);
+    lastWatered.text(PlantData[locationName][plantName].lastWatered);
     
-    water.text(WaterList[plant.water]);
-    light.text(LightList[plant.light]);
-    waterInstructions.text(plant.waterInstructions);
-    soil.text(plant.soil);
-    lastFertilized.text(plant.lastFertilized);
-    fertilzerFrequency.text(plant.fertilzerFrequency);
-    fertilzerDose.text(plant.fertilzerDose);
-    petSafe.text(plant.petSafe);
-    humidity.text(plant.humidity);
+    water.text(WaterList[PlantData[locationName][plantName].water]);
+    light.text(LightList[PlantData[locationName][plantName].light]);
+    waterInstructions.text(PlantData[locationName][plantName].waterInstructions);
+    soil.text(PlantData[locationName][plantName].soil);
+    lastFertilized.text(PlantData[locationName][plantName].lastFertilized);
+    fertilzerFrequency.text(PlantData[locationName][plantName].fertilzerFrequency);
+    fertilzerDose.text(PlantData[locationName][plantName].fertilzerDose);
+    petSafe.text(PlantData[locationName][plantName].petSafe);
+    humidity.text(PlantData[locationName][plantName].humidity);
   }
   
   needsWatered();
@@ -123,19 +121,14 @@ function displayPlant(element, locationName, plantName) {
 
   function setNextDates() {
     let average = PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount;
-    if (!isNaN(average)) {
-      let nextWateringDate = new Date(PlantData[locationName][plantName].lastWatered);
-      let nextCheckDate = new Date(PlantData[locationName][plantName].lastChecked);
-      average = Math.floor(average);
-      averageDaysBetweenWatering.text(average);
-      nextWateringDate.setDate(nextWateringDate.getDate() + average);
-      nextWatering.text(nextWateringDate.toDateString());
-
-      let diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10);
-      diffDays = diffDays > 0 ? diffDays : average;
-      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
-      nextCheck.text(nextCheckDate.toDateString())
-    }
+    average = Math.floor(average);
+    PlantData[locationName][plantName].average = average;
+    averageDaysBetweenWatering.text(average);
+    
+    let nextWateringDate = getNextWaterDate(locationName, plantName)
+    let nextCheckDate = getNextCheckDate(locationName, plantName)
+    nextWatering.text(nextWateringDate.toDateString());
+    nextCheck.text(nextCheckDate.toDateString())
   }
     
   function createUpdatePlantForm() {
