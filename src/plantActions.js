@@ -25,7 +25,6 @@ function doesPlantNeedChecked(locationName, plantName) {
   const today = new Date();
   let lastCheckedDate = new Date(plant.lastChecked);
   let nextCheckDate = new Date(plant.nextCheck);
-  let lastWateredDate = new Date(plant.lastWatered);
   let nextWateringDate = new Date(plant.nextWatering);
   
   if (nextCheckDate < today) {
@@ -38,6 +37,29 @@ function doesPlantNeedChecked(locationName, plantName) {
     return true;
   }
   return false;
+}
+
+function getNextWaterDate(locationName, plantName) {
+  let lastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered'])
+  let nextWaterDate = new Date(lastWateredDate)
+  nextWaterDate.setDate(nextWaterDate.getDate() + PlantData[locationName][plantName]['average'])
+  PlantData[locationName][plantName]['nextWatering'] = nextWaterDate.toDateString();
+  return nextWaterDate
+}
+
+function getNextCheckDate(locationName, plantName) {
+  let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
+  let diffDays = 0
+  if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
+    let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
+    diffDays = parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10); 
+  }
+  diffDays = diffDays > 0 ? diffDays : PlantData[locationName][plantName]['average'];
+
+  let nextCheckDate = new Date(lastCheckedDate)
+  nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
+  PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
+  return nextCheckDate;
 }
 
 /*
@@ -99,10 +121,7 @@ async function addNewPlant() {
       let lastWateredDate = new Date(lastWatered);
       lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
       PlantData[newLocation][newName]['lastWatered'] = lastWateredDate.toDateString();
-      
-      let nextWaterDate = new Date(lastWateredDate)
-      nextWaterDate.setDate(nextWaterDate.getDate() + PlantData[newLocation][newName]['average'])
-      PlantData[newLocation][newName]['nextWatering'] = nextWaterDate.toDateString();
+      getNextWaterDate(newLocation, newName);
     }
     
     let lastChecked = $("#newPlantLastChecked").val();
@@ -110,17 +129,7 @@ async function addNewPlant() {
       let lastCheckedDate = new Date(lastChecked);
       lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
       PlantData[newLocation][newName]['lastChecked'] = lastCheckedDate.toDateString();
-      
-      let diffDays = 0
-      if (PlantData[newLocation][newName]['nextWatering'] != 'n/a') {
-        let nextWaterDate = new Date(PlantData[newLocation][newName]['nextWatering'])
-        diffDays = parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10); 
-      }
-      diffDays = diffDays > 0 ? diffDays : PlantData[newLocation][newName]['average'];
-      
-      let nextCheckDate = new Date(lastCheckedDate)
-      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
-      PlantData[newLocation][newName]['nextCheck'] = nextCheckDate.toDateString();
+      getNextCheckDate(newLocation, newName);
     }
 
     let lastFertilized = $("#newPlantLastFertilized").val();
