@@ -14,6 +14,15 @@ function showAllNeedyPlants() {
                                  
 function doesPlantNeedWatered(locationName, plantName) {
   const plant = PlantData[locationName][plantName]
+  const today = new Date();
+  let lastCheckedDate = new Date(plant.lastChecked);
+  let nextWateringDate = new Date(plant.nextWatering);
+  if (lastCheckedDate < today && nextWateringDate < today) {
+    console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+    console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
+    return true;
+  }
+  let nextWateringDate = new Date(plant.nextWatering);
   if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
     return true
   }
