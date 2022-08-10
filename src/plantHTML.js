@@ -199,6 +199,7 @@ function displayPlant(element, locationName, plantName) {
   };
   
   async function waterPlant() {
+    let plant = PlantData[locationName][plantName]
     PlantData[locationName][plantName].lastChecked = today.toDateString();
   
     const last = plant.hasOwnProperty('lastWatered') ? new Date(plant.lastWatered) : today;
