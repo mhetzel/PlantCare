@@ -119,8 +119,15 @@ async function addNewPlant() {
       lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
       PlantData[newLocation][newName]['lastChecked'] = lastCheckedDate.toDateString();
       
+      let diffDays = 0
+      if (PlantData[newLocation][newName]['nextWatering'] != 'n/a') {
+        let nextWaterDate = new Date(PlantData[newLocation][newName]['nextWatering'])
+        diffDays = parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10); 
+      }
+      diffDays = diffDays > 0 ? diffDays : PlantData[newLocation][newName]['average'];
+      
       let nextCheckDate = new Date(lastCheckedDate)
-      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(PlantData[newLocation][newName]['average']/2))
+      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
       PlantData[newLocation][newName]['nextCheck'] = nextCheckDate.toDateString();
     }
 
