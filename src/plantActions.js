@@ -106,9 +106,9 @@ async function addNewPlant() {
     console.log('reading last watered date', lastWatered, (new Date(lastWatered)).toDateString())
     if (lastWatered) {
       let lastDate = new Date(lastWatered);
-      alert(new Date( lastDate.getTime() - lastDate.getTimezoneOffset() * -60000 ))
-      let nextDate = new Date(lastDate)
-      nextDate = nextDate.setDate(nextDate.getDate() + PlantData[newLocation][newName]['average'])
+      lastDate = new Date( lastDate.getTime() - lastDate.getTimezoneOffset() * -60000 );
+      let nextDate = lastDate
+      nextDate.setDate(nextDate.getDate() + PlantData[newLocation][newName]['average'])
       PlantData[newLocation][newName]['lastWatered'] = lastDate.toDateString();
       PlantData[newLocation][newName]['nextWatering'] = nextDate.toDateString();
     }
@@ -116,8 +116,9 @@ async function addNewPlant() {
     let lastChecked = $("#newPlantLastChecked").val();
     if (lastChecked) {
       let lastDate = new Date(lastChecked);
+      lastDate = new Date( lastDate.getTime() - lastDate.getTimezoneOffset() * -60000 );
       let nextDate = lastDate
-      nextDate = lastDate.setDate(nextDate.getDate() + Math.floor(PlantData[newLocation][newName]['average']/2))
+      nextDate.setDate(nextDate.getDate() + Math.floor(PlantData[newLocation][newName]['average']/2))
       PlantData[newLocation][newName]['lastChecked'] = lastDate.toDateString();
       PlantData[newLocation][newName]['nextCheck'] = nextDate.toDateString();
     }
