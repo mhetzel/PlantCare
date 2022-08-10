@@ -22,7 +22,6 @@ function doesPlantNeedWatered(locationName, plantName) {
     console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
     return true;
   }
-  let nextWateringDate = new Date(plant.nextWatering);
   if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
     return true
   }
