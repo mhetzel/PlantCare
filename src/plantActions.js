@@ -24,17 +24,9 @@ function doesPlantNeedChecked(locationName, plantName) {
   const plant = PlantData[locationName][plantName]
   const today = new Date();
   let lastCheckedDate = new Date(plant.lastChecked);
-  let nextCheckDate = lastCheckedDate;
+  let nextCheckDate = new Date(plant.nextCheck);
   let lastWateredDate = new Date(plant.lastWatered);
-  let nextWateringDate = lastWateredDate;
-  let average = plant.daysTotal/plant.wateringCount;
-  if (!isNaN(average)) {
-    average = Math.floor(average);
-    nextWateringDate.setDate(nextWateringDate.getDate() + average);
-    let diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10); 
-    diffDays = diffDays > 0 ? diffDays : average;
-    nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
-  }
+  let nextWateringDate = new Date(plant.nextWatering);
   
   if (nextCheckDate < today) {
     console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
