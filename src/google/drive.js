@@ -38,6 +38,7 @@ async function readFile(fileID) {
 }
  
 async function writeFile(fileID, data) {
+  await checkAccess(); 
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
     method: 'PATCH',
