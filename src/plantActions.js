@@ -104,28 +104,26 @@ async function addNewPlant() {
     
     let lastWatered = $("#newPlantLastWatered").val();
     if (lastWatered) {
-      let lastDate = new Date(lastWatered);
-      lastDate = new Date( lastDate.getTime() - lastDate.getTimezoneOffset() * -60000 );
-      PlantData[newLocation][newName]['lastWatered'] = lastDate.toDateString();
+      let lastWateredDate = new Date(lastWatered);
+      lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
+      PlantData[newLocation][newName]['lastWatered'] = lastWateredDate.toDateString();
       
-      let nextDate = new Date(lastDate)
-      nextDate.setDate(nextDate.getDate() + PlantData[newLocation][newName]['average'])
-      PlantData[newLocation][newName]['nextWatering'] = nextDate.toDateString();
+      let nextWaterDate = new Date(lastWateredDate)
+      nextWaterDate.setDate(nextWaterDate.getDate() + PlantData[newLocation][newName]['average'])
+      PlantData[newLocation][newName]['nextWatering'] = nextWaterDate.toDateString();
     }
-    console.log(PlantData[newLocation][newName]);
     
     let lastChecked = $("#newPlantLastChecked").val();
     if (lastChecked) {
-      let lastDate = new Date(lastChecked);
-      lastDate = new Date( lastDate.getTime() - lastDate.getTimezoneOffset() * -60000 );
-      PlantData[newLocation][newName]['lastChecked'] = lastDate.toDateString();
+      let lastCheckedDate = new Date(lastChecked);
+      lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
+      PlantData[newLocation][newName]['lastChecked'] = lastCheckedDate.toDateString();
       
-      let nextDate = new Date(lastDate)
-      nextDate.setDate(nextDate.getDate() + Math.floor(PlantData[newLocation][newName]['average']/2))
-      PlantData[newLocation][newName]['nextCheck'] = nextDate.toDateString();
+      let nextCheckDate = new Date(lastCheckedDate)
+      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(PlantData[newLocation][newName]['average']/2))
+      PlantData[newLocation][newName]['nextCheck'] = nextCheckDate.toDateString();
     }
-    console.log(PlantData[newLocation][newName]);
-    
+
     let lastFertilized = $("#newPlantLastFertilized").val();
     if (lastFertilized) {
       PlantData[newLocation][newName]['lastFertilized'] = (new Date(lastFertilized)).toDateString();
