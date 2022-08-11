@@ -8,7 +8,7 @@ function showAllNeedyPlants() {
       if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
         let plantDiv = $('<div id="'+plantName+'"></div>')
         needyDiv.append(plantDiv)
-        displayPlant(plantDiv, locationName, plantName)
+        displayPlant(plantDiv, locationName, plantName, false)
       }
     })
   });
