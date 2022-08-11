@@ -73,7 +73,7 @@ function getNextCheckDate(locationName, plantName) {
   diffDays = diffDays > 0 ? diffDays : PlantData[locationName][plantName]['average'];
 
   let nextCheckDate = new Date(lastCheckedDate)
-  nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
+  nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(diffDays/2))
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
   return nextCheckDate;
 }
