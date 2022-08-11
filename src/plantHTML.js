@@ -2,9 +2,10 @@
 
 function displayPlant(element, locationName, plantName) {
   element.empty();
+  const plantHeading = $('<h5>'+plantName+'</h5>')
   const plantInfo = $('<span></span>');
   const plantButtons = $('<div></div>');
-  element.append(plantInfo, plantButtons);
+  element.append(plantHeading, plantInfo, plantButtons);
   
   const today = new Date();
   var displayExtraInfo = false;
