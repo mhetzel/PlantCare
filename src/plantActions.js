@@ -68,7 +68,7 @@ function getNextCheckDate(locationName, plantName) {
   let diffDays = 0
   if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
     let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
-    diffDays = parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10); 
+    diffDays = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
   }
   diffDays = diffDays > 0 ? diffDays : PlantData[locationName][plantName]['average'];
 
