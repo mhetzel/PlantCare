@@ -1,6 +1,6 @@
 
 
-function displayPlant(element, locationName, plantName, allOptions=true) {
+function displayPlant(element, locationName, plantName, allOptions) {
   element.empty();
   const plantHeading = $('<h5>'+plantName+'</h5>')
   const plantInfo = $('<span></span>');
