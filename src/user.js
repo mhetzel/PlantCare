@@ -2,7 +2,7 @@
  *  Account Functions
  */
 
-var GuestMode = false;
+var GuestMode = true;
 var User = 'Guest';
 var UserPicture = '';
 
@@ -18,17 +18,19 @@ function determineUserMode() {
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         if (notification.getSkippedReason() == 'user_cancel') {
-          signedOut();
+          console.log('canceled')
+          handleSignoutClick();
         }
       }
       if (notification.isNotDisplayed()) {
         if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-          signedOut();
+          console.log('suppressed')
+          handleSignoutClick();
         }
       }
     });
   } else {
-    signedOut();
+    handleSignoutClick();
   }
 };
 
@@ -65,6 +67,12 @@ async function handleToken(googleUser) {
 };
 
 function signedIn() { 
+  checkAccess().then(function(response) {
+    if (response){
+      console.log('trying to call load plants from sign in')
+      loadPlants();
+    }
+  });
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
@@ -83,7 +91,6 @@ function signedIn() {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } 
 
-  loadPlants();
 }
 
 function signedOut() {
@@ -97,6 +104,7 @@ function signedOut() {
   GuestMode = true;
   User = 'Guest';
   
+  console.log('trying to call load plants from signout')
   loadPlants();
 };
 

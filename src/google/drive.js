@@ -2,6 +2,22 @@
  *  Drive Functions
  */
 
+async function checkAccess() {
+  let result = await gapi.client.drive.files.list({
+    'pageSize': 10,
+    'fields': 'files(id, name)',
+    'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
+  }).then(function(response) {
+    return true;
+  }, function(reason) {
+    if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
+      tokenClient.requestAccessToken();
+      return false;
+    }
+  });
+  return result;
+}
+
 async function readFile(fileID) {
   let data = null;
   if (fileID) {
@@ -22,6 +38,7 @@ async function readFile(fileID) {
 }
  
 async function writeFile(fileID, data) {
+  await checkAccess(); 
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
     method: 'PATCH',

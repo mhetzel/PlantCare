@@ -1,59 +1,53 @@
 
+
 function displayPlant(element, locationName, plantName) {
   element.empty();
-  let plantInfo = $('<span></span>');
-  let plantButtons = $('<div></div>');
+  const plantInfo = $('<span></span>');
+  const plantButtons = $('<div></div>');
   element.append(plantInfo, plantButtons);
   
-  let plant = PlantData[locationName][plantName];
-  let lastCheckedDate = 'n/a'
-  let lastWateredDate = 'n/a'
-  let nextWateringDate = 'n/a'
-  let nextCheckDate = 'n/a'
-  let average = 'n/a'
   const today = new Date();
-  let displayExtraInfo = false;
+  var displayExtraInfo = false;
 
-
-  let currentWetness = $('<select id="currentWetness"></select>');
+  var currentWetness = $('<select id="currentWetness"></select>');
   currentWetness.on('change', function() {
     checkPlant();
   });
   setDropdown(currentWetness, WaterList);
-  let averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
+  var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
   averageDaysBetweenWatering.text('n/a');
-  let lastChecked = $('<span id="lastChecked"></span>');
+  var lastChecked = $('<span id="lastChecked"></span>');
   lastChecked.text('n/a');
-  let nextCheck = $('<span id="nextCheck"></span>');
+  var nextCheck = $('<span id="nextCheck"></span>');
   nextCheck.text('n/a');
-  let lastWatered = $('<span id="lastWatered"></span>');
+  var lastWatered = $('<span id="lastWatered"></span>');
   lastWatered.text('n/a');
-  let nextWatering = $('<span id="nextWatering"></span>');
+  var nextWatering = $('<span id="nextWatering"></span>');
   nextWatering.text('n/a');
-  let lastFertilized = $('<span id="lastFertilized"></span>');
+  var lastFertilized = $('<span id="lastFertilized"></span>');
   lastFertilized.text('n/a');
-  let water = $('<span id="water"></span>');
+  var water = $('<span id="water"></span>');
   water.text('n/a');
-  let waterInstructions = $('<span id="waterInstructions"></span>');
+  var waterInstructions = $('<span id="waterInstructions"></span>');
   waterInstructions.text('n/a');
-  let soil = $('<span id="soil"></span>');
+  var soil = $('<span id="soil"></span>');
   soil.text('n/a');
-  let fertilzerFrequency = $('<span id="fertilzerFrequency"></span>');
+  var fertilzerFrequency = $('<span id="fertilzerFrequency"></span>');
   fertilzerFrequency.text('n/a');
-  let fertilzerDose = $('<span id="fertilzerDose"></span>');
+  var fertilzerDose = $('<span id="fertilzerDose"></span>');
   fertilzerDose.text('n/a');
-  let petSafe = $('<span id="petSafe"></span>');
+  var petSafe = $('<span id="petSafe"></span>');
   petSafe.text('n/a');
-  let humidity = $('<span id="humidity"></span>');
+  var humidity = $('<span id="humidity"></span>');
   humidity.text('n/a');
-  let light = $('<span id="light"></span>');  
+  var light = $('<span id="light"></span>');  
   light.text('n/a');
   
-  let waterWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
-  let checkWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
-  let fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
-  let expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
-  let expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
+  var waterWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var checkWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
+  var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
 
   plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
@@ -101,37 +95,22 @@ function displayPlant(element, locationName, plantName) {
 
   plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
   
-  if (Object.keys(plant).length) {
-
-    lastWateredDate = new Date(plant.lastWatered);
-    nextWateringDate = lastWateredDate;
-    lastCheckedDate = new Date(plant.lastChecked);
-    nextCheckDate = lastCheckedDate;
-    average = plant.daysTotal/plant.wateringCount;
-    if (!isNaN(average)) {
-      average = Math.floor(average);
-      averageDaysBetweenWatering.text(average);
-      nextWateringDate.setDate(nextWateringDate.getDate() + average);
-      nextWatering.text(nextWateringDate.toDateString());
-
-      let diffDays = parseInt((nextWateringDate - nextCheckDate) / (1000 * 60 * 60 * 24), 10); 
-      nextCheckDate.setDate(nextCheckDate.getDate() + Math.floor(diffDays/2))
-      nextCheck.text(nextCheckDate.toDateString())
-    }
+  if (Object.keys(PlantData[locationName][plantName]).length) {
+    setNextDates();
     
-    currentWetness.prop('selectedIndex', plant.currentWetness);
-    lastChecked.text(plant.lastChecked);
-    lastWatered.text(plant.lastWatered);
+    currentWetness.prop('selectedIndex', PlantData[locationName][plantName].currentWetness);
+    lastChecked.text(PlantData[locationName][plantName].lastChecked);
+    lastWatered.text(PlantData[locationName][plantName].lastWatered);
     
-    water.text(WaterList[plant.water]);
-    light.text(LightList[plant.light]);
-    waterInstructions.text(plant.waterInstructions);
-    soil.text(plant.soil);
-    lastFertilized.text(plant.lastFertilized);
-    fertilzerFrequency.text(plant.fertilzerFrequency);
-    fertilzerDose.text(plant.fertilzerDose);
-    petSafe.text(plant.petSafe);
-    humidity.text(plant.humidity);
+    water.text(WaterList[PlantData[locationName][plantName].water]);
+    light.text(LightList[PlantData[locationName][plantName].light]);
+    waterInstructions.text(PlantData[locationName][plantName].waterInstructions);
+    soil.text(PlantData[locationName][plantName].soil);
+    lastFertilized.text(PlantData[locationName][plantName].lastFertilized);
+    fertilzerFrequency.text(PlantData[locationName][plantName].fertilzerFrequency);
+    fertilzerDose.text(PlantData[locationName][plantName].fertilzerDose);
+    petSafe.text(PlantData[locationName][plantName].petSafe);
+    humidity.text(PlantData[locationName][plantName].humidity);
   }
   
   needsWatered();
@@ -139,6 +118,17 @@ function displayPlant(element, locationName, plantName) {
   needsChecked();
   element.show();
 
+  function setNextDates() {
+    let average = PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount;
+    average = Math.floor(average);
+    PlantData[locationName][plantName].average = average;
+    averageDaysBetweenWatering.text(average);
+    
+    let nextWateringDate = getNextWaterDate(locationName, plantName)
+    let nextCheckDate = getNextCheckDate(locationName, plantName)
+    nextWatering.text(nextWateringDate.toDateString());
+    nextCheck.text(nextCheckDate.toDateString())
+  }
     
   function createUpdatePlantForm() {
     $('#update-plant-div').remove()
@@ -161,7 +151,7 @@ function displayPlant(element, locationName, plantName) {
     
     addPlantInputFeilds("#update-plant-input", 'updated');
     dropdown('#updated');
-    setKnowPlantValues("#updated", plant);
+    setKnowPlantValues("#updated", PlantData[locationName][plantName]);
     $("#update-plant-div").show();
   }
 
@@ -191,12 +181,12 @@ function displayPlant(element, locationName, plantName) {
   }
   
   async function checkPlant() {
-    needsWatered();
     PlantData[locationName][plantName].lastChecked = today.toDateString();
-
     PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
+    
+    setNextDates();
     checkWarning.remove();
-
+    
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
   };
@@ -209,20 +199,25 @@ function displayPlant(element, locationName, plantName) {
   };
   
   async function waterPlant() {
+    let plant = PlantData[locationName][plantName]
     PlantData[locationName][plantName].lastChecked = today.toDateString();
+  
+    const last = plant.hasOwnProperty('lastWatered') ? new Date(plant.lastWatered) : today;
+    const daysTotal = plant.daysTotal;
+    const wateringCount = plant.wateringCount;
+    let differenceInDays =  Math.floor((today - last)/ (1000 * 3600 * 24))
 
-    const last = PlantData[locationName][plantName].hasOwnProperty('lastWatered') ? new Date(PlantData[locationName][plantName].lastWatered) : today;
-    const daysTotal = PlantData[locationName][plantName].hasOwnProperty('daysTotal') ? PlantData[locationName][plantName].daysTotal : 0;
-    const wateringCount = PlantData[locationName][plantName].hasOwnProperty('wateringCount') ? PlantData[locationName][plantName].wateringCount : 0;
-    
-    let differenceInDays =  (today - last)/ (1000 * 3600 * 24)
+    if (differenceInDays > 0) {
+      PlantData[locationName][plantName].daysTotal = daysTotal + differenceInDays;
+      PlantData[locationName][plantName].wateringCount = wateringCount + 1;
+      PlantData[locationName][plantName].lastWatered = today.toDateString();
+      PlantData[locationName][plantName].currentWetness = 0;
+    }
 
-    PlantData[locationName][plantName].daysTotal = daysTotal + differenceInDays;
-    PlantData[locationName][plantName].wateringCount = wateringCount + 1;
-    PlantData[locationName][plantName].lastWatered = today.toDateString();
-    PlantData[locationName][plantName].currentWetness = 0;
+    setNextDates();
     waterWarning.remove();
-
+    checkWarning.remove();
+    
     await saveConfig(PlantData);
     resetPlantSelection(locationName, plantName);
   };
@@ -267,8 +262,6 @@ function displayPlant(element, locationName, plantName) {
   };
   
   async function updatePlant() {
-    let plant = PlantData[locationName][plantName];
-
     let newPlantInfo = readPlantInputs("#updated");
     PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
 
@@ -281,7 +274,7 @@ function displayPlant(element, locationName, plantName) {
   async function movePlant() {
     let newLocation = $("#movedPlantLocation").val();
 
-    plant = PlantData[locationName][plantName];
+    let plant = PlantData[locationName][plantName];
     delete PlantData[locationName][plantName];
     if (Object.keys(PlantData[locationName]).length === 0) {
       delete PlantData[locationName];
@@ -299,9 +292,10 @@ function displayPlant(element, locationName, plantName) {
 
 
   function needsWatered() {
-    if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
-      console.log(plantName, 'at', locationName, 'needs watered because its drier than it should be', plant.currentWetness, plant.water)
+    if (doesPlantNeedWatered(locationName, plantName)) {
       waterWarning.insertBefore(nextWatering);
+    } else {
+      waterWarning.remove()
     }
   }
   
@@ -310,14 +304,10 @@ function displayPlant(element, locationName, plantName) {
   }
   
   function needsChecked() {
-    if (nextCheckDate < today) {
-      console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    if (doesPlantNeedChecked(locationName, plantName)) {
       checkWarning.insertBefore(nextCheck);
-    }
-    else if (lastCheckedDate < today && nextWateringDate < today) {
-      console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
-      console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
-      checkWarning.insertBefore(nextCheck);
+    } else {
+      checkWarning.remove()
     }
   }
   
