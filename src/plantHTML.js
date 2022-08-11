@@ -1,6 +1,6 @@
 
 
-function displayPlant(element, locationName, plantName) {
+function displayPlant(element, locationName, plantName, allOptions=true) {
   element.empty();
   const plantHeading = $('<h5>'+plantName+'</h5>')
   const plantInfo = $('<span></span>');
@@ -94,7 +94,11 @@ function displayPlant(element, locationName, plantName) {
     togglePlantInfo()
   })
 
-  plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
+  if (allOptions) {
+    plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
+  } else {
+    plantButtons.append(waterButton)
+  }
   
   if (Object.keys(PlantData[locationName][plantName]).length) {
     setNextDates();
