@@ -203,15 +203,17 @@ function displayPlant(element, locationName, plantName) {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
   
     const last = plant.hasOwnProperty('lastWatered') ? new Date(plant.lastWatered) : today;
-    const daysTotal = plant.hasOwnProperty('daysTotal') ? plant.daysTotal : 0;
-    const wateringCount = plant.hasOwnProperty('wateringCount') ? plant.wateringCount : 0;
+    const daysTotal = plant.daysTotal;
+    const wateringCount = plant.wateringCount;
     let differenceInDays =  (today - last)/ (1000 * 3600 * 24)
 
-    PlantData[locationName][plantName].daysTotal = daysTotal + differenceInDays;
-    PlantData[locationName][plantName].wateringCount = wateringCount + 1;
-    PlantData[locationName][plantName].lastWatered = today.toDateString();
-    PlantData[locationName][plantName].currentWetness = 0;
-    
+    if (differenceInDays > 0) {
+      PlantData[locationName][plantName].daysTotal = daysTotal + differenceInDays;
+      PlantData[locationName][plantName].wateringCount = wateringCount + 1;
+      PlantData[locationName][plantName].lastWatered = today.toDateString();
+      PlantData[locationName][plantName].currentWetness = 0;
+    }
+
     setNextDates();
     waterWarning.remove();
     checkWarning.remove();
