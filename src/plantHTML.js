@@ -50,14 +50,15 @@ function displayPlant(element, locationName, plantName, allOptions) {
   var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
   var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
 
+  plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
+  plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
+  plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
-  
+
   let extraDiv = $('<div></div>')
-  extraDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
-  extraDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
-  extraDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  
   extraDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   extraDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
   extraDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
