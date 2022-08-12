@@ -2,7 +2,7 @@
 
 function displayPlant(element, locationName, plantName, allOptions) {
   element.empty();
-  const plantHeading = $('<h5>'+plantName+'</h5>')
+  const plantHeading = $('<h4>'+plantName+'</h4>')
   const plantInfo = $('<span></span>');
   const plantButtons = $('<div></div>');
   element.append(plantHeading, plantInfo, plantButtons);
