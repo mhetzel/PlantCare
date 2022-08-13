@@ -122,8 +122,8 @@ async function addNewPlant() {
     PlantData[newLocation][newName]['nextWatering'] = 'n/a'
     PlantData[newLocation][newName]['nextCheck'] = 'n/a'
     PlantData[newLocation][newName]['nextFertilizing'] = 'n/a'
-    PlantData[newLocation][newName]['daysTotal'] = 1;
-    PlantData[newLocation][newName]['wateringCount'] = 1;
+    PlantData[newLocation][newName]['daysTotal'] = 0;
+    PlantData[newLocation][newName]['wateringCount'] = 0;
     PlantData[newLocation][newName]['average'] = 1;
         
     let inputs = readPlantInputs("#new");
