@@ -125,10 +125,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
   element.show();
 
   function setNextDates() {
-    let average = PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount;
-    average = Math.floor(average);
-    PlantData[locationName][plantName].average = average;
-    averageDaysBetweenWatering.text(average);
+    averageDaysBetweenWatering.text(PlantData[locationName][plantName].average);
     
     let nextWateringDate = getNextWaterDate(locationName, plantName)
     let nextCheckDate = getNextCheckDate(locationName, plantName)
@@ -218,6 +215,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       PlantData[locationName][plantName].wateringCount = wateringCount + 1;
       PlantData[locationName][plantName].lastWatered = today.toDateString();
       PlantData[locationName][plantName].currentWetness = 0;
+      PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
     }
 
     setNextDates();
