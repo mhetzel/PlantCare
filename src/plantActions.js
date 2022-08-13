@@ -3,14 +3,16 @@ function showAllNeedyPlants() {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
   Object.keys(PlantData).forEach(function(locationName) {
-    needyDiv.append('<h4>'+locationName+'</h4>')
-    Object.keys(PlantData[locationName]).forEach(function(plantName) {
-      if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
-        let plantDiv = $('<div id="'+plantName+'"></div>')
-        needyDiv.append(plantDiv)
-        displayPlant(plantDiv, locationName, plantName, false)
-      }
-    })
+    if (Object.keys(PlantData[locationName]).length > 0) {
+      needyDiv.append('<h4>'+locationName+'</h4>')
+      Object.keys(PlantData[locationName]).forEach(function(plantName) {
+        if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
+          let plantDiv = $('<div id="'+plantName+'"></div>')
+          needyDiv.append(plantDiv)
+          displayPlant(plantDiv, locationName, plantName, false)
+        }
+      })
+    }
   });
 }
                                  
