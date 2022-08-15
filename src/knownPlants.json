@@ -782,6 +782,18 @@
             "Evenly moist but not soggy"
         ]
     },
+    "syngonium pink pass": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "40%-50%",
+        "light": "4",
+        "petSafe": "false",
+        "soil": "peat moss-based mix, such as african violet potting mix",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ]
+    },
     "syngonium white butterfly": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once a month during spring and summer.",
