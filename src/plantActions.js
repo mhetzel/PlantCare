@@ -12,7 +12,7 @@ function showAllNeedyPlants() {
       let locationButton = $('<button></button>')
       let expand = $('<i class="fa-solid fa-angle-right"></i>')
       let expanded = $('<i class="fa-solid fa-angle-down"></i>')
-      locationButton.append(expand)
+      locationButton.append(expanded)
       let locationTitle = '  '+locationName
       locationHeader.append(locationButton, locationTitle)
       locationDiv.append(locationHeader)
@@ -26,12 +26,12 @@ function showAllNeedyPlants() {
       locationButton.on('click', function() {
         if (plantsAtLocationDiv.css('display') == 'block') {
           plantsAtLocationDiv.hide();
-          expand.remove()
-          locationButton.append(expanded)
-        } else {
-          plantsAtLocationDiv.show();
           expanded.remove()
           locationButton.append(expand)
+        } else {
+          plantsAtLocationDiv.show();
+          expand.remove()
+          locationButton.append(expanded)
         }
       })
     }
