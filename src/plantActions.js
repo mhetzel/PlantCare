@@ -16,13 +16,20 @@ function showAllNeedyPlants() {
       let locationTitle = '  '+locationName
       locationHeader.append(locationButton, locationTitle)
       locationDiv.append(locationHeader)
-      /*
+      let plantsAtLocationDiv = $('<div></div>')
+      locationDiv.append(plantsAtLocationDiv)
       result.forEach(function(plantName) {
-          let plantDiv = $('<div id="'+plantName+'"></div>')
-          needyDiv.append(plantDiv)
+          let plantDiv = $('<div id="'+plantName+locationName+'"></div>')
+          plantsAtLocationDiv.append(plantDiv)
           displayPlant(plantDiv, locationName, plantName, false)
       })
-      */
+      locationButton.on('click', function() {
+        if (plantsAtLocationDiv.css('display') == 'block') {
+          plantsAtLocationDiv.hide();
+        } else {
+          plantsAtLocationDiv.show();
+        }
+      })
     }
   });
 }
