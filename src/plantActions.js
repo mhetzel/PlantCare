@@ -15,7 +15,11 @@ function showAllNeedyPlants() {
     if (result.length > 0) {
       let locationDiv = $('<div id="'+locationName+'"></div>')
       needyDiv.append(locationDiv)
-      locationDiv.append('<h3>'+locationName+'<button title="Colapse/Expand Aditional Plnat Info"><i class="fa-solid fa-angle-right"></i></button></h3>')
+      let locationHeader = $('<h3></h3>')
+      let locationButton = $('<button title="Colapse/Expand"></button>')
+      let locationTitle = $('  '+locationName)
+      locationHeader.append(locationButton, locationTitle)
+      locationDiv.append(locationHeader)
       /*
       result.forEach(function(plantName) {
           let plantDiv = $('<div id="'+plantName+'"></div>')
