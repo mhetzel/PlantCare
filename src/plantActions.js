@@ -3,12 +3,6 @@ function showAllNeedyPlants() {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
 
-  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"><i class="fa-solid fa-angle-right"></i></button>');
-  toggleInfoButton.append(expand);
-  toggleInfoButton.on('click', function() {
-    toggleInfoButton.empty()
-    toggleInfoButton.append(expanded);
-  })
   Object.keys(PlantData).forEach(function(locationName) {
     const result = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
     if (result.length > 0) {
