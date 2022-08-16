@@ -5,7 +5,7 @@ function showAllNeedyPlants() {
   let expand = $('<i class="fa-solid fa-angle-right"></i>')
   let expanded = $('<i class="fa-solid fa-angle-down"></i>')
   let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"></button>');
-  toggleInfoButton.append(expandIcon);
+  toggleInfoButton.append(expand);
   toggleInfoButton.on('click', function() {
     toggleInfoButton.empty()
     toggleInfoButton.append(expanded);
