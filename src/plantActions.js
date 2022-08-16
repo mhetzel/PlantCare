@@ -17,7 +17,7 @@ function showAllNeedyPlants() {
       needyDiv.append(locationDiv)
       let locationHeader = $('<h3></h3>')
       let locationButton = $('<button title="Colapse/Expand"></button>')
-      let locationTitle = $('  '+locationName)
+      let locationTitle = '  '+locationName
       locationHeader.append(locationButton, locationTitle)
       locationDiv.append(locationHeader)
       /*
