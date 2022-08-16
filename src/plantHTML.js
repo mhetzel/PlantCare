@@ -195,6 +195,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       resetPlantSelection(locationName, plantName);
     } else {
       await saveConfigNoDisplay(PlantData);
+      showAllNeedyPlants();
     }
   };
   
@@ -206,6 +207,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       resetPlantSelection(locationName, plantName);
     } else {
       await saveConfigNoDisplay(PlantData);
+      showAllNeedyPlants();
     }
   };
   
@@ -235,6 +237,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       resetPlantSelection(locationName, plantName);
     } else {
       await saveConfigNoDisplay(PlantData);
+      showAllNeedyPlants();
     }
   };
   
