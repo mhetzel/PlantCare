@@ -2,10 +2,20 @@
 function showAllNeedyPlants() {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
+  let expand = $('<i class="fa-solid fa-angle-right"></i>')
+  let expanded = $('<i class="fa-solid fa-angle-down"></i>')
+  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"></button>');
+  toggleInfoButton.append(expandIcon);
+  toggleInfoButton.on('click', function() {
+    toggleInfoButton.empty()
+    toggleInfoButton.append(expanded);
+  })
   Object.keys(PlantData).forEach(function(locationName) {
     const result = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
     if (result.length > 0) {  
       needyDiv.append('<h3>'+locationName+'</h3>')
+      needyDiv.append(toggleInfoButton)
+      /*
       result.forEach(function(plantName) {
         if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
           let plantDiv = $('<div id="'+plantName+'"></div>')
@@ -13,6 +23,7 @@ function showAllNeedyPlants() {
           displayPlant(plantDiv, locationName, plantName, false)
         }
       })
+      */
     }
   });
 }
