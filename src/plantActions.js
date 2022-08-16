@@ -1,5 +1,5 @@
 
-function showAllNeedyPlants() {
+function showAllNeedyPlants(locationToShow) {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
 
@@ -18,6 +18,11 @@ function showAllNeedyPlants() {
       locationDiv.append(locationHeader)
       let plantsAtLocationDiv = $('<div></div>')
       locationDiv.append(plantsAtLocationDiv)
+      
+      if (locationName != locationToShow) {
+        plantsAtLocationDiv.hide();
+      }
+      
       result.forEach(function(plantName) {
           let plantDiv = $('<div id="'+plantName+locationName+'"></div>')
           plantsAtLocationDiv.append(plantDiv)
