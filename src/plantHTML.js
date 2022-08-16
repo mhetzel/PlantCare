@@ -15,7 +15,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
     if (currentWetness.prop('selectedIndex') == 0) {
       checkPlant();
     }
-  }
+  })
   currentWetness.on('change', function() {
     checkPlant();
   });
