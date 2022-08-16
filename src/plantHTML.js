@@ -11,6 +11,11 @@ function displayPlant(element, locationName, plantName, allOptions) {
   var displayExtraInfo = false;
 
   var currentWetness = $('<select id="currentWetness"></select>');
+  currentWetness.on('click', function() {
+    if (currentWetness.prop('selectedIndex') == 0) {
+      checkPlant();
+    }
+  }
   currentWetness.on('change', function() {
     checkPlant();
   });
