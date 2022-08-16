@@ -191,14 +191,18 @@ function displayPlant(element, locationName, plantName, allOptions) {
     checkWarning.remove();
     
     await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
+    if (allOptions) {
+      resetPlantSelection(locationName, plantName);
+    }
   };
   
   async function fertilizePlant() {
     PlantData[locationName][plantName].lastFertilized = today.toDateString();
 
     await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
+    if (allOptions) {
+      resetPlantSelection(locationName, plantName);
+    }
   };
   
   async function waterPlant() {
@@ -223,7 +227,9 @@ function displayPlant(element, locationName, plantName, allOptions) {
     checkWarning.remove();
     
     await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
+    if (allOptions) {
+      resetPlantSelection(locationName, plantName);
+    }
   };
   
   async function deletePlant() {
