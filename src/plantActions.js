@@ -4,7 +4,7 @@ function showAllNeedyPlants() {
   needyDiv.empty()
   let expand = $('<i class="fa-solid fa-angle-right"></i>')
   let expanded = $('<i class="fa-solid fa-angle-down"></i>')
-  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"></button>');
+  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"><i class="fa-solid fa-angle-right"></i></button>');
   toggleInfoButton.append(expand);
   toggleInfoButton.on('click', function() {
     toggleInfoButton.empty()
@@ -15,7 +15,8 @@ function showAllNeedyPlants() {
     if (result.length > 0) {
       let locationDiv = $('<div id="'+locationName+'"></div>')
       needyDiv.append(locationDiv)
-      locationDiv.append(toggleInfoButton, '<h3>'+locationName+'</h3>')
+      locationDiv.append('<button title="Colapse/Expand Aditional Plnat Info"><i class="fa-solid fa-angle-right"></i></button>')
+      locationDiv.append('<h3>'+locationName+'</h3>')
       /*
       result.forEach(function(plantName) {
           let plantDiv = $('<div id="'+plantName+'"></div>')
