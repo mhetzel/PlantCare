@@ -21,6 +21,8 @@ function showAllNeedyPlants(locationToShow) {
       
       if (locationName != locationToShow) {
         plantsAtLocationDiv.hide();
+        expanded.remove()
+        locationButton.append(expand)
       }
       
       result.forEach(function(plantName) {
