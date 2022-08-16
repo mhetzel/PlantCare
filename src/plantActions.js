@@ -2,8 +2,7 @@
 function showAllNeedyPlants() {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
-  let expand = $('<i class="fa-solid fa-angle-right"></i>')
-  let expanded = $('<i class="fa-solid fa-angle-down"></i>')
+
   let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"><i class="fa-solid fa-angle-right"></i></button>');
   toggleInfoButton.append(expand);
   toggleInfoButton.on('click', function() {
@@ -16,7 +15,9 @@ function showAllNeedyPlants() {
       let locationDiv = $('<div id="'+locationName+'"></div>')
       needyDiv.append(locationDiv)
       let locationHeader = $('<h3></h3>')
-      let locationButton = $('<button title="Colapse/Expand"></button>')
+      let locationButton = $('<button></button>')
+      let expand = $('<i class="fa-solid fa-angle-right"></i>')
+      let expanded = $('<i class="fa-solid fa-angle-down"></i>')
       locationButton.append(expand)
       let locationTitle = '  '+locationName
       locationHeader.append(locationButton, locationTitle)
