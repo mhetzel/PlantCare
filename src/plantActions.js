@@ -26,8 +26,12 @@ function showAllNeedyPlants() {
       locationButton.on('click', function() {
         if (plantsAtLocationDiv.css('display') == 'block') {
           plantsAtLocationDiv.hide();
+          expand.remove()
+          locationButton.append(expanded)
         } else {
           plantsAtLocationDiv.show();
+          expanded.remove()
+          locationButton.append(expand)
         }
       })
     }
