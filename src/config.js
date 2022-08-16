@@ -15,6 +15,11 @@ async function loadPlants() {
 }
 
 async function saveConfig(plantData) {
+  await saveConfigNoDisplay(plantData)
+  setupDisplay();
+}
+
+async function saveConfigNoDisplay(plantData) {
   let fileData = {'timestamp': Date.now(), 'plants': plantData}
   // todo compare timestamp before writing to storage?
   if (!GuestMode) {
@@ -22,7 +27,6 @@ async function saveConfig(plantData) {
   } else {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fileData));
   }
-  setupDisplay();
 }
 
 async function retrievePlantData() {  
