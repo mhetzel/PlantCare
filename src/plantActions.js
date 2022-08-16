@@ -3,12 +3,17 @@ function showAllNeedyPlants() {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
   Object.keys(PlantData).forEach(function(locationName) {
-    needyDiv.append('<h5>'+locationName+'</h5>')
-    Object.keys(PlantData[locationName]).forEach(function(plantName) {
-      if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
-        needyDiv.append('<p>'+plantName+'</p>')
-      }
-    })
+    const result = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+    if (result.length > 0) {  
+      needyDiv.append('<h4>'+locationName+'</h4>')
+      result.forEach(function(plantName) {
+        if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
+          let plantDiv = $('<div id="'+plantName+'"></div>')
+          needyDiv.append(plantDiv)
+          displayPlant(plantDiv, locationName, plantName, false)
+        }
+      })
+    }
   });
 }
                                  
@@ -19,9 +24,8 @@ function doesPlantNeedWatered(locationName, plantName) {
   let nextWateringDate = new Date(plant.nextWatering);
   
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
-  let differenceWaterDate =  Math.floor((today - nextWateringDate)/ (1000 * 3600 * 24))
 
-  if (differenceCheckDate > 0 && differenceWaterDate > 0) {
+  if (differenceCheckDate > 0 && nextWateringDate <= today) {
     console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
     console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
     return true;
@@ -40,14 +44,13 @@ function doesPlantNeedChecked(locationName, plantName) {
   let nextWateringDate = new Date(plant.nextWatering);
   
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
-  let differenceNextCheckDate =  Math.floor((today - nextCheckDate)/ (1000 * 3600 * 24))
   let differenceWaterDate =  Math.floor((today - nextWateringDate)/ (1000 * 3600 * 24))
   
-  if (differenceNextCheckDate > 0) {
+  if (nextCheckDate <= today) {
     console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
     return true;
   }
-  else if (differenceCheckDate > 0 && differenceWaterDate > 0) {
+  else if (differenceCheckDate > 0 && nextWateringDate <= today) {
     console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
     console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
     return true;
@@ -119,8 +122,8 @@ async function addNewPlant() {
     PlantData[newLocation][newName]['nextWatering'] = 'n/a'
     PlantData[newLocation][newName]['nextCheck'] = 'n/a'
     PlantData[newLocation][newName]['nextFertilizing'] = 'n/a'
-    PlantData[newLocation][newName]['daysTotal'] = 1;
-    PlantData[newLocation][newName]['wateringCount'] = 1;
+    PlantData[newLocation][newName]['daysTotal'] = 0;
+    PlantData[newLocation][newName]['wateringCount'] = 0;
     PlantData[newLocation][newName]['average'] = 1;
         
     let inputs = readPlantInputs("#new");

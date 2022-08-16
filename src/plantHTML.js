@@ -1,10 +1,11 @@
 
 
-function displayPlant(element, locationName, plantName) {
+function displayPlant(element, locationName, plantName, allOptions) {
   element.empty();
+  const plantHeading = $('<h4>'+plantName+'</h4>')
   const plantInfo = $('<span></span>');
   const plantButtons = $('<div></div>');
-  element.append(plantInfo, plantButtons);
+  element.append(plantHeading, plantInfo, plantButtons);
   
   const today = new Date();
   var displayExtraInfo = false;
@@ -49,14 +50,15 @@ function displayPlant(element, locationName, plantName) {
   var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
   var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
 
+  plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
+  plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
+  plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
   plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   plantInfo.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
-  
+
   let extraDiv = $('<div></div>')
-  extraDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
-  extraDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
-  extraDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  
   extraDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   extraDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
   extraDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
@@ -93,7 +95,11 @@ function displayPlant(element, locationName, plantName) {
     togglePlantInfo()
   })
 
-  plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
+  if (allOptions) {
+    plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
+  } else {
+    plantButtons.append(waterButton)
+  }
   
   if (Object.keys(PlantData[locationName][plantName]).length) {
     setNextDates();
@@ -119,10 +125,7 @@ function displayPlant(element, locationName, plantName) {
   element.show();
 
   function setNextDates() {
-    let average = PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount;
-    average = Math.floor(average);
-    PlantData[locationName][plantName].average = average;
-    averageDaysBetweenWatering.text(average);
+    averageDaysBetweenWatering.text(PlantData[locationName][plantName].average);
     
     let nextWateringDate = getNextWaterDate(locationName, plantName)
     let nextCheckDate = getNextCheckDate(locationName, plantName)
@@ -187,15 +190,23 @@ function displayPlant(element, locationName, plantName) {
     setNextDates();
     checkWarning.remove();
     
-    await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
+    if (allOptions) {
+      await saveConfig(PlantData);
+      resetPlantSelection(locationName, plantName);
+    } else {
+      await saveConfigNoDisplay(PlantData);
+    }
   };
   
   async function fertilizePlant() {
     PlantData[locationName][plantName].lastFertilized = today.toDateString();
 
-    await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
+    if (allOptions) {
+      await saveConfig(PlantData);
+      resetPlantSelection(locationName, plantName);
+    } else {
+      await saveConfigNoDisplay(PlantData);
+    }
   };
   
   async function waterPlant() {
@@ -212,14 +223,19 @@ function displayPlant(element, locationName, plantName) {
       PlantData[locationName][plantName].wateringCount = wateringCount + 1;
       PlantData[locationName][plantName].lastWatered = today.toDateString();
       PlantData[locationName][plantName].currentWetness = 0;
+      PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
     }
 
     setNextDates();
     waterWarning.remove();
     checkWarning.remove();
     
-    await saveConfig(PlantData);
-    resetPlantSelection(locationName, plantName);
+    if (allOptions) {
+      await saveConfig(PlantData);
+      resetPlantSelection(locationName, plantName);
+    } else {
+      await saveConfigNoDisplay(PlantData);
+    }
   };
   
   async function deletePlant() {
