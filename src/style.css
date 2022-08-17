@@ -88,7 +88,7 @@ select {
 }
 
 .menu-box {
-  position: absolute;
+  position: fixed;
   border: 1px solid #0d1b19;
   background-color: rgba(17, 83, 53, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
