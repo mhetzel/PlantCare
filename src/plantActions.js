@@ -50,6 +50,7 @@ function comparePlantNeeds(locationName, planta, plantb) {
 
 function getNeedyPlants(locationName) {
   let needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+  needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
   return needyPlants
 }
 
