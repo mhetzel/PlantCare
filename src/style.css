@@ -85,6 +85,7 @@ select {
   background: rgba(45, 181, 119, 0.9);
   border: 1px solid #0d1b19;
   color: #D0ECE4;
+  max-width: 95%;
 }
 
 .menu-box {
