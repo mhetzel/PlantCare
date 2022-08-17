@@ -1,16 +1,44 @@
 
-function showAllNeedyPlants() {
+function showAllNeedyPlants(locationToShow) {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
+
   Object.keys(PlantData).forEach(function(locationName) {
     const result = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
-    if (result.length > 0) {  
-      needyDiv.append('<h4>'+locationName+'</h4>')
+    if (result.length > 0) {
+      let locationDiv = $('<div id="'+locationName+'"></div>')
+      needyDiv.append(locationDiv)
+      let locationHeader = $('<h3></h3>')
+      let locationButton = $('<button></button>')
+      let expand = $('<i class="fa-solid fa-angle-right"></i>')
+      let expanded = $('<i class="fa-solid fa-angle-down"></i>')
+      locationButton.append(expanded)
+      let locationTitle = '  '+locationName
+      locationHeader.append(locationButton, locationTitle)
+      locationDiv.append(locationHeader)
+      let plantsAtLocationDiv = $('<div></div>')
+      locationDiv.append(plantsAtLocationDiv)
+      
+      if (locationName != locationToShow) {
+        plantsAtLocationDiv.hide();
+        expanded.remove()
+        locationButton.append(expand)
+      }
+      
       result.forEach(function(plantName) {
-        if (doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName)){
-          let plantDiv = $('<div id="'+plantName+'"></div>')
-          needyDiv.append(plantDiv)
+          let plantDiv = $('<div id="'+plantName+locationName+'"></div>')
+          plantsAtLocationDiv.append(plantDiv)
           displayPlant(plantDiv, locationName, plantName, false)
+      })
+      locationButton.on('click', function() {
+        if (plantsAtLocationDiv.css('display') == 'block') {
+          plantsAtLocationDiv.hide();
+          expanded.remove()
+          locationButton.append(expand)
+        } else {
+          plantsAtLocationDiv.show();
+          expand.remove()
+          locationButton.append(expanded)
         }
       })
     }

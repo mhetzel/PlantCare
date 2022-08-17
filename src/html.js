@@ -49,7 +49,7 @@ function displayPlants() {
   } else {
     closeForm();
     actionablePlantDiv.show();
-    showAllNeedyPlants();
+    showAllNeedyPlants(null);
   }
 }
 

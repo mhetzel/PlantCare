@@ -15,6 +15,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
     checkPlant();
   });
   setDropdown(currentWetness, WaterList);
+  currentWetness.append($('<option></option>').attr('value', 'Same').text('Same'));
   var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
   averageDaysBetweenWatering.text('n/a');
   var lastChecked = $('<span id="lastChecked"></span>');
@@ -185,7 +186,13 @@ function displayPlant(element, locationName, plantName, allOptions) {
   
   async function checkPlant() {
     PlantData[locationName][plantName].lastChecked = today.toDateString();
-    PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
+    if (currentWetness.val() != 'Same') {
+      PlantData[locationName][plantName].currentWetness = currentWetness.prop('selectedIndex');
+    } else {
+      console.log(plantName, 'still at', WaterList[PlantData[locationName][plantName].currentWetness])
+      currentWetness.prop('selectedIndex', PlantData[locationName][plantName].currentWetness)
+    }
+    
     
     setNextDates();
     checkWarning.remove();
@@ -195,6 +202,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       resetPlantSelection(locationName, plantName);
     } else {
       await saveConfigNoDisplay(PlantData);
+      showAllNeedyPlants(locationName);
     }
   };
   
@@ -206,6 +214,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       resetPlantSelection(locationName, plantName);
     } else {
       await saveConfigNoDisplay(PlantData);
+      showAllNeedyPlants(locationName);
     }
   };
   
@@ -235,6 +244,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       resetPlantSelection(locationName, plantName);
     } else {
       await saveConfigNoDisplay(PlantData);
+      showAllNeedyPlants(locationName);
     }
   };
   
