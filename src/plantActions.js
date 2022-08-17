@@ -1,10 +1,66 @@
+function comparePlantNeeds(locationName, planta, plantb) {
+  let plantaNeedsWatered = doesPlantNeedWatered(locationName, planta)
+  let plantbNeedsWatered = doesPlantNeedWatered(locationName, plantb)
+  
+  if (plantaNeedsWatered && !plantbNeedsWatered) {
+    // a is less than b by some ordering criterion
+    return -1;
+  }
+  
+  if (!plantaNeedsWatered && plantbNeedsWatered) {
+    // a is greater than b by the ordering criterion
+    return 1;
+  }
+  
+  if (plantaNeedsWatered && plantbNeedsWatered) {
+    let plantaNextWateringDate = new Date(PlantData[locationName][planta].nextWatering);
+    let plantbNextWateringDate = new Date(PlantData[locationName][plantb].nextWatering);
+    
+    if (plantaNextWateringDate < plantbNextWateringDate) {
+      // a is less than b by some ordering criterion
+      return -1
+    }
+    
+    if (plantaNextWateringDate > plantbNextWateringDate) {
+      // a is greater than b by the ordering criterion
+      return 1;
+    }
+    
+    // a must be equal to b
+    return 0;
+  }
+  
+  if (!plantaNeedsWatered && !plantbNeedsWatered) {
+    let plantaNastCheckedDate = new Date(PlantData[locationName][planta].nextCheck);
+    let plantbNastCheckedDate = new Date(PlantData[locationName][plantb].nextCheck);
+    
+    if (plantaNastCheckedDate < plantbNastCheckedDate) {
+      // a is less than b by some ordering criterion
+      return -1
+    }
+    
+    if (plantaNastCheckedDate > plantbNastCheckedDate) {
+      // a is greater than b by the ordering criterion
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+}
+
+function getNeedyPlants(locationName) {
+  let needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+  needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
+  return needyPlants
+}
+
 
 function showAllNeedyPlants(locationToShow) {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
 
   Object.keys(PlantData).forEach(function(locationName) {
-    const result = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+    const result = getNeedyPlants(locationName);
     if (result.length > 0) {
       let locationDiv = $('<div id="'+locationName+'"></div>')
       needyDiv.append(locationDiv)
