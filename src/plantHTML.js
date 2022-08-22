@@ -290,7 +290,29 @@ function displayPlant(element, locationName, plantName, allOptions) {
   async function updatePlant() {
     let newPlantInfo = readPlantInputs("#updated");
     PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
+    
+    
+    let lastWatered = $("#updatedPlantLastWatered").val();
+    if (lastWatered) {
+      let lastWateredDate = new Date(lastWatered);
+      lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
+      //PlantData[locationName][plantName]['lastWatered'] = lastWateredDate.toDateString();
+      //getNextWaterDate(locationName, plantName);
+    }
+    
+    let lastChecked = $("#updatedPlantLastChecked").val();
+    if (lastChecked) {
+      let lastCheckedDate = new Date(lastChecked);
+      lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
+      //PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
+      //getNextCheckDate(locationName, plantName);
+    }
 
+    let lastFertilized = $("#updatedPlantLastFertilized").val();
+    if (lastFertilized) {
+      PlantData[locationName][plantName]['lastFertilized'] = (new Date(lastFertilized)).toDateString();
+    }
+    
     toggleUpdatePlantForm();
 
     await saveConfig(PlantData);
