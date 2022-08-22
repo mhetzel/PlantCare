@@ -41,9 +41,24 @@ function setKnowPlantValues(prefix, plant) {
   $(prefix + "PlantLightNeeds").prop('selectedIndex', plant['light']);
   $(prefix + "PlantPetSafe").val(plant['petSafe']);
   $(prefix + "PlantHumitidy").val(plant['humidity']);
-  $(prefix + "PlantLastWatered").val(plant['lastWatered']);
-  $(prefix + "PlantLastChecked").val(plant['lastChecked']);
-  $(prefix + "PlantLastFertilized").val(plant['lastFertilized']);
+  
+  var last = new Date(plant['lastWatered']);
+  var day = ("0" + last.getDate()).slice(-2);
+  var month = ("0" + (last.getMonth() + 1)).slice(-2);
+  var dateFormat = last.getFullYear()+"-"+(month)+"-"+(day);
+  $(prefix + "PlantLastWatered").val(dateFormat);
+  
+  last = new Date(plant['lastChecked']);
+  day = ("0" + last.getDate()).slice(-2);
+  month = ("0" + (last.getMonth() + 1)).slice(-2);
+  dateFormat = last.getFullYear()+"-"+(month)+"-"+(day);
+  $(prefix + "PlantLastChecked").val(dateFormat);
+  
+  last = new Date(plant['lastFertilized']);
+  day = ("0" + last.getDate()).slice(-2);
+  month = ("0" + (last.getMonth() + 1)).slice(-2);
+  dateFormat = last.getFullYear()+"-"+(month)+"-"+(day);
+  $(prefix + "PlantLastFertilized").val(dateFormat);
 }
 
 function displayPlants() {
