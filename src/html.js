@@ -41,6 +41,9 @@ function setKnowPlantValues(prefix, plant) {
   $(prefix + "PlantLightNeeds").prop('selectedIndex', plant['light']);
   $(prefix + "PlantPetSafe").val(plant['petSafe']);
   $(prefix + "PlantHumitidy").val(plant['humidity']);
+  $(prefix + "PlantLastWatered").val(plant['lastWatered']);
+  $(prefix + "PlantLastChecked").val(plant['lastChecked']);
+  $(prefix + "PlantLastFertilized").val(plant['lastFertilized']);
 }
 
 function displayPlants() {
