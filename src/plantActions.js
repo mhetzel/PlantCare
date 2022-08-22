@@ -217,6 +217,7 @@ async function addNewPlant() {
     if (averageDaysBetweenWatering) {
       PlantData[newLocation][newName]['daysTotal'] = parseInt(averageDaysBetweenWatering);
       PlantData[newLocation][newName]['average'] = parseInt(averageDaysBetweenWatering);
+      PlantData[newLocation][newName]['wateringCount'] = 1;
     }
     
     let lastWatered = $("#newPlantLastWatered").val();
