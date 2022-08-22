@@ -156,9 +156,9 @@ function setCurrentUserDisplay(userName, userPicture) {
 function addPlantInputFeilds(divId, idPrefix) {
   $(divId).empty();
 
-  let lastWatered = $('<div><label for="' + idPrefix + 'PlantLastWatered"><b>Last Watered Date:</b></label><select type="date" id="' + idPrefix + 'PlantLastWatered"></select></div>')
-  let lastChecked = $('<div><label for="' + idPrefix + 'PlantLastChecked"><b>Last Checked Date:</b></label><select type="date" id="' + idPrefix + 'PlantLastChecked"></select></div>')
-  let lastFertilized = $('<div><label for="' + idPrefix + 'PlantLastFertilized"><b>Last Fertilized Date:</b></label><select type="date" id="' + idPrefix + 'PlantLastFertilized"></select></div>')
+  let lastWatered = $('<div><label for="' + idPrefix + 'PlantLastWatered"><b>Last Watered Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastWatered"></div>')
+  let lastChecked = $('<div><label for="' + idPrefix + 'PlantLastChecked"><b>Last Checked Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastChecked"></div>')
+  let lastFertilized = $('<div><label for="' + idPrefix + 'PlantLastFertilized"><b>Last Fertilized Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastFertilized"></div>')
   
   let water = $('<div><label for="' + idPrefix + 'PlantWaterNeeds"><b>Water When:</b></label><select required id="' + idPrefix + 'PlantWaterNeeds"></select></div>')
   let instructions = $('<div><label for="' + idPrefix + 'PlantWaterInstructions"><b>Watering Instructions:</b></label><select name="' + idPrefix + 'PlantWaterInstructions[]" multiple id="' + idPrefix + 'PlantWaterInstructions"></select></div>')
