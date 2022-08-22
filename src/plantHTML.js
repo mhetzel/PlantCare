@@ -299,8 +299,8 @@ function displayPlant(element, locationName, plantName, allOptions) {
       let differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
 
       if (differenceInDays > 0) {
-        PlantData[locationName][plantName].daysTotal = daysTotal + differenceInDays;
-        PlantData[locationName][plantName].wateringCount = wateringCount + 1;
+        PlantData[locationName][plantName].daysTotal = PlantData[locationName][plantName].daysTotal + differenceInDays;
+        PlantData[locationName][plantName].wateringCount = PlantData[locationName][plantName].wateringCount + 1;
         PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
         PlantData[locationName][plantName].lastChecked = lastWateredDate.toDateString();
         PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
