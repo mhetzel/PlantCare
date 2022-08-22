@@ -152,6 +152,11 @@ function setCurrentUserDisplay(userName, userPicture) {
 
 function addPlantInputFeilds(divId, idPrefix) {
   $(divId).empty();
+
+  let lastWatered = $('<div><label for="' + idPrefix + 'PlantLastWatered"><b>Last Watered Date:</b></label><select type="date" id="' + idPrefix + 'PlantLastWatered"></select></div>')
+  let lastChecked = $('<div><label for="' + idPrefix + 'PlantLastChecked"><b>Last Checked Date:</b></label><select type="date" id="' + idPrefix + 'PlantLastChecked"></select></div>')
+  let lastFertilized = $('<div><label for="' + idPrefix + 'PlantLastFertilized"><b>Last Fertilized Date:</b></label><select type="date" id="' + idPrefix + 'PlantLastFertilized"></select></div>')
+  
   let water = $('<div><label for="' + idPrefix + 'PlantWaterNeeds"><b>Water When:</b></label><select required id="' + idPrefix + 'PlantWaterNeeds"></select></div>')
   let instructions = $('<div><label for="' + idPrefix + 'PlantWaterInstructions"><b>Watering Instructions:</b></label><select name="' + idPrefix + 'PlantWaterInstructions[]" multiple id="' + idPrefix + 'PlantWaterInstructions"></select></div>')
   let soil = $('<div><label for="' + idPrefix + 'PlantSoilPreferences"><b>Soil Preferences:</b></label><select id="' + idPrefix + 'PlantSoilPreferences"></select></div>')
@@ -160,6 +165,6 @@ function addPlantInputFeilds(divId, idPrefix) {
   let light = $('<div><label for="' + idPrefix + 'PlantLightNeeds"><b>Light:</b></label><select id="' + idPrefix + 'PlantLightNeeds" required></select></div>')
   let petSafe = $('<div><label for="' + idPrefix + 'PlantPetSafe"><b>Pet Safe:</b></label><select id="' + idPrefix + 'PlantPetSafe"><option>false</option><option>true</option></select></div>')
   let humidity = $('<div><label for="' + idPrefix + 'PlantHumitidy"><b>Humidity Needs:</b></label><select id="' + idPrefix + 'PlantHumitidy"></select></div>')
-  $(divId).append(water, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
+  $(divId).append(lastWatered, lastChecked, lastFertilized, water, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
   $('select[multiple]').multiselect();
 }
