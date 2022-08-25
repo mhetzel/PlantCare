@@ -117,6 +117,10 @@ function doesPlantNeedWatered(locationName, plantName) {
   if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
     return true
   }
+  if (differenceCheckDate >= 14) {
+    console.log(plantName, 'at', locationName, 'hasn\'t been checked for over two weeks')
+    return true
+  }
   return false
 }
 
