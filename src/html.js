@@ -170,7 +170,12 @@ function setCurrentUserDisplay(userName, userPicture) {
 
 function addPlantInputFeilds(divId, idPrefix) {
   $(divId).empty();
+  
+  
 
+          
+
+  let averageWateringDays = $('<div><label for="' + idPrefix + 'PlantAverageWateringDays"><b>Average Watering Days:</b></label><input type="number" id="' + idPrefix + 'PlantAverageWateringDays"></div>')
   let lastWatered = $('<div><label for="' + idPrefix + 'PlantLastWatered"><b>Last Watered Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastWatered"></div>')
   let lastChecked = $('<div><label for="' + idPrefix + 'PlantLastChecked"><b>Last Checked Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastChecked"></div>')
   let lastFertilized = $('<div><label for="' + idPrefix + 'PlantLastFertilized"><b>Last Fertilized Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastFertilized"></div>')
