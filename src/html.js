@@ -188,6 +188,6 @@ function addPlantInputFeilds(divId, idPrefix) {
   let light = $('<div><label for="' + idPrefix + 'PlantLightNeeds"><b>Light:</b></label><select id="' + idPrefix + 'PlantLightNeeds" required></select></div>')
   let petSafe = $('<div><label for="' + idPrefix + 'PlantPetSafe"><b>Pet Safe:</b></label><select id="' + idPrefix + 'PlantPetSafe"><option>false</option><option>true</option></select></div>')
   let humidity = $('<div><label for="' + idPrefix + 'PlantHumitidy"><b>Humidity Needs:</b></label><select id="' + idPrefix + 'PlantHumitidy"></select></div>')
-  $(divId).append(lastWatered, lastChecked, lastFertilized, water, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
+  $(divId).append(averageWateringDays, lastWatered, lastChecked, lastFertilized, water, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
   $('select[multiple]').multiselect();
 }
