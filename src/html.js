@@ -31,7 +31,7 @@ function readPlantInputs(idPrefix) {
 }
 
 
-function setKnowPlantValues(prefix, plant) {
+function setKnownPlantValues(prefix, plant) {
   $(prefix + "PlantWaterNeeds").prop('selectedIndex', plant['water']);
   $(prefix + "PlantWaterInstructions").val(plant['waterInstructions']);
   $('select[multiple]').multiselect('reload')
@@ -41,6 +41,7 @@ function setKnowPlantValues(prefix, plant) {
   $(prefix + "PlantLightNeeds").prop('selectedIndex', plant['light']);
   $(prefix + "PlantPetSafe").val(plant['petSafe']);
   $(prefix + "PlantHumitidy").val(plant['humidity']);
+  $(prefix + "PlantAverageWateringDays").val(plant['average']);
   
   var last = new Date(plant['lastWatered']);
   var day = ("0" + last.getDate()).slice(-2);
@@ -170,10 +171,6 @@ function setCurrentUserDisplay(userName, userPicture) {
 
 function addPlantInputFeilds(divId, idPrefix) {
   $(divId).empty();
-  
-  
-
-          
 
   let averageWateringDays = $('<div><label for="' + idPrefix + 'PlantAverageWateringDays"><b>Average Watering Days:</b></label><input type="number" id="' + idPrefix + 'PlantAverageWateringDays"></div>')
   let lastWatered = $('<div><label for="' + idPrefix + 'PlantLastWatered"><b>Last Watered Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastWatered"></div>')
