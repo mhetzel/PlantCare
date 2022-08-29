@@ -155,7 +155,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
     
     addPlantInputFeilds("#update-plant-input", 'updated');
     dropdown('#updated');
-    setKnowPlantValues("#updated", PlantData[locationName][plantName]);
+    setKnownPlantValues("#updated", PlantData[locationName][plantName]);
     $("#update-plant-div").show();
   }
 
