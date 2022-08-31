@@ -31,7 +31,7 @@ function readPlantInputs(idPrefix) {
 }
 
 
-function setKnowPlantValues(prefix, plant) {
+function setKnownPlantValues(prefix, plant) {
   $(prefix + "PlantWaterNeeds").prop('selectedIndex', plant['water']);
   $(prefix + "PlantWaterInstructions").val(plant['waterInstructions']);
   $('select[multiple]').multiselect('reload')
@@ -41,6 +41,25 @@ function setKnowPlantValues(prefix, plant) {
   $(prefix + "PlantLightNeeds").prop('selectedIndex', plant['light']);
   $(prefix + "PlantPetSafe").val(plant['petSafe']);
   $(prefix + "PlantHumitidy").val(plant['humidity']);
+  $(prefix + "PlantAverageWateringDays").val(plant['average']);
+  
+  var last = new Date(plant['lastWatered']);
+  var day = ("0" + last.getDate()).slice(-2);
+  var month = ("0" + (last.getMonth() + 1)).slice(-2);
+  var dateFormat = last.getFullYear()+"-"+(month)+"-"+(day);
+  $(prefix + "PlantLastWatered").val(dateFormat);
+  
+  last = new Date(plant['lastChecked']);
+  day = ("0" + last.getDate()).slice(-2);
+  month = ("0" + (last.getMonth() + 1)).slice(-2);
+  dateFormat = last.getFullYear()+"-"+(month)+"-"+(day);
+  $(prefix + "PlantLastChecked").val(dateFormat);
+  
+  last = new Date(plant['lastFertilized']);
+  day = ("0" + last.getDate()).slice(-2);
+  month = ("0" + (last.getMonth() + 1)).slice(-2);
+  dateFormat = last.getFullYear()+"-"+(month)+"-"+(day);
+  $(prefix + "PlantLastFertilized").val(dateFormat);
 }
 
 function displayPlants() {
@@ -152,6 +171,12 @@ function setCurrentUserDisplay(userName, userPicture) {
 
 function addPlantInputFeilds(divId, idPrefix) {
   $(divId).empty();
+
+  let averageWateringDays = $('<div><label for="' + idPrefix + 'PlantAverageWateringDays"><b>Average Watering Days:</b></label><input type="number" id="' + idPrefix + 'PlantAverageWateringDays"></div>')
+  let lastWatered = $('<div><label for="' + idPrefix + 'PlantLastWatered"><b>Last Watered Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastWatered"></div>')
+  let lastChecked = $('<div><label for="' + idPrefix + 'PlantLastChecked"><b>Last Checked Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastChecked"></div>')
+  let lastFertilized = $('<div><label for="' + idPrefix + 'PlantLastFertilized"><b>Last Fertilized Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastFertilized"></div>')
+  
   let water = $('<div><label for="' + idPrefix + 'PlantWaterNeeds"><b>Water When:</b></label><select required id="' + idPrefix + 'PlantWaterNeeds"></select></div>')
   let instructions = $('<div><label for="' + idPrefix + 'PlantWaterInstructions"><b>Watering Instructions:</b></label><select name="' + idPrefix + 'PlantWaterInstructions[]" multiple id="' + idPrefix + 'PlantWaterInstructions"></select></div>')
   let soil = $('<div><label for="' + idPrefix + 'PlantSoilPreferences"><b>Soil Preferences:</b></label><select id="' + idPrefix + 'PlantSoilPreferences"></select></div>')
@@ -160,6 +185,6 @@ function addPlantInputFeilds(divId, idPrefix) {
   let light = $('<div><label for="' + idPrefix + 'PlantLightNeeds"><b>Light:</b></label><select id="' + idPrefix + 'PlantLightNeeds" required></select></div>')
   let petSafe = $('<div><label for="' + idPrefix + 'PlantPetSafe"><b>Pet Safe:</b></label><select id="' + idPrefix + 'PlantPetSafe"><option>false</option><option>true</option></select></div>')
   let humidity = $('<div><label for="' + idPrefix + 'PlantHumitidy"><b>Humidity Needs:</b></label><select id="' + idPrefix + 'PlantHumitidy"></select></div>')
-  $(divId).append(water, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
+  $(divId).append(averageWateringDays, lastWatered, lastChecked, lastFertilized, water, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
   $('select[multiple]').multiselect();
 }

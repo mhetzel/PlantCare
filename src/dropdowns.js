@@ -16,7 +16,7 @@ function knownPlantSelectionChange() {
     if (plant.hasOwnProperty('daysTotal')) {
       $("#newPlantAverageWateringDays").val(plant['daysTotal']);
     }
-    setKnowPlantValues("#new", plant);
+    setKnownPlantValues("#new", plant);
   });
 }
 
