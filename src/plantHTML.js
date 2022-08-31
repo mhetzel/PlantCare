@@ -289,30 +289,50 @@ function displayPlant(element, locationName, plantName, allOptions) {
   
   async function updatePlant() {
     let newPlantInfo = readPlantInputs("#updated");
-    PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
     
-    let lastWatered = $("#updatedPlantLastWatered").val();
-    if (lastWatered) {
-      let lastWateredDate = new Date(lastWatered);
-      lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
-      let currentlastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered']);
-      let differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
-
-      if (differenceInDays > 0) {
-        PlantData[locationName][plantName].daysTotal = PlantData[locationName][plantName].daysTotal + differenceInDays;
-        PlantData[locationName][plantName].wateringCount = PlantData[locationName][plantName].wateringCount + 1;
-        PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
-        PlantData[locationName][plantName].lastChecked = lastWateredDate.toDateString();
-        PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
-      }
+    let lastFertilizedDate = new Date($("#newPlantLastFertilized").val())
+    lastFertilizedDate = new Date( lastFertilizedDate.getTime() - lastFertilizedDate.getTimezoneOffset() * -60000 );
+    let currentlastFertilizedDate = new Date(PlantData[locationName][plantName]['lastFertilized'])
+    let differenceInDays =  Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
+    if (differenceInDays > 0) {
+      PlantData[locationName][plantName]['lastFertilized'] = lastFertilizedDate.toDateString();
     }
     
-    setNextDates();
+    let lastCheckedDate = new Date($("#updatedPlantLastChecked").val())
+    lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
+    let currentlastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
+    let differenceInDays =  Math.floor((lastCheckedDate - currentlastCheckedDate)/ (1000 * 3600 * 24))
+    if (differenceInDays > 0) {
+      PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
+    }
+
+    let averageDaysBetweenWatering = $("#updatedPlantAverageWateringDays").val();
+    if (averageDaysBetweenWatering != PlantData[locationName][plantName]['average']) {
+      // resets average
+      PlantData[locationName][plantName].daysTotal = parseInt(averageDaysBetweenWatering);
+      PlantData[locationName][plantName].average = parseInt(averageDaysBetweenWatering);
+      PlantData[locationName][plantName].wateringCount = 1;
+    }
     
+    let lastWateredDate = new Date($("#updatedPlantLastWatered").val());
+    lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
+    let currentlastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered'])
+    differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
+    if (differenceInDays > 0) {
+      PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
+      PlantData[locationName][plantName].lastChecked = lastWateredDate.toDateString();
+      
+      PlantData[locationName][plantName].daysTotal = PlantData[locationName][plantName].daysTotal + differenceInDays;
+      PlantData[locationName][plantName].wateringCount = PlantData[locationName][plantName].wateringCount + 1;
+      PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
+    }
+        
+    PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
+    setNextDates();
     toggleUpdatePlantForm();
 
     await saveConfig(PlantData);
-    resetPlantSelection(location, plantName);
+    resetPlantSelection(locationName, plantName);
   };
 
   async function movePlant() {
