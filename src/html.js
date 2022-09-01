@@ -153,7 +153,7 @@ function addCloseButtons() {
    $("h2").after(closeButtonDiv);
 }
 
-function setCurrentUserDisplay(userName, userPicture) {
+async function setCurrentUserDisplay(userName, userPicture) {
   userNameText.text(userName);
   $('#login-status-div').text('Currently signed in as: ')
   if (userName == 'Guest') {
@@ -162,7 +162,8 @@ function setCurrentUserDisplay(userName, userPicture) {
     signinDiv.show();
     signOutButton.hide();
   } else {
-    if(!isTokenValid()) {
+    let valid = await isTokenValid()
+    if(!valid) {
       $('#login-status-div').text('Previously signed in as: ')
     }
     userPic.attr("src", userPicture);
