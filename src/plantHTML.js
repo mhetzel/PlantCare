@@ -319,7 +319,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       PlantData[locationName][plantName].average = parseInt(averageDaysBetweenWatering);
       PlantData[locationName][plantName].wateringCount = 1;
     }
-    /*
+
     differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
     if (differenceInDays > 0) {
       PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
@@ -329,7 +329,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       PlantData[locationName][plantName].wateringCount = PlantData[locationName][plantName].wateringCount + 1;
       PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
     }
-*/
+
     PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
     setNextDates();
     toggleUpdatePlantForm();
