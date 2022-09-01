@@ -13,8 +13,10 @@ function determineUserMode() {
     User = localStorage.getItem('userEmail');
     UserPicture = localStorage.getItem('userPic');
 
+    // validate token and show last signed on as if invalid
     setCurrentUserDisplay(User, UserPicture);
-    
+    // move this to a button click
+    /*
     google.accounts.id.prompt((notification) => {
       if (notification.isSkippedMoment()) {
         if (notification.getSkippedReason() == 'user_cancel') {
@@ -29,6 +31,7 @@ function determineUserMode() {
         }
       }
     });
+    */
   } else {
     handleSignoutClick();
   }
