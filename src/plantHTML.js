@@ -301,12 +301,13 @@ function displayPlant(element, locationName, plantName, allOptions) {
     lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
     let currentlastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered']);
     
-    /*
+   
     let differenceInDays =  Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
     if (differenceInDays > 0) {
       PlantData[locationName][plantName]['lastFertilized'] = lastFertilizedDate.toDateString();
     }
 
+     
     differenceInDays =  Math.floor((lastCheckedDate - currentlastCheckedDate)/ (1000 * 3600 * 24))
     if (differenceInDays > 0) {
       PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
@@ -318,7 +319,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       PlantData[locationName][plantName].average = parseInt(averageDaysBetweenWatering);
       PlantData[locationName][plantName].wateringCount = 1;
     }
-    
+    /*
     differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
     if (differenceInDays > 0) {
       PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
