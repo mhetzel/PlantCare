@@ -1,8 +1,8 @@
 
 addCloseButtons();
-setCurrentUserDisplay('Guest', null);
-setupNewPlantInput();
-setKnownPlantDropdown();
+//setCurrentUserDisplay('Guest', null);
+//setupNewPlantInput();
+//setKnownPlantDropdown();
 
 initGoogleAPIs();
 
