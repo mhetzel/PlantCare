@@ -155,12 +155,16 @@ function addCloseButtons() {
 
 function setCurrentUserDisplay(userName, userPicture) {
   userNameText.text(userName);
+  $('#login-status-div').text('Currently signed in as: ')
   if (userName == 'Guest') {
     guestPic.show();
     userPic.hide();
     signinDiv.show();
     signOutButton.hide();
   } else {
+    if(!isTokenValid()) {
+      $('#login-status-div').text('Previously signed in as: ')
+    }
     userPic.attr("src", userPicture);
     userPic.show();
     guestPic.hide();
