@@ -162,7 +162,7 @@ async function setCurrentUserDisplay(userName, userPicture) {
     signinDiv.show();
     signOutButton.hide();
   } else {
-    let valid = await isTokenValid()
+    let valid = await checkAccess()
     if(!valid) {
       $('#login-status-div').text('Previously signed in as: ')
     }
