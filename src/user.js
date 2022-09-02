@@ -7,31 +7,32 @@ var User = 'Guest';
 var UserPicture = '';
 
 
+function handleReauthClick() {
+    google.accounts.id.prompt((notification) => {
+    if (notification.isSkippedMoment()) {
+      if (notification.getSkippedReason() == 'user_cancel') {
+        console.log('canceled')
+        handleSignoutClick();
+      }
+    }
+    if (notification.isNotDisplayed()) {
+      if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
+        console.log('suppressed')
+        handleSignoutClick();
+      }
+    }
+  });
+}
+
+
 function determineUserMode() {
   GuestMode = localStorage.getItem('guestMode') == 'true';
   if (!GuestMode) {
     User = localStorage.getItem('userEmail');
     UserPicture = localStorage.getItem('userPic');
 
-    // validate token and show last signed on as if invalid
     setCurrentUserDisplay(User, UserPicture);
-    // move this to a button click
-    /*
-    google.accounts.id.prompt((notification) => {
-      if (notification.isSkippedMoment()) {
-        if (notification.getSkippedReason() == 'user_cancel') {
-          console.log('canceled')
-          handleSignoutClick();
-        }
-      }
-      if (notification.isNotDisplayed()) {
-        if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-          console.log('suppressed')
-          handleSignoutClick();
-        }
-      }
-    });
-    */
+
   } else {
     handleSignoutClick();
   }
