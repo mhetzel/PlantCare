@@ -156,6 +156,7 @@ function addCloseButtons() {
 async function setCurrentUserDisplay(userName, userPicture) {
   userNameText.text(userName);
   $('#login-status-div').text('Currently signed in as: ')
+  $('#reauth-div').hide();
   if (userName == 'Guest') {
     guestPic.show();
     userPic.hide();
@@ -165,6 +166,7 @@ async function setCurrentUserDisplay(userName, userPicture) {
     let valid = await isTokenValid()
     if(!valid) {
       $('#login-status-div').text('Previously signed in as: ')
+      $('#reauth-div').show();
     }
     userPic.attr("src", userPicture);
     userPic.show();
