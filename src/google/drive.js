@@ -2,6 +2,19 @@
  *  Drive Functions
  */
 
+async function isTokenValid() {
+  let result = await gapi.client.drive.files.list({
+    'pageSize': 10,
+    'fields': 'files(id, name)',
+    'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
+  }).then(function(response) {
+    return true;
+  }, function(reason) {
+    return false;
+  });
+  return result;
+}
+
 async function checkAccess() {
   let result = await gapi.client.drive.files.list({
     'pageSize': 10,

@@ -153,14 +153,21 @@ function addCloseButtons() {
    $("h2").after(closeButtonDiv);
 }
 
-function setCurrentUserDisplay(userName, userPicture) {
+async function setCurrentUserDisplay(userName, userPicture) {
   userNameText.text(userName);
+  $('#login-status-div').text('Currently signed in as: ')
+  $('#reauth-div').hide();
   if (userName == 'Guest') {
     guestPic.show();
     userPic.hide();
     signinDiv.show();
     signOutButton.hide();
   } else {
+    let valid = await isTokenValid()
+    if(!valid) {
+      $('#login-status-div').text('Previously signed in as: ')
+      $('#reauth-div').show();
+    }
     userPic.attr("src", userPicture);
     userPic.show();
     guestPic.hide();

@@ -7,6 +7,24 @@ var User = 'Guest';
 var UserPicture = '';
 
 
+function handleReauthClick() {
+    google.accounts.id.prompt((notification) => {
+    if (notification.isSkippedMoment()) {
+      if (notification.getSkippedReason() == 'user_cancel') {
+        console.log('canceled')
+        handleSignoutClick();
+      }
+    }
+    if (notification.isNotDisplayed()) {
+      if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
+        console.log('suppressed')
+        handleSignoutClick();
+      }
+    }
+  });
+}
+
+
 function determineUserMode() {
   GuestMode = localStorage.getItem('guestMode') == 'true';
   if (!GuestMode) {
@@ -14,21 +32,7 @@ function determineUserMode() {
     UserPicture = localStorage.getItem('userPic');
 
     setCurrentUserDisplay(User, UserPicture);
-    
-    google.accounts.id.prompt((notification) => {
-      if (notification.isSkippedMoment()) {
-        if (notification.getSkippedReason() == 'user_cancel') {
-          console.log('canceled')
-          handleSignoutClick();
-        }
-      }
-      if (notification.isNotDisplayed()) {
-        if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-          console.log('suppressed')
-          handleSignoutClick();
-        }
-      }
-    });
+
   } else {
     handleSignoutClick();
   }
@@ -56,15 +60,15 @@ async function handleToken(googleUser) {
     signedIn();
   }
 
-  tokenClient.callback = async (resp) => {
+};
+
+async function tokenCallback(resp) {
     if (resp.error !== undefined) {
       throw (resp);
     }
     localStorage.setItem("token_"+User, JSON.stringify(resp));
     signedIn();
-  };
-
-};
+}
 
 function signedIn() { 
   checkAccess().then(function(response) {
@@ -108,11 +112,11 @@ function signedOut() {
   loadPlants();
 };
 
-function handleSignoutClick() {
+async function handleSignoutClick() {
   // alert('This will disable google account syncing and plant data will be stored in this browser only.')
   google.accounts.id.disableAutoSelect();
   console.log('logging out:', User)
-  google.accounts.id.revoke(User, done => {
+  await google.accounts.id.revoke(User, done => {
     console.log('consent revoked for:', User);
   });
   

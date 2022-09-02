@@ -30,8 +30,9 @@ async function initGoogleAPIs() {
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
-    callback: '', // defined later
+    callback: tokenCallback,
   });
+
   gisInited = true;
   await gapi.load('client', intializeGapiClient);
 }
