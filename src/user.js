@@ -111,11 +111,11 @@ function signedOut() {
   loadPlants();
 };
 
-function handleSignoutClick() {
+async function handleSignoutClick() {
   // alert('This will disable google account syncing and plant data will be stored in this browser only.')
   google.accounts.id.disableAutoSelect();
   console.log('logging out:', User)
-  google.accounts.id.revoke(User, done => {
+  await google.accounts.id.revoke(User, done => {
     console.log('consent revoked for:', User);
   });
   
