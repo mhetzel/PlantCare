@@ -59,15 +59,15 @@ async function handleToken(googleUser) {
     signedIn();
   }
 
-  tokenClient.callback = async (resp) => {
+};
+
+async function tokenCallback(resp) {
     if (resp.error !== undefined) {
       throw (resp);
     }
     localStorage.setItem("token_"+User, JSON.stringify(resp));
     signedIn();
-  };
-
-};
+}
 
 function signedIn() { 
   checkAccess().then(function(response) {
