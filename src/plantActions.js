@@ -180,7 +180,7 @@ function getNextCheckDate(locationName, plantName) {
   if (daysBetweenLastCheckAndNextWatering/2 < 14) {
     // if its only two days then go with it
     if (daysBetweenLastCheckAndNextWatering == 2) {
-      nextCheckDate.setDate(nextCheckDate.getDate() + daysTilNextWatering)
+      nextCheckDate.setDate(nextCheckDate.getDate() + daysBetweenLastCheckAndNextWatering)
     } else {
       nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(daysBetweenLastCheckAndNextWatering/2))
       let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
