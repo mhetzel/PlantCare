@@ -111,14 +111,14 @@ function doesPlantNeedWatered(locationName, plantName) {
 
   if (differenceCheckDate > 0 && nextWateringDate <= today) {
     //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
-    console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
+    //console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
     return true;
   }
   if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
     return true
   }
   if (differenceCheckDate >= 14) {
-    console.log(plantName, 'at', locationName, 'hasn\'t been checked for over two weeks')
+    //console.log(plantName, 'at', locationName, 'hasn\'t been checked for over two weeks')
     return true
   }
   return false
@@ -166,8 +166,6 @@ function getNextCheckDate(locationName, plantName) {
   
   const today = new Date();  
   let nextCheckDate = new Date(lastCheckedDate)
-  // default to 14 so we at least check every two weeks
-  nextCheckDate.setDate(nextCheckDate.getDate() + 14)
 
   let daysBetweenLastCheckAndNextWatering = 0
   if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
@@ -189,6 +187,8 @@ function getNextCheckDate(locationName, plantName) {
         nextCheckDate.setDate(nextCheckDate.getDate() + 1)
       }
     }
+  } else {
+    nextCheckDate.setDate(nextCheckDate.getDate() + 14)
   }
   
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
