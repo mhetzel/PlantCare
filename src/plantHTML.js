@@ -367,7 +367,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
   }
   
   function needsFertilized() {
-    console.log(plantName, 'at', locationName, 'needs fertilized because its been the right length of time between doses')
+    //console.log(plantName, 'at', locationName, 'needs fertilized because its been the right length of time between doses')
   }
   
   function needsChecked() {

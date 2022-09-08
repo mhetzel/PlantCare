@@ -110,15 +110,15 @@ function doesPlantNeedWatered(locationName, plantName) {
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
 
   if (differenceCheckDate > 0 && nextWateringDate <= today) {
-    console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
-    console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
+    //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+    //console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
     return true;
   }
   if ((plant.currentWetness >= plant.water || plant.currentWetness == 5) && plant.currentWetness != 0) {
     return true
   }
   if (differenceCheckDate >= 14) {
-    console.log(plantName, 'at', locationName, 'hasn\'t been checked for over two weeks')
+    //console.log(plantName, 'at', locationName, 'hasn\'t been checked for over two weeks')
     return true
   }
   return false
@@ -139,12 +139,12 @@ function doesPlantNeedChecked(locationName, plantName) {
   }
   
   if (nextCheckDate <= today) {
-    console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    //console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
     return true;
   }
   else if (differenceCheckDate > 0 && nextWateringDate <= today) {
-    console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
-    console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
+    //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+    //console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
     return true;
   }
   return false;
@@ -158,17 +158,39 @@ function getNextWaterDate(locationName, plantName) {
   return nextWaterDate
 }
 
+// set to min (14) and (daysTilNextWatering/2)
+// if it is two days til watering day move check day forward
+// if it was checked yesterday move check day forward
 function getNextCheckDate(locationName, plantName) {
   let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
-  let diffDays = 0
+  
+  const today = new Date();  
+  let nextCheckDate = new Date(lastCheckedDate)
+
+  let daysBetweenLastCheckAndNextWatering = 0
   if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
     let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
-    diffDays = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
+    daysBetweenLastCheckAndNextWatering = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
   }
-  diffDays = diffDays > 0 ? diffDays : PlantData[locationName][plantName]['average'];
-
-  let nextCheckDate = new Date(lastCheckedDate)
-  nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(diffDays/2))
+  daysBetweenLastCheckAndNextWatering = daysBetweenLastCheckAndNextWatering > 0 ? daysBetweenLastCheckAndNextWatering : PlantData[locationName][plantName]['average'];
+  
+  // only set to halfway between next watering if it's less that 2 weeks out
+  if (daysBetweenLastCheckAndNextWatering/2 < 14) {
+    // if its only two days then go with it
+    if (daysBetweenLastCheckAndNextWatering == 2) {
+      nextCheckDate.setDate(nextCheckDate.getDate() + daysBetweenLastCheckAndNextWatering)
+    } else {
+      nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(daysBetweenLastCheckAndNextWatering/2))
+      let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
+      // if it was checked yesterday move it up a day
+      if (differenceCheckDate == 1) {
+        nextCheckDate.setDate(nextCheckDate.getDate() + 1)
+      }
+    }
+  } else {
+    nextCheckDate.setDate(nextCheckDate.getDate() + 14)
+  }
+  
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
   return nextCheckDate;
 }
