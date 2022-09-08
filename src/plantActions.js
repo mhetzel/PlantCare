@@ -158,32 +158,39 @@ function getNextWaterDate(locationName, plantName) {
   return nextWaterDate
 }
 
+// set to min (14) and (daysTilNextWatering/2)
 // if it is two days til watering day move check day forward
 // if it was checked yesterday move check day forward
 function getNextCheckDate(locationName, plantName) {
   let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
-  let diffDays = 0
- 
+  
+  const today = new Date();  
+  let nextCheckDate = new Date(lastCheckedDate)
+  // default to 14 so we at least check every two weeks
+  nextCheckDate.setDate(nextCheckDate.getDate() + 14)
+
+  let daysBetweenLastCheckAndNextWatering = 0
   if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
     let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
-    diffDays = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
+    daysBetweenLastCheckAndNextWatering = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
   }
-  diffDays = diffDays > 0 ? diffDays : PlantData[locationName][plantName]['average'];
+  daysBetweenLastCheckAndNextWatering = daysBetweenLastCheckAndNextWatering > 0 ? daysBetweenLastCheckAndNextWatering : PlantData[locationName][plantName]['average'];
   
-  let nextCheckDate = new Date(lastCheckedDate)
-  
-  if (diffDays == 2) {
-    console.log(plantName, 'plant needs watered tomorrow so dont check it today')
-    nextCheckDate.setDate(nextCheckDate.getDate() + diffDays)
-  } else {
-    nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(diffDays/2))
-    let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
-    
-    if (differenceCheckDate == 1) {
-      console.log(plantName, 'was just checked one day ago dont check it yet')
-      nextCheckDate.setDate(nextCheckDate.getDate() + 1)
+  // only set to halfway between next watering if it's less that 2 weeks out
+  if (daysBetweenLastCheckAndNextWatering/2 < 14) {
+    // if its only two days then go with it
+    if (daysBetweenLastCheckAndNextWatering == 2) {
+      nextCheckDate.setDate(nextCheckDate.getDate() + daysTilNextWatering)
+    } else {
+      nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(daysBetweenLastCheckAndNextWatering/2))
+      let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
+      // if it was checked yesterday move it up a day
+      if (differenceCheckDate == 1) {
+        nextCheckDate.setDate(nextCheckDate.getDate() + 1)
+      }
     }
   }
+  
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
   return nextCheckDate;
 }
