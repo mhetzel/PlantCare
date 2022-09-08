@@ -158,17 +158,35 @@ function getNextWaterDate(locationName, plantName) {
   return nextWaterDate
 }
 
+// if it is two days til watering day move check day forward
+// if it was checked yesterday move check day forward
 function getNextCheckDate(locationName, plantName) {
   let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
   let diffDays = 0
+  
+  const today = new Date();
+  
+  
   if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
     let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
     diffDays = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
   }
   diffDays = diffDays > 0 ? diffDays : PlantData[locationName][plantName]['average'];
-
+  
   let nextCheckDate = new Date(lastCheckedDate)
-  nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(diffDays/2))
+  
+  if (diffDays == 2) {
+    console.log(plantName, 'plant needs watered tomorrow so dont check it today')
+    nextCheckDate.setDate(nextCheckDate.getDate() + diffDays)
+  } else {
+    nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(diffDays/2))
+    let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
+    
+    if (differenceCheckDate == 1) {
+      console.log(plantName, 'was just checked one day ago dont check it yet')
+      nextCheckDate.setDate(nextCheckDate.getDate() + 1)
+    }
+  }
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
   return nextCheckDate;
 }
