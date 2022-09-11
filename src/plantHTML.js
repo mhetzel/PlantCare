@@ -226,7 +226,9 @@ function displayPlant(element, locationName, plantName, allOptions) {
     const wateringCount = plant.wateringCount;
     let differenceInDays =  Math.floor((today - last)/ (1000 * 3600 * 24))
 
-    if (differenceInDays > 0) {
+
+
+    if (differenceInDays > 0 || !plant.hasOwnProperty('lastWatered')) {
       PlantData[locationName][plantName].daysTotal = daysTotal + differenceInDays;
       PlantData[locationName][plantName].wateringCount = wateringCount + 1;
       PlantData[locationName][plantName].lastWatered = today.toDateString();
