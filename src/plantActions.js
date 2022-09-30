@@ -149,8 +149,24 @@ function comparePlantNeeds(locationName, planta, plantb) {
   }
 }
 
+$('#needsWater').change(function() {
+	getNeedyPlants()
+});
+
+$('#needsChecked').change(function() {
+	getNeedyPlants()
+});
+
 function getNeedyPlants(locationName) {
-  let needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+  let needyPlants = null
+  if ($('#needsWater')[0].checked && $('#needsCheked')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+  } else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName));
+  } else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
+  }
+  
   needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
   return needyPlants
 }
