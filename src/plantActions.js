@@ -159,7 +159,7 @@ $('#needsChecked').change(function() {
 
 function getNeedyPlants(locationName) {
   let needyPlants = null
-  if ($('#needsWater')[0].checked && $('#needsCheked')[0].checked) {
+  if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
   } else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName));
