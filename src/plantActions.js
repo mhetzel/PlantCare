@@ -166,8 +166,10 @@ function getNeedyPlants(locationName) {
   } else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
   }
-  
-  needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
+  if (needyPlants) {
+	  
+  	needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
+  }
   return needyPlants
 }
 
