@@ -150,11 +150,11 @@ function comparePlantNeeds(locationName, planta, plantb) {
 }
 
 $('#needsWater').change(function() {
-	getNeedyPlants()
+	showAllNeedyPlants(null)
 });
 
 $('#needsChecked').change(function() {
-	getNeedyPlants()
+	showAllNeedyPlants(null)
 });
 
 function getNeedyPlants(locationName) {
