@@ -158,7 +158,7 @@ $('#needsChecked').change(function() {
 });
 
 function getNeedyPlants(locationName) {
-  let needyPlants = null
+  let needyPlants = []
   if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
   } else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked) {
@@ -166,8 +166,7 @@ function getNeedyPlants(locationName) {
   } else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
   }
-  if (needyPlants) {
-	  
+  if (needyPlants.length > 0) {
   	needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
   }
   return needyPlants
