@@ -172,6 +172,20 @@ function getNeedyPlants(locationName) {
   return needyPlants
 }
 
+
+function showAllPlantsForLocation(locationName, divID) {
+  let parentDiv = $(divID);
+  parentDiv.empty()
+
+  Object.keys(PlantData[locationName]).forEach(function(plantName) {
+    let plantDiv = $('<div id="'+plantName+locationName+'"></div>')
+    parentDiv.append(plantDiv)
+    displayPlant(plantDiv, locationName, plantName, false)
+  })
+}
+
+
+
 function showAllNeedyPlants(locationToShow) {
   let needyDiv = $("#needy-plants-div");
   needyDiv.empty()
