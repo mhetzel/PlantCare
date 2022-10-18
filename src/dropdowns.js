@@ -66,7 +66,8 @@ function plantSelectionChange() {
   let plantName = plantDropdown.val();
   
   if (plantName === 'All') {
-    showAllPlantsForLocation(location, "#dropdown-plant-info")
+    console.log('all for', location)
+    showAllPlantsForLocation(location)
   } else {
     displayPlant($("#dropdown-plant-info"), location, plantName, true);
   }
