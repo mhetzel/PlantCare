@@ -183,6 +183,7 @@ function showAllPlantsForLocation(locationName) {
     displayPlant(plantDiv, locationName, plantName, true)
     parentDiv.append(plantDiv)
   })
+  parentDiv.show()
 }
 
 
