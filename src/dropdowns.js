@@ -65,12 +65,17 @@ function plantSelectionChange() {
   let location = locationDropdown.val();
   let plantName = plantDropdown.val();
   
-  displayPlant($("#dropdown-plant-info"), location, plantName, true);
+  if (plantName === 'all') {
+    console.log('all plants selected for', location)
+  } else {
+    displayPlant($("#dropdown-plant-info"), location, plantName, true);
+  }
 }
 
 function locationSelectionChange() {
   resetPlantDropdown();
-
+  plantDropdown.append($('<option></option>').attr('value', 'all').text('all'));
+  
   Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
     plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
   });
