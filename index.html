@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Data Driven House Plant Care.  Customize and individualize your plant care for each unique plant's needs.">
+    
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plant Care</title>
     <link rel="icon" type="image/x-icon" href="img/leaf-32.ico">
@@ -33,7 +36,7 @@
       <h2>Plant Care Account Settings</h2>
       <div id="signin-div"></div>
       <div id="user-div">
-        <img id="profile-pic" src="">
+        <img id="profile-pic" alt="user profile picture" src="">
         <span id="guest-pic"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>
         <span id="current-span"><div id="login-status-div">Currently signed in as: </div><div id="user-name">Guest</div></span>
       </div>
@@ -48,7 +51,7 @@
       </button>
       <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
 
-      <a id="configText" download="plantData.json" href="">
+      <a id="configText" download="plantData.json">
         <button onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
       </a>
     </div>
