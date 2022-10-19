@@ -173,8 +173,7 @@ function getNeedyPlants(locationName) {
 }
 
 
-function showAllPlantsForLocation(locationName) {
-  let parentDiv = $("#dropdown-plant-info");
+function showAllPlantsForLocation(parentDiv, locationName) {
   parentDiv.empty()
 
   Object.keys(PlantData[locationName]).forEach(function(plantName) {
