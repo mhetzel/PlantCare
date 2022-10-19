@@ -89,7 +89,7 @@ function locationSelectionChange() {
 
 async function setupDropDowns() {
   if (PlantData) {
-    if (Object.keys(PlantData[location]).length > 0) {
+    if (Object.keys(PlantData).length > 0) {
       locationDropdown.append($('<option></option>').attr('value', 'All').text('All'));
     }
     Object.keys(PlantData).forEach(function(location) {
