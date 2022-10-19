@@ -75,15 +75,24 @@ function plantSelectionChange() {
 
 function locationSelectionChange() {
   resetPlantDropdown();
-  plantDropdown.append($('<option></option>').attr('value', 'All').text('All'));
-  
-  Object.keys(PlantData[locationDropdown.val()]).forEach( plant => {
-    plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
-  });
-  
-  if (Object.keys(PlantData[locationDropdown.val()]).length === 1) {
-    plantDropdown.prop('selectedIndex', 1);
-    plantSelectionChange();
+  let location = locationDropdown.val();
+  if (location === 'All') {
+    console.log('all locations and plants')
+    Object.keys(PlantData).forEach( location => {
+      showAllPlantsForLocation(location)
+    });
+    
+  } else {
+    plantDropdown.append($('<option></option>').attr('value', 'All').text('All'));
+
+    Object.keys(PlantData[location]).forEach( plant => {
+      plantDropdown.append($('<option></option>').attr('value', plant).text(plant));
+    });
+
+    if (Object.keys(PlantData[location]).length === 1) {
+      plantDropdown.prop('selectedIndex', 1);
+      plantSelectionChange();
+    }
   }
 }
 
