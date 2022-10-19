@@ -67,7 +67,7 @@ function plantSelectionChange() {
   
   if (plantName === 'All') {
     console.log('all for', location)
-    showAllPlantsForLocation(location)
+    showAllPlantsForLocation($("#dropdown-plant-info"), location)
   } else {
     displayPlant($("#dropdown-plant-info"), location, plantName, true);
   }
@@ -78,8 +78,12 @@ function locationSelectionChange() {
   let location = locationDropdown.val();
   if (location === 'All') {
     console.log('all locations and plants')
+    let allPlantsDiv = $("#dropdown-plant-info")
+    allPlantsDiv.empty()
     Object.keys(PlantData).forEach( location => {
-      showAllPlantsForLocation(location)
+      let plantsDiv = $('<div></div>')
+      showAllPlantsForLocation(plantsDiv, location)
+      allPlantsDiv.append(plantsDiv)
     });
     
   } else {
