@@ -85,7 +85,7 @@ function locationSelectionChange() {
       showAllPlantsForLocation(plantsDiv, location)
       allPlantsDiv.append(plantsDiv)
     });
-    
+    allPlantsDiv.show()
   } else {
     plantDropdown.append($('<option></option>').attr('value', 'All').text('All'));
 
