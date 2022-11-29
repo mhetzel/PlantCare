@@ -48,13 +48,13 @@
     
     <div id="config-div" class="content-box">
       <h2>Config File Management</h2>
-      <button aria-labelledby="UploadUserConfigButton">
+      <button aria-label="UploadUserConfigButton">
         <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
       </button>
       <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
 
       <a id="configText" download="plantData.json">
-        <button aria-labelledby="DownloadUserConfig" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
+        <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
       </a>
     </div>
     
@@ -66,8 +66,8 @@
       </div>
       <form class="form-container" action="javascript:console.log( 'success!' );">
         <div class="top-right">
-          <button aria-labelledby="Save Plant" type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
-          <button aria-labelledby="Close" type="button" onclick="setDisplayForNoPlants()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+          <button aria-label="Save Plant" type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+          <button aria-label="Close" type="button" onclick="setDisplayForNoPlants()" title="Close"><i class="fa-solid fa-xmark"></i></button>
         </div>  
 
         <div>
@@ -115,10 +115,10 @@
   </body>
   <footer>
     <div id="menu-div" class="menu-box">
-        <button aria-labelledby="Open Config Form" id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
-        <button aria-labelledby="Open New Plant Form" id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
-        <button aria-labelledby="Display Plants" id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
-        <button aria-labelledby="Display Login Page" id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i></button>
+        <button aria-label="Open Config Form" id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i></button>
+        <button aria-label="Open New Plant Form" id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i></button>
+        <button aria-label="Display Plants" id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i></button>
+        <button aria-label="Display Login Page" id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i></button>
     </div>
   </footer>
 </html>
