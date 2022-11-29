@@ -104,7 +104,18 @@
           setup: function( _, ns, handle ) {
               this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
           }
-      };</script>
+      };
+      jQuery.event.special.wheel = {
+          setup: function( _, ns, handle ){
+              this.addEventListener("wheel", handle, { passive: true });
+          }
+      };
+      jQuery.event.special.mousewheel = {
+          setup: function( _, ns, handle ){
+              this.addEventListener("mousewheel", handle, { passive: true });
+          }
+      };
+    </script>
     
     <script src="src/plantActions.js"></script>
     <script src="src/plantHTML.js"></script>
