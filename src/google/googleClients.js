@@ -40,8 +40,8 @@ async function gisLoaded() {
 
   gisInited = true;
 }
-
-async function intializeGapiClient() {
+               
+async function initializeGapiClient() {
   await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
