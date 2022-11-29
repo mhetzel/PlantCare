@@ -11,10 +11,7 @@
     <link rel="icon" type="image/x-icon" href="img/leaf-32.ico">
     <link rel="shortcut icon" type="image/png" href="img/leaf-128.png">
     <link rel="apple-touch-icon" href="img/leaf-128.png">
-
-    <script src="https://accounts.google.com/gsi/client"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
-
+    
     <script src="src/libs/jquery-3.6.0.min.js"></script>
     <script src="src/libs/jquery.multiselect.js"></script>
     <script src="src/definitions.js"></script>
@@ -109,7 +106,9 @@
     <script src="src/config.js"></script>
     <script src="src/index.js"></script>
 
-    
+
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     
   </body>
   <footer>
