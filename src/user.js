@@ -67,6 +67,7 @@ async function tokenCallback(resp) {
       throw (resp);
     }
     localStorage.setItem("token_"+User, JSON.stringify(resp));
+    console.log('token callback')
     signedIn();
 }
 
