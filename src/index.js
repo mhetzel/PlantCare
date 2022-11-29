@@ -3,6 +3,6 @@ addCloseButtons();
 setCurrentUserDisplay('Guest', null);
 setupNewPlantInput();
 setKnownPlantDropdown();
-initGoogleAPIs();
+//initGoogleAPIs();
 
 $('select[multiple]').multiselect();
