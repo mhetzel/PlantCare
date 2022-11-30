@@ -41,7 +41,8 @@ section::after {
     height: auto;
   }
   span.icon {
-      visibility: hidden;
+    visibility: hidden;
+    display:block;
   }
 }
 
