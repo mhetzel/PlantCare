@@ -42,7 +42,7 @@ section::after {
   }
   span.icon {
     visibility: hidden;
-    display:block;
+    display:none;
   }
   nav button {
     width: fit-content;
