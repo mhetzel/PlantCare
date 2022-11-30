@@ -44,6 +44,9 @@ section::after {
     visibility: hidden;
     display:block;
   }
+  nav button {
+    width: fit-content;
+  }
 }
 
 #current-span {
