@@ -40,6 +40,9 @@ section::after {
     width: 100%;
     height: auto;
   }
+  span.icon {
+      visibility: hidden;
+  }
 }
 
 #current-span {
