@@ -4,8 +4,12 @@ body {
 }
 
 aside {
-  display: block;
-  background-color: rgba(17, 83, 53, 0.9);
+    height: 100%;
+    position: fixed;
+    display: block;
+    width: 20%;
+    background-color: rgba(17, 83, 53, 1);
+    padding: 0;
 }
 
 * {
