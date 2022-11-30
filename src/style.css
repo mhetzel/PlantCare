@@ -94,7 +94,7 @@ select {
   background-color: rgba(17, 83, 53, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
   text-align: left;
-  bottom: 1%;
+  top: 1%;
   padding: 2%;
   color: #D0ECE4;
   font-size: 20px;
