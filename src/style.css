@@ -3,6 +3,11 @@ body {
   font-family: 'Oswald', sans-serif;
 }
 
+aside {
+  display: block;
+  background-color: rgba(17, 83, 53, 0.9);
+}
+
 * {
   box-sizing: border-box;
   border-radius: 5px;
