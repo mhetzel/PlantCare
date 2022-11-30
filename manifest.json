@@ -1,0 +1,23 @@
+{
+  "name": "Plant Care",
+  "short_name": "Plants",
+  "theme_color": "#654A5Aff",
+  "background_color": "#E9D0BAff",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "img/leaf-32.ico",
+      "sizes": "32x32",
+      "type": "image/ico",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "img/leaf-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

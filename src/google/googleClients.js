@@ -20,7 +20,11 @@ function setupSigninButton() {
   )
 }
 
-async function initGoogleAPIs() {
+ function gapiLoaded() {
+    gapi.load('client', initializeGapiClient);
+  }
+
+async function gisLoaded() {
   await google.accounts.id.initialize({
     client_id: CLIENT_ID,
     callback: handleToken,
@@ -35,10 +39,9 @@ async function initGoogleAPIs() {
   });
 
   gisInited = true;
-  await gapi.load('client', intializeGapiClient);
 }
-
-async function intializeGapiClient() {
+               
+async function initializeGapiClient() {
   await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],

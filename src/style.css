@@ -1,11 +1,60 @@
 body {
-  background-image: url('../img/background.jpg');
+  background-image: url('../img/background.webp');
   font-family: 'Oswald', sans-serif;
 }
 
 * {
   box-sizing: border-box;
   border-radius: 5px;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 20%;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 80%;
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  span.icon {
+    display:none;
+  }
+  nav button {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 400px) {
+   nav, article {
+    width: 100%;
+    height: auto;
+  }
+  span.icon {
+    display:block;
+  }
+  nav button {
+    width: fit-content;
+  }
 }
 
 #current-span {
@@ -94,7 +143,7 @@ select {
   background-color: rgba(17, 83, 53, 0.9);
   box-shadow: 10px 10px 8px #0d1b19;
   text-align: left;
-  bottom: 1%;
+  top: 1%;
   padding: 2%;
   color: #D0ECE4;
   font-size: 20px;
