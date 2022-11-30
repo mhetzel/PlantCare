@@ -39,12 +39,17 @@ section::after {
     width: 100%;
     height: auto;
   }
+  span.icon {
+    display:block;
+  }
+  nav button {
+    width: fit-content;
+  }
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
   span.icon {
-    visibility: hidden;
     display:none;
   }
   nav button {
