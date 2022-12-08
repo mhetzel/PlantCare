@@ -1,12 +1,12 @@
 {
-  "name": "Plant Care",
-  "short_name": "Plants",
-  "theme_color": "#654A5Aff",
-  "background_color": "#E9D0BAff",
+  "name": "<Application Name>",
+  "short_name": "<Application Short Name>",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
-"icons": [
+  "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
       "sizes": "72x72",
