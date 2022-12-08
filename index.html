@@ -48,7 +48,16 @@
     
     
     <div>Welcome!</div>
-        
+    
+    <script>
+        if (navigator.serviceWorker) {
+          navigator.serviceWorker.register (
+            '/github-page-pwa/sw.js',
+            {scope: '/github-page-pwa/'}
+          )
+        }
+    </script>
+    <script src="js/app.js"></script>
 
   </body>
   <footer>
