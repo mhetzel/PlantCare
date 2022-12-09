@@ -5,8 +5,9 @@ var URLS = [
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
   `${GHPATH}/img/background.webp`,
-  `${GHPATH}/libs/jquery-3.6.0.min.js`,
-  `${GHPATH}/libs/jquery.multiselect.js`
+  `${GHPATH}/src/libs/jquery-3.6.0.min.js`,
+  `${GHPATH}/src/libs/jquery.multiselect.js`,
+  `${GHPATH}/src/style.css`
 ]
 
 
