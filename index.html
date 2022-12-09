@@ -8,27 +8,56 @@
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plant Care</title>
-    <link rel="icon" type="image/x-icon" href="img/leaf-32.ico">
-    <link rel="shortcut icon" type="image/png" href="img/leaf-128.png">
-    <link rel="apple-touch-icon" href="img/leaf-128.png">
-    
-    <script src="src/definitions.js"></script>
-    <script src="src/google/googleClients.js"></script>
-    <script src="src/google/drive.js"></script>
+    <link rel="icon" type="image/x-icon" href="img/leaf.ico">
+    <link rel="shortcut icon" type="image/png" href="img/icon-128x128.png">
+    <link rel="apple-touch-icon" href="img/icon-128x128.png">
     
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="src/style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="src/oswald.css" rel="stylesheet">
-    <link rel="stylesheet" href="src/all.min.css">
-
+    <meta name="theme-color" content="#317EFB"/>
+    
   </head>
 
   <body>
- 
-    <section>
+        
+    <script src="src/libs/jquery-3.6.0.min.js"></script>
+    <script>
+      jQuery.event.special.touchstart = {
+          setup: function( _, ns, handle ) {
+              this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+          }
+      };
+      jQuery.event.special.touchmove = {
+          setup: function( _, ns, handle ) {
+              this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
+          }
+      };
+      jQuery.event.special.wheel = {
+          setup: function( _, ns, handle ){
+              this.addEventListener("wheel", handle, { passive: true });
+          }
+      };
+      jQuery.event.special.mousewheel = {
+          setup: function( _, ns, handle ){
+              this.addEventListener("mousewheel", handle, { passive: true });
+          }
+      };
+    </script>
+
+    <script src="src/libs/jquery.multiselect.js"></script>
+    <link rel="stylesheet" href="src/style.css">
+    <link href="src/oswald.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/all.min.css">
+    
+    <script>
+        if (navigator.serviceWorker) {
+          navigator.serviceWorker.register (
+            '/PlantCare/sw.js',
+            {scope: '/PlantCare/'}
+          )
+        }
+    </script>
+    
+     <section>
       
       <nav>
         <div style="display: block" class="content-box">
@@ -109,31 +138,11 @@
         </div>
       </article>
     </section>
-      
-    <script src="src/libs/jquery-3.6.0.min.js"></script>
-    <script>
-      jQuery.event.special.touchstart = {
-          setup: function( _, ns, handle ) {
-              this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
-          }
-      };
-      jQuery.event.special.touchmove = {
-          setup: function( _, ns, handle ) {
-              this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
-          }
-      };
-      jQuery.event.special.wheel = {
-          setup: function( _, ns, handle ){
-              this.addEventListener("wheel", handle, { passive: true });
-          }
-      };
-      jQuery.event.special.mousewheel = {
-          setup: function( _, ns, handle ){
-              this.addEventListener("mousewheel", handle, { passive: true });
-          }
-      };
-    </script>
     
+    
+    <script src="src/definitions.js"></script>
+    <script src="src/google/googleClients.js"></script>
+    <script src="src/google/drive.js"></script>
     <script src="src/plantActions.js"></script>
     <script src="src/plantHTML.js"></script>
     <script src="src/dropdowns.js"></script>
@@ -142,15 +151,11 @@
     <script src="src/user.js"></script>
     <script src="src/config.js"></script>
     
-    <script src="src/libs/jquery.multiselect.js"></script>
-    <link rel="stylesheet" type="text/css" href="src/libs/jquery.multiselect.css">
-
-
     <script src="src/index.js"></script>
 
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-    
+
   </body>
   <footer>
 

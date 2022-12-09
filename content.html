@@ -1,0 +1,98 @@
+
+
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>    
+            <link rel="stylesheet" type="text/css" href="src/libs/jquery.multiselect.css">
+        <link rel="stylesheet" href="src/all.min.css">
+
+    <section>
+      
+      <nav>
+        <div><button aria-label="Open Config Form" id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i><span class='icon'> Config</span></button></div>
+        <div><button aria-label="Open New Plant Form" id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i><span class='icon'> Add Plant</span></button></div>
+        <div><button aria-label="Display Plants" id="list-plant-button" onclick="displayPlants()"><i class="fa-solid fa-plant-wilt"></i><span class='icon'> Plants in Need</span></button></div>
+        <div><button aria-label="Display Login Page" id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i><span class='icon'> Account Settings</span></button></div>
+      </nav>
+
+      <article>
+    
+        <div id="login-div" class="content-box">
+          <h2>Plant Care Account Settings</h2>
+          <div id="signin-div"></div>
+          <div id="user-div">
+            <img id="profile-pic" alt="user profile picture" src="">
+            <span id="guest-pic"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>
+            <span id="current-span"><div id="login-status-div">Currently signed in as: </div><div id="user-name">Guest</div></span>
+          </div>
+          <div id="reauth-div"><button id="reauth-button" onclick="handleReauthClick()">Reauthenticate</button></div>
+          <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
+        </div>
+
+        <div id="config-div" class="content-box">
+          <h2>Config File Management</h2>
+          <button aria-label="UploadUserConfigButton">
+            <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
+          </button>
+          <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
+
+          <a id="configText" download="plantData.json">
+            <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
+          </a>
+        </div>
+
+        <div id="add-pant-div" class="content-box">
+          <h2>New Plant Details</h2>
+          <div style="margin-block-end: 1.67em;">
+            <label for="known-plant" style="font-size: 0.83em; font-weight: bold;">Pre-fill with known plant info for faster plant creation:   </label>
+            <select id="known-plant" onchange="knownPlantSelectionChange()"></select>
+          </div>
+          <form class="form-container" action="javascript:console.log( 'success!' );">
+            <div class="top-right">
+              <button aria-label="Save Plant" type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
+              <button aria-label="Close" type="button" onclick="setDisplayForNoPlants()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>  
+
+            <div>
+              <label for="newPlantName"><b>Name:</b></label>
+              <input type="text" placeholder="Enter Plant Name" id="newPlantName" required>
+            </div>
+            <div>
+              <label for="newPlantLocation"><b>Location:</b></label>
+              <input type="text" placeholder="Enter Plant Location" id="newPlantLocation" required>
+            </div>
+
+            <div id="add-plant-input"></div>
+          </form>
+        </div>
+
+        <div id="display-plant-div" class="content-box">
+          <select id="location-dropdown" onchange="locationSelectionChange()"></select>
+          <select id="plant-dropdown" onchange="plantSelectionChange()"></select>
+
+          <div id="dropdown-plant-info"></div>
+        </div>
+
+        <div id="actionable-plant-div" class="content-box">
+          <h2>These Guys Need Attention</h2>
+          <div id='action-type-toggles'>
+            <input type="checkbox" id="needsWater" checked>
+            <label for="needsWater"> Show plants that need watered</label><br>
+            <input type="checkbox" id="needsChecked" checked>
+            <label for="needsCheked"> Show plants that need checked</label><br>
+          </div>
+          <div id='needy-plants-div'></div>
+        </div>
+              </article>
+    </section>
+            <script src="src/definitions.js"></script>
+    <script src="src/dropdowns.js"></script>
+    <script src="src/html.js"></script>
+    <script src="src/index.js"></script>
+
+    <script src="src/plantActions.js"></script>
+    <script src="src/plantHTML.js"></script>        
+    <script src="src/user.js"></script>
+    <script src="src/config.js"></script>
+    
+    <script src="src/google/googleClients.js"></script>
+    <script src="src/google/drive.js"></script>
