@@ -26,8 +26,7 @@ function handleReauthClick() {
 
 
 function determineUserMode() {
-  GuestMode = localStorage.getItem('guestMode') == 'true';
-  console.log(localStorage.getItem('userEmail'));
+  GuestMode = localStorage.getItem('guestMode') == 'true' || localStorage.getItem('userEmail') == null;
   if (!GuestMode) {
     User = localStorage.getItem('userEmail');
     UserPicture = localStorage.getItem('userPic');
