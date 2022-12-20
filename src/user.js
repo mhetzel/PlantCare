@@ -26,7 +26,7 @@ function handleReauthClick() {
 
 
 function determineUserMode() {
-  GuestMode = localStorage.getItem('guestMode') == 'true';
+  GuestMode = localStorage.getItem('guestMode') == 'true' || localStorage.getItem('userEmail') == null;
   if (!GuestMode) {
     User = localStorage.getItem('userEmail');
     UserPicture = localStorage.getItem('userPic');
@@ -115,15 +115,16 @@ function signedOut() {
 
 async function handleSignoutClick() {
   // alert('This will disable google account syncing and plant data will be stored in this browser only.')
-  google.accounts.id.disableAutoSelect();
-  console.log('logging out:', User)
-  await google.accounts.id.revoke(User, done => {
-    console.log('consent revoked for:', User);
-  });
-  
-  if (gapi.client.getToken() !== null) {
-    gapi.client.setToken('');
-  };
+  if (User != 'Guest') {
+      google.accounts.id.disableAutoSelect();
+      console.log('logging out:', User)
+      await google.accounts.id.revoke(User, done => {
+        console.log('consent revoked for:', User);
+      });
 
+      if (gapi.client.getToken() !== null) {
+        gapi.client.setToken('');
+      };
+  }
   signedOut();
 };
