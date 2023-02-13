@@ -63,12 +63,11 @@ function setKnownPlantValues(prefix, plant) {
 }
 
 function displayPlants() {
-  if (actionablePlantDiv.css('display') == 'block') {
+  if (plantInfos.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
     closeForm();
-    actionablePlantDiv.show();
-    showAllNeedyPlants(null);
+    plantInfos.show();
   }
 }
 
@@ -129,7 +128,9 @@ function setDisplayForNoPlants() {
   if (!PlantData || Object.keys(PlantData).length === 0) {
     openNewPlantForm();
   } else {
-    plantInfos.show();
+    
+    actionablePlantDiv.show();
+    showAllNeedyPlants(null);
   }
 }
 
