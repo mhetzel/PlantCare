@@ -208,7 +208,7 @@ function showAllPlantsForLocation(parentDiv, locationName) {
 
 
 function showAllFertilizablePlants(locationToShow) {
-   let hungryDiv = ${"#hungry-plants-div");
+   let hungryDiv = $("#hungry-plants-div");
    hungryDiv.empty();
                      
    Object.keys(PlantData).forEach(function(locationName) {
