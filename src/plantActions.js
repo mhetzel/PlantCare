@@ -201,7 +201,7 @@ let needyDiv = $("#needy-plants-div");
 function getFertalizablePlants(locationName) {
   let needyPlants = []
   if ($('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Full strength") || doesPlantNeedChecked(locationName, plantName, "Half strength"));
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Full strength") || doesPlantNeedFertilizer(locationName, plantName, "Half strength"));
   } else if ($('#needsHalf')[0].checked && !$('#needsFull')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Half strength"));
   } else if (!$('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
