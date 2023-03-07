@@ -9,17 +9,22 @@ function doesPlantNeedChecked(locationName, plantName) {
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
   let differenceWaterDate =  Math.floor((today - nextWateringDate)/ (1000 * 3600 * 24))
   
+  if (differenceCheckDate == 1) {
+    console.log(plantName, 'at', locationName, 'does not need checked it was checked yesterday')
+    return false
+  }
+  
   if (plant.currentWetness == 0 && differenceCheckDate == 1) {
     return false
   }
   
   if (nextCheckDate <= today) {
-    //console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
     return true;
   }
   else if (differenceCheckDate > 1 && nextWateringDate <= today) {
-    //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
-    //console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
+    console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+    console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
     return true;
   }
   return false;
