@@ -210,8 +210,8 @@ function showAllPlantsForLocation(parentDiv, locationName) {
   parentDiv.show()
 }
 
-def hungryDiv = $("#hungry-plants-div");
-def needyDiv = $("#needy-plants-div");
+let hungryDiv = $("#hungry-plants-div");
+let needyDiv = $("#needy-plants-div");
 
 function showAllFertilizablePlants(locationToShow) {
    hungryDiv.empty();
