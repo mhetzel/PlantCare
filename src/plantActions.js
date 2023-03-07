@@ -241,7 +241,7 @@ function showAllFertilizablePlants(locationToShow) {
       result.forEach(function(plantName) {
           let plantDiv = $('<div id="'+plantName+locationName+'"></div>')
           plantsAtLocationDiv.append(plantDiv)
-          displayPlant(plantDiv, locationName, plantName, false)
+          displayPlant(plantDiv, locationName, plantName, false, true)
       })
       locationButton.on('click', function() {
         if (plantsAtLocationDiv.css('display') == 'block') {
