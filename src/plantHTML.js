@@ -22,12 +22,18 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   lastChecked.text('n/a');
   var nextCheck = $('<span id="nextCheck"></span>');
   nextCheck.text('n/a');
+  var checkOverdue = $('<span id="checkOverdue"></span>');
+  checkOverdue.text('n/a');
   var lastWatered = $('<span id="lastWatered"></span>');
   lastWatered.text('n/a');
   var nextWatering = $('<span id="nextWatering"></span>');
   nextWatering.text('n/a');
+  var waterOverdue = $('<span id="waterOverdue"></span>');
+  waterOverdue.text('n/a');
   var lastFertilized = $('<span id="lastFertilized"></span>');
   lastFertilized.text('n/a');
+  var daysSinceFertilized = $('<span id="daysSinceFertilized"></span>');
+  daysSinceFertilized.text('n/a');
   var water = $('<span id="water"></span>');
   water.text('n/a');
   var waterInstructions = $('<span id="waterInstructions"></span>');
@@ -54,15 +60,18 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   let waterDiv = $('<div></div>')
   waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
+  waterDiv.append($('<div><span><b>Watering Overdue: </b></span></div>').append(waterOverdue))
   waterDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   waterDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
   waterDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   waterDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
+  waterDiv.append($('<div><span><b>Check Overdue: </b></span></div>').append(checkOverdue))
   waterDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
   waterDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
 
   let fertilizerDiv = $('<div></div>')
   fertilizerDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
+  fertilizerDiv.append($('<div><span><b>Days Since Fertilized Date: </b></span></div>').append(daysSinceFertilized))
   fertilizerDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
   fertilizerDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
   
