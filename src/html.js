@@ -15,6 +15,7 @@ let plantForm = $("#add-pant-div");
 let plantInfos = $("#display-plant-div");
 
 let actionablePlantDiv = $("#actionable-plant-div")
+let fertilizerPlantDiv = $("#fertilizer-plant-div")
 
 
 function readPlantInputs(idPrefix) {
@@ -68,6 +69,16 @@ function displayPlants() {
   } else {
     closeForm();
     plantInfos.show();
+  }
+}
+
+function feedPlants() {
+  if (fertilizerPlantDiv.css('display') == 'block') {
+    setDisplayForNoPlants();
+  } else {
+    closeForm();
+    fertilizerPlantDiv.show();
+    showAllFertilizablePlants(null);
   }
 }
 
@@ -139,6 +150,7 @@ function closeForm() {
   plantForm.hide();
   loginDiv.hide();
   plantInfos.hide();
+  fertilizerPlantDiv.hide();
   actionablePlantDiv.hide();
 }
 

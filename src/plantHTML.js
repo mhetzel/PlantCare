@@ -1,6 +1,6 @@
 
 
-function displayPlant(element, locationName, plantName, allOptions) {
+function displayPlant(element, locationName, plantName, allOptions, fertilizerOnly=false) {
   element.empty();
   const plantHeading = $('<h4>'+plantName+'</h4>')
   const plantInfo = $('<span></span>');
@@ -51,21 +51,29 @@ function displayPlant(element, locationName, plantName, allOptions) {
   var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
   var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
 
-  plantInfo.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
-  plantInfo.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
-  plantInfo.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
-  plantInfo.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
-  plantInfo.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
-  plantInfo.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
+  let waterDiv = $('<div></div>')
+  waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
+  waterDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
+  waterDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+  waterDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
+  waterDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
+  waterDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
+  waterDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
 
-  let extraDiv = $('<div></div>')
+  let fertilizerDiv = $('<div></div>')
+  fertilizerDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
+  fertilizerDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
+  fertilizerDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
   
-  extraDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
-  extraDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
-  extraDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
+  if (!fertilizerOnly) {
+    plantInfo.append(waterDiv)
+  } else if (fertilizerOnly) {
+    plantInfo.append(fertilizerDiv)
+  }
+    
+  let extraDiv = $('<div></div>')
   extraDiv.append($('<div><span><b>Soil Preferences: </b></span></div>').append(soil))
-  extraDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
-  extraDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
   extraDiv.append($('<div><span><b>Pet Safe: </b></span></div>').append(petSafe))
   extraDiv.append($('<div><span><b>Humidity Needs: </b></span></div>').append(humidity))
   extraDiv.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
@@ -74,7 +82,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
   waterButton.on('click', function() {
     waterPlant()
   })
-  let fertilizeButton = $('<button title="Fertilize Plant"><i class="fa-solid fa-seedling"></i></button>')
+  let fertilizeButton = $('<button title="Fertilize Plant"><i class="fa-solid fa-vial"></i></button>')
   fertilizeButton.on('click', function() {
     fertilizePlant()
   })
@@ -90,7 +98,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
   deleteButton.on('click', function() {
     deletePlant()
   })
-  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"></button>')
+  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plant Info"></button>')
   toggleInfoButton.append(expandIcon);
   toggleInfoButton.on('click', function() {
     togglePlantInfo()
@@ -98,7 +106,10 @@ function displayPlant(element, locationName, plantName, allOptions) {
 
   if (allOptions) {
     plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
-  } else {
+  } else if(fertilizerOnly) {
+    plantButtons.append(fertilizeButton)
+  }
+  else {
     plantButtons.append(waterButton)
   }
   
@@ -274,11 +285,13 @@ function displayPlant(element, locationName, plantName, allOptions) {
       expandedIcon.remove()
       toggleInfoButton.append(expandIcon);
       extraDiv.remove()
+      fertilizerDiv.remove()
     } else {
       displayExtraInfo = true;
       expandIcon.remove()
       toggleInfoButton.append(expandedIcon);
       plantInfo.append(extraDiv)
+      plantInfo.append(fertilizerDiv)
     }
   }
 
