@@ -32,6 +32,8 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   waterOverdue.text('n/a');
   var lastFertilized = $('<span id="lastFertilized"></span>');
   lastFertilized.text('n/a');
+  var nextFertilizing = $('<span id="nextFertilizing"></span>');
+  nextFertilizing.text('n/a');
   var daysSinceFertilized = $('<span id="daysSinceFertilized"></span>');
   daysSinceFertilized.text('n/a');
   var water = $('<span id="water"></span>');
@@ -72,6 +74,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   let fertilizerDiv = $('<div></div>')
   fertilizerDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
   fertilizerDiv.append($('<div><span><b>Days Since Fertilized Date: </b></span></div>').append(daysSinceFertilized))
+  fertilizerDiv.append($('<div><span><b>Next Fertilizing Date: </b></span></div>').append(nextFertilizing))
   fertilizerDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
   fertilizerDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
   
@@ -392,8 +395,8 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   }
   
   function needsFertilized() {
-    if (doesPlantNeedFertilizer(locationName, plantName)) {
-      fertilizeWarning.insertBefore(nextWatering);
+    if (doesPlantNeedFertilizer(locationName, plantName, "Full strength") || doesPlantNeedFertilizer(locationName, plantName, "Half strength")) {
+      fertilizeWarning.insertBefore(nextFertilizing);
     } else {
       fertilizeWarning.remove()
     }
