@@ -193,24 +193,26 @@ let hungryDiv = $("#hungry-plants-div");
 let needyDiv = $("#needy-plants-div");
 
 
-// function getFertalizablePlants(locationName) {
-//   //TODO: use fertilizer info
-//   let needyPlants = []
-//   if ($('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
-//     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
-//   } else if ($('#needsHalf')[0].checked && !$('#needsFull')[0].checked) {
-//     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
-//   } else if (!$('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
-//     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
-//   }
-//   // TODO: some sort of ranking
-//   return needyPlants
-// }
+function getFertalizablePlants(locationName) {
+  let needyPlants = []
+  if ($('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Full strength") || doesPlantNeedChecked(locationName, plantName, "Half strength"));
+  } else if ($('#needsHalf')[0].checked && !$('#needsFull')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Half strength"));
+  } else if (!$('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Full strength"));
+  }
+  // TODO: some sort of ranking
+  return needyPlants
+}
 
 
-function doesPlantNeedFertilizer(locationName, plantName) {
+function doesPlantNeedFertilizer(locationName, plantName, stregth) {
   const plant = PlantData[locationName][plantName]
   // TODO: use fertilizer info
+  console.log(plant.fertilzerDose)
+  console.log("Full strength")
+  console.log("Half strength")
   return true
 }
 
@@ -219,7 +221,7 @@ function showAllFertilizablePlants(locationToShow) {
   needyDiv.empty();
   
   Object.keys(PlantData).forEach(function(locationName) {
-    const result = getNeedyPlants(locationName);
+    const result = getFertalizablePlants(locationName);
     if (result.length > 0) {
       let locationDiv = $('<div id="'+locationName+'"></div>')
       hungryDiv.append(locationDiv)
