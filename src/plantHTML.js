@@ -68,7 +68,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   
   if (!fertilizerOnly) {
     plantInfo.append(waterDiv)
-  } else {
+  } else if (fertilizerOnly) {
     plantInfo.append(fertilizerDiv)
   }
     
@@ -82,7 +82,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   waterButton.on('click', function() {
     waterPlant()
   })
-  let fertilizeButton = $('<button title="Fertilize Plant"><i class="fa-solid fa-seedling"></i></button>')
+  let fertilizeButton = $('<button title="Fertilize Plant"><i class="fa-solid fa-vial"></i></button>')
   fertilizeButton.on('click', function() {
     fertilizePlant()
   })
@@ -98,7 +98,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   deleteButton.on('click', function() {
     deletePlant()
   })
-  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plnat Info"></button>')
+  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plant Info"></button>')
   toggleInfoButton.append(expandIcon);
   toggleInfoButton.on('click', function() {
     togglePlantInfo()
@@ -106,7 +106,10 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
 
   if (allOptions) {
     plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
-  } else {
+  } else if(fertilizerOnly) {
+    plantButtons.append(fertilizeButton)
+  }
+  else {
     plantButtons.append(waterButton)
   }
   
