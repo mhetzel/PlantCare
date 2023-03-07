@@ -210,10 +210,10 @@ function getFertalizablePlants(locationName) {
 function doesPlantNeedFertilizer(locationName, plantName, stregth) {
   const plant = PlantData[locationName][plantName]
   // TODO: use fertilizer info
-  console.log(plant.fertilzerDose)
-  console.log("Full strength")
-  console.log("Half strength")
-  return true
+  if (plant.fertilizerDose == strength) {
+	  return true
+  }
+  return false
 }
 
 function showAllFertilizablePlants(locationToShow) {
