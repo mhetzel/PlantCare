@@ -64,18 +64,19 @@ function setKnownPlantValues(prefix, plant) {
 }
 
 function waterPlants() {
-  if (actionablePlantDiv.css('display') == 'block') {
-    setDisplayForNoPlants();
+  closeForm();
+  if (!PlantData || Object.keys(PlantData).length === 0) {
+    openNewPlantForm();
   } else {
-    closeForm();
     actionablePlantDiv.show();
     showAllNeedyPlants(null);
   }
 }
 
 function displayPlants() {
-  if (plantInfos.css('display') == 'block') {
-    setDisplayForNoPlants();
+  closeForm();
+  if (!PlantData || Object.keys(PlantData).length === 0) {
+    openNewPlantForm();
   } else {
     closeForm();
     plantInfos.show();
@@ -83,8 +84,9 @@ function displayPlants() {
 }
 
 function feedPlants() {
-  if (fertilizerPlantDiv.css('display') == 'block') {
-    setDisplayForNoPlants();
+  closeForm();
+  if (!PlantData || Object.keys(PlantData).length === 0) {
+    openNewPlantForm();
   } else {
     closeForm();
     fertilizerPlantDiv.show();
