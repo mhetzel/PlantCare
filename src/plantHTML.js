@@ -392,7 +392,11 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   }
   
   function needsFertilized() {
-    //console.log(plantName, 'at', locationName, 'needs fertilized because its been the right length of time between doses')
+    if (doesPlantNeedFertilizer(locationName, plantName)) {
+      fertilizeWarning.insertBefore(nextWatering);
+    } else {
+      fertilizeWarning.remove()
+    }
   }
   
   function needsChecked() {
