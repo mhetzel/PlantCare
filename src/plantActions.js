@@ -19,12 +19,12 @@ function doesPlantNeedChecked(locationName, plantName) {
   }
   
   if (nextCheckDate <= today) {
-    console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    //console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
     return true;
   }
   else if (differenceCheckDate > 1 && nextWateringDate <= today) {
-    console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
-    console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
+    //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
+    //console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
     return true;
   }
   return false;
@@ -215,7 +215,7 @@ function getFertalizablePlants(locationName) {
 function doesPlantNeedFertilizer(locationName, plantName, strength) {
   // TODO factor in timing
   const plant = PlantData[locationName][plantName]
-  console.log(plantName, 'at', locationName, 'needs fertilized on this schedule', plant.fertilzerFrequency)
+  //console.log(plantName, 'at', locationName, 'needs fertilized on this schedule', plant.fertilzerFrequency)
   return plant.fertilzerDose == strength
 }
 
