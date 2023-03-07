@@ -69,12 +69,6 @@ function getNextWaterDate(locationName, plantName) {
   PlantData[locationName][plantName]['nextWatering'] = nextWaterDate.toDateString();
   return nextWaterDate
 }
-
-function doesPlantNeedFertilizer(locationName, plantName) {
-  const plant = PlantData[locationName][plantName]
-  // TODO: use fertilizer info
-  return true
-}
                                  
 function doesPlantNeedWatered(locationName, plantName) {
   const plant = PlantData[locationName][plantName]
@@ -183,19 +177,19 @@ function getNeedyPlants(locationName) {
 }
 
 
-function getFertalizablePlants(locationName) {
-  //TODO: use fertilizer info
-  let needyPlants = []
-  if ($('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
-  } else if ($('#needsHalf')[0].checked && !$('#needsFull')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
-  } else if (!$('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
-  }
-  // TODO: some sort of ranking
-  return needyPlants
-}
+// function getFertalizablePlants(locationName) {
+//   //TODO: use fertilizer info
+//   let needyPlants = []
+//   if ($('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
+//     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
+//   } else if ($('#needsHalf')[0].checked && !$('#needsFull')[0].checked) {
+//     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
+//   } else if (!$('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
+//     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
+//   }
+//   // TODO: some sort of ranking
+//   return needyPlants
+// }
 
 
 function showAllPlantsForLocation(parentDiv, locationName) {
@@ -213,15 +207,21 @@ function showAllPlantsForLocation(parentDiv, locationName) {
 let hungryDiv = $("#hungry-plants-div");
 let needyDiv = $("#needy-plants-div");
 
-function showAllFertilizablePlants(locationToShow) {
-   hungryDiv.empty();
-   needyDiv.empty();
+
+// function doesPlantNeedFertilizer(locationName, plantName) {
+//   const plant = PlantData[locationName][plantName]
+//   // TODO: use fertilizer info
+//   return true
+// }
+// function showAllFertilizablePlants(locationToShow) {
+//    hungryDiv.empty();
+//    needyDiv.empty();
                      
-   Object.keys(PlantData).forEach(function(locationName) {
-    const result = getFertalizablePlants(locationName);
-    console.log(result)
-  });
-}
+//    Object.keys(PlantData).forEach(function(locationName) {
+//     const result = getFertalizablePlants(locationName);
+//     console.log(result)
+//   });
+// }
 
 
 function showAllNeedyPlants(locationToShow) {
