@@ -2,6 +2,11 @@
 function doesPlantNeedChecked(locationName, plantName) {
   const plant = PlantData[locationName][plantName]
   const today = new Date();
+  
+  if (plant.lastChecked == 'n/a') {
+  	return true
+  }
+  
   let lastCheckedDate = new Date(plant.lastChecked);
   let nextCheckDate = new Date(plant.nextCheck);
   let nextWateringDate = new Date(plant.nextWatering);
@@ -77,6 +82,11 @@ function getNextWaterDate(locationName, plantName) {
                                  
 function doesPlantNeedWatered(locationName, plantName) {
   const plant = PlantData[locationName][plantName]
+  
+  if (plant.nextWatering == 'n/a') {
+  	return true
+  }
+  
   const today = new Date();
   let lastCheckedDate = new Date(plant.lastChecked);
   let nextWateringDate = new Date(plant.nextWatering);
