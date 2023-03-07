@@ -209,11 +209,6 @@ function getFertalizablePlants(locationName) {
 
 function doesPlantNeedFertilizer(locationName, plantName, strength) {
   const plant = PlantData[locationName][plantName]
-  // TODO: use fertilizer info
-  console.log(plantName)
-  console.log(plant.fertilzerDose)
-  console.log(strength)
-  console.log(plant.fertilzerDose == strength)
   return plant.fertilzerDose == strength
 }
 
