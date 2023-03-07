@@ -62,8 +62,6 @@ function getNextCheckDate(locationName, plantName) {
   return nextCheckDate;
 }
 
-
-
 function getNextWaterDate(locationName, plantName) {
   let lastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered'])
   let nextWaterDate = new Date(lastWateredDate)
@@ -153,12 +151,21 @@ function comparePlantNeeds(locationName, planta, plantb) {
 }
 
 $('#needsWater').change(function() {
-	showAllNeedyPlants(null)
+	showAllNeedyPlants(null);
 });
 
 $('#needsChecked').change(function() {
-	showAllNeedyPlants(null)
+	showAllNeedyPlants(null);
 });
+
+$('#needsHalf').change(function() {
+	showAllFertilizablePlants(null);
+});
+
+$('#needsFull').change(function() {
+	showAllFertilizablePlants(null);
+});
+
 
 function getNeedyPlants(locationName) {
   let needyPlants = []
@@ -176,20 +183,17 @@ function getNeedyPlants(locationName) {
 }
 
 
-
 function getFertalizablePlants(locationName) {
   //TODO: use fertilizer info
   let needyPlants = []
-  if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
-  } else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName));
-  } else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
+  if ($('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
+  } else if ($('#needsHalf')[0].checked && !$('#needsFull')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
+  } else if (!$('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
   }
-  if (needyPlants.length > 0) {
-  	needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
-  }
+  // TODO: some sort of ranking
   return needyPlants
 }
 
@@ -210,53 +214,19 @@ function showAllPlantsForLocation(parentDiv, locationName) {
 function showAllFertilizablePlants(locationToShow) {
    let hungryDiv = $("#hungry-plants-div");
    hungryDiv.empty();
+   needyDiv.empty();
                      
    Object.keys(PlantData).forEach(function(locationName) {
     const result = getFertalizablePlants(locationName);
-    if (result.length > 0) {
-      let locationDiv = $('<div id="'+locationName+'"></div>')
-      hungryDiv.append(locationDiv)
-      let locationHeader = $('<h3></h3>')
-      let locationButton = $('<button></button>')
-      let expand = $('<i class="fa-solid fa-angle-right"></i>')
-      let expanded = $('<i class="fa-solid fa-angle-down"></i>')
-      locationButton.append(expanded)
-      let locationTitle = '  '+locationName
-      locationHeader.append(locationButton, locationTitle)
-      locationDiv.append(locationHeader)
-      let plantsAtLocationDiv = $('<div></div>')
-      locationDiv.append(plantsAtLocationDiv)
-      
-      if (locationName != locationToShow) {
-        plantsAtLocationDiv.hide();
-        expanded.remove()
-        locationButton.append(expand)
-      }
-      
-      result.forEach(function(plantName) {
-          let plantDiv = $('<div id="'+plantName+locationName+'"></div>')
-          plantsAtLocationDiv.append(plantDiv)
-          displayPlant(plantDiv, locationName, plantName, false)
-      })
-      locationButton.on('click', function() {
-        if (plantsAtLocationDiv.css('display') == 'block') {
-          plantsAtLocationDiv.hide();
-          expanded.remove()
-          locationButton.append(expand)
-        } else {
-          plantsAtLocationDiv.show();
-          expand.remove()
-          locationButton.append(expanded)
-        }
-      })
-    }
+    console.log(result)
   });
 }
 
 
 function showAllNeedyPlants(locationToShow) {
   let needyDiv = $("#needy-plants-div");
-  needyDiv.empty()
+  hungryDiv.empty();
+  needyDiv.empty();
 
   Object.keys(PlantData).forEach(function(locationName) {
     const result = getNeedyPlants(locationName);
