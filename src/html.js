@@ -78,6 +78,7 @@ function feedPlants() {
   } else {
     closeForm();
     fertilizerPlantDiv.show();
+    showAllFertilizablePlants(null);
   }
 }
 
