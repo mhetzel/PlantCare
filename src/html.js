@@ -63,6 +63,16 @@ function setKnownPlantValues(prefix, plant) {
   $(prefix + "PlantLastFertilized").val(dateFormat);
 }
 
+function waterPlants() {
+  if (actionablePlantDiv.css('display') == 'block') {
+    setDisplayForNoPlants();
+  } else {
+    closeForm();
+    actionablePlantDiv.show();
+    showAllNeedyPlants(null);
+  }
+}
+
 function displayPlants() {
   if (plantInfos.css('display') == 'block') {
     setDisplayForNoPlants();
