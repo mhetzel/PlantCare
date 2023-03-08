@@ -162,7 +162,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     updateDiv.append(updateForm)
     let buttonDiv = $('<div class="top-right"></div>')
     let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
-    saveButton.on('click', function() {
+    saveButton.on('submit', function() {
       updatePlant()
     })
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
@@ -187,7 +187,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     moveDiv.append(moveForm)
     let buttonDiv = $('<div class="top-right"></div>')
     let saveButton = $('<button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
-    saveButton.on('click', function() {
+    saveButton.on('submit', function() {
       movePlant()
     })
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
