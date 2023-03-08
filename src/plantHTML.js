@@ -330,13 +330,13 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     
    
     let differenceInDays =  Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
-    if (differenceInDays > 0) {
+    if (differenceInDays != 0) {
       PlantData[locationName][plantName]['lastFertilized'] = lastFertilizedDate.toDateString();
     }
 
      
     differenceInDays =  Math.floor((lastCheckedDate - currentlastCheckedDate)/ (1000 * 3600 * 24))
-    if (differenceInDays > 0) {
+    if (differenceInDays != 0) {
       PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
     }
 
@@ -348,7 +348,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     }
 
     differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
-    if (differenceInDays > 0) {
+    if (differenceInDays != 0) {
       PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
       PlantData[locationName][plantName].lastChecked = lastWateredDate.toDateString();
       
