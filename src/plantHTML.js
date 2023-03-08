@@ -189,11 +189,6 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     moveDiv.append(moveForm)
     let buttonDiv = $('<div class="top-right"></div>')
     let saveButton = $('<button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
-    saveButton.on('click', function() {
-      movePlant()
-    })
-    saveButton.on('submit', function() {
-    })
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     closeButton.on('click', function() {
       toggleMovePlantForm()
