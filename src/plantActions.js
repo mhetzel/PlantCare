@@ -250,7 +250,7 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
     let differenceMonth = today.getMonth() - lastFertilizedDate.getMonth()
     
     if (differenceDate == 0) {
-      console.log(plantName, 'was already fertilized today'
+      console.log(plantName, 'was already fertilized today')
       return false
     }
   
