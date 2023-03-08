@@ -237,23 +237,33 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
   const correctStregth = plant.fertilzerDose == strength
   const correctSeason = plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1) || plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)
   
-  console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency, 'with', plant.fertilzerDose, 'last done', plant.lastFertilized)
-  
+
   if (correctStregth && correctSeason) {
+    console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency, 'with', plant.fertilzerDose, 'last done', plant.lastFertilized)
+    
+    if (plant.lastFertilized == 'n/a') {
+      console.log(plantName, 'has never been fertilized and needs it')
+      return true
+    }
+    let lastFertilizedDate = new Date(plant.lastFertilized);
+  
     if (plant.fertilzerFrequency.includes('weeks')) {
       console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
     }
-    if (plant.fertilzerFrequency.includes('months')) {
+    else if (plant.fertilzerFrequency.includes('months')) {
       console.log(plant.fertilzerFrequency.match(r)[0], 'months');
     }
-    if (plant.fertilzerFrequency.includes('year')) {
+    else if (plant.fertilzerFrequency.includes('year')) {
       console.log('once a year')
     }
-    if (plant.fertilzerFrequency.includes('month')) {
+    else if (plant.fertilzerFrequency.includes('month')) {
       console.log('once a month')
     }
-    if (plant.fertilzerFrequency.includes('week')) {
+    else if (plant.fertilzerFrequency.includes('week')) {
       console.log('once a week')
+    }
+    else {
+      console.log('What is the fertilizer frequency for', plantName, locationName)
     }
   }
 
