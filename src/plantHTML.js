@@ -164,6 +164,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
     saveButton.on('submit', function() {
       updatePlant()
+      toggleUpdatePlantForm()
     })
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     closeButton.on('click', function() {
@@ -189,6 +190,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     let saveButton = $('<button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
     saveButton.on('submit', function() {
       movePlant()
+      toggleMovePlantForm()
     })
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     closeButton.on('click', function() {
