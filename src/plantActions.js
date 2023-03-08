@@ -235,10 +235,10 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
 	var r = /\d+/;
   
   if (plant.fertilzerFrequency.includes('weeks')) {
-    console.log(plant.fertilzerFrequency.match(r), 'weeks');
+    console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
   }
   if (plant.fertilzerFrequency.includes('months')) {
-      console.log(plant.fertilzerFrequency.match(r), 'months');
+      console.log(plant.fertilzerFrequency.match(r)[0], 'months');
   }
 	if (plant.fertilzerFrequency.includes('year')) {
   }
