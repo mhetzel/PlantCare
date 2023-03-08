@@ -239,7 +239,7 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
   
 
   if (correctStregth && correctSeason) {
-    console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency, 'with', plant.fertilzerDose, 'last done', plant.lastFertilized)
+    // console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency, 'with', plant.fertilzerDose, 'last done', plant.lastFertilized)
     
     if (plant.lastFertilized == 'n/a') {
       // console.log(plantName, 'has never been fertilized and needs it')
