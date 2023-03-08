@@ -234,17 +234,22 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
   const today = new Date();
 	var r = /\d+/;
   
+  console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency)
+  
   if (plant.fertilzerFrequency.includes('weeks')) {
     console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
   }
   if (plant.fertilzerFrequency.includes('months')) {
-      console.log(plant.fertilzerFrequency.match(r)[0], 'months');
+    console.log(plant.fertilzerFrequency.match(r)[0], 'months');
   }
 	if (plant.fertilzerFrequency.includes('year')) {
+    console.log('once a year')
   }
 	if (plant.fertilzerFrequency.includes('month')) {
+    console.log('once a month')
   }
 	if (plant.fertilzerFrequency.includes('week')) {
+    console.log('once a week')
   }
   	
   if (plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1)) {
