@@ -225,7 +225,16 @@ function getFertalizablePlants(locationName) {
 function doesPlantNeedFertilizer(locationName, plantName, strength) {
   // TODO factor in timing
   const plant = PlantData[locationName][plantName]
-  //console.log(plantName, 'at', locationName, 'needs fertilized on this schedule', plant.fertilzerFrequency)
+  
+  const spring = [3, 4, 5]
+  const summer = [6, 7, 8]
+  const fall = [9, 10, 11]
+  const winter = [12, 1, 2]
+  
+  const today = new Date();
+  console.log('current month is', today.getMonth()+1)
+
+  console.log(plantName, 'at', locationName, 'needs fertilized on this schedule', plant.fertilzerFrequency)
   return plant.fertilzerDose == strength
 }
 
