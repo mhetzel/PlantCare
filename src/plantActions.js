@@ -232,10 +232,18 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
   const winter = [12, 1, 2]
   
   const today = new Date();
-  console.log('current month is', today.getMonth()+1)
-
-  console.log(plantName, 'at', locationName, 'needs fertilized on this schedule', plant.fertilzerFrequency)
-  return plant.fertilzerDose == strength
+  	
+  if (plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1)) {
+	  console.log(plantName, 'at', locationName, 'needs fertilized in the spring and its spring')
+    return plant.fertilzerDose == strength
+  }
+  
+  if (plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)) {
+	  console.log(plantName, 'at', locationName, 'needs fertilized in the summer and its summer')
+    return plant.fertilzerDose == strength
+  }
+  
+  return false
 }
 
 function showAllFertilizablePlants(locationToShow) {
