@@ -246,21 +246,33 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
       return true
     }
     let lastFertilizedDate = new Date(plant.lastFertilized);
+    let differenceDate = Math.floor((today - lastFertilizedDate)/ (1000 * 3600 * 24))
+    let differenceMonth = today.getMonth() - lastFertilizedDate.getMonth()
+    
+    if (differenceDate == 0) {
+      console.log(plantName, 'was already fertilized today'
+      return false
+    }
   
     if (plant.fertilzerFrequency.includes('weeks')) {
       console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
+      console.log(differenceDate, plant.fertilzerFrequency.match(r)[0]*7)
     }
     else if (plant.fertilzerFrequency.includes('months')) {
       console.log(plant.fertilzerFrequency.match(r)[0], 'months');
+      console.log(differenceMonth, plant.fertilzerFrequency.match(r)[0])
     }
     else if (plant.fertilzerFrequency.includes('year')) {
       console.log('once a year')
+      console.log(differenceDate, 365)
     }
     else if (plant.fertilzerFrequency.includes('month')) {
       console.log('once a month')
+      console.log(differenceMonth, 1)
     }
     else if (plant.fertilzerFrequency.includes('week')) {
       console.log('once a week')
+      console.log(differenceDate, 7)
     }
     else {
       console.log('What is the fertilizer frequency for', plantName, locationName)
