@@ -235,7 +235,7 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
   const r = /\d+/;
   
   const correctStregth = plant.fertilzerDose == strength
-  const correctSeason = plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1) || plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)
+  const correctSeason = (plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1) || plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)) || (!plant.fertilzerFrequency.includes('spring') && !plant.fertilzerFrequency.includes('summer'))
   
 
   if (correctStregth && correctSeason) {
