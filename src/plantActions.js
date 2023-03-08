@@ -242,7 +242,7 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
     console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency, 'with', plant.fertilzerDose, 'last done', plant.lastFertilized)
     
     if (plant.lastFertilized == 'n/a') {
-      console.log(plantName, 'has never been fertilized and needs it')
+      // console.log(plantName, 'has never been fertilized and needs it')
       return true
     }
     let lastFertilizedDate = new Date(plant.lastFertilized);
@@ -250,33 +250,33 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
     let differenceMonth = today.getMonth() - lastFertilizedDate.getMonth()
     
     if (differenceDate == 0) {
-      console.log(plantName, 'was already fertilized today')
+      // console.log(plantName, 'was already fertilized today')
       return false
     }
   
     if (plant.fertilzerFrequency.includes('weeks')) {
-      console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
-      console.log(differenceDate, plant.fertilzerFrequency.match(r)[0]*7)
+//       console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
+//       console.log(differenceDate, plant.fertilzerFrequency.match(r)[0]*7)
       return differenceDate > plant.fertilzerFrequency.match(r)[0]*7
     }
     else if (plant.fertilzerFrequency.includes('months')) {
-      console.log(plant.fertilzerFrequency.match(r)[0], 'months');
-      console.log(differenceMonth, plant.fertilzerFrequency.match(r)[0])
+//       console.log(plant.fertilzerFrequency.match(r)[0], 'months');
+//       console.log(differenceMonth, plant.fertilzerFrequency.match(r)[0])
       return differenceMonth > plant.fertilzerFrequency.match(r)[0]
     }
     else if (plant.fertilzerFrequency.includes('year')) {
-      console.log('once a year')
-      console.log(differenceDate, 365)
+//       console.log('once a year')
+//       console.log(differenceDate, 365)
       return differenceDate > 365
     }
     else if (plant.fertilzerFrequency.includes('month')) {
-      console.log('once a month')
-      console.log(differenceMonth, 1)
+//       console.log('once a month')
+//       console.log(differenceMonth, 1)
       return differenceMonth > 1
     }
     else if (plant.fertilzerFrequency.includes('week')) {
-      console.log('once a week')
-      console.log(differenceDate, 7)
+//       console.log('once a week')
+//       console.log(differenceDate, 7)
       return differenceDate > 7
     }
     else {
