@@ -232,37 +232,32 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
   const winter = [12, 1, 2]
   
   const today = new Date();
-  var r = /\d+/;
+  const r = /\d+/;
   
-  console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency)
+  const correctStregth = plant.fertilzerDose == strength
+  const correctSeason = plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1) || plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)
   
-  if (plant.fertilzerFrequency.includes('weeks')) {
-    console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
-  }
-  if (plant.fertilzerFrequency.includes('months')) {
-    console.log(plant.fertilzerFrequency.match(r)[0], 'months');
-  }
-  if (plant.fertilzerFrequency.includes('year')) {
-    console.log('once a year')
-  }
-  if (plant.fertilzerFrequency.includes('month')) {
-    console.log('once a month')
-  }
-  if (plant.fertilzerFrequency.includes('week')) {
-    console.log('once a week')
-  }
-  	
-  if (plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1)) {
-    console.log(plantName, 'at', locationName, 'needs fertilized in the spring and its spring')
-    return plant.fertilzerDose == strength
-  }
+  console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency, 'with', plant.fertilzerDose, 'last done', plant.lastFertilized)
   
-  if (plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)) {
-    console.log(plantName, 'at', locationName, 'needs fertilized in the summer and its summer')
-    return plant.fertilzerDose == strength
+  if (correctStregth && correctSeason) {
+    if (plant.fertilzerFrequency.includes('weeks')) {
+      console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
+    }
+    if (plant.fertilzerFrequency.includes('months')) {
+      console.log(plant.fertilzerFrequency.match(r)[0], 'months');
+    }
+    if (plant.fertilzerFrequency.includes('year')) {
+      console.log('once a year')
+    }
+    if (plant.fertilzerFrequency.includes('month')) {
+      console.log('once a month')
+    }
+    if (plant.fertilzerFrequency.includes('week')) {
+      console.log('once a week')
+    }
   }
-  
-  return false
+
+  return correctStregth && correctSeason
 }
 
 function showAllFertilizablePlants(locationToShow) {
