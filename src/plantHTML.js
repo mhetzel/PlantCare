@@ -161,12 +161,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     let updateForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
     updateDiv.append(updateForm)
     let buttonDiv = $('<div class="top-right"></div>')
-    let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
-    saveButton.on('click', function() {
-      updatePlant()
-    })
-    saveButton.on('submit', function() {
-    })
+    let saveButton = $('<button type="submit" onclick="updatePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     closeButton.on('click', function() {
       toggleUpdatePlantForm()
