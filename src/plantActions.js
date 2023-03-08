@@ -40,34 +40,36 @@ function doesPlantNeedChecked(locationName, plantName) {
 // if it was checked yesterday move check day forward
 function getNextCheckDate(locationName, plantName) {
   let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
+  const today = new Date();
+  let nextCheckDate = new Date();
   
-  const today = new Date();  
-  let nextCheckDate = new Date(lastCheckedDate)
+  if (lastCheckedDate != 'n/a') {
+    nextCheckDate = new Date(lastCheckedDate);
 
-  let daysBetweenLastCheckAndNextWatering = 0
-  if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
-    let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
-    daysBetweenLastCheckAndNextWatering = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
-  }
-  daysBetweenLastCheckAndNextWatering = daysBetweenLastCheckAndNextWatering > 0 ? daysBetweenLastCheckAndNextWatering : PlantData[locationName][plantName]['average'];
-  
-  // only set to halfway between next watering if it's less that 2 weeks out
-  if (daysBetweenLastCheckAndNextWatering/2 < 14) {
-    // if its only two days then go with it
-    if (daysBetweenLastCheckAndNextWatering == 2) {
-      nextCheckDate.setDate(nextCheckDate.getDate() + daysBetweenLastCheckAndNextWatering)
-    } else {
-      nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(daysBetweenLastCheckAndNextWatering/2))
-      let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
-      // if it was checked yesterday move it up a day
-      if (differenceCheckDate == 1) {
-        nextCheckDate.setDate(nextCheckDate.getDate() + 1)
-      }
+    let daysBetweenLastCheckAndNextWatering = 0
+    if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
+      let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
+      daysBetweenLastCheckAndNextWatering = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
     }
-  } else {
-    nextCheckDate.setDate(nextCheckDate.getDate() + 14)
+    daysBetweenLastCheckAndNextWatering = daysBetweenLastCheckAndNextWatering > 0 ? daysBetweenLastCheckAndNextWatering : PlantData[locationName][plantName]['average'];
+
+    // only set to halfway between next watering if it's less that 2 weeks out
+    if (daysBetweenLastCheckAndNextWatering/2 < 14) {
+      // if its only two days then go with it
+      if (daysBetweenLastCheckAndNextWatering == 2) {
+        nextCheckDate.setDate(nextCheckDate.getDate() + daysBetweenLastCheckAndNextWatering)
+      } else {
+        nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(daysBetweenLastCheckAndNextWatering/2))
+        let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
+        // if it was checked yesterday move it up a day
+        if (differenceCheckDate == 1) {
+          nextCheckDate.setDate(nextCheckDate.getDate() + 1)
+        }
+      }
+    } else {
+      nextCheckDate.setDate(nextCheckDate.getDate() + 14)
+    }
   }
-  
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
   return nextCheckDate;
 }
