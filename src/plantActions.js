@@ -39,11 +39,11 @@ function doesPlantNeedChecked(locationName, plantName) {
 // if it is two days til watering day move check day forward
 // if it was checked yesterday move check day forward
 function getNextCheckDate(locationName, plantName) {
-  let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
-  const today = new Date();
   let nextCheckDate = new Date();
   
-  if (lastCheckedDate != 'n/a') {
+  if (PlantData[locationName][plantName]['lastChecked'] != 'n/a') {
+    let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
+    const today = new Date();
     nextCheckDate = new Date(lastCheckedDate);
 
     let daysBetweenLastCheckAndNextWatering = 0
@@ -71,6 +71,7 @@ function getNextCheckDate(locationName, plantName) {
     }
   }
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
+  console.log(nextCheckDate.toDateString())
   return nextCheckDate;
 }
 
