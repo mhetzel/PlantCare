@@ -75,10 +75,10 @@ function getNextCheckDate(locationName, plantName) {
 }
 
 function getNextWaterDate(locationName, plantName) {
-  let lastWateredDate = new Date();
+  let nextWaterDate = new Date();
   if (PlantData[locationName][plantName]['lastWatered'] != 'n/a') {
     let lastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered'])
-    let nextWaterDate = new Date(lastWateredDate)
+    nextWaterDate = new Date(lastWateredDate)
     nextWaterDate.setDate(nextWaterDate.getDate() + PlantData[locationName][plantName]['average'])
   }
   PlantData[locationName][plantName]['nextWatering'] = nextWaterDate.toDateString();
