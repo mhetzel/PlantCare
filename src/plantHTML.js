@@ -318,28 +318,30 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   async function updatePlant() {
     let newPlantInfo = readPlantInputs("#updated");
     console.log(newPlantInfo)
+    console.log($("#updatedPlantAverageWateringDays").val())
+    console.log($("#updatedPlantLastFertilized").val())
+    console.log($("#updatedPlantLastChecked").val())
+    console.log($("#updatedPlantLastWatered").val())
     
     let averageDaysBetweenWatering = $("#updatedPlantAverageWateringDays").val();
-    console.log($("#newPlantLastFertilized").val())
-    let lastFertilizedDate = new Date($("#newPlantLastFertilized").val());
+    
+    let lastFertilizedDate = new Date($("#updatedPlantLastFertilized").val());
     lastFertilizedDate = new Date( lastFertilizedDate.getTime() - lastFertilizedDate.getTimezoneOffset() * -60000 );
     let currentlastFertilizedDate = new Date(PlantData[locationName][plantName]['lastFertilized']);
-    console.log($("#updatedPlantLastChecked").val())
+ 
     let lastCheckedDate = new Date($("#updatedPlantLastChecked").val());
     lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
     let currentlastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked']);
-    console.log($("#updatedPlantLastWatered").val())
+    
     let lastWateredDate = new Date($("#updatedPlantLastWatered").val());
     lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
     let currentlastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered']);
-    
    
     let differenceInDays =  Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
     if (differenceInDays != 0) {
       PlantData[locationName][plantName]['lastFertilized'] = lastFertilizedDate.toDateString();
     }
 
-     
     differenceInDays =  Math.floor((lastCheckedDate - currentlastCheckedDate)/ (1000 * 3600 * 24))
     if (differenceInDays != 0) {
       PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
