@@ -32,10 +32,6 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   waterOverdue.text('n/a');
   var lastFertilized = $('<span id="lastFertilized"></span>');
   lastFertilized.text('n/a');
-  var nextFertilizing = $('<span id="nextFertilizing"></span>');
-  nextFertilizing.text('n/a');
-  var daysSinceFertilized = $('<span id="daysSinceFertilized"></span>');
-  daysSinceFertilized.text('n/a');
   var water = $('<span id="water"></span>');
   water.text('n/a');
   var waterInstructions = $('<span id="waterInstructions"></span>');
@@ -62,19 +58,21 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   let waterDiv = $('<div></div>')
   waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
-  waterDiv.append($('<div><span><b>Watering Overdue: </b></span></div>').append(waterOverdue))
+  if (allOptions) {
+    waterDiv.append($('<div><span><b>Watering Overdue: </b></span></div>').append(waterOverdue))
+  }
   waterDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   waterDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
   waterDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   waterDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
-  waterDiv.append($('<div><span><b>Check Overdue: </b></span></div>').append(checkOverdue))
+  if (allOptions) {
+    waterDiv.append($('<div><span><b>Check Overdue: </b></span></div>').append(checkOverdue))
+  }
   waterDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
   waterDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
 
   let fertilizerDiv = $('<div></div>')
   fertilizerDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
-  fertilizerDiv.append($('<div><span><b>Days Since Fertilized Date: </b></span></div>').append(daysSinceFertilized))
-  fertilizerDiv.append($('<div><span><b>Next Fertilizing Date: </b></span></div>').append(nextFertilizing))
   fertilizerDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
   fertilizerDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
   
@@ -164,10 +162,10 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     updateDiv.append(updateForm)
     let buttonDiv = $('<div class="top-right"></div>')
     let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+    let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     saveButton.on('click', function() {
       updatePlant()
     })
-    let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     closeButton.on('click', function() {
       toggleUpdatePlantForm()
     })
@@ -188,11 +186,11 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     let moveForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
     moveDiv.append(moveForm)
     let buttonDiv = $('<div class="top-right"></div>')
-    let saveButton = $('<button type="submit" onclick="movePlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+    let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+    let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     saveButton.on('click', function() {
       movePlant()
     })
-    let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
     closeButton.on('click', function() {
       toggleMovePlantForm()
     })
@@ -231,6 +229,8 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   
   async function fertilizePlant() {
     PlantData[locationName][plantName].lastFertilized = today.toDateString();
+    
+    fertilizeWarning.remove();
 
     if (allOptions) {
       await saveConfig(PlantData);
@@ -331,13 +331,13 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     
    
     let differenceInDays =  Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
-    if (differenceInDays > 0) {
+    if (differenceInDays != 0) {
       PlantData[locationName][plantName]['lastFertilized'] = lastFertilizedDate.toDateString();
     }
 
      
     differenceInDays =  Math.floor((lastCheckedDate - currentlastCheckedDate)/ (1000 * 3600 * 24))
-    if (differenceInDays > 0) {
+    if (differenceInDays != 0) {
       PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
     }
 
@@ -349,7 +349,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     }
 
     differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
-    if (differenceInDays > 0) {
+    if (differenceInDays != 0) {
       PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
       PlantData[locationName][plantName].lastChecked = lastWateredDate.toDateString();
       
@@ -396,7 +396,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   
   function needsFertilized() {
     if (doesPlantNeedFertilizer(locationName, plantName, "Full strength") || doesPlantNeedFertilizer(locationName, plantName, "Half strength")) {
-      fertilizeWarning.insertBefore(nextFertilizing);
+      fertilizeWarning.insertBefore(lastFertilized);
     } else {
       fertilizeWarning.remove()
     }

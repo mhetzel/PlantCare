@@ -4,7 +4,7 @@ function doesPlantNeedChecked(locationName, plantName) {
   const today = new Date();
   
   if (plant.lastChecked == 'n/a') {
-  	return true
+    return true
   }
   
   let lastCheckedDate = new Date(plant.lastChecked);
@@ -15,7 +15,7 @@ function doesPlantNeedChecked(locationName, plantName) {
   let differenceWaterDate =  Math.floor((today - nextWateringDate)/ (1000 * 3600 * 24))
   
   if (differenceCheckDate == 1) {
-    console.log(plantName, 'at', locationName, 'does not need checked it was checked yesterday')
+    //console.log(plantName, 'at', locationName, 'does not need checked it was checked yesterday')
     return false
   }
   
@@ -39,43 +39,48 @@ function doesPlantNeedChecked(locationName, plantName) {
 // if it is two days til watering day move check day forward
 // if it was checked yesterday move check day forward
 function getNextCheckDate(locationName, plantName) {
-  let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
+  let nextCheckDate = new Date();
   
-  const today = new Date();  
-  let nextCheckDate = new Date(lastCheckedDate)
+  if (PlantData[locationName][plantName]['lastChecked'] != 'n/a') {
+    let lastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked'])
+    const today = new Date();
+    nextCheckDate = new Date(lastCheckedDate);
 
-  let daysBetweenLastCheckAndNextWatering = 0
-  if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
-    let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
-    daysBetweenLastCheckAndNextWatering = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
-  }
-  daysBetweenLastCheckAndNextWatering = daysBetweenLastCheckAndNextWatering > 0 ? daysBetweenLastCheckAndNextWatering : PlantData[locationName][plantName]['average'];
-  
-  // only set to halfway between next watering if it's less that 2 weeks out
-  if (daysBetweenLastCheckAndNextWatering/2 < 14) {
-    // if its only two days then go with it
-    if (daysBetweenLastCheckAndNextWatering == 2) {
-      nextCheckDate.setDate(nextCheckDate.getDate() + daysBetweenLastCheckAndNextWatering)
-    } else {
-      nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(daysBetweenLastCheckAndNextWatering/2))
-      let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
-      // if it was checked yesterday move it up a day
-      if (differenceCheckDate == 1) {
-        nextCheckDate.setDate(nextCheckDate.getDate() + 1)
-      }
+    let daysBetweenLastCheckAndNextWatering = 0
+    if (PlantData[locationName][plantName]['nextWatering'] != 'n/a') {
+      let nextWaterDate = new Date(PlantData[locationName][plantName]['nextWatering'])
+      daysBetweenLastCheckAndNextWatering = Math.ceil(parseInt((nextWaterDate - lastCheckedDate) / (1000 * 60 * 60 * 24), 10)); 
     }
-  } else {
-    nextCheckDate.setDate(nextCheckDate.getDate() + 14)
+    daysBetweenLastCheckAndNextWatering = daysBetweenLastCheckAndNextWatering > 0 ? daysBetweenLastCheckAndNextWatering : PlantData[locationName][plantName]['average'];
+
+    // only set to halfway between next watering if it's less that 2 weeks out
+    if (daysBetweenLastCheckAndNextWatering/2 < 14) {
+      // if its only two days then go with it
+      if (daysBetweenLastCheckAndNextWatering == 2) {
+        nextCheckDate.setDate(nextCheckDate.getDate() + daysBetweenLastCheckAndNextWatering)
+      } else {
+        nextCheckDate.setDate(nextCheckDate.getDate() + Math.ceil(daysBetweenLastCheckAndNextWatering/2))
+        let differenceCheckDate =  Math.floor((nextCheckDate - lastCheckedDate)/ (1000 * 3600 * 24))
+        // if it was checked yesterday move it up a day
+        if (differenceCheckDate == 1) {
+          nextCheckDate.setDate(nextCheckDate.getDate() + 1)
+        }
+      }
+    } else {
+      nextCheckDate.setDate(nextCheckDate.getDate() + 14)
+    }
   }
-  
   PlantData[locationName][plantName]['nextCheck'] = nextCheckDate.toDateString();
   return nextCheckDate;
 }
 
 function getNextWaterDate(locationName, plantName) {
-  let lastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered'])
-  let nextWaterDate = new Date(lastWateredDate)
-  nextWaterDate.setDate(nextWaterDate.getDate() + PlantData[locationName][plantName]['average'])
+  let nextWaterDate = new Date();
+  if (PlantData[locationName][plantName]['lastWatered'] != 'n/a') {
+    let lastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered'])
+    nextWaterDate = new Date(lastWateredDate)
+    nextWaterDate.setDate(nextWaterDate.getDate() + PlantData[locationName][plantName]['average'])
+  }
   PlantData[locationName][plantName]['nextWatering'] = nextWaterDate.toDateString();
   return nextWaterDate
 }
@@ -160,19 +165,19 @@ function comparePlantNeeds(locationName, planta, plantb) {
 }
 
 $('#needsWater').change(function() {
-	showAllNeedyPlants(null);
+  showAllNeedyPlants(null);
 });
 
 $('#needsChecked').change(function() {
-	showAllNeedyPlants(null);
+  showAllNeedyPlants(null);
 });
 
 $('#needsHalf').change(function() {
-	showAllFertilizablePlants(null);
+  showAllFertilizablePlants(null);
 });
 
 $('#needsFull').change(function() {
-	showAllFertilizablePlants(null);
+  showAllFertilizablePlants(null);
 });
 
 
@@ -186,7 +191,7 @@ function getNeedyPlants(locationName) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
   }
   if (needyPlants.length > 0) {
-  	needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
+    needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
   }
   return needyPlants
 }
@@ -225,8 +230,66 @@ function getFertalizablePlants(locationName) {
 function doesPlantNeedFertilizer(locationName, plantName, strength) {
   // TODO factor in timing
   const plant = PlantData[locationName][plantName]
-  //console.log(plantName, 'at', locationName, 'needs fertilized on this schedule', plant.fertilzerFrequency)
-  return plant.fertilzerDose == strength
+  
+  const spring = [3, 4, 5]
+  const summer = [6, 7, 8]
+  const fall = [9, 10, 11]
+  const winter = [12, 1, 2]
+  
+  const today = new Date();
+  const r = /\d+/;
+  
+  const correctStregth = plant.fertilzerDose == strength
+  const correctSeason = (plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1) || plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)) || (!plant.fertilzerFrequency.includes('spring') && !plant.fertilzerFrequency.includes('summer'))
+  
+
+  if (correctStregth && correctSeason) {
+    // console.log(plantName, 'at', locationName, 'needs fertilized', plant.fertilzerFrequency, 'with', plant.fertilzerDose, 'last done', plant.lastFertilized)
+    
+    if (plant.lastFertilized == 'n/a') {
+      // console.log(plantName, 'has never been fertilized and needs it')
+      return true
+    }
+    let lastFertilizedDate = new Date(plant.lastFertilized);
+    let differenceDate = Math.floor((today - lastFertilizedDate)/ (1000 * 3600 * 24))
+    let differenceMonth = today.getMonth() - lastFertilizedDate.getMonth()
+    
+    if (differenceDate == 0) {
+      // console.log(plantName, 'was already fertilized today')
+      return false
+    }
+  
+    if (plant.fertilzerFrequency.includes('weeks')) {
+//       console.log(plant.fertilzerFrequency.match(r)[0], 'weeks');
+//       console.log(differenceDate, plant.fertilzerFrequency.match(r)[0]*7)
+      return differenceDate > plant.fertilzerFrequency.match(r)[0]*7
+    }
+    else if (plant.fertilzerFrequency.includes('months')) {
+//       console.log(plant.fertilzerFrequency.match(r)[0], 'months');
+//       console.log(differenceMonth, plant.fertilzerFrequency.match(r)[0])
+      return differenceMonth > plant.fertilzerFrequency.match(r)[0]
+    }
+    else if (plant.fertilzerFrequency.includes('year')) {
+//       console.log('once a year')
+//       console.log(differenceDate, 365)
+      return differenceDate > 365
+    }
+    else if (plant.fertilzerFrequency.includes('month')) {
+//       console.log('once a month')
+//       console.log(differenceMonth, 1)
+      return differenceMonth > 1
+    }
+    else if (plant.fertilzerFrequency.includes('week')) {
+//       console.log('once a week')
+//       console.log(differenceDate, 7)
+      return differenceDate > 7
+    }
+    else {
+      console.log('What is the fertilizer frequency for', plantName, locationName)
+    }
+  }
+
+  return correctStregth && correctSeason
 }
 
 function showAllFertilizablePlants(locationToShow) {
