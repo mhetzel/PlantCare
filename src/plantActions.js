@@ -172,24 +172,36 @@ $('#needsChecked').change(function() {
   showAllNeedyPlants(null);
 });
 
-$('#needsHalf').change(function() {
-  showAllFertilizablePlants(null);
-});
-
-$('#needsFull').change(function() {
-  showAllFertilizablePlants(null);
+$('#needsFertilized').change(function() {
+  showAllNeedyPlants(null);
 });
 
 
 function getNeedyPlants(locationName) {
   let needyPlants = []
-  if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
+
+  if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName) || doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+  }
+  else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
+  }
+  else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName) || doesPlantNeedWatered(locationName, plantName));
+  }
+  else if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked && !$('#needsFertilized')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
-  } else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked) {
+  }
+  else if (!$('#needsWater')[0].checked && !$('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
+  }
+  else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked && !$('#needsFertilized')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName));
-  } else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
+  }
+  else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked && !$('#needsFertilized')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
   }
+
   if (needyPlants.length > 0) {
     needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
   }
@@ -213,21 +225,7 @@ let hungryDiv = $("#hungry-plants-div");
 let needyDiv = $("#needy-plants-div");
 
 
-function getFertalizablePlants(locationName) {
-  let needyPlants = []
-  if ($('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Full strength") || doesPlantNeedFertilizer(locationName, plantName, "Half strength"));
-  } else if ($('#needsHalf')[0].checked && !$('#needsFull')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Half strength"));
-  } else if (!$('#needsHalf')[0].checked && $('#needsFull')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName, "Full strength"));
-  }
-  // TODO: some sort of ranking
-  return needyPlants
-}
-
-
-function doesPlantNeedFertilizer(locationName, plantName, strength) {
+function doesPlantNeedFertilizer(locationName, plantName) {
   // TODO factor in timing
   const plant = PlantData[locationName][plantName]
   
@@ -239,7 +237,7 @@ function doesPlantNeedFertilizer(locationName, plantName, strength) {
   const today = new Date();
   const r = /\d+/;
   
-  const correctStregth = plant.fertilzerDose == strength
+  const correctStregth = plant.fertilzerDose != 'None'
   const correctSeason = (plant.fertilzerFrequency.includes('spring') && spring.includes(today.getMonth()+1) || plant.fertilzerFrequency.includes('summer') && summer.includes(today.getMonth()+1)) || (!plant.fertilzerFrequency.includes('spring') && !plant.fertilzerFrequency.includes('summer'))
   
 
