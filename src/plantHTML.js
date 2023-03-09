@@ -319,12 +319,15 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     let newPlantInfo = readPlantInputs("#updated");
     
     let averageDaysBetweenWatering = $("#updatedPlantAverageWateringDays").val();
+    console.log($("#newPlantLastFertilized").val())
     let lastFertilizedDate = new Date($("#newPlantLastFertilized").val());
     lastFertilizedDate = new Date( lastFertilizedDate.getTime() - lastFertilizedDate.getTimezoneOffset() * -60000 );
     let currentlastFertilizedDate = new Date(PlantData[locationName][plantName]['lastFertilized']);
+    console.log($("#updatedPlantLastChecked").val())
     let lastCheckedDate = new Date($("#updatedPlantLastChecked").val());
     lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
     let currentlastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked']);
+    console.log($("#updatedPlantLastWatered").val())
     let lastWateredDate = new Date($("#updatedPlantLastWatered").val());
     lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
     let currentlastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered']);
