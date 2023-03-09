@@ -317,52 +317,56 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   
   async function updatePlant() {
     let newPlantInfo = readPlantInputs("#updated");
-    console.log(newPlantInfo)
-    console.log($("#updatedPlantAverageWateringDays").val())
-    console.log($("#updatedPlantLastFertilized").val())
-    console.log($("#updatedPlantLastChecked").val())
-    console.log($("#updatedPlantLastWatered").val())
     
+    let currentlastFertilizedDate = new Date(PlantData[locationName][plantName]['lastFertilized']);
+    let currentlastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked']);
+    let currentlastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered']);
+    
+    let lastFertilized = $("#updatedPlantLastFertilized").val();
+    let lastChecked = $("#updatedPlantLastChecked").val();
+    let lastWatered = $("#updatedPlantLastWatered").val();
     let averageDaysBetweenWatering = $("#updatedPlantAverageWateringDays").val();
     
-    let lastFertilizedDate = new Date($("#updatedPlantLastFertilized").val());
-    lastFertilizedDate = new Date( lastFertilizedDate.getTime() - lastFertilizedDate.getTimezoneOffset() * -60000 );
-    let currentlastFertilizedDate = new Date(PlantData[locationName][plantName]['lastFertilized']);
- 
-    let lastCheckedDate = new Date($("#updatedPlantLastChecked").val());
-    lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
-    let currentlastCheckedDate = new Date(PlantData[locationName][plantName]['lastChecked']);
-    
-    let lastWateredDate = new Date($("#updatedPlantLastWatered").val());
-    lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
-    let currentlastWateredDate = new Date(PlantData[locationName][plantName]['lastWatered']);
-   
-    let differenceInDays =  Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
-    if (differenceInDays != 0) {
-      PlantData[locationName][plantName]['lastFertilized'] = lastFertilizedDate.toDateString();
+    if (lastFertilized) {
+      console.log(lastFertilized)
+      let lastFertilizedDate = new Date(lastFertilized);
+      lastFertilizedDate = new Date( lastFertilizedDate.getTime() - lastFertilizedDate.getTimezoneOffset() * -60000 );
+      let differenceInDays = Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
+      if (differenceInDays != 0) {
+        PlantData[locationName][plantName]['lastFertilized'] = lastFertilizedDate.toDateString();
+      }
     }
 
-    differenceInDays =  Math.floor((lastCheckedDate - currentlastCheckedDate)/ (1000 * 3600 * 24))
-    if (differenceInDays != 0) {
-      PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
+    if (lastChecked) {
+      let lastCheckedDate = new Date(lastChecked);
+      lastCheckedDate = new Date( lastCheckedDate.getTime() - lastCheckedDate.getTimezoneOffset() * -60000 );
+      differenceInDays =  Math.floor((lastCheckedDate - currentlastCheckedDate)/ (1000 * 3600 * 24))
+      if (differenceInDays != 0) {
+        PlantData[locationName][plantName]['lastChecked'] = lastCheckedDate.toDateString();
+      }
     }
 
-    if (averageDaysBetweenWatering != PlantData[locationName][plantName]['average']) {
+    if (averageDaysBetweenWatering && averageDaysBetweenWatering != PlantData[locationName][plantName]['average']) {
       // resets average
       PlantData[locationName][plantName].daysTotal = parseInt(averageDaysBetweenWatering);
       PlantData[locationName][plantName].average = parseInt(averageDaysBetweenWatering);
       PlantData[locationName][plantName].wateringCount = 1;
     }
 
-    differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
-    if (differenceInDays != 0) {
-      PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
-      PlantData[locationName][plantName].lastChecked = lastWateredDate.toDateString();
-      
-      PlantData[locationName][plantName].daysTotal = PlantData[locationName][plantName].daysTotal + differenceInDays;
-      PlantData[locationName][plantName].wateringCount = PlantData[locationName][plantName].wateringCount + 1;
-      PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
+    if (lastWatered) {
+      let lastWateredDate = new Date($("#updatedPlantLastWatered").val());
+      lastWateredDate = new Date( lastWateredDate.getTime() - lastWateredDate.getTimezoneOffset() * -60000 );
+      differenceInDays =  Math.floor((lastWateredDate - currentlastWateredDate)/ (1000 * 3600 * 24))
+      if (differenceInDays != 0) {
+        PlantData[locationName][plantName].lastWatered = lastWateredDate.toDateString();
+        PlantData[locationName][plantName].lastChecked = lastWateredDate.toDateString();
+
+        PlantData[locationName][plantName].daysTotal = PlantData[locationName][plantName].daysTotal + differenceInDays;
+        PlantData[locationName][plantName].wateringCount = PlantData[locationName][plantName].wateringCount + 1;
+        PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
+      }
     }
+
 
     PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
     setNextDates();
