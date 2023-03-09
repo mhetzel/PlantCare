@@ -64,8 +64,7 @@
         <div><button aria-label="Open Config Form" id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i><span class='icon'> Config</span></button></div>
         <div><button aria-label="Open New Plant Form" id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i><span class='icon'> Add Plant</span></button></div>
         <div><button aria-label="All Plants" id="all-plant-button" onclick="displayPlants()"><i class="fa-solid fa-seedling"></i><span class='icon'> All Plants</span></button></div>
-        <div><button aria-label="Water Plants" id="list-plant-button" onclick="waterPlants()"><i class="fa-solid fa-plant-wilt"></i><span class='icon'> Thirsty Plants</span></button></div>
-        <div><button aria-label="Feed Plants" id="feed-plant-button" onclick="feedPlants()"><i class="fa-solid fa-vial"></i><span class='icon'> Fertilizer Info</span></button></div>
+        <div><button aria-label="Needy Plants" id="list-plant-button" onclick="waterPlants()"><i class="fa-solid fa-plant-wilt"></i><span class='icon'> Needy Plants</span></button></div>
         <div><button aria-label="Display Login Page" id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i><span class='icon'> Account Settings</span></button></div>
         </div>
       </nav>
@@ -135,21 +134,11 @@
             <label for="needsWater"> Show plants that need watered</label><br>
             <input type="checkbox" id="needsChecked" checked>
             <label for="needsCheked"> Show plants that need checked</label><br>
+            <input type="checkbox" id="needsFertilized" checked>
+            <label for="needsFertilized"> Show plants that need fertilized</label><br>
           </div>
           <div id='needy-plants-div'></div>
-        </div>
-        
-        <div id="fertilizer-plant-div" class="content-box">
-          <h2>These Guys Need Fertilizer</h2>
-          <div id='dose-toggles'>
-            <input type="checkbox" id="needsFull" checked>
-            <label for="needsFull"> Show plants that need full stregth</label><br>
-            <input type="checkbox" id="needsHalf" checked>
-            <label for="needsHalf"> Show plants that need half strength</label><br>
-          </div>
-          <div id='hungry-plants-div'></div>
-        </div>
-        
+        </div>     
         
       </article>
     </section>
