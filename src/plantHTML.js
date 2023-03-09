@@ -1,6 +1,6 @@
 
 
-function displayPlant(element, locationName, plantName, allOptions, fertilizerOnly=false) {
+function displayPlant(element, locationName, plantName, allOptions) {
   element.empty();
   const plantHeading = $('<h4>'+plantName+'</h4>')
   const plantInfo = $('<span></span>');
@@ -76,11 +76,8 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   fertilizerDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
   fertilizerDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
   
-  if (!fertilizerOnly) {
-    plantInfo.append(waterDiv)
-  } else if (fertilizerOnly) {
-    plantInfo.append(fertilizerDiv)
-  }
+  plantInfo.append(waterDiv)
+  plantInfo.append(fertilizerDiv)
     
   let extraDiv = $('<div></div>')
   extraDiv.append($('<div><span><b>Soil Preferences: </b></span></div>').append(soil))
@@ -116,11 +113,9 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
 
   if (allOptions) {
     plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
-  } else if(fertilizerOnly) {
-    plantButtons.append(fertilizeButton)
   }
   else {
-    plantButtons.append(waterButton)
+    plantButtons.append(waterButton, fertilizeButton)
   }
   
   if (Object.keys(PlantData[locationName][plantName]).length) {
