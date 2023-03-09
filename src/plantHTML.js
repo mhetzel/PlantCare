@@ -328,7 +328,6 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
     let averageDaysBetweenWatering = $("#updatedPlantAverageWateringDays").val();
     
     if (lastFertilized) {
-      console.log(lastFertilized)
       let lastFertilizedDate = new Date(lastFertilized);
       lastFertilizedDate = new Date( lastFertilizedDate.getTime() - lastFertilizedDate.getTimezoneOffset() * -60000 );
       let differenceInDays = Math.floor((lastFertilizedDate - currentlastFertilizedDate)/ (1000 * 3600 * 24))
@@ -366,7 +365,6 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
         PlantData[locationName][plantName].average = Math.floor(PlantData[locationName][plantName].daysTotal/PlantData[locationName][plantName].wateringCount);
       }
     }
-
 
     PlantData[locationName][plantName] = {...PlantData[locationName][plantName], ...newPlantInfo};
     setNextDates();
