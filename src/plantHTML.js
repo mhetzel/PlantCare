@@ -317,6 +317,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   
   async function updatePlant() {
     let newPlantInfo = readPlantInputs("#updated");
+    console.log(newPlantInfo)
     
     let averageDaysBetweenWatering = $("#updatedPlantAverageWateringDays").val();
     console.log($("#newPlantLastFertilized").val())
@@ -371,7 +372,7 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
 
   async function movePlant() {
     let newLocation = $("#movedPlantLocation").val();
-
+    console.log(newLocation)
     let plant = PlantData[locationName][plantName];
     delete PlantData[locationName][plantName];
     if (Object.keys(PlantData[locationName]).length === 0) {
