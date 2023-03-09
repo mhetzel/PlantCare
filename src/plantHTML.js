@@ -58,14 +58,14 @@ function displayPlant(element, locationName, plantName, allOptions, fertilizerOn
   let waterDiv = $('<div></div>')
   waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
-  if (allOptions) {
+  if (!allOptions) {
     waterDiv.append($('<div><span><b>Watering Overdue: </b></span></div>').append(waterOverdue))
   }
   waterDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
   waterDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
   waterDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   waterDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
-  if (allOptions) {
+  if (!allOptions) {
     waterDiv.append($('<div><span><b>Check Overdue: </b></span></div>').append(checkOverdue))
   }
   waterDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
