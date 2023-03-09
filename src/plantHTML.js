@@ -125,7 +125,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
     plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
   }
   else {
-    if (needsWatered()) {
+    if (needsWatered() || needsChecked()) {
       plantButtons.append(waterButton)
     }
     if (needsFertilized()) {
