@@ -113,6 +113,10 @@ input[type="file" i] {
   width : 2px;
 }
 
+input[type="checkbox" i] {
+  accent-color: #7DA39C;
+}
+
 input {
   font-size: 20px;
   background: rgba(208, 236, 228, 0.9);
