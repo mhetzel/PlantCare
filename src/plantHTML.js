@@ -241,6 +241,8 @@ function displayPlant(element, locationName, plantName, allOptions) {
     PlantData[locationName][plantName].lastFertilized = today.toDateString();
     
     fertilizeWarning.remove();
+    
+    await waterPlant();
 
     if (allOptions) {
       await saveConfig(PlantData);
