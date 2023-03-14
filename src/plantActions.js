@@ -98,7 +98,7 @@ function doesPlantNeedWatered(locationName, plantName) {
   
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
 
-  if (differenceCheckDate > 0 && nextWateringDate <= today) {
+  if (differenceCheckDate > 1 && nextWateringDate <= today) {
     //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
     //console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
     return true;
