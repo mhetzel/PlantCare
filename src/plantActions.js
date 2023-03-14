@@ -87,18 +87,22 @@ function getNextWaterDate(locationName, plantName) {
                                  
 function doesPlantNeedWatered(locationName, plantName) {
   const plant = PlantData[locationName][plantName]
-  
-  if (plant.nextWatering == 'n/a') {
-  	return true
-  }
-  
+   
   const today = new Date();
   let lastCheckedDate = new Date(plant.lastChecked);
   let nextWateringDate = new Date(plant.nextWatering);
   
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
+  
+  if (differenceCheckDate <= 1) {
+    return false
+  }
+  
+  if (plant.nextWatering == 'n/a') {
+  	return true
+  }
 
-  if (differenceCheckDate > 0 && nextWateringDate <= today) {
+  if (differenceCheckDate > 1 && nextWateringDate <= today) {
     //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
     //console.log(plantName, 'at', locationName, 'probably needs watered because its past when the plant should have been watered')
     return true;
@@ -172,38 +176,18 @@ $('#needsChecked').change(function() {
   showAllNeedyPlants(null);
 });
 
-$('#needsFertilized').change(function() {
-  showAllNeedyPlants(null);
-});
-
 
 function getNeedyPlants(locationName) {
   let needyPlants = []
-
-  if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName) || doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
-  }
-  else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
-  }
-  else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName) || doesPlantNeedWatered(locationName, plantName));
-  }
-  else if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked && !$('#needsFertilized')[0].checked) {
+  if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
-  }
-  else if (!$('#needsWater')[0].checked && !$('#needsChecked')[0].checked && $('#needsFertilized')[0].checked) {
-    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedFertilizer(locationName, plantName));
-  }
-  else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked && !$('#needsFertilized')[0].checked) {
+  } else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName));
-  }
-  else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked && !$('#needsFertilized')[0].checked) {
+  } else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
   }
-
   if (needyPlants.length > 0) {
-    needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
+  	needyPlants.sort(function compareFn(a, b) { return comparePlantNeeds(locationName, a, b) })
   }
   return needyPlants
 }
