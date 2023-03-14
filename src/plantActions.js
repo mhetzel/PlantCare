@@ -87,16 +87,20 @@ function getNextWaterDate(locationName, plantName) {
                                  
 function doesPlantNeedWatered(locationName, plantName) {
   const plant = PlantData[locationName][plantName]
-  
-  if (plant.nextWatering == 'n/a') {
-  	return true
-  }
-  
+   
   const today = new Date();
   let lastCheckedDate = new Date(plant.lastChecked);
   let nextWateringDate = new Date(plant.nextWatering);
   
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
+  
+  if (differenceCheckDate <= 1) {
+    return false
+  }
+  
+  if (plant.nextWatering == 'n/a') {
+  	return true
+  }
 
   if (differenceCheckDate > 1 && nextWateringDate <= today) {
     //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
