@@ -5,8 +5,7 @@ const SCOPES = 'https://www.googleapis.com/auth/drive';
 
 
 var tokenClient;
-var gapiInited = false;
-var gisInited = false;
+
 
 function setupSigninButton() {
   google.accounts.id.renderButton(
@@ -37,9 +36,7 @@ async function gisLoaded() {
     scope: SCOPES,
     callback: tokenCallback,
   });
-  setupSigninButton();
-  google.accounts.id.prompt();
-  gisInited = true;
+
 }
                
 async function initializeGapiClient() {
@@ -47,7 +44,8 @@ async function initializeGapiClient() {
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
-  gapiInited = true;
+
   determineUserMode();
-  displayLoginPage(); 
+  displayLoginPage();
+  google.accounts.id.prompt();
 }

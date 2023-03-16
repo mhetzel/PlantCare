@@ -8,20 +8,21 @@ var UserPicture = '';
 
 
 function handleReauthClick() {
-    google.accounts.id.prompt((notification) => {
-    if (notification.isSkippedMoment()) {
-      if (notification.getSkippedReason() == 'user_cancel') {
-        console.log('canceled')
-        handleSignoutClick();
-      }
-    }
-    if (notification.isNotDisplayed()) {
-      if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-        console.log('suppressed')
-        handleSignoutClick();
-      }
-    }
-  });
+    console.log('this is getting clicked')
+//     google.accounts.id.prompt((notification) => {
+//     if (notification.isSkippedMoment()) {
+//       if (notification.getSkippedReason() == 'user_cancel') {
+//         console.log('canceled')
+//         handleSignoutClick();
+//       }
+//     }
+//     if (notification.isNotDisplayed()) {
+//       if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
+//         console.log('suppressed')
+//         handleSignoutClick();
+//       }
+//     }
+//   });
 }
 
 
@@ -72,12 +73,7 @@ async function tokenCallback(resp) {
 }
 
 function signedIn() { 
-  checkAccess().then(function(response) {
-    if (response){
-      console.log('trying to call load plants from sign in')
-      loadPlants();
-    }
-  });
+
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
@@ -94,7 +90,10 @@ function signedIn() {
 
   if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken({prompt: 'consent'});
-  } 
+  } else {
+    console.log('trying to call load plants from sign in')
+    loadPlants();
+  }
 
 }
 
