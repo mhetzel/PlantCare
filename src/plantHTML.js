@@ -1,3 +1,193 @@
+
+
+function displayPlant(element, locationName, plantName, allOptions) {
+  element.empty();
+  const plantHeading = $('<h4>'+plantName+'</h4>')
+  const plantInfo = $('<span></span>');
+  const plantButtons = $('<div></div>');
+  element.append(plantHeading, plantInfo, plantButtons);
+  
+  const today = new Date();
+  var displayExtraInfo = false;
+
+  var currentWetness = $('<select id="currentWetness"></select>');
+  currentWetness.on('change', function() {
+    checkPlant();
+  });
+  setDropdown(currentWetness, WaterList);
+  currentWetness.append($('<option></option>').attr('value', 'Same').text('Same'));
+  var averageDaysBetweenWatering = $('<span id="averageDaysBetweenWatering"></span>');
+  averageDaysBetweenWatering.text('n/a');
+  var lastChecked = $('<span id="lastChecked"></span>');
+  lastChecked.text('n/a');
+  var nextCheck = $('<span id="nextCheck"></span>');
+  nextCheck.text('n/a');
+  var lastWatered = $('<span id="lastWatered"></span>');
+  lastWatered.text('n/a');
+  var nextWatering = $('<span id="nextWatering"></span>');
+  nextWatering.text('n/a');
+  var lastFertilized = $('<span id="lastFertilized"></span>');
+  lastFertilized.text('n/a');
+  var water = $('<span id="water"></span>');
+  water.text('n/a');
+  var waterInstructions = $('<span id="waterInstructions"></span>');
+  waterInstructions.text('n/a');
+  var soil = $('<span id="soil"></span>');
+  soil.text('n/a');
+  var fertilzerFrequency = $('<span id="fertilzerFrequency"></span>');
+  fertilzerFrequency.text('n/a');
+  var fertilzerDose = $('<span id="fertilzerDose"></span>');
+  fertilzerDose.text('n/a');
+  var petSafe = $('<span id="petSafe"></span>');
+  petSafe.text('n/a');
+  var humidity = $('<span id="humidity"></span>');
+  humidity.text('n/a');
+  var light = $('<span id="light"></span>');  
+  light.text('n/a');
+  
+  var waterWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var checkWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+  var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
+  var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
+     
+  let waterDiv = $('<div></div>')
+  waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+  waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
+  waterDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
+  waterDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+  waterDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
+  waterDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
+  waterDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
+  waterDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
+
+  let fertilizerDiv = $('<div></div>')
+  fertilizerDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
+  fertilizerDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
+  fertilizerDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
+  
+  if (allOptions) {
+    plantInfo.append(waterDiv)
+    plantInfo.append(fertilizerDiv)
+  } else {
+    if (needsWatered()) {
+      plantInfo.append(waterDiv)
+      if (needsFertilized()) {
+        plantInfo.append(fertilizerDiv)
+      }
+    } else {
+      let checkDiv = $('<div></div>')
+      checkDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+      checkDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
+      checkDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
+      plantInfo.append(checkDiv)
+    }    
+  }
+
+    
+  let extraDiv = $('<div></div>')
+  extraDiv.append($('<div><span><b>Soil Preferences: </b></span></div>').append(soil))
+  extraDiv.append($('<div><span><b>Pet Safe: </b></span></div>').append(petSafe))
+  extraDiv.append($('<div><span><b>Humidity Needs: </b></span></div>').append(humidity))
+  extraDiv.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
+
+  let waterButton = $('<button title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
+  waterButton.on('click', function() {
+    waterPlant()
+  })
+  let fertilizeButton = $('<button title="Fertilize Plant"><i class="fa-solid fa-vial"></i></button>')
+  fertilizeButton.on('click', function() {
+    fertilizePlant()
+  })
+  let moveButton = $('<button title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>')
+  moveButton.on('click', function() {
+     toggleMovePlantForm()
+  });
+  let updateButton = $('<button title="Edit Plant"><i class="fa-solid fa-pencil"></i></button>')
+  updateButton.on('click', function() {
+    toggleUpdatePlantForm()
+  })
+  let deleteButton = $('<button title="Delete Plant"><i class="fa-solid fa-trash"></i></button>')
+  deleteButton.on('click', function() {
+    deletePlant()
+  })
+  let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plant Info"></button>')
+  toggleInfoButton.append(expandIcon);
+  toggleInfoButton.on('click', function() {
+    togglePlantInfo()
+  })
+
+  if (allOptions) {
+    plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
+  }
+  else {
+    if (needsWatered()) {
+      plantButtons.append(waterButton)
+      if (needsFertilized()) {
+        plantButtons.append(fertilizeButton)
+      }
+    }
+
+  }
+  
+  if (Object.keys(PlantData[locationName][plantName]).length) {
+    setNextDates();
+    
+    currentWetness.prop('selectedIndex', PlantData[locationName][plantName].currentWetness);
+    lastChecked.text(PlantData[locationName][plantName].lastChecked);
+    lastWatered.text(PlantData[locationName][plantName].lastWatered);
+    
+    water.text(WaterList[PlantData[locationName][plantName].water]);
+    light.text(LightList[PlantData[locationName][plantName].light]);
+    waterInstructions.text(PlantData[locationName][plantName].waterInstructions);
+    soil.text(PlantData[locationName][plantName].soil);
+    lastFertilized.text(PlantData[locationName][plantName].lastFertilized);
+    fertilzerFrequency.text(PlantData[locationName][plantName].fertilzerFrequency);
+    fertilzerDose.text(PlantData[locationName][plantName].fertilzerDose);
+    petSafe.text(PlantData[locationName][plantName].petSafe);
+    humidity.text(PlantData[locationName][plantName].humidity);
+  }
+  
+  needsWatered();
+  needsFertilized();
+  needsChecked();
+  element.show();
+
+  function setNextDates() {
+    averageDaysBetweenWatering.text(PlantData[locationName][plantName].average);
+    
+    let nextWateringDate = getNextWaterDate(locationName, plantName)
+    let nextCheckDate = getNextCheckDate(locationName, plantName)
+    nextWatering.text(nextWateringDate.toDateString());
+    nextCheck.text(nextCheckDate.toDateString())
+  }
+    
+  function createUpdatePlantForm() {
+    $('#update-plant-div').remove()
+    let updateDiv = $('<div id="update-plant-div" class="floating-box content-box"></div>')
+    let updateForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
+    updateDiv.append(updateForm)
+    let buttonDiv = $('<div class="top-right"></div>')
+    let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
+    let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
+    saveButton.on('click', function() {
+      updatePlant()
+    })
+    closeButton.on('click', function() {
+      toggleUpdatePlantForm()
+    })
+    buttonDiv.append(saveButton, closeButton)
+    let updateInput = $('<div id="update-plant-input"></div>')
+    updateForm.append(buttonDiv, updateInput)
+    $("body").append(updateDiv)
+    
+    addPlantInputFeilds("#update-plant-input", 'updated');
+    dropdown('#updated');
+    setKnownPlantValues("#updated", PlantData[locationName][plantName]);
+    $("#update-plant-div").show();
+  }
+
+  function createMovePlantForm() {
     $('#move-location-div').remove()
     let moveDiv = $('<div id="move-location-div" class="floating-box content-box"></div>')
     let moveForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
