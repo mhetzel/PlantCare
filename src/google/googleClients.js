@@ -48,5 +48,4 @@ async function initializeGapiClient() {
 
   determineUserMode();
   displayLoginPage(); 
-  google.accounts.id.prompt();
 }
