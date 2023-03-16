@@ -131,7 +131,6 @@ function displayLoginPage() {
   } else {
     closeForm();
     if (GuestMode) {
-      setupSigninButton();
       signOutButton.hide();
     } else {
       signOutButton.show();
