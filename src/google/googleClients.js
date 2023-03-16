@@ -37,7 +37,8 @@ async function gisLoaded() {
     scope: SCOPES,
     callback: tokenCallback,
   });
-
+  setupSigninButton();
+  google.accounts.id.prompt();
   gisInited = true;
 }
                
