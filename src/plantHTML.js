@@ -46,86 +46,145 @@ function displayPlant(element, locationName, plantName, allOptions) {
   light.text('n/a');
   
   var waterWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+
   var checkWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+
   var fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
+
   var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
+
   var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
-     
+
   let waterDiv = $('<div></div>')
+
   waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
+
   waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
+
   waterDiv.append($('<div><span><b>Average Days Between Waterings: </b></span></div>').append(averageDaysBetweenWatering))
+
   waterDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+
   waterDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
+
   waterDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
+
   waterDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
+
   waterDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
 
   let fertilizerDiv = $('<div></div>')
+
   fertilizerDiv.append($('<div><span><b>Last Fertilized Date: </b></span></div>').append(lastFertilized))
+
   fertilizerDiv.append($('<div><span><b>Fertilizer Frequency: </b></span></div>').append(fertilzerFrequency))
+
   fertilizerDiv.append($('<div><span><b>Fertilizer Dose: </b></span></div>').append(fertilzerDose))
+
   
+
   if (allOptions) {
+
     plantInfo.append(waterDiv)
+
     plantInfo.append(fertilizerDiv)
+
   } else {
-    if (needsWatered()) {
+
+    if (needsWatered() || needsChecked()) {
+
       plantInfo.append(waterDiv)
-      if (needsFertilized()) {
-        plantInfo.append(fertilizerDiv)
-      }
-    } else {
-      let checkDiv = $('<div></div>')
-      checkDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
-      checkDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
-      checkDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
-      plantInfo.append(checkDiv)
-    }    
+
+    }
+
+    if (needsFertilized()) {
+
+      plantInfo.append(fertilizerDiv)
+
+    }
+
   }
 
     
+
   let extraDiv = $('<div></div>')
+
   extraDiv.append($('<div><span><b>Soil Preferences: </b></span></div>').append(soil))
+
   extraDiv.append($('<div><span><b>Pet Safe: </b></span></div>').append(petSafe))
+
   extraDiv.append($('<div><span><b>Humidity Needs: </b></span></div>').append(humidity))
+
   extraDiv.append($('<div><span><b>Desired Light Level: </b></span></div>').append(light))
 
   let waterButton = $('<button title="Water Plant"><i class="fa-solid fa-droplet"></i></button>')
+
   waterButton.on('click', function() {
+
     waterPlant()
+
   })
+
   let fertilizeButton = $('<button title="Fertilize Plant"><i class="fa-solid fa-vial"></i></button>')
+
   fertilizeButton.on('click', function() {
+
     fertilizePlant()
+
   })
+
   let moveButton = $('<button title="Move Plant"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>')
+
   moveButton.on('click', function() {
+
      toggleMovePlantForm()
+
   });
+
   let updateButton = $('<button title="Edit Plant"><i class="fa-solid fa-pencil"></i></button>')
+
   updateButton.on('click', function() {
+
     toggleUpdatePlantForm()
+
   })
+
   let deleteButton = $('<button title="Delete Plant"><i class="fa-solid fa-trash"></i></button>')
+
   deleteButton.on('click', function() {
+
     deletePlant()
+
   })
+
   let toggleInfoButton = $('<button title="Colapse/Expand Aditional Plant Info"></button>')
+
   toggleInfoButton.append(expandIcon);
+
   toggleInfoButton.on('click', function() {
+
     togglePlantInfo()
+
   })
 
   if (allOptions) {
+
     plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
+
   }
+
   else {
-    if (needsWatered()) {
+
+    if (needsWatered() || needsChecked()) {
+
       plantButtons.append(waterButton)
-      if (needsFertilized()) {
-        plantButtons.append(fertilizeButton)
-      }
+
+    }
+
+    if (needsFertilized()) {
+
+      plantButtons.append(fertilizeButton)
+
     }
 
   }
