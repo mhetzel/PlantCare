@@ -37,7 +37,6 @@ async function gisLoaded() {
     callback: tokenCallback,
   });
 
-  
 }
                
 async function initializeGapiClient() {
