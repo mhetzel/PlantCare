@@ -14,7 +14,7 @@ function doesPlantNeedChecked(locationName, plantName) {
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
   let differenceWaterDate =  Math.floor((today - nextWateringDate)/ (1000 * 3600 * 24))
   
-  if (differenceCheckDate == 1) {
+  if (differenceCheckDate <= 1) {
     //console.log(plantName, 'at', locationName, 'does not need checked it was checked yesterday')
     return false
   }
