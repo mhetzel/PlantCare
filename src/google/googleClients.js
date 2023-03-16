@@ -37,7 +37,7 @@ async function gisLoaded() {
     callback: tokenCallback,
   });
 
-  google.accounts.id.prompt();
+  
 }
                
 async function initializeGapiClient() {
@@ -48,4 +48,5 @@ async function initializeGapiClient() {
 
   determineUserMode();
   displayLoginPage(); 
+  google.accounts.id.prompt();
 }
