@@ -133,6 +133,10 @@ button {
   width: fit-content;
 }
 
+.menu-button {
+  width: 100%;
+}
+
 select {
   font-size: 20px;
   background: rgba(45, 181, 119, 0.9);
