@@ -126,12 +126,13 @@ function openNewPlantForm() {
 }
 
 function displayLoginPage() {
-  setupSigninButton();
+  
   if (loginDiv.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
     closeForm();
     if (GuestMode) {
+      setupSigninButton();
       signOutButton.hide();
     } else {
       signOutButton.show();
