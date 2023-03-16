@@ -24,10 +24,10 @@ function doesPlantNeedChecked(locationName, plantName) {
   }
   
   if (nextCheckDate <= today) {
-    //console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
     return true;
   }
-  else if (differenceCheckDate > 1 && nextWateringDate <= today) {
+  else if (nextWateringDate <= today) {
     //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
     //console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
     return true;
