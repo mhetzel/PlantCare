@@ -94,10 +94,10 @@ function doesPlantNeedWatered(locationName, plantName) {
   
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
   
-  if (differenceCheckDate <= 1) {
-    return false
-  }
-  
+
+
+
+
   if (plant.nextWatering == 'n/a') {
   	return true
   }
