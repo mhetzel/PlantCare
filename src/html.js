@@ -181,20 +181,23 @@ function addCloseButtons() {
 async function setCurrentUserDisplay(userName, userPicture) {
   userNameText.text(userName);
   $('#login-status-div').text('Currently signed in as: ')
-  signinDiv.show();
+  $('#reauth-div').hide();
   if (userName == 'Guest') {
     guestPic.show();
     userPic.hide();
+    signinDiv.show();
     signOutButton.hide();
   } else {
-    let valid = await isTokenValid()
-    if(valid) { 
-      signinDiv.hide();
-      signOutButton.show();
-    } 
+   /* let valid = await isTokenValid()
+    if(!valid) { */
+      $('#login-status-div').text('Previously signed in as: ')
+      $('#reauth-div').show();
+    // } 
     userPic.attr("src", userPicture);
     userPic.show();
     guestPic.hide();
+    signOutButton.show();
+    signinDiv.hide();
   }
 }
 
