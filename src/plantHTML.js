@@ -50,7 +50,12 @@ function displayPlant(element, locationName, plantName, allOptions) {
   var fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
   var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
   var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
-
+    
+  let checkDiv = $('<div></div>')
+  checkDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+  checkDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
+  checkDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
+ 
   let waterDiv = $('<div></div>')
   waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
@@ -70,12 +75,14 @@ function displayPlant(element, locationName, plantName, allOptions) {
     plantInfo.append(waterDiv)
     plantInfo.append(fertilizerDiv)
   } else {
-    if (needsWatered() || needsChecked()) {
+    if (needsWatered()) {
       plantInfo.append(waterDiv)
-    }
-    if (needsFertilized()) {
-      plantInfo.append(fertilizerDiv)
-    }
+      if (needsFertilized()) {
+        plantInfo.append(fertilizerDiv)
+      }
+    } else {
+      plantInfo.append(checkDiv)
+    }    
   }
 
     
@@ -115,12 +122,13 @@ function displayPlant(element, locationName, plantName, allOptions) {
     plantButtons.append(waterButton, fertilizeButton, moveButton, updateButton, deleteButton, toggleInfoButton);
   }
   else {
-    if (needsWatered() || needsChecked()) {
+    if (needsWatered()) {
       plantButtons.append(waterButton)
+      if (needsFertilized()) {
+        plantButtons.append(fertilizeButton)
+      }
     }
-    if (needsFertilized()) {
-      plantButtons.append(fertilizeButton)
-    }
+
   }
   
   if (Object.keys(PlantData[locationName][plantName]).length) {
