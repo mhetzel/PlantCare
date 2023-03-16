@@ -72,12 +72,8 @@ async function tokenCallback(resp) {
 }
 
 function signedIn() { 
-  checkAccess().then(function(response) {
-    if (response){
-      console.log('trying to call load plants from sign in')
-      loadPlants();
-    }
-  });
+  console.log('trying to call load plants from sign in')
+  loadPlants();
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
