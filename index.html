@@ -41,6 +41,10 @@
               this.addEventListener("mousewheel", handle, { passive: true });
           }
       };
+      
+      window.onbeforeunload = function() {
+        return "Dude, are you sure you want to leave? Think of the kittens!";
+      };
     </script>
 
     <script src="src/libs/jquery.multiselect.js"></script>
