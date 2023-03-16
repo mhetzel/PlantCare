@@ -50,12 +50,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
   var fertilizeWarning = $('<i style="color: #9c6e60" class="fa-solid fa-triangle-exclamation"></i>')
   var expandIcon = $('<i class="fa-solid fa-angle-right"></i>')
   var expandedIcon = $('<i class="fa-solid fa-angle-down"></i>')
-    
-  let checkDiv = $('<div></div>')
-  checkDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
-  checkDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
-  checkDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
- 
+     
   let waterDiv = $('<div></div>')
   waterDiv.append($('<div><span><b>Last Watered Date: </b></span></div>').append(lastWatered))
   waterDiv.append($('<div><span><b>Next Watering Date: </b></span></div>').append(nextWatering))
@@ -81,6 +76,10 @@ function displayPlant(element, locationName, plantName, allOptions) {
         plantInfo.append(fertilizerDiv)
       }
     } else {
+      let checkDiv = $('<div></div>')
+      checkDiv.append($('<div><span><b>Last Checked Date: </b></span></div>').append(lastChecked))
+      checkDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
+      checkDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
       plantInfo.append(checkDiv)
     }    
   }
