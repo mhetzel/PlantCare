@@ -8,20 +8,21 @@ var UserPicture = '';
 
 
 function handleReauthClick() {
-    google.accounts.id.prompt((notification) => {
-    if (notification.isSkippedMoment()) {
-      if (notification.getSkippedReason() == 'user_cancel') {
-        console.log('canceled')
-        handleSignoutClick();
-      }
-    }
-    if (notification.isNotDisplayed()) {
-      if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-        console.log('suppressed')
-        handleSignoutClick();
-      }
-    }
-  });
+    console.log('this is getting clicked')
+//     google.accounts.id.prompt((notification) => {
+//     if (notification.isSkippedMoment()) {
+//       if (notification.getSkippedReason() == 'user_cancel') {
+//         console.log('canceled')
+//         handleSignoutClick();
+//       }
+//     }
+//     if (notification.isNotDisplayed()) {
+//       if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
+//         console.log('suppressed')
+//         handleSignoutClick();
+//       }
+//     }
+//   });
 }
 
 
