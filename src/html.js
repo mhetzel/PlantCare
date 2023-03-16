@@ -126,6 +126,7 @@ function openNewPlantForm() {
 }
 
 function displayLoginPage() {
+  setupSigninButton();
   if (loginDiv.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
