@@ -14,7 +14,7 @@ function doesPlantNeedChecked(locationName, plantName) {
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
   let differenceWaterDate =  Math.floor((today - nextWateringDate)/ (1000 * 3600 * 24))
   
-  if (differenceCheckDate == 1) {
+  if (differenceCheckDate <= 1) {
     //console.log(plantName, 'at', locationName, 'does not need checked it was checked yesterday')
     return false
   }
@@ -24,10 +24,10 @@ function doesPlantNeedChecked(locationName, plantName) {
   }
   
   if (nextCheckDate <= today) {
-    //console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
+    console.log(plantName, 'at', locationName, 'needs checked because its halfwayish between last check and next watering')
     return true;
   }
-  else if (differenceCheckDate > 1 && nextWateringDate <= today) {
+  else if (nextWateringDate <= today) {
     //console.log(plantName, 'at', locationName, 'hasn\'t been checked today')
     //console.log(plantName, 'at', locationName, 'needs checked because its past when the plant should have been watered')
     return true;
@@ -93,10 +93,6 @@ function doesPlantNeedWatered(locationName, plantName) {
   let nextWateringDate = new Date(plant.nextWatering);
   
   let differenceCheckDate =  Math.floor((today - lastCheckedDate)/ (1000 * 3600 * 24))
-  
-  if (differenceCheckDate <= 1) {
-    return false
-  }
   
   if (plant.nextWatering == 'n/a') {
   	return true

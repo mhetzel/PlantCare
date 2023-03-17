@@ -192,6 +192,7 @@ async function setCurrentUserDisplay(userName, userPicture) {
     checkAccess().then(function(response) {
       if (!response){
          $('#login-status-div').text('Previously signed in as: ')
+         $('#reauth-div').show();
       }
     });
     userPic.attr("src", userPicture);

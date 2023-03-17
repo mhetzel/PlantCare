@@ -148,10 +148,14 @@ async function getFolderID() {
     return folderId;
   }, function(reason) {
     console.log('Find/create folder ERROR:', reason.result.error.message);
-    if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
+    if (reason.result.error.code === 401) {
       tokenClient.requestAccessToken();
       return null;
     }
+    if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
+      tokenClient.requestAccessToken();
+      return null;
+    } 
   });
   return id;
 }
