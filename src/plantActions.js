@@ -385,6 +385,12 @@ plantKeys = [
 ]
 */
 
+async function savePlantTemplate() {
+  let newName = $("#newPlantName").val();
+  let inputs = readPlantInputs("#new");
+  console.log('adding', newName, inputs)
+}
+
 async function addNewPlant() {
   let newLocation = $("#newPlantLocation").val();
   let newName = $("#newPlantName").val();
