@@ -50,6 +50,18 @@
             "Evenly moist but not soggy"
         ]
     },
+    "alocasia silver dragon": {
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "60%-80%",
+        "light": "4",
+        "petSafe": "false",
+        "soil": "cactus potting mix with added orchard bark and/or perlite",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy"
+        ]
+    },
     "aloe vera": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once a year, in the spring.",
@@ -284,6 +296,18 @@
             "Don't allow the plant to sit in water"
         ]
     },
+    "ficus fiddle leaf": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "40% at least",
+        "light": "4",
+        "petSafe": "false",
+        "soil": "cactus potting mix",
+        "water": "3",
+        "waterInstructions": [
+            "None"
+        ]
+    },
     "fluted jade": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once every 6 months.",
@@ -416,6 +440,31 @@
             "Evenly moist but not soggy"
         ]
     },
+    "philodendron birkin": {
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "70%-90%",
+        "light": "4",
+        "petSafe": "false",
+        "soil": "peat moss-based mix, such as african violet potting mix",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy",
+            "Water gently from above, soak through to the roots"
+        ]
+    },
+    "philodendron brandtianum": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "60%-80%",
+        "light": "4",
+        "petSafe": "false",
+        "soil": "peat moss-based mix, such as african violet potting mix",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ]
+    },
     "philodendron brasil": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once a month during spring and summer.",
@@ -433,6 +482,19 @@
         "fertilzerFrequency": "Once a month during spring and summer.",
         "humidity": "70%-90%",
         "light": "1",
+        "petSafe": "false",
+        "soil": "peat moss-based mix, such as african violet potting mix",
+        "water": "1",
+        "waterInstructions": [
+            "Evenly moist but not soggy",
+            "Water gently from above, soak through to the roots"
+        ]
+    },
+    "philodendron silver sword": {
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "70%-90%",
+        "light": "4",
         "petSafe": "false",
         "soil": "peat moss-based mix, such as african violet potting mix",
         "water": "1",
@@ -513,6 +575,18 @@
             "None"
         ]
     },
+    "pothos snow queen": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "",
+        "light": "3",
+        "petSafe": "false",
+        "soil": "cactus potting mix",
+        "water": "1",
+        "waterInstructions": [
+            "None"
+        ]
+    },
     "rhaphidophora tetrasperma": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once a month during spring and summer.",
@@ -523,6 +597,18 @@
         "water": "2",
         "waterInstructions": [
             "None"
+        ]
+    },
+    "sanseveria francisii": {
+        "fertilzerDose": "Half strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "30%-50%",
+        "light": "4",
+        "petSafe": "false",
+        "soil": "cactus potting mix",
+        "water": "5",
+        "waterInstructions": [
+            "Water thoroughly"
         ]
     },
     "sanseveria future robusta": {
@@ -574,6 +660,30 @@
         ]
     },
     "scindapsus pictus excotica": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "40%-50%",
+        "light": "1",
+        "petSafe": "false",
+        "soil": "cactus potting mix with added perlite",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ]
+    },
+    "scindapsus jade": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "40%-50%",
+        "light": "1",
+        "petSafe": "false",
+        "soil": "cactus potting mix with added perlite",
+        "water": "2",
+        "waterInstructions": [
+            "None"
+        ]
+    },
+    "scindapsus moonlight": {
         "fertilzerDose": "Full strength",
         "fertilzerFrequency": "Once a month during spring and summer.",
         "humidity": "40%-50%",
@@ -862,6 +972,18 @@
         "petSafe": "false",
         "soil": "cactus potting mix",
         "water": "2",
+        "waterInstructions": [
+            "None"
+        ]
+    },
+    "zz raven": {
+        "fertilzerDose": "Full strength",
+        "fertilzerFrequency": "Once a month during spring and summer.",
+        "humidity": "40% at least",
+        "light": "1",
+        "petSafe": "false",
+        "soil": "none",
+        "water": "3",
         "waterInstructions": [
             "None"
         ]
