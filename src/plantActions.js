@@ -400,8 +400,8 @@ function createSaveTemplateForm() {
     toggleTemplatePlantForm()
   })
   buttonDiv.append(saveButton, closeButton)
-  let moveLabel = $('<label for="planttypename"><b>New Location:</b></label>')
-  let moveInput = $('<input type="text" placeholder="Enter New Plant Type Name" id="planttypename" required>')
+  let moveLabel = $('<label for="planttypename"><b>New Template Plant:</b></label>')
+  let moveInput = $('<input type="text" placeholder="Enter New Name" id="planttypename" required>')
 
   moveForm.append(buttonDiv, moveLabel, moveInput)
 
