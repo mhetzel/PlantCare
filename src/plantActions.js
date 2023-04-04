@@ -385,8 +385,41 @@ plantKeys = [
 ]
 */
 
+function createSaveTemplateForm() {
+  $('#save-template-div').remove()
+  let moveDiv = $('<div id="save-template-div" class="floating-box content-box"></div>')
+  let moveForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
+  moveDiv.append(moveForm)
+  let buttonDiv = $('<div class="top-right"></div>')
+  let saveButton = $('<button type="submit" title="Save Template"><i class="fa-solid fa-floppy-disk"></i></button>')
+  let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
+  saveButton.on('click', function() {
+    savePlantTemplate()
+  })
+  closeButton.on('click', function() {
+    toggleTemplatePlantForm()
+  })
+  buttonDiv.append(saveButton, closeButton)
+  let moveLabel = $('<label for="planttypename"><b>New Location:</b></label>')
+  let moveInput = $('<input type="text" placeholder="Enter New Plant Type Name" id="planttypename" required>')
+
+  moveForm.append(buttonDiv, moveLabel, moveInput)
+
+  $("body").append(moveDiv)
+  $("#planttypename").val('');
+  $("#save-template-div").show();
+}
+
+function toggleTemplatePlantForm() {
+  if ($("#save-template-div").css('display') == 'block') {
+    $("#save-template-div").remove();
+  } else {
+    createSaveTemplateForm();
+  }
+};
+
 async function savePlantTemplate() {
-  let newName = $("#newPlantName").val();
+  let newName = $("#planttypename").val();
   let inputs = readPlantInputs("#new");
   console.log('adding', newName, inputs)
 }
