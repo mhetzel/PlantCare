@@ -422,6 +422,8 @@ async function savePlantTemplate() {
   let newName = $("#planttypename").val();
   let inputs = readPlantInputs("#new");
   console.log('adding', newName, inputs)
+  UserData['userPlants'][newName] = inputs;
+  saveUserConfig(UserData);
 }
 
 async function addNewPlant() {
