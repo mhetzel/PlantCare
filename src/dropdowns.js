@@ -3,7 +3,7 @@ var plantDropdown = $('#plant-dropdown');
 
 var KnownPlants = null;
 
-function loadKnownPlants() {
+async function loadKnownPlants() {
   $.getJSON('src/knownPlants.json', function(data) {
      KnownPlants = data;
   });
@@ -12,7 +12,7 @@ function loadKnownPlants() {
 
 
 function setKnownPlantDropdown() {
-  KnownPlants = loadKnownPlants();
+  KnownPlants = await loadKnownPlants();
   $.each(KnownPlants, function(i, f) {
     $("#known-plant").append($('<option></option>').attr('value', i).text(i));
   });
