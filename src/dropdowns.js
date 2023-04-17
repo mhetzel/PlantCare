@@ -1,23 +1,23 @@
 var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
 
-var KnownPlants = null
-fetch('./src/knownPlants.json').then(response => KnownPlants = response.json())
-
-
 function setKnownPlantDropdown() {
-  $.each(KnownPlants, function(i, f) {
-    $("#known-plant").append($('<option></option>').attr('value', i).text(i));
+  $.getJSON('src/knownPlants.json', function(data) {
+     $.each(data, function(i, f) {
+         $("#known-plant").append($('<option></option>').attr('value', i).text(i));
+     });
   });
 }
 
 function knownPlantSelectionChange() {
   setupNewPlantInput();
-  plant = KnownPlants[$("#known-plant").val()]
-  if (plant.hasOwnProperty('daysTotal')) {
-    $("#newPlantAverageWateringDays").val(plant['daysTotal']);
-  }
-  setKnownPlantValues("#new", plant);
+  $.getJSON('src/knownPlants.json', function(data) {
+    plant = data[$("#known-plant").val()]
+    if (plant.hasOwnProperty('daysTotal')) {
+      $("#newPlantAverageWateringDays").val(plant['daysTotal']);
+    }
+    setKnownPlantValues("#new", plant);
+  });
 }
 
 function dropdown(prefix) {
