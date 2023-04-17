@@ -7,11 +7,12 @@ function loadKnownPlants() {
   $.getJSON('src/knownPlants.json', function(data) {
      KnownPlants = data;
   });
+  return KnownPlants;
 }
 
 
 function setKnownPlantDropdown() {
-  loadKnownPlants();
+  KnownPlants = loadKnownPlants();
   $.each(KnownPlants, function(i, f) {
     $("#known-plant").append($('<option></option>').attr('value', i).text(i));
   });
