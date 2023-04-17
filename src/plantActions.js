@@ -422,6 +422,9 @@ async function savePlantTemplate() {
   let newName = $("#planttypename").val();
   let inputs = readPlantInputs("#new");
   console.log('adding', newName, inputs)
+  if (!UserData.hasOwnProperty('userPlants')) {
+    UserData['userPlants'] = {};
+  }
   UserData['userPlants'][newName] = inputs;
   saveUserConfig(UserData);
 }
