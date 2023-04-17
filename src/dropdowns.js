@@ -3,7 +3,8 @@ var plantDropdown = $('#plant-dropdown');
 
 function setKnownPlantDropdown() {
   $.getJSON('src/knownPlants.json', function(data) {
-     $.each(data, function(i, f) {
+    const allKnown = {...data, ...UserData['userPlants']};
+     $.each(allKnown, function(i, f) {
          $("#known-plant").append($('<option></option>').attr('value', i).text(i));
      });
   });
@@ -12,7 +13,8 @@ function setKnownPlantDropdown() {
 function knownPlantSelectionChange() {
   setupNewPlantInput();
   $.getJSON('src/knownPlants.json', function(data) {
-    plant = data[$("#known-plant").val()]
+    const allKnown = {...data, ...UserData['userPlants']};
+    plant = allKnown[$("#known-plant").val()]
     if (plant.hasOwnProperty('daysTotal')) {
       $("#newPlantAverageWateringDays").val(plant['daysTotal']);
     }
