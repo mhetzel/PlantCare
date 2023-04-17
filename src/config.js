@@ -50,6 +50,7 @@ async function retrieveUserData() {
 }
 
 async function saveUserConfig(userData) {
+  console.log(userData)
   await saveUserConfigNoDisplay(userData)
   setupDisplay();
 }
