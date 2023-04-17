@@ -11,7 +11,7 @@ async function loadKnownPlants() {
 }
 
 
-function setKnownPlantDropdown() {
+async function setKnownPlantDropdown() {
   KnownPlants = await loadKnownPlants();
   $.each(KnownPlants, function(i, f) {
     $("#known-plant").append($('<option></option>').attr('value', i).text(i));
