@@ -3,6 +3,10 @@ var plantDropdown = $('#plant-dropdown');
 
 var KnownPlants = require('./src/knownPlants.json');
 
+import * as data from './src/knownPlants.json';
+const {name} = data;
+console.log(name); // output 'testing'
+
 function setKnownPlantDropdown() {
   $.each(KnownPlants, function(i, f) {
     $("#known-plant").append($('<option></option>').attr('value', i).text(i));
