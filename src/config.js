@@ -57,7 +57,7 @@ async function saveUserConfig(userData) {
 
 async function saveUserConfigNoDisplay(userData) {
   let fileData = userData
-  if (!GuestMode) {
+  if (!GuestMode && UserFileID) {
     await writeFile(UserFileID, fileData);
   } else {
     localStorage.setItem(USER_STORAGE, JSON.stringify(fileData));
@@ -72,7 +72,7 @@ async function saveConfig(plantData) {
 async function saveConfigNoDisplay(plantData) {
   let fileData = {'timestamp': Date.now(), 'plants': plantData}
   // todo compare timestamp before writing to storage?
-  if (!GuestMode) {
+  if (!GuestMode && DriveFileID) {
     await writeFile(DriveFileID, fileData);
   } else {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fileData));
