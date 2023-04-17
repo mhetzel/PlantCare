@@ -11,7 +11,7 @@ async function loadUserData() {
   if (typeof(Storage) !== "undefined") {
     await retrieveUserData();
     console.log('loaded user config: ', UserData, UserFileID);
-    //setupDisplay();
+    setKnownPlantDropdown();
   } else {
     alert('Sorry no way to store your settings. Try a different browser');
   }
@@ -52,7 +52,7 @@ async function retrieveUserData() {
 async function saveUserConfig(userData) {
   console.log(userData)
   await saveUserConfigNoDisplay(userData)
-  setupDisplay();
+  setKnownPlantDropdown();
 }
 
 async function saveUserConfigNoDisplay(userData) {
