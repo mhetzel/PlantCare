@@ -10,7 +10,7 @@ async function loadUserData() {
   console.log('load user data');
   if (typeof(Storage) !== "undefined") {
     await retrieveUserData();
-    console.log('loaded user config: ', UserData);
+    console.log('loaded user config: ', UserData, UserFileID);
     //setupDisplay();
   } else {
     alert('Sorry no way to store your settings. Try a different browser');
@@ -22,7 +22,7 @@ async function loadPlants() {
   console.log('load plants');
   if (typeof(Storage) !== "undefined") {
     await retrievePlantData();
-    console.log('loaded plant config: ', PlantData);
+    console.log('loaded plant config: ', PlantData, DriveFileID);
     setupDisplay();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser');
