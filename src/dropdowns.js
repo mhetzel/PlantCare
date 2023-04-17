@@ -1,11 +1,9 @@
 var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
 
-var KnownPlants = require('./src/knownPlants.json');
+var KnownPlants = null
+fetch('./src/knownPlants.json').then(response => KnownPlants = response.json())
 
-import * as data from './src/knownPlants.json';
-const {name} = data;
-console.log(name); // output 'testing'
 
 function setKnownPlantDropdown() {
   $.each(KnownPlants, function(i, f) {
