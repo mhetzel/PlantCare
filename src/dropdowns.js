@@ -1,18 +1,9 @@
 var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
 
-var KnownPlants = null;
+var KnownPlants = require('./src/knownPlants.json');
 
-async function loadKnownPlants() {
-  $.getJSON('src/knownPlants.json', function(data) {
-     KnownPlants = data;
-  });
-  return KnownPlants;
-}
-
-
-async function setKnownPlantDropdown() {
-  KnownPlants = await loadKnownPlants();
+function setKnownPlantDropdown() {
   $.each(KnownPlants, function(i, f) {
     $("#known-plant").append($('<option></option>').attr('value', i).text(i));
   });
