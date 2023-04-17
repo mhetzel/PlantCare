@@ -1,7 +1,22 @@
 const STORAGE_KEY = 'plantCareData';
+const USER_STORAGE = 'plantUserData';
 let DriveFileID = null;
+let UserFileID = null;
 var PlantData = {};
+var UserData = {};
 var Timestamp = null;
+
+async function loadUserData() {
+  console.log('load user data');
+  if (typeof(Storage) !== "undefined") {
+    await retrieveUserData();
+    console.log('loaded user config: ', UserData);
+    //setupDisplay();
+  } else {
+    alert('Sorry no way to store your settings. Try a different browser');
+  }
+}
+
 
 async function loadPlants() {
   console.log('load plants');
@@ -11,6 +26,40 @@ async function loadPlants() {
     setupDisplay();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser');
+  }
+}
+
+async function retrieveUserData() {
+  let retrievedObject = null;
+
+  if (!GuestMode) {
+    console.log('from retrieveUserData')
+    await findOrCreateUserConfig();
+    console.log('read file from retrieveUserData')
+    retrievedObject = await readFile(UserFileID);
+  } else {
+    retrievedObject = localStorage.getItem(USER_STORAGE);
+  }
+  
+  if (retrievedObject) {
+    let fileData = JSON.parse(retrievedObject);
+    UserData = fileData;
+  }
+  console.log('initializing user storage');
+  saveUserConfig(UserData);
+}
+
+async function saveUserConfig(userData) {
+  await saveUserConfigNoDisplay(userData)
+  setupDisplay();
+}
+
+async function saveUserConfigNoDisplay(userData) {
+  let fileData = userData
+  if (!GuestMode) {
+    await writeFile(UserFileID, fileData);
+  } else {
+    localStorage.setItem(USER_STORAGE, JSON.stringify(fileData));
   }
 }
 
@@ -54,6 +103,19 @@ async function retrievePlantData() {
   }
   console.log('initializing plant data storage');
   saveConfig(PlantData);
+}
+
+async function findOrCreateUserConfig() {
+  if (!GuestMode) {
+    if (!UserFileID) {
+      UserFileID = await getFolderID().then(folderID => { 
+        console.log('getFileID from findOrCreateUserConfig')
+        return getFileID(folderID, 'user.json');
+      });
+    }
+  } else {
+    console.log('No drive access as Guest');
+  }
 }
 
 async function findOrCreateConfig() {
