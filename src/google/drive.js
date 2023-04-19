@@ -69,7 +69,7 @@ async function writeFile(fileID, data) {
   .catch(err => console.error(err));
 }
  
-async function getFileID(folderID) {
+async function getFileID(folderID, fileName) {
   let response;
   let id = null;
   
@@ -78,7 +78,7 @@ async function getFileID(folderID) {
       response = await gapi.client.drive.files.list({
         'pageSize': 10,
         'fields': 'files(id, name)',
-        'q': "'" + folderID + "' in parents and name = 'data.json' and trashed != true"
+        'q': "'" + folderID + "' in parents and name = '" + fileName + "' and trashed != true"
       });
     } catch (err) {
       console.log(err);
@@ -89,7 +89,7 @@ async function getFileID(folderID) {
       var fileContent = '';
       var file = new Blob([fileContent], {type: 'text/plain'});
       var metadata = {
-          'name': 'data.json', // Filename at Google Drive
+          'name': fileName, // Filename at Google Drive
           'mimeType': 'text/plain', // mimeType at Google Drive
           'parents': [folderID], // Folder ID at Google Drive
       }

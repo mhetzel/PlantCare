@@ -1,16 +1,66 @@
 const STORAGE_KEY = 'plantCareData';
+const USER_STORAGE = 'plantUserData';
 let DriveFileID = null;
+let UserFileID = null;
 var PlantData = {};
+var UserData = {};
 var Timestamp = null;
+
+async function loadUserData() {
+  console.log('load user data');
+  if (typeof(Storage) !== "undefined") {
+    await retrieveUserData();
+    console.log('loaded user config: ', UserData, UserFileID);
+    setKnownPlantDropdown();
+  } else {
+    alert('Sorry no way to store your settings. Try a different browser');
+  }
+}
+
 
 async function loadPlants() {
   console.log('load plants');
   if (typeof(Storage) !== "undefined") {
     await retrievePlantData();
-    console.log('loaded plant config: ', PlantData);
+    console.log('loaded plant config: ', PlantData, DriveFileID);
     setupDisplay();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser');
+  }
+}
+
+async function retrieveUserData() {
+  let retrievedObject = null;
+
+  if (!GuestMode) {
+    console.log('from retrieveUserData')
+    await findOrCreateUserConfig();
+    console.log('read file from retrieveUserData')
+    retrievedObject = await readFile(UserFileID);
+  } else {
+    retrievedObject = localStorage.getItem(USER_STORAGE);
+  }
+  
+  if (retrievedObject) {
+    let fileData = JSON.parse(retrievedObject);
+    UserData = fileData;
+  }
+  console.log('initializing user storage');
+  saveUserConfig(UserData);
+}
+
+async function saveUserConfig(userData) {
+  console.log(userData)
+  await saveUserConfigNoDisplay(userData)
+  setKnownPlantDropdown();
+}
+
+async function saveUserConfigNoDisplay(userData) {
+  let fileData = userData
+  if (!GuestMode && UserFileID) {
+    await writeFile(UserFileID, fileData);
+  } else {
+    localStorage.setItem(USER_STORAGE, JSON.stringify(fileData));
   }
 }
 
@@ -22,7 +72,7 @@ async function saveConfig(plantData) {
 async function saveConfigNoDisplay(plantData) {
   let fileData = {'timestamp': Date.now(), 'plants': plantData}
   // todo compare timestamp before writing to storage?
-  if (!GuestMode) {
+  if (!GuestMode && DriveFileID) {
     await writeFile(DriveFileID, fileData);
   } else {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fileData));
@@ -56,12 +106,25 @@ async function retrievePlantData() {
   saveConfig(PlantData);
 }
 
+async function findOrCreateUserConfig() {
+  if (!GuestMode) {
+    if (!UserFileID) {
+      UserFileID = await getFolderID().then(folderID => { 
+        console.log('getFileID from findOrCreateUserConfig')
+        return getFileID(folderID, 'user.json');
+      });
+    }
+  } else {
+    console.log('No drive access as Guest');
+  }
+}
+
 async function findOrCreateConfig() {
   if (!GuestMode) {
     if (!DriveFileID) {
       DriveFileID = await getFolderID().then(folderID => { 
         console.log('getFileID from findOrCreateConfig')
-        return getFileID(folderID);
+        return getFileID(folderID, 'data.json');
       });
     }
   } else {
