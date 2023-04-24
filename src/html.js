@@ -123,11 +123,17 @@ function toggleLoginPage() {
     closeForm();
     if (GuestMode) {
       setupSigninButton();
+      if (isFirstVisit()) {
+        $('guest-button').show();
+        $('user-div').hide();
+      } else {
+        $('guest-button').hide();
+        $('user-div').show();
+      }
       signOutButton.hide();
     } else {
       signOutButton.show();
     }
-    
     loginDiv.show();
   }
 };
