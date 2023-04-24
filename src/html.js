@@ -139,10 +139,12 @@ function setupDisplay() {
 
 function setDisplayForNoPlants() {
   closeForm();
-  if (!PlantData || Object.keys(PlantData).length === 0) {
+  if (isFirstVisit()) {
+    toggleLoginPage();
+  }
+  else if (!PlantData || Object.keys(PlantData).length === 0) {
     toggleNewPlantForm();
   } else {
-    
     actionablePlantDiv.show();
     showAllNeedyPlants(null);
   }
