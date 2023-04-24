@@ -121,6 +121,7 @@ function toggleLoginPage() {
     setDisplayForNoPlants();
   } else {
     closeForm();
+    $('#guest-button').hide();
     if (GuestMode) {
       setupSigninButton();
       signOutButton.hide();
