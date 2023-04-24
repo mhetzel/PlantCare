@@ -59,7 +59,7 @@ function parseJwt(token) {
 };
 
 async function handleToken(googleUser) {
-  
+  localStorage.setItem('hasVisited', true)
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
     UserPicture = parsedData.picture;
@@ -124,6 +124,7 @@ function signedOut() {
 };
 
 async function handleSignoutClick() {
+  localStorage.setItem('hasVisited', true)
   // alert('This will disable google account syncing and plant data will be stored in this browser only.')
   if (User != 'Guest') {
       google.accounts.id.disableAutoSelect();
