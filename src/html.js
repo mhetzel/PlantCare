@@ -123,18 +123,19 @@ function toggleLoginPage() {
     closeForm();
     if (GuestMode) {
       setupSigninButton();
-      if (isFirstVisit()) {
-        console.log('here')
-        $('guest-button').show();
-        $('user-div').hide();
-      } else {
-        $('guest-button').hide();
-        $('user-div').show();
-      }
       signOutButton.hide();
+ 
+      if (isFirstVisit()) {
+        $('#guest-button').show();
+        $('#user-div').hide();
+      } else {
+        $('#guest-button').hide();
+        $('#user-div').show();
+      }
     } else {
       signOutButton.show();
     }
+   
     loginDiv.show();
   }
 };
