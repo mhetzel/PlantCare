@@ -140,7 +140,7 @@ function setupDisplay() {
 function setDisplayForNoPlants() {
   closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
+    toggleNewPlantForm();
   } else {
     
     actionablePlantDiv.show();
