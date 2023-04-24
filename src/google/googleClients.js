@@ -46,6 +46,6 @@ async function initializeGapiClient() {
   });
 
   determineUserMode();
-  displayLoginPage();
+  toggleLoginPage();
   google.accounts.id.prompt();
 }
