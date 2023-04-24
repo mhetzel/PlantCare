@@ -1,4 +1,4 @@
-
+isFirstVisit();
 addCloseButtons();
 setCurrentUserDisplay('Guest', null);
 setupNewPlantInput();
