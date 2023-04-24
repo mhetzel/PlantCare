@@ -16,6 +16,11 @@ function isFirstVisit() {
 }
 
 
+function guestButton() {
+  localStorage.setItem('hasVisited', true)
+  handleSignoutClick();
+}
+
 function handleReauthClick() {
     console.log('this is getting clicked')
 //     google.accounts.id.prompt((notification) => {
@@ -124,7 +129,6 @@ function signedOut() {
 };
 
 async function handleSignoutClick() {
-  localStorage.setItem('hasVisited', true)
   // alert('This will disable google account syncing and plant data will be stored in this browser only.')
   if (User != 'Guest') {
       google.accounts.id.disableAutoSelect();
