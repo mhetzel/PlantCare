@@ -10,7 +10,6 @@ function isFirstVisit() {
   var hasVisited = localStorage.getItem('hasVisited');
   if (!hasVisited) {
     console.log('first visit!')
-    localStorage.setItem('hasVisited', true)
     return true
   }
   return false
