@@ -17,12 +17,13 @@ function isFirstVisit() {
 
 
 function guestButton() {
-  localStorage.setItem('hasVisited', true)
+  localStorage.setItem('hasVisited', true);
   handleSignoutClick();
 }
 
 function handleReauthClick() {
-    console.log('this is getting clicked')
+  console.log('this is getting clicked');
+  setCurrentUserDisplay(User, UserPicture);
 //     google.accounts.id.prompt((notification) => {
 //     if (notification.isSkippedMoment()) {
 //       if (notification.getSkippedReason() == 'user_cancel') {
