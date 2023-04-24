@@ -124,6 +124,7 @@ function toggleLoginPage() {
     if (GuestMode) {
       setupSigninButton();
       if (isFirstVisit()) {
+        console.log('here')
         $('guest-button').show();
         $('user-div').hide();
       } else {
