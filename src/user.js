@@ -6,6 +6,16 @@ var GuestMode = true;
 var User = 'Guest';
 var UserPicture = '';
 
+function isFirstVisit() {
+  var hasVisited = localStorage.getItem('hasVisited');
+  if (!hasVisited) {
+    console.log('first visit!')
+    localStorage.setItem('hasVisited', true)
+    return true
+  }
+  return false
+}
+
 
 function handleReauthClick() {
     console.log('this is getting clicked')
