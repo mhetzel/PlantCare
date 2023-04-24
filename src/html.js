@@ -63,7 +63,7 @@ function setKnownPlantValues(prefix, plant) {
   $(prefix + "PlantLastFertilized").val(dateFormat);
 }
 
-function waterPlants() {
+function toggleNeedyPlants() {
   closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
     openNewPlantForm();
@@ -73,7 +73,7 @@ function waterPlants() {
   }
 }
 
-function displayPlants() {
+function toggleAllPlants() {
   closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
     openNewPlantForm();
@@ -83,16 +83,6 @@ function displayPlants() {
   }
 }
 
-function feedPlants() {
-  closeForm();
-  if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
-  } else {
-    closeForm();
-    fertilizerPlantDiv.show();
-    showAllFertilizablePlants(null);
-  }
-}
 
 function setupNewPlantInput() {
   addPlantInputFeilds('#add-plant-input', 'new')
@@ -106,7 +96,7 @@ function setupNewPlantInput() {
   dropdown('#new');
 }
 
-function openConfigForm() {
+function toggleConfigForm() {
   if (configDiv.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
@@ -115,7 +105,7 @@ function openConfigForm() {
   }
 }
 
-function openNewPlantForm() {
+function toggleNewPlantForm() {
   if (plantForm.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
@@ -125,7 +115,7 @@ function openNewPlantForm() {
   }
 }
 
-function displayLoginPage() {
+function toggleLoginPage() {
   
   if (loginDiv.css('display') == 'block') {
     setDisplayForNoPlants();
