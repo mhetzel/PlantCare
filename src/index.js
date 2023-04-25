@@ -10,7 +10,7 @@ var eventHandler = function(name) {
     console.log(name, arguments);
   };
 };
-var $select = $('#normalize').selectize({
+var $select = $('#select-state').selectize({
   create          : true,
   onChange        : eventHandler('onChange'),
   onItemAdd       : eventHandler('onItemAdd'),
