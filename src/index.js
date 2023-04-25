@@ -12,7 +12,7 @@ var eventHandler = function(name) {
 };
 var $select = $('#select-state').selectize({
   create          : true,
-  maxItems: 3,
+  maxItems: 1,
   onChange        : eventHandler('onChange'),
   onItemAdd       : eventHandler('onItemAdd'),
   onItemRemove    : eventHandler('onItemRemove'),
