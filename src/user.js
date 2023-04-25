@@ -52,6 +52,7 @@ function determineUserMode() {
   } else {
     handleSignoutClick();
   }
+  toggleLoginPage();
 };
 
 function parseJwt(token) {
