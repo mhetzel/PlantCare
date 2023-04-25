@@ -442,7 +442,7 @@ async function addNewPlant() {
     console.log(PlantData[newLocation][newName]);
   
     await saveConfig(PlantData);
-    setDisplayForNoPlants();
+    toggleAllPlants();
     resetPlantSelection(newLocation, newName);
   }
 }
