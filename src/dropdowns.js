@@ -6,7 +6,7 @@ function findUserLocations() {
   var userLocations = []
   if (PlantData) {
     Object.keys(PlantData).forEach(function(location) {
-      userLocations.append(location);
+      userLocations.push(location);
     });
   }
   console.log(userLocations)
