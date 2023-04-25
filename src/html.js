@@ -66,7 +66,7 @@ function setKnownPlantValues(prefix, plant) {
 function toggleNeedyPlants() {
   closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
+    toggleNewPlantForm();
   } else {
     actionablePlantDiv.show();
     showAllNeedyPlants(null);
@@ -76,7 +76,7 @@ function toggleNeedyPlants() {
 function toggleAllPlants() {
   closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
+    toggleNewPlantForm();
   } else {
     closeForm();
     plantInfos.show();
