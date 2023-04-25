@@ -136,7 +136,7 @@ function toggleLoginPage() {
     } else {
       signOutButton.show();
     }
-   
+    setCurrentUserDisplay(User, UserPicture);
     loginDiv.show();
   }
 };
