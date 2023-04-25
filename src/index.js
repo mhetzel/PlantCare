@@ -5,7 +5,7 @@ setKnownPlantDropdown();
 //initGoogleAPIs();
 
 
-$('#normalize').selectize({
+$('#select-tools').selectize({
   maxItems: null,
   valueField: 'id',
   labelField: 'title',
