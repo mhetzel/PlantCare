@@ -24,20 +24,6 @@ function guestButton() {
 function handleReauthClick() {
   console.log('this is getting clicked');
   setCurrentUserDisplay(User, UserPicture);
-//     google.accounts.id.prompt((notification) => {
-//     if (notification.isSkippedMoment()) {
-//       if (notification.getSkippedReason() == 'user_cancel') {
-//         console.log('canceled')
-//         handleSignoutClick();
-//       }
-//     }
-//     if (notification.isNotDisplayed()) {
-//       if (notification.getNotDisplayedReason() == 'suppressed_by_user') {
-//         console.log('suppressed')
-//         handleSignoutClick();
-//       }
-//     }
-//   });
 }
 
 
@@ -46,9 +32,6 @@ function determineUserMode() {
   if (!GuestMode) {
     User = localStorage.getItem('userEmail');
     UserPicture = localStorage.getItem('userPic');
-
-    setCurrentUserDisplay(User, UserPicture);
-
   } else {
     handleSignoutClick();
   }

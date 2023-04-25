@@ -24,6 +24,7 @@ async function loadPlants() {
     await retrievePlantData();
     console.log('loaded plant config: ', PlantData, DriveFileID);
     setupDisplay();
+    setDisplayForNoPlants();
   } else {
     alert('Sorry no way to store your plant info. Try a different browser');
   }
