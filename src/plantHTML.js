@@ -203,7 +203,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
     })
     buttonDiv.append(saveButton, closeButton)
     let moveLabel = $('<label for="movedPlantLocation"><b>New Location:</b></label>')
-    let moveInput = $('<input type="text" placeholder="Enter New Plant Location" id="movedPlantLocation" required>')
+    let moveInput = $('<input type="text" list="known-locations" placeholder="Enter New Plant Location" id="movedPlantLocation" required>')
 
     moveForm.append(buttonDiv, moveLabel, moveInput)
 

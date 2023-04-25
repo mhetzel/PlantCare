@@ -20,6 +20,7 @@
   <body>
         
     <script src="src/libs/jquery-3.6.0.min.js"></script>
+
     <script>
       jQuery.event.special.touchstart = {
           setup: function( _, ns, handle ) {
@@ -74,7 +75,9 @@
       </nav>
 
       <article>
-    
+        <datalist id="known-locations"></datalist>
+        
+        
         <div id="login-div" class="content-box">
           <h2>Plant Care Account Settings</h2>
           <div id="signin-div"></div>
@@ -118,7 +121,7 @@
             </div>
             <div>
               <label for="newPlantLocation"><b>Location:</b></label>
-              <input type="text" placeholder="Enter Plant Location" id="newPlantLocation" required>
+              <input type="text" placeholder="Enter Plant Location" list="known-locations" id="newPlantLocation" required>
             </div>
 
             <div id="add-plant-input"></div>
