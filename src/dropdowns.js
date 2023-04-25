@@ -3,13 +3,11 @@ var plantDropdown = $('#plant-dropdown');
 
 
 function findUserLocations() {
-  var userLocations = []
   if (PlantData) {
     Object.keys(PlantData).forEach(function(location) {
-      userLocations.push(location);
+      $("#known-locations").append($('<option></option>').attr('value', location).text(location));
     });
   }
-  console.log(userLocations)
 }
 
 function setKnownPlantDropdown() {
