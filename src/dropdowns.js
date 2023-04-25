@@ -1,6 +1,17 @@
 var locationDropdown = $("#location-dropdown");
 var plantDropdown = $('#plant-dropdown');
 
+
+function findUserLocations() {
+  var userLocations = []
+  if (PlantData) {
+    Object.keys(PlantData).forEach(function(location) {
+      userLocations.append(location);
+    });
+  }
+  console.log(userLocations)
+}
+
 function setKnownPlantDropdown() {
   $.getJSON('src/knownPlants.json', function(data) {
     const allKnown = {...data, ...UserData['userPlants']};
@@ -126,4 +137,5 @@ async function dropdownSetup() {
   resetLocationDropdown();
   resetPlantDropdown();
   await setupDropDowns();
+  findUserLocations();
 }
