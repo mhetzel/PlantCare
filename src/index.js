@@ -1,4 +1,3 @@
-
 addCloseButtons();
 setCurrentUserDisplay('Guest', null);
 setupNewPlantInput();

@@ -63,36 +63,26 @@ function setKnownPlantValues(prefix, plant) {
   $(prefix + "PlantLastFertilized").val(dateFormat);
 }
 
-function waterPlants() {
+function toggleNeedyPlants() {
   closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
+    toggleNewPlantForm();
   } else {
     actionablePlantDiv.show();
     showAllNeedyPlants(null);
   }
 }
 
-function displayPlants() {
+function toggleAllPlants() {
   closeForm();
   if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
+    toggleNewPlantForm();
   } else {
     closeForm();
     plantInfos.show();
   }
 }
 
-function feedPlants() {
-  closeForm();
-  if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
-  } else {
-    closeForm();
-    fertilizerPlantDiv.show();
-    showAllFertilizablePlants(null);
-  }
-}
 
 function setupNewPlantInput() {
   addPlantInputFeilds('#add-plant-input', 'new')
@@ -106,7 +96,7 @@ function setupNewPlantInput() {
   dropdown('#new');
 }
 
-function openConfigForm() {
+function toggleConfigForm() {
   if (configDiv.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
@@ -115,7 +105,7 @@ function openConfigForm() {
   }
 }
 
-function openNewPlantForm() {
+function toggleNewPlantForm() {
   if (plantForm.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
@@ -125,19 +115,28 @@ function openNewPlantForm() {
   }
 }
 
-function displayLoginPage() {
+function toggleLoginPage() {
   
   if (loginDiv.css('display') == 'block') {
     setDisplayForNoPlants();
   } else {
     closeForm();
+    $('#guest-button').hide();
     if (GuestMode) {
       setupSigninButton();
       signOutButton.hide();
+ 
+      if (isFirstVisit()) {
+        $('#guest-button').show();
+        $('#user-div').hide();
+      } else {
+        $('#guest-button').hide();
+        $('#user-div').show();
+      }
     } else {
       signOutButton.show();
     }
-    
+   
     loginDiv.show();
   }
 };
@@ -149,10 +148,12 @@ function setupDisplay() {
 
 function setDisplayForNoPlants() {
   closeForm();
-  if (!PlantData || Object.keys(PlantData).length === 0) {
-    openNewPlantForm();
+  if (isFirstVisit()) {
+    toggleLoginPage();
+  }
+  else if (!PlantData || Object.keys(PlantData).length === 0) {
+    toggleNewPlantForm();
   } else {
-    
     actionablePlantDiv.show();
     showAllNeedyPlants(null);
   }

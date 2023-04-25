@@ -6,9 +6,24 @@ var GuestMode = true;
 var User = 'Guest';
 var UserPicture = '';
 
+function isFirstVisit() {
+  var hasVisited = localStorage.getItem('hasVisited');
+  if (!hasVisited) {
+    console.log('first visit!')
+    return true
+  }
+  return false
+}
+
+
+function guestButton() {
+  localStorage.setItem('hasVisited', true);
+  handleSignoutClick();
+}
 
 function handleReauthClick() {
-    console.log('this is getting clicked')
+  console.log('this is getting clicked');
+  setCurrentUserDisplay(User, UserPicture);
 //     google.accounts.id.prompt((notification) => {
 //     if (notification.isSkippedMoment()) {
 //       if (notification.getSkippedReason() == 'user_cancel') {
@@ -37,6 +52,7 @@ function determineUserMode() {
   } else {
     handleSignoutClick();
   }
+  toggleLoginPage();
 };
 
 function parseJwt(token) {
@@ -50,7 +66,7 @@ function parseJwt(token) {
 };
 
 async function handleToken(googleUser) {
-  
+  localStorage.setItem('hasVisited', true)
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
     UserPicture = parsedData.picture;

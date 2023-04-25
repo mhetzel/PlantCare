@@ -65,11 +65,11 @@
       
       <nav>
         <div style="display: block" class="content-box">
-        <div><button class="menu-button" aria-label="Open Config Form" id="config-button" onclick="openConfigForm()"><i class="fa-solid fa-gears"></i><span class='icon'> Config</span></button></div>
-        <div><button class="menu-button" aria-label="Open New Plant Form" id="add-plant-button" onclick="openNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i><span class='icon'> Add Plant</span></button></div>
-        <div><button class="menu-button" aria-label="All Plants" id="all-plant-button" onclick="displayPlants()"><i class="fa-solid fa-seedling"></i><span class='icon'> All Plants</span></button></div>
-        <div><button class="menu-button" aria-label="Needy Plants" id="list-plant-button" onclick="waterPlants()"><i class="fa-solid fa-plant-wilt"></i><span class='icon'> Needy Plants</span></button></div>
-        <div><button class="menu-button" aria-label="Display Login Page" id="user-button" onclick="displayLoginPage()"><i class="fa-solid fa-user-pen"></i><span class='icon'> Account Settings</span></button></div>
+        <div><button class="menu-button" aria-label="Open Config Form" id="config-button" onclick="toggleConfigForm()"><i class="fa-solid fa-gears"></i><span class='icon'> Config</span></button></div>
+        <div><button class="menu-button" aria-label="Open New Plant Form" id="add-plant-button" onclick="toggleNewPlantForm()"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-leaf"></i><span class='icon'> Add Plant</span></button></div>
+        <div><button class="menu-button" aria-label="All Plants" id="all-plant-button" onclick="toggleAllPlants()"><i class="fa-solid fa-seedling"></i><span class='icon'> All Plants</span></button></div>
+        <div><button class="menu-button" aria-label="Needy Plants" id="list-plant-button" onclick="toggleNeedyPlants()"><i class="fa-solid fa-plant-wilt"></i><span class='icon'> Needy Plants</span></button></div>
+        <div><button class="menu-button" aria-label="Display Login Page" id="user-button" onclick="toggleLoginPage()"><i class="fa-solid fa-user-pen"></i><span class='icon'> Account Settings</span></button></div>
         </div>
       </nav>
 
@@ -85,6 +85,7 @@
           </div>
           <div id="reauth-div"><button id="reauth-button" onclick="handleReauthClick()">Reauthenticate</button></div>
           <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
+          <div><button id="guest-button" onclick="guestButton()">Continue as Guest</button></div>
         </div>
 
         <div id="config-div" class="content-box">
