@@ -289,6 +289,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       delete PlantData[locationName];
     }
     await saveConfig(PlantData);
+    setDisplayForNoPlants();
   };
   
   // pop up actions
