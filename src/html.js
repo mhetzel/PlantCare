@@ -143,7 +143,7 @@ function toggleLoginPage() {
 
 function setupDisplay() {
   dropdownSetup();
-  setDisplayForNoPlants();
+  //setDisplayForNoPlants();
 }
 
 function setDisplayForNoPlants() {
