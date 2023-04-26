@@ -98,9 +98,9 @@
               <button aria-label="UploadUserConfigButton">
                 <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
               </button>
+              <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
             </div>
             <div>
-              <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
               <a id="configText" download="plantData.json">
                 <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
               </a>
