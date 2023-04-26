@@ -3,7 +3,6 @@
 // needs config.js
 
 let loginDiv = $("#login-div");
-let configDiv = $("#config-div")
 
 let signinDiv = $("#signin-div");
 let userPic = $("#profile-pic");
@@ -96,14 +95,6 @@ function setupNewPlantInput() {
   dropdown('#new');
 }
 
-function toggleConfigForm() {
-  if (configDiv.css('display') == 'block') {
-    setDisplayForNoPlants();
-  } else {
-    closeForm();
-    configDiv.show();
-  }
-}
 
 function toggleNewPlantForm() {
   if (plantForm.css('display') == 'block') {
@@ -160,7 +151,6 @@ function setDisplayForNoPlants() {
 }
 
 function closeForm() {
-  configDiv.hide();
   plantForm.hide();
   loginDiv.hide();
   plantInfos.hide();
