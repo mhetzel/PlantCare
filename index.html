@@ -78,7 +78,7 @@
         
         
         <div id="login-div" class="content-box">
-          <h2>Plant Care Account Settings</h2>
+          <h2>Account Settings</h2>
           <div id="signin-div"></div>
           <div id="user-div">
             <img id="profile-pic" alt="user profile picture" src="">
@@ -91,13 +91,20 @@
           
           <div id="config-div">
             <h2>Config File Management</h2>
-            <button aria-label="UploadUserConfigButton">
-              <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
-            </button>
-            <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
-            <a id="configText" download="plantData.json">
-              <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
-            </a>
+            <div>
+              Download your plant data or upload new plant data here:
+            </div>
+            <div>
+              <button aria-label="UploadUserConfigButton">
+                <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
+              </button>
+            </div>
+            <div>
+              <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
+              <a id="configText" download="plantData.json">
+                <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
+              </a>
+            </div>
           </div>
           
         </div>
