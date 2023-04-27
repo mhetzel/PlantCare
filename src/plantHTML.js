@@ -385,7 +385,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
   };
 
   async function movePlant() {
-    let newLocation = $("#movedPlantLocation").val();
+    let newLocation = $("#movedPlantLocation").val().trim();
     console.log(newLocation)
     let plant = PlantData[locationName][plantName];
     delete PlantData[locationName][plantName];
