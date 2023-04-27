@@ -78,31 +78,35 @@
         
         
         <div id="login-div" class="content-box">
-          <h2>Account Settings</h2>
-          <div id="signin-div"></div>
-          <div id="user-div">
-            <img id="profile-pic" alt="user profile picture" src="">
-            <span id="guest-pic"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>
-            <span id="current-span"><div id="login-status-div">Currently signed in as: </div><div id="user-name">Guest</div></span>
+          <h2>Settings</h2>
+          
+          <div>
+            <h4>Account</h4>
+            <div id="signin-div"></div>
+            <div id="user-div">
+              <img id="profile-pic" alt="user profile picture" src="">
+              <span id="guest-pic"><i class="fa-solid fa-face-grin-beam fa-2xl"></i></span>
+              <span id="current-span"><div id="login-status-div">Currently signed in as: </div><div id="user-name">Guest</div></span>
+            </div>
+            <div id="reauth-div"><button id="reauth-button" onclick="handleReauthClick()">Reauthenticate</button></div>
+            <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
+            <div><button id="guest-button" onclick="guestButton()">Continue as Guest</button></div>
           </div>
-          <div id="reauth-div"><button id="reauth-button" onclick="handleReauthClick()">Reauthenticate</button></div>
-          <div class="g_id_signout"><button id="signout-button" onclick="handleSignoutClick()">Sign Out and Continue as Guest</button></div>
-          <div><button id="guest-button" onclick="guestButton()">Continue as Guest</button></div>
           
           <div id="config-div">
-            <h2>Config File Management</h2>
+            <h4>Config File Management</h4>
             <div>
               Download your plant data or upload new plant data here:
             </div>
             <div>
               <button aria-label="UploadUserConfigButton">
-                <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
+                <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Plant JSON</label>
               </button>
               <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
             </div>
             <div>
               <a id="configText" download="plantData.json">
-                <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
+                <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Plant JSON</button>
               </a>
             </div>
           </div>
@@ -111,9 +115,13 @@
 
         <div id="add-pant-div" class="content-box">
           <h2>New Plant Details</h2>
-          <div style="margin-block-end: 1.67em;">
+          <div>
             <label for="known-plant" style="font-size: 0.83em; font-weight: bold;">Pre-fill with known plant info for faster plant creation:   </label>
             <select id="known-plant" onchange="knownPlantSelectionChange()"></select>
+          </div>
+          <div style="margin-block-end: 1.67em;">
+            <label for="template-button" style="font-size: 0.83em; font-weight: bold;">Save current settings to use again as a template:   </label>
+            <button id="template-button" aria-label="Save Template" type="submit" onclick="toggleTemplatePlantForm()" title="Save Template"><i class="fa-solid fa-clone"></i></button>
           </div>
           <form class="form-container" action="javascript:console.log( 'success!' );">
             <div class="top-right">
@@ -122,18 +130,18 @@
             </div>  
 
             <div>
-              <label for="newPlantName"><b>Name:</b></label>
-              <input type="text" placeholder="Enter Plant Name" id="newPlantName" required>
+              <label for="newPlantName"><b>Plant's Name:</b></label>
+              <input type="text" placeholder="A unique name" id="newPlantName" required>
             </div>
             <div>
-              <label for="newPlantLocation"><b>Location:</b></label>
-              <input type="text" placeholder="Enter Plant Location" list="known-locations" id="newPlantLocation" required>
+              <label for="newPlantLocation"><b>Plant's Location:</b></label>
+              <input type="text" placeholder="Where is your plant?" list="known-locations" id="newPlantLocation" required>
             </div>
 
             <div id="add-plant-input"></div>
             
           </form>
-          <button aria-label="Save Template" type="submit" onclick="toggleTemplatePlantForm()" title="Save Template"><i class="fa-solid fa-clone"></i> Save Plant as Template</button>
+
         </div>
 
         <div id="display-plant-div" class="content-box">
