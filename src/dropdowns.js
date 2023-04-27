@@ -4,6 +4,7 @@ var plantDropdown = $('#plant-dropdown');
 
 function findUserLocations() {
   if (PlantData) {
+    $("#known-locations").empty();
     Object.keys(PlantData).forEach(function(location) {
       $("#known-locations").append($('<option></option>').attr('value', location).text(location));
     });
