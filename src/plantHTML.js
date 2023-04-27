@@ -30,6 +30,8 @@ function displayPlant(element, locationName, plantName, allOptions) {
   lastFertilized.text('n/a');
   var water = $('<span id="water"></span>');
   water.text('n/a');
+  var waterAmount = $('<span id="waterAmount"></span>');
+  waterAmount.text('n/a');
   var waterInstructions = $('<span id="waterInstructions"></span>');
   waterInstructions.text('n/a');
   var soil = $('<span id="soil"></span>');
@@ -59,6 +61,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
   waterDiv.append($('<div><span><b>Current Wetness: </b></span></div>').append(currentWetness))
   waterDiv.append($('<div><span><b>Next Check Date: </b></span></div>').append(nextCheck))
   waterDiv.append($('<div><span><b>Desired Water Level: </b></span></div>').append(water))
+  waterDiv.append($('<div><span><b>Watering Amount: </b></span></div>').append(waterAmount))
   waterDiv.append($('<div><span><b>Watering Instructions: </b></span></div>').append(waterInstructions))
 
   let fertilizerDiv = $('<div></div>')
