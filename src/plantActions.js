@@ -375,7 +375,7 @@ function toggleTemplatePlantForm() {
 };
 
 async function savePlantTemplate() {
-  let newName = $("#planttypename").val();
+  let newName = $("#planttypename").val().trim();
   let inputs = readPlantInputs("#new");
   console.log('adding', newName, inputs)
   if (!UserData.hasOwnProperty('userPlants')) {
@@ -386,8 +386,8 @@ async function savePlantTemplate() {
 }
 
 async function addNewPlant() {
-  let newLocation = $("#newPlantLocation").val();
-  let newName = $("#newPlantName").val();
+  let newLocation = $("#newPlantLocation").val().trim();
+  let newName = $("#newPlantName").val().trim();
   if (newName) {
     if (!PlantData.hasOwnProperty(newLocation)) {
       PlantData[newLocation] = {};
