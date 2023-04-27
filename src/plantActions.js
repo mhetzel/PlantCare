@@ -277,14 +277,14 @@ function showAllNeedyPlants(locationToShow) {
   Object.keys(PlantData).forEach(function(locationName) {
     const result = getNeedyPlants(locationName);
     if (result.length > 0) {
-      let locationDiv = $('<div id="'+locationName+': '+result.length+'"></div>')
+      let locationDiv = $('<div id="'+locationName+'"></div>')
       needyDiv.append(locationDiv)
       let locationHeader = $('<h3></h3>')
       let locationButton = $('<button></button>')
       let expand = $('<i class="fa-solid fa-angle-right"></i>')
       let expanded = $('<i class="fa-solid fa-angle-down"></i>')
       locationButton.append(expanded)
-      let locationTitle = '  '+locationName
+      let locationTitle = '  '+locationName+': '+result.length
       locationHeader.append(locationButton, locationTitle)
       locationDiv.append(locationHeader)
       let plantsAtLocationDiv = $('<div></div>')
