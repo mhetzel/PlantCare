@@ -205,7 +205,7 @@ function addPlantInputFeilds(divId, idPrefix) {
   let lastFertilized = $('<div><label for="' + idPrefix + 'PlantLastFertilized"><b>Last Fertilized Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastFertilized"></div>')
   
   let water = $('<div><label for="' + idPrefix + 'PlantWaterNeeds"><b>Water When:</b></label><select required id="' + idPrefix + 'PlantWaterNeeds"></select></div>')
-  let ammount = $('<div><label for="' + idPrefix + 'PlantWaterAmount"><b>Water Amount:</b></label><input type="text" placeholder="how much to drink?" id="' + idPrefix + 'PlantWaterAmount"></input></div>')
+  let amount = $('<div><label for="' + idPrefix + 'PlantWaterAmount"><b>Water Amount:</b></label><input type="text" placeholder="how much to drink?" id="' + idPrefix + 'PlantWaterAmount"></input></div>')
   let instructions = $('<div><label for="' + idPrefix + 'PlantWaterInstructions"><b>Watering Instructions:</b></label><select name="' + idPrefix + 'PlantWaterInstructions[]" multiple id="' + idPrefix + 'PlantWaterInstructions"></select></div>')
   let soil = $('<div><label for="' + idPrefix + 'PlantSoilPreferences"><b>Soil Preferences:</b></label><select id="' + idPrefix + 'PlantSoilPreferences"></select></div>')
   let fertilizerSchedule = $('<div><label for="' + idPrefix + 'PlantFertilizer"><b>Fertilizer Frequency:</b></label><select id="' + idPrefix + 'PlantFertilizer"></select></div>')
@@ -213,6 +213,6 @@ function addPlantInputFeilds(divId, idPrefix) {
   let light = $('<div><label for="' + idPrefix + 'PlantLightNeeds"><b>Light:</b></label><select id="' + idPrefix + 'PlantLightNeeds" required></select></div>')
   let petSafe = $('<div><label for="' + idPrefix + 'PlantPetSafe"><b>Pet Safe:</b></label><select id="' + idPrefix + 'PlantPetSafe"><option>false</option><option>true</option></select></div>')
   let humidity = $('<div><label for="' + idPrefix + 'PlantHumitidy"><b>Humidity Needs:</b></label><select id="' + idPrefix + 'PlantHumitidy"></select></div>')
-  $(divId).append(averageWateringDays, lastWatered, lastChecked, lastFertilized, water, ammount, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
+  $(divId).append(averageWateringDays, lastWatered, lastChecked, lastFertilized, water, amount, instructions, soil, fertilizerSchedule, fertilizerDose, light, petSafe, humidity)
   $('select[multiple]').multiselect();
 }
