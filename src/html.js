@@ -22,7 +22,7 @@ function readPlantInputs(idPrefix) {
   inputs['water'] = $(idPrefix+"PlantWaterNeeds").prop('selectedIndex');
   inputs['light'] = $(idPrefix+"PlantLightNeeds").prop('selectedIndex');
   inputs['waterInstructions'] = $(idPrefix+"PlantWaterInstructions").val();
-  inputs['waterAmmount'] = $(idPrefix+"PlantWaterAmmount").val();
+  inputs['waterAmount'] = $(idPrefix+"PlantWaterAmount").val();
   inputs['soil'] = $(idPrefix+"PlantSoilPreferences").val();
   inputs['fertilzerFrequency'] = $(idPrefix+"PlantFertilizer").val();
   inputs['fertilzerDose'] = $(idPrefix+"PlantFertilizerDose").val();
@@ -35,7 +35,7 @@ function readPlantInputs(idPrefix) {
 function setKnownPlantValues(prefix, plant) {
   $(prefix + "PlantWaterNeeds").prop('selectedIndex', plant['water']);
   $(prefix + "PlantWaterInstructions").val(plant['waterInstructions']);
-  $(prefix + "PlantWaterAmmount").val(plant['waterAmmount']);
+  $(prefix + "PlantWaterAmount").val(plant['waterAmount']);
   $('select[multiple]').multiselect('reload')
   $(prefix + "PlantSoilPreferences").val(plant['soil']);
   $(prefix + "PlantFertilizer").val(plant['fertilzerFrequency']);
@@ -205,7 +205,7 @@ function addPlantInputFeilds(divId, idPrefix) {
   let lastFertilized = $('<div><label for="' + idPrefix + 'PlantLastFertilized"><b>Last Fertilized Date:</b></label><input type="date" id="' + idPrefix + 'PlantLastFertilized"></div>')
   
   let water = $('<div><label for="' + idPrefix + 'PlantWaterNeeds"><b>Water When:</b></label><select required id="' + idPrefix + 'PlantWaterNeeds"></select></div>')
-  let ammount = $('<div><label for="' + idPrefix + 'PlantWaterAmmount"><b>Water Ammount:</b></label><select id="' + idPrefix + 'PlantWaterAmmount"></select></div>')
+  let ammount = $('<div><label for="' + idPrefix + 'PlantWaterAmount"><b>Water Amount:</b></label><input type="text" placeholder="how much to drink?" id="' + idPrefix + 'PlantWaterAmount"></input></div>')
   let instructions = $('<div><label for="' + idPrefix + 'PlantWaterInstructions"><b>Watering Instructions:</b></label><select name="' + idPrefix + 'PlantWaterInstructions[]" multiple id="' + idPrefix + 'PlantWaterInstructions"></select></div>')
   let soil = $('<div><label for="' + idPrefix + 'PlantSoilPreferences"><b>Soil Preferences:</b></label><select id="' + idPrefix + 'PlantSoilPreferences"></select></div>')
   let fertilizerSchedule = $('<div><label for="' + idPrefix + 'PlantFertilizer"><b>Fertilizer Frequency:</b></label><select id="' + idPrefix + 'PlantFertilizer"></select></div>')
