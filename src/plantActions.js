@@ -201,9 +201,7 @@ function showAllPlantsForLocation(parentDiv, locationName) {
   parentDiv.show()
 }
 
-let hungryDiv = $("#hungry-plants-div");
 let needyDiv = $("#needy-plants-div");
-
 
 function doesPlantNeedFertilizer(locationName, plantName) {
   // TODO factor in timing
@@ -274,13 +272,12 @@ function doesPlantNeedFertilizer(locationName, plantName) {
 
 
 function showAllNeedyPlants(locationToShow) {
-  hungryDiv.empty();
   needyDiv.empty();
 
   Object.keys(PlantData).forEach(function(locationName) {
     const result = getNeedyPlants(locationName);
     if (result.length > 0) {
-      let locationDiv = $('<div id="'+locationName+'"></div>')
+      let locationDiv = $('<div id="'+locationName+': '+result.length+'"></div>')
       needyDiv.append(locationDiv)
       let locationHeader = $('<h3></h3>')
       let locationButton = $('<button></button>')
