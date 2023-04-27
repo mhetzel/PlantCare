@@ -100,13 +100,13 @@
             </div>
             <div>
               <button aria-label="UploadUserConfigButton">
-                <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Config File</label>
+                <label for="userConfig" title="Upload Config"><i class="fa-solid fa-upload"></i> Upload Plant JSON</label>
               </button>
               <input type="file" id="userConfig" name="userConfig" accept=".jsn, .json" onchange="uploadConfig(event)">
             </div>
             <div>
               <a id="configText" download="plantData.json">
-                <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Config File</button>
+                <button aria-label="Download User Config" onclick="downloadConfig()" title="Download Config"><i class="fa-solid fa-download"></i> Download Plant JSON</button>
               </a>
             </div>
           </div>
@@ -127,11 +127,11 @@
 
             <div>
               <label for="newPlantName"><b>Name:</b></label>
-              <input type="text" placeholder="Enter Plant Name" id="newPlantName" required>
+              <input type="text" placeholder="Give your plant a unique name" id="newPlantName" required>
             </div>
             <div>
               <label for="newPlantLocation"><b>Location:</b></label>
-              <input type="text" placeholder="Enter Plant Location" list="known-locations" id="newPlantLocation" required>
+              <input type="text" placeholder="Where is your plant?" list="known-locations" id="newPlantLocation" required>
             </div>
 
             <div id="add-plant-input"></div>
