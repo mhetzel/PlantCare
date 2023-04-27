@@ -328,6 +328,7 @@ plantKeys = [
 'nextCheck',
 'nextFertilizing',
 'water',
+'waterAmount',
 'light',
 'waterInstructions',
 'soil',
