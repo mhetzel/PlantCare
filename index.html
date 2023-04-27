@@ -119,6 +119,10 @@
             <label for="known-plant" style="font-size: 0.83em; font-weight: bold;">Pre-fill with known plant info for faster plant creation:   </label>
             <select id="known-plant" onchange="knownPlantSelectionChange()"></select>
           </div>
+          <div>
+            <label for="template-button" style="font-size: 0.83em; font-weight: bold;">Save current settings to use again as a template:   </label>
+            <button id="template-button" aria-label="Save Template" type="submit" onclick="toggleTemplatePlantForm()" title="Save Template"><i class="fa-solid fa-clone"></i></button>
+          </div>
           <form class="form-container" action="javascript:console.log( 'success!' );">
             <div class="top-right">
               <button aria-label="Save Plant" type="submit" onclick="addNewPlant()" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>
@@ -137,10 +141,7 @@
             <div id="add-plant-input"></div>
             
           </form>
-          <div>
-            <label for="template-button" style="font-size: 0.83em; font-weight: bold;">Save current plant to use again as a template:   </label>
-            <button id="template-button" aria-label="Save Template" type="submit" onclick="toggleTemplatePlantForm()" title="Save Template"><i class="fa-solid fa-clone"></i></button>
-          </div>
+
         </div>
 
         <div id="display-plant-div" class="content-box">
