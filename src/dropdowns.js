@@ -86,6 +86,11 @@ function plantSelectionChange() {
   }
 }
 
+function sortSelectionChange() {
+  let sort = $('#sort-dropdown').val();
+  console.log(sort)
+}
+
 function locationSelectionChange() {
   resetPlantDropdown();
   let location = locationDropdown.val();
@@ -98,7 +103,7 @@ function locationSelectionChange() {
       showAllPlantsForLocation(plantsDiv, location)
       allPlantsDiv.append(plantsDiv)
     });
-    allPlantsDiv.prepend('<div>Sort Plants by <select id="sort-dropdown" onchange="sortSelectChange()"></select></div>');
+    allPlantsDiv.prepend('<div>Sort Plants by <select id="sort-dropdown" onchange="sortSelectionChange()"></select></div>');
     $('#sort-dropdown').append($('<option></option>').attr('value', 'Default').text('Default'));
     $('#sort-dropdown').append($('<option></option>').attr('value', 'Check Date').text('Check Date'));
     $('#sort-dropdown').append($('<option></option>').attr('value', 'Water Date').text('Water Date'));
