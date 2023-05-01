@@ -98,7 +98,13 @@ function locationSelectionChange() {
       showAllPlantsForLocation(plantsDiv, location)
       allPlantsDiv.append(plantsDiv)
     });
-    allPlantsDiv.prepend('<div>Sort Plants by <select id="sort-dropdown" onchange="sortSelectChange()"><option value="Default">Default</option></select></div>')
+    allPlantsDiv.prepend('<div>Sort Plants by <select id="sort-dropdown" onchange="sortSelectChange()"></select></div>');
+    $('#sort-dropdown').append($('<option></option>').attr('value', 'Default').text('Default'));
+    $('#sort-dropdown').append($('<option></option>').attr('value', 'Check Date').text('Check Date'));
+    $('#sort-dropdown').append($('<option></option>').attr('value', 'Water Date').text('Water Date'));
+    $('#sort-dropdown').append($('<option></option>').attr('value', 'Light Needs').text('Light Needs'));
+    $('#sort-dropdown').append($('<option></option>').attr('value', 'Humidity Needs').text('Humidity Needs'));
+    $('#sort-dropdown').append($('<option></option>').attr('value', 'Fertilizer Needs').text('Fertilizer Needs'));
     allPlantsDiv.show()
   } else {
     plantDropdown.append($('<option></option>').attr('value', 'All').text('All'));
