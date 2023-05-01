@@ -80,6 +80,7 @@ function plantSelectionChange() {
   if (plantName === 'All') {
     console.log('all for', location)
     showAllPlantsForLocation($("#dropdown-plant-info"), location)
+    $("#dropdown-plant-info").prepend('<div>Sort Plants by <select>default</select></div>')
   } else {
     displayPlant($("#dropdown-plant-info"), location, plantName, true);
   }
@@ -97,6 +98,7 @@ function locationSelectionChange() {
       showAllPlantsForLocation(plantsDiv, location)
       allPlantsDiv.append(plantsDiv)
     });
+    allPlantsDiv.prepend('<div>Sort Plants by <select id="sort-dropdown" onchange="sortSelectChange()"><option value="Default">Default</option></select></div>')
     allPlantsDiv.show()
   } else {
     plantDropdown.append($('<option></option>').attr('value', 'All').text('All'));
