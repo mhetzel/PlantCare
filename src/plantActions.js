@@ -164,6 +164,10 @@ function comparePlantNeeds(locationName, planta, plantb) {
   }
 }
 
+$('#needsFertilized').change(function() {
+  showAllNeedyPlants(null);
+});
+
 $('#needsWater').change(function() {
   showAllNeedyPlants(null);
 });
@@ -175,11 +179,19 @@ $('#needsChecked').change(function() {
 
 function getNeedyPlants(locationName) {
   let needyPlants = []
-  if ($('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
+  let needsWater = $('#needsWater')[0].checked
+  let needsChecked = $('#needsChecked')[0].checked
+  let needsFertilized = $('#needsFertilized')[0].checked
+  
+  if (needsChecked && needsWater && needsFertilized) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => (doesPlantNeedWatered(locationName, plantName) && doesPlantNeedFertilizer(locationName, plantName)) || doesPlantNeedChecked(locationName, plantName));
+  } else if (needsChecked && needsWater && !needsFertilized) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName) || doesPlantNeedChecked(locationName, plantName));
-  } else if ($('#needsWater')[0].checked && !$('#needsChecked')[0].checked) {
+  } else if (needsWater && !needsChecked && needsFertilized) {
+    needyPlants = Object.keys(PlantData[locationName]).filter(plantName => (doesPlantNeedWatered(locationName, plantName) && doesPlantNeedFertilizer(locationName, plantName))
+  } else if (needsWater && !needsChecked && !needsFertilized) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedWatered(locationName, plantName));
-  } else if (!$('#needsWater')[0].checked && $('#needsChecked')[0].checked) {
+  } else if (needsChecked && !needsWater && !needsFertilized) {
     needyPlants = Object.keys(PlantData[locationName]).filter(plantName => doesPlantNeedChecked(locationName, plantName));
   }
   if (needyPlants.length > 0) {
