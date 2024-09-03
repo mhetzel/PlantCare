@@ -38,6 +38,7 @@ async function readFile(fileID) {
       return null;
     });
   }
+  console.log(data)
   return data;
 }
 
