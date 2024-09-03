@@ -92,7 +92,8 @@ function signedIn() {
   } else {
     console.log('trying to call load plants from sign in')
     loadPlants();
-    // loadUserData();
+    loadUserData();
+
   }
 
 }
