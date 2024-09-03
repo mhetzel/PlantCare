@@ -182,12 +182,12 @@ async function setCurrentUserDisplay(userName, userPicture) {
     signinDiv.show();
     signOutButton.hide();
   } else {
-    // checkAccess().then(function(response) {
-    //   if (!response){
-    //      $('#login-status-div').text('Previously signed in as: ')
-    //      $('#reauth-div').show();
-    //   }
-    // });
+    checkAccess().then(function(response) {
+      if (!response){
+         $('#login-status-div').text('Previously signed in as: ')
+         $('#reauth-div').show();
+      }
+    });
     userPic.attr("src", userPicture);
     userPic.show();
     guestPic.hide();

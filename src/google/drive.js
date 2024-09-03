@@ -6,7 +6,8 @@
 async function checkAccess() {
   let result = await gapi.client.drive.files.list({
     'pageSize': 10,
-    'fields': 'files(id, name)',
+    'spaces': 'appDataFolder',
+    'fields': 'files(id, name, modifiedTime)',
     'q': "mimeType = 'application/vnd.google-apps.folder' and name = 'PlantCare' and trashed != true"
   }).then(function(response) {
     return true;
@@ -40,7 +41,7 @@ async function readFile(fileID) {
 }
  
 async function writeFile(fileID, data) {
-  // await checkAccess(); 
+  await checkAccess(); 
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
     method: 'PATCH',
