@@ -92,7 +92,7 @@ function signedIn() {
   } else {
     console.log('trying to call load plants from sign in')
     loadPlants();
-    loadUserData();
+    // loadUserData();
   }
 
 }
@@ -110,7 +110,7 @@ function signedOut() {
   
   console.log('trying to call load plants from signout')
   loadPlants();
-  loadUserData();
+  // loadUserData();
 };
 
 async function handleSignoutClick() {
