@@ -35,8 +35,8 @@ async function retrieveUserData() {
 
   if (!GuestMode) {
     console.log('from retrieveUserData')
-    // await findOrCreateUserConfig();
-    // console.log('read file from retrieveUserData')
+    await findOrCreateUserConfig();
+    console.log('read file from retrieveUserData')
     // retrievedObject = await readFile(UserFileID);
   } else {
     retrievedObject = localStorage.getItem(USER_STORAGE);
@@ -85,9 +85,9 @@ async function retrievePlantData() {
 
   if (!GuestMode) {
     console.log('from retrievePlantData')
-    // await findOrCreateConfig();
+    await findOrCreateConfig();
     console.log('read file from retrievePlantData')
-    // retrievedObject = await readFile(DriveFileID);
+    //retrievedObject = await readFile(DriveFileID);
   } else {
     retrievedObject = localStorage.getItem(STORAGE_KEY);
   }
@@ -110,10 +110,7 @@ async function retrievePlantData() {
 async function findOrCreateUserConfig() {
   if (!GuestMode) {
     if (!UserFileID) {
-      UserFileID = await getFolderID().then(folderID => { 
-        console.log('getFileID from findOrCreateUserConfig')
-        return getFileID(folderID, 'user.json');
-      });
+      UserFileID = await getFileID('user.json')
     }
   } else {
     console.log('No drive access as Guest');
@@ -123,10 +120,7 @@ async function findOrCreateUserConfig() {
 async function findOrCreateConfig() {
   if (!GuestMode) {
     if (!DriveFileID) {
-      DriveFileID = await getFolderID().then(folderID => { 
-        console.log('getFileID from findOrCreateConfig')
-        return getFileID(folderID, 'data.json');
-      });
+      DriveFileID = await getFileID('data.json');
     }
   } else {
     console.log('No drive access as Guest');
