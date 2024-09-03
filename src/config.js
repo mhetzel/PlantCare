@@ -59,7 +59,7 @@ async function saveUserConfig(userData) {
 async function saveUserConfigNoDisplay(userData) {
   let fileData = userData
   if (!GuestMode && UserFileID) {
-    await writeFile(UserFileID, fileData);
+    await writeFile(UserFileID, fileData, 'user.json');
   } else {
     localStorage.setItem(USER_STORAGE, JSON.stringify(fileData));
   }
@@ -74,7 +74,7 @@ async function saveConfigNoDisplay(plantData) {
   let fileData = {'timestamp': Date.now(), 'plants': plantData}
   // todo compare timestamp before writing to storage?
   if (!GuestMode && DriveFileID) {
-    await writeFile(DriveFileID, fileData);
+    await writeFile(DriveFileID, fileData, 'data.json');
   } else {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fileData));
   }
@@ -110,10 +110,7 @@ async function retrievePlantData() {
 async function findOrCreateUserConfig() {
   if (!GuestMode) {
     if (!UserFileID) {
-      UserFileID = await getFolderID().then(folderID => { 
-        console.log('getFileID from findOrCreateUserConfig')
-        return getFileID(folderID, 'user.json');
-      });
+      UserFileID = await getFileID('user.json')
     }
   } else {
     console.log('No drive access as Guest');
@@ -123,10 +120,7 @@ async function findOrCreateUserConfig() {
 async function findOrCreateConfig() {
   if (!GuestMode) {
     if (!DriveFileID) {
-      DriveFileID = await getFolderID().then(folderID => { 
-        console.log('getFileID from findOrCreateConfig')
-        return getFileID(folderID, 'data.json');
-      });
+      DriveFileID = await getFileID('data.json');
     }
   } else {
     console.log('No drive access as Guest');
@@ -142,7 +136,8 @@ async function uploadConfig(event) {
   
   const text = await file.text();
 
-  PlantData = JSON.parse(text);
+  fileData = JSON.parse(text);
+  PlantData = fileData['plants']
   await saveConfig(PlantData);
   console.log('config saved');
 }
