@@ -3,7 +3,7 @@
   "short_name": "Plant Care",
   "theme_color": "#0d1b19",
   "background_color": "#0d1b19",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/PlantCare/",
   "start_url": "/PlantCare/",
   "icons": [
