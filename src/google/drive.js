@@ -84,7 +84,7 @@ async function writeFile(fileID, data, fileName) {
   form.append('file', file);
   const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
-    method: 'POST',
+    method: 'PATCH',
     headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
     body: form,
   }).then((response) => response.json()
