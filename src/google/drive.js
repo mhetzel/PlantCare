@@ -82,7 +82,7 @@ async function writeFile(fileID, data, fileName) {
   var form = new FormData();
   form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
   form.append('file', file);
-  const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media&fields=id';
+  const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
   fetch(url, {
     method: 'POST',
     headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
