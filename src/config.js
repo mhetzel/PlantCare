@@ -142,7 +142,8 @@ async function uploadConfig(event) {
   
   const text = await file.text();
 
-  PlantData = JSON.parse(text);
+  fileData = JSON.parse(text);
+  PlantData = fileData['plants']
   await saveConfig(PlantData);
   console.log('config saved');
 }
