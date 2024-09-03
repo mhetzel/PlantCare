@@ -206,18 +206,10 @@ function displayPlant(element, locationName, plantName, allOptions) {
     })
     buttonDiv.append(saveButton, closeButton)
     let moveLabel = $('<label for="movedPlantLocation"><b>New Location:</b></label>')
-    let moveInput = $('<input type="text" list="known-locations" placeholder="Enter New Plant Location" id="movedPlantLocation" required>')
-
-    if (PlantData) {
-      Object.keys(PlantData).forEach(function(location) {
-        moveInput.append($('<option></option>').attr('value', location).text(location));
-      });
-    }
-
+    let moveInput = $('<input type="text" placeholder="Where is your plant now?" list="known-locations" id="movedPlantLocation" required>')
     moveForm.append(buttonDiv, moveLabel, moveInput)
 
     $("#display-plant-div").append(moveDiv)
-    $("#movedPlantLocation").val(locationName);
     $("#move-location-div").show();
   }
   

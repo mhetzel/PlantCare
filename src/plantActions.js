@@ -353,9 +353,9 @@ plantKeys = [
 
 function createSaveTemplateForm() {
   $('#save-template-div').remove()
-  let moveDiv = $('<div id="save-template-div" class="floating-box content-box"></div>')
-  let moveForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
-  moveDiv.append(moveForm)
+  let templatePlantDiv = $('<div id="save-template-div" class="floating-box content-box"></div>')
+  let templatePlantForm = $('<form class="form-container" action="javascript:console.log( \'success!\' );">')
+  templatePlantDiv.append(templatePlantForm)
   let buttonDiv = $('<div class="top-right"></div>')
   let saveButton = $('<button type="submit" title="Save Template"><i class="fa-solid fa-floppy-disk"></i></button>')
   let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
@@ -366,12 +366,12 @@ function createSaveTemplateForm() {
     toggleTemplatePlantForm()
   })
   buttonDiv.append(saveButton, closeButton)
-  let moveLabel = $('<label for="planttypename"><b>New Template Plant:</b></label>')
-  let moveInput = $('<input type="text" placeholder="Enter New Name" id="planttypename" required>')
+  let templatePlantLabel = $('<label for="planttypename"><b>New Template Plant:</b></label>')
+  let templatePlantInput = $('<input type="text" placeholder="Enter New Name" id="planttypename" required>')
 
-  moveForm.append(buttonDiv, moveLabel, moveInput)
+  templatePlantForm.append(buttonDiv, templatePlantLabel, templatePlantInput)
 
-  $("body").append(moveDiv)
+  $("body").append(templatePlantDiv)
   $("#planttypename").val('');
   $("#save-template-div").show();
 }
