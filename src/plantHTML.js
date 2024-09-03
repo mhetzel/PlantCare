@@ -214,6 +214,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
       });
     }
     let moveInput = $('<input type="text" list="known-locations" placeholder="Enter New Plant Location" id="movedPlantLocation" required>')
+    moveInput.append(knownLocations)
 
     moveForm.append(buttonDiv, moveLabel, moveInput)
 
