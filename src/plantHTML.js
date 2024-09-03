@@ -198,6 +198,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
     let buttonDiv = $('<div class="top-right"></div>')
     let saveButton = $('<button type="submit" title="Save Plant"><i class="fa-solid fa-floppy-disk"></i></button>')
     let closeButton = $('<button type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>')
+
     saveButton.on('click', function() {
       movePlant()
     })
@@ -215,7 +216,7 @@ function displayPlant(element, locationName, plantName, allOptions) {
     }
 
     moveForm.append(buttonDiv, moveLabel, moveInput)
-
+    dropdownSetup();
     $("#display-plant-div").append(moveDiv)
     $("#movedPlantLocation").val(locationName);
     $("#move-location-div").show();
