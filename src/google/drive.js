@@ -40,23 +40,50 @@ async function readFile(fileID) {
   }
   return data;
 }
+
+
+async function saveFile(fileID, data) {
+  var file = new Blob([JSON.stringify(data)], {type: 'application/json'});
+  var metadata = {
+      'name': fileID, // Filename at Google Drive
+      'mimeType': 'application/json', // mimeType at Google Drive
+      'parents': ['appDataFolder'], // Folder ID at Google Drive
+  };
+
+  var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
+  var form = new FormData();
+  form.append('metadata', new Blob([JSON.stringify(metadata)], {type: 'application/json'}));
+  form.append('file', file);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id');
+  xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+  xhr.responseType = 'json';
+  xhr.onload = () => {
+      console.log(xhr.response.id); // Retrieve uploaded file ID.
+      // callback(xhr.response);
+  };
+  xhr.send(form);
+}
+
  
 async function writeFile(fileID, data) {
   await checkAccess(); 
-  const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
-  fetch(url, {
-    method: 'PATCH',
-    headers: new Headers({
-        Authorization: 'Bearer ' + gapi.auth.getToken().access_token,
-        'Content-type': 'text/plain'
-    }),
-    body: JSON.stringify(data)
-  })
-  .then(result => result.json())
-  .then(value => {
-    console.log('Updated. Result:\n' + JSON.stringify(value, null, 2));
-  })
-  .catch(err => console.error(err));
+  await saveFile(fileID, data)
+  // const url = 'https://www.googleapis.com/upload/drive/v3/files/' + fileID + '?uploadType=media';
+  // fetch(url, {
+  //   method: 'PATCH',
+  //   headers: new Headers({
+  //       Authorization: 'Bearer ' + gapi.auth.getToken().access_token,
+  //       'Content-type': 'text/plain'
+  //   }),
+  //   body: JSON.stringify(data)
+  // })
+  // .then(result => result.json())
+  // .then(value => {
+  //   console.log('Updated. Result:\n' + JSON.stringify(value, null, 2));
+  // })
+  // .catch(err => console.error(err));
 }
  
 async function getFileID(fileName) {
