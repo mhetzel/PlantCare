@@ -172,6 +172,7 @@ select {
   width: fit-content;
   position: relative;
   max-width: 95%;
+  z-index: -1;
 }
 
 .floating-box {
