@@ -392,7 +392,7 @@ async function savePlantTemplate() {
     UserData['userPlants'] = {};
   }
   UserData['userPlants'][newName] = inputs;
-  saveUserConfig(UserData);
+  // saveUserConfig(UserData);
 }
 
 async function addNewPlant() {
