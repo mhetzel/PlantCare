@@ -37,7 +37,7 @@ async function retrieveUserData() {
     console.log('from retrieveUserData')
     await findOrCreateUserConfig();
     console.log('read file from retrieveUserData')
-    // retrievedObject = await readFile(UserFileID);
+    retrievedObject = await readFile(UserFileID);
   } else {
     retrievedObject = localStorage.getItem(USER_STORAGE);
   }
@@ -59,7 +59,7 @@ async function saveUserConfig(userData) {
 async function saveUserConfigNoDisplay(userData) {
   let fileData = userData
   if (!GuestMode && UserFileID) {
-    // await writeFile(UserFileID, fileData);
+    await writeFile(UserFileID, fileData);
   } else {
     localStorage.setItem(USER_STORAGE, JSON.stringify(fileData));
   }
@@ -74,7 +74,7 @@ async function saveConfigNoDisplay(plantData) {
   let fileData = {'timestamp': Date.now(), 'plants': plantData}
   // todo compare timestamp before writing to storage?
   if (!GuestMode && DriveFileID) {
-    // await writeFile(DriveFileID, fileData);
+    await writeFile(DriveFileID, fileData);
   } else {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fileData));
   }
@@ -87,7 +87,7 @@ async function retrievePlantData() {
     console.log('from retrievePlantData')
     await findOrCreateConfig();
     console.log('read file from retrievePlantData')
-    //retrievedObject = await readFile(DriveFileID);
+    retrievedObject = await readFile(DriveFileID);
   } else {
     retrievedObject = localStorage.getItem(STORAGE_KEY);
   }

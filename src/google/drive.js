@@ -26,6 +26,7 @@ async function readFile(fileID) {
   if (fileID) {
     data = await gapi.client.drive.files.get({
       fileId: fileID,
+      spaces: 'appDataFolder',
       alt: 'media'
     }).then(function(resp) {
       if (resp.body !== '') {
