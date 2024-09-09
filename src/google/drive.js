@@ -12,9 +12,16 @@ async function checkAccess() {
   }).then(function(response) {
     return true;
   }, function(reason) {
-    if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
-//       tokenClient.requestAccessToken();
-//       google.accounts.id.prompt();
+    console.log('check access', reason.result.error.status)
+     if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
+      // tokenClient.requestAccessToken();
+      // google.accounts.id.prompt();
+       return false;
+     }
+
+    if (reason.result.error.status === "UNAUTHENTICATED") {
+      tokenClient.requestAccessToken();
+      google.accounts.id.prompt();
       return false;
     }
   });
@@ -22,6 +29,7 @@ async function checkAccess() {
 }
 
 async function readFile(fileID) {
+  await checkAccess(); 
   let data = null;
   if (fileID) {
     data = await gapi.client.drive.files.get({
