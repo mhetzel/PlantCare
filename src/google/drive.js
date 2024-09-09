@@ -17,6 +17,10 @@ async function checkAccess() {
 //       google.accounts.id.prompt();
       return false;
     }
+    if (reason.result.error.status === "UNAUTHENTICATED") {
+      tokenClient.requestAccessToken();
+      // google.accounts.id.prompt();
+    }
   });
   return result;
 }
