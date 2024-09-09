@@ -28,6 +28,7 @@ async function checkAccess() {
 }
 
 async function readFile(fileID) {
+  await checkAccess(); 
   let data = null;
   if (fileID) {
     data = await gapi.client.drive.files.get({
