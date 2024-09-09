@@ -12,14 +12,15 @@ async function checkAccess() {
   }).then(function(response) {
     return true;
   }, function(reason) {
-    if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
-//       tokenClient.requestAccessToken();
-//       google.accounts.id.prompt();
-      return false;
-    }
+//     if (reason.result.error.message === 'Invalid Credentials' || reason.result.error.message === 'The user does not have sufficient permissions for this file.') {
+// //       tokenClient.requestAccessToken();
+// //       google.accounts.id.prompt();
+//       return false;
+//     }
     if (reason.result.error.status === "UNAUTHENTICATED") {
       tokenClient.requestAccessToken();
-      // google.accounts.id.prompt();
+      google.accounts.id.prompt();
+      return false;
     }
   });
   return result;
