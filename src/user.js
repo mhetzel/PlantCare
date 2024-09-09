@@ -87,7 +87,7 @@ function signedIn() {
     console.log('can\'t parse stored token')
   }
 
-  if (checkAccess()) {
+  if (gapi.client.getToken() === null) {
     tokenClient.requestAccessToken({prompt: 'consent'});
   } else {
     console.log('trying to call load plants from sign in')
