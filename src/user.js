@@ -5,6 +5,7 @@
 var GuestMode = true;
 var User = 'Guest';
 var UserPicture = '';
+var Token = '';
 
 function isFirstVisit() {
   var hasVisited = localStorage.getItem('hasVisited');
@@ -49,6 +50,7 @@ function parseJwt(token) {
 };
 
 async function handleToken(googleUser) {
+  console.log('handle token')
   localStorage.setItem('hasVisited', true)
   if (googleUser) {
     let parsedData = parseJwt(googleUser.credential);
@@ -66,20 +68,21 @@ async function tokenCallback(resp) {
     if (resp.error !== undefined) {
       throw (resp);
     }
-    localStorage.setItem("token_"+User, JSON.stringify(resp));
+
+    Token = JSON.stringify(resp)
     console.log('token callback')
     signedIn();
 }
 
 function signedIn() { 
-
+  console.log('signed in')
   setCurrentUserDisplay(User, UserPicture);
   
   localStorage.setItem('guestMode', false);
   GuestMode = false;
 
   try {
-    let token = JSON.parse(localStorage.getItem("token_"+User));
+    let token = JSON.parse(Token);
     if (token) {
       gapi.client.setToken(token)
     }
@@ -88,7 +91,7 @@ function signedIn() {
   }
 
   if (gapi.client.getToken() === null) {
-    tokenClient.requestAccessToken({prompt: 'consent'});
+    tokenClient.requestAccessToken();
   } else {
     console.log('trying to call load plants from sign in')
     loadPlants();
@@ -103,7 +106,6 @@ function signedOut() {
   
   localStorage.removeItem('userEmail');
   localStorage.removeItem('userPic');
-  localStorage.removeItem("token_"+User);
   localStorage.removeItem("data_"+User);
   localStorage.setItem('guestMode', true);
   GuestMode = true;
