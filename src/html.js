@@ -183,6 +183,7 @@ async function setCurrentUserDisplay(userName, userPicture) {
     signOutButton.hide();
   } else {
     checkAccess().then(function(response) {
+      console.log('check access response:', response)
       if (!response){
          $('#login-status-div').text('Previously signed in as: ')
          $('#reauth-div').show();
